@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB55A45EFCE0F154101452A5 /* libPods-ESports.a */; };
 		E7BD57691CF4360D008F2D69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57681CF4360D008F2D69 /* main.m */; };
 		E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576B1CF4360D008F2D69 /* AppDelegate.m */; };
 		E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576E1CF4360D008F2D69 /* ViewController.m */; };
@@ -14,9 +15,18 @@
 		E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57731CF4360D008F2D69 /* ESports.xcdatamodeld */; };
 		E7BD57771CF4360D008F2D69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BD57761CF4360D008F2D69 /* Assets.xcassets */; };
 		E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BD57781CF4360D008F2D69 /* LaunchScreen.storyboard */; };
+		E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57871CF5A0AC008F2D69 /* HttpSessionClient.m */; };
+		E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57891CF5A0AC008F2D69 /* HttpSessionManager.m */; };
+		E7BD57921CF6E77F008F2D69 /* SystemConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD578F1CF6E77F008F2D69 /* SystemConfig.m */; };
+		E7BD57931CF6E77F008F2D69 /* UserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57911CF6E77F008F2D69 /* UserConfig.m */; };
+		E7BD57981CF6F4D3008F2D69 /* NSObject+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57961CF6F4D3008F2D69 /* NSObject+Custom.m */; };
+		E7BD579B1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD579A1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.debug.xcconfig"; sourceTree = "<group>"; };
+		4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.release.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.release.xcconfig"; sourceTree = "<group>"; };
+		CB55A45EFCE0F154101452A5 /* libPods-ESports.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ESports.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD57641CF4360D008F2D69 /* ESports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD57681CF4360D008F2D69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E7BD576A1CF4360D008F2D69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +38,21 @@
 		E7BD57761CF4360D008F2D69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7BD57791CF4360D008F2D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7BD577B1CF4360D008F2D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7BD57851CF58BD6008F2D69 /* ESports.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESports.pch; sourceTree = "<group>"; };
+		E7BD57861CF5A0AC008F2D69 /* HttpSessionClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSessionClient.h; sourceTree = "<group>"; };
+		E7BD57871CF5A0AC008F2D69 /* HttpSessionClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSessionClient.m; sourceTree = "<group>"; };
+		E7BD57881CF5A0AC008F2D69 /* HttpSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSessionManager.h; sourceTree = "<group>"; };
+		E7BD57891CF5A0AC008F2D69 /* HttpSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSessionManager.m; sourceTree = "<group>"; };
+		E7BD578D1CF6E77F008F2D69 /* NetworkAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAPIs.h; sourceTree = "<group>"; };
+		E7BD578E1CF6E77F008F2D69 /* SystemConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConfig.h; sourceTree = "<group>"; };
+		E7BD578F1CF6E77F008F2D69 /* SystemConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemConfig.m; sourceTree = "<group>"; };
+		E7BD57901CF6E77F008F2D69 /* UserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserConfig.h; sourceTree = "<group>"; };
+		E7BD57911CF6E77F008F2D69 /* UserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserConfig.m; sourceTree = "<group>"; };
+		E7BD57961CF6F4D3008F2D69 /* NSObject+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Custom.m"; sourceTree = "<group>"; };
+		E7BD57971CF6F4D3008F2D69 /* NSObject+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Custom.h"; sourceTree = "<group>"; };
+		E7BD57991CF6FEF6008F2D69 /* MBProgressHUD+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Custom.h"; sourceTree = "<group>"; };
+		E7BD579A1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Custom.m"; sourceTree = "<group>"; };
+		E7BD579F1CF8125C008F2D69 /* SingletonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingletonManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +60,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9862D763C39376D9EDB3F3EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB55A45EFCE0F154101452A5 /* libPods-ESports.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A12F8592AF6567BB6CADE528 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */,
+				4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E7BD575B1CF4360D008F2D69 = {
 			isa = PBXGroup;
 			children = (
 				E7BD57661CF4360D008F2D69 /* ESports */,
 				E7BD57651CF4360D008F2D69 /* Products */,
+				A12F8592AF6567BB6CADE528 /* Pods */,
+				9862D763C39376D9EDB3F3EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,10 +105,12 @@
 		E7BD57661CF4360D008F2D69 /* ESports */ = {
 			isa = PBXGroup;
 			children = (
+				E7BD57811CF58893008F2D69 /* Utilities */,
 				E7BD576A1CF4360D008F2D69 /* AppDelegate.h */,
 				E7BD576B1CF4360D008F2D69 /* AppDelegate.m */,
 				E7BD576D1CF4360D008F2D69 /* ViewController.h */,
 				E7BD576E1CF4360D008F2D69 /* ViewController.m */,
+				E7BD57851CF58BD6008F2D69 /* ESports.pch */,
 				E7BD57701CF4360D008F2D69 /* Main.storyboard */,
 				E7BD57761CF4360D008F2D69 /* Assets.xcassets */,
 				E7BD57781CF4360D008F2D69 /* LaunchScreen.storyboard */,
@@ -82,6 +129,59 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E7BD57811CF58893008F2D69 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E7BD579C1CF81053008F2D69 /* UtilityHeaderFiles */,
+				E7BD578C1CF6E77F008F2D69 /* Configs */,
+				E7BD57831CF5894B008F2D69 /* HttpManager */,
+				E7BD57821CF58893008F2D69 /* Categories */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E7BD57821CF58893008F2D69 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E7BD57991CF6FEF6008F2D69 /* MBProgressHUD+Custom.h */,
+				E7BD579A1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m */,
+				E7BD57971CF6F4D3008F2D69 /* NSObject+Custom.h */,
+				E7BD57961CF6F4D3008F2D69 /* NSObject+Custom.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		E7BD57831CF5894B008F2D69 /* HttpManager */ = {
+			isa = PBXGroup;
+			children = (
+				E7BD57861CF5A0AC008F2D69 /* HttpSessionClient.h */,
+				E7BD57871CF5A0AC008F2D69 /* HttpSessionClient.m */,
+				E7BD57881CF5A0AC008F2D69 /* HttpSessionManager.h */,
+				E7BD57891CF5A0AC008F2D69 /* HttpSessionManager.m */,
+			);
+			path = HttpManager;
+			sourceTree = "<group>";
+		};
+		E7BD578C1CF6E77F008F2D69 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				E7BD578D1CF6E77F008F2D69 /* NetworkAPIs.h */,
+				E7BD578E1CF6E77F008F2D69 /* SystemConfig.h */,
+				E7BD578F1CF6E77F008F2D69 /* SystemConfig.m */,
+				E7BD57901CF6E77F008F2D69 /* UserConfig.h */,
+				E7BD57911CF6E77F008F2D69 /* UserConfig.m */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		E7BD579C1CF81053008F2D69 /* UtilityHeaderFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E7BD579F1CF8125C008F2D69 /* SingletonManager.h */,
+			);
+			path = UtilityHeaderFiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7BD577E1CF4360D008F2D69 /* Build configuration list for PBXNativeTarget "ESports" */;
 			buildPhases = (
+				68BDF05A2B9F6DB9F48F9FB5 /* 📦 Check Pods Manifest.lock */,
 				E7BD57601CF4360D008F2D69 /* Sources */,
 				E7BD57611CF4360D008F2D69 /* Frameworks */,
 				E7BD57621CF4360D008F2D69 /* Resources */,
+				60670473CC22A1AB08977B34 /* 📦 Embed Pods Frameworks */,
+				62C732F6CCEAB77E98EFD2F3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -147,12 +250,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		60670473CC22A1AB08977B34 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ESports/Pods-ESports-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62C732F6CCEAB77E98EFD2F3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ESports/Pods-ESports-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68BDF05A2B9F6DB9F48F9FB5 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E7BD57601CF4360D008F2D69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */,
+				E7BD57981CF6F4D3008F2D69 /* NSObject+Custom.m in Sources */,
+				E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */,
+				E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */,
+				E7BD57921CF6E77F008F2D69 /* SystemConfig.m in Sources */,
+				E7BD57931CF6E77F008F2D69 /* UserConfig.m in Sources */,
+				E7BD579B1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m in Sources */,
 				E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */,
 				E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */,
 				E7BD57691CF4360D008F2D69 /* main.m in Sources */,
@@ -265,9 +422,13 @@
 		};
 		E7BD577F1CF4360D008F2D69 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
 				INFOPLIST_FILE = ESports/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.afusion.ESports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -276,9 +437,13 @@
 		};
 		E7BD57801CF4360D008F2D69 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
 				INFOPLIST_FILE = ESports/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.afusion.ESports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -304,6 +469,7 @@
 				E7BD57801CF4360D008F2D69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
