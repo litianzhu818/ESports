@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "ESportsTabBarController.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) ESportsTabBarController *tabBarController;
 
 @end
 
@@ -17,7 +20,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self registerRemoteNotificationWithOptions:launchOptions];
+    [self setupViewControolers];
+    [self performSelector:@selector(changedLanguage) withObject:nil];
     return YES;
+}
+
+- (void)changedLanguage
+{
+    NSString *language = nil;
+    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
+        language = SYS_LANGUAGE_S_CHINESE;
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]){
+        language = SYS_LANGUAGE_T_CHINESE;
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]){
+        language = SYS_LANGUAGE_ENGLISH;
+    }
+    
+    [LTZLocalizationManager setLanguage:language];
+    
+    [self performSelector:@selector(changedLanguage) withObject:nil afterDelay:2.0];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -42,6 +65,149 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    //notification是发送推送时传入的字典信息
+}
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+
+//注册UserNotification成功的回调
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //用户已经允许接收以下类型的推送
+    //UIUserNotificationType allowedTypes = [notificationSettings types];
+    
+    LOG(@"Register User Notification Settings Success");
+}
+
+//按钮点击事件回调
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler{
+    if([identifier isEqualToString:@"ACCEPT_IDENTIFIER"]){
+        NSLog(@"ACCEPT_IDENTIFIER is clicked");
+    }
+    
+    completionHandler();
+}
+
+#endif
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    
+    //send the deviceToken
+    NSString* device_token = [[[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    LOG(@"device_token ====>%@",device_token);
+    
+    [[SystemConfig sharedInstance] SetDeviceToken:device_token];
+}
+
+//如果deviceToken获取不到会进入此事件
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    
+    LOG(@"Push Register Error:%@", error.description);
+    
+}
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
+{
+    //推送反馈(app运行时)
+}
+
+#pragma mark - other methods
+
+- (void)registerPushForIOS8{
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    
+    //Types
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    
+    //Actions
+    UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
+    
+    acceptAction.identifier = @"ACCEPT_IDENTIFIER";
+    acceptAction.title = @"Accept";
+    
+    acceptAction.activationMode = UIUserNotificationActivationModeForeground;
+    acceptAction.destructive = NO;
+    acceptAction.authenticationRequired = NO;
+    
+    //Categories
+    UIMutableUserNotificationCategory *inviteCategory = [[UIMutableUserNotificationCategory alloc] init];
+    
+    inviteCategory.identifier = @"INVITE_CATEGORY";
+    
+    [inviteCategory setActions:@[acceptAction] forContext:UIUserNotificationActionContextDefault];
+    
+    [inviteCategory setActions:@[acceptAction] forContext:UIUserNotificationActionContextMinimal];
+    
+    NSSet *categories = [NSSet setWithObjects:inviteCategory, nil];
+    
+    
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    
+    
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+#endif
+}
+
+- (void)registerPush
+{
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+}
+
+//register remote push notification
+-(void)registerRemoteNotificationWithOptions:(NSDictionary *)launchOptions
+{
+    // Register for push notifications
+    
+    //iOS8注册push方法
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    
+    float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if(sysVer < 8){
+        [self registerPush];
+    }
+    else{
+        [self registerPushForIOS8];
+    }
+#else
+    //iOS8之前注册push方法
+    //注册Push服务，注册后才能收到推送
+    [self registerPush];
+#endif
+
+    //角标清0
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    //清除所有通知(包含本地通知)
+    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    
+    //本地推送示例
+    /*
+     NSDate *fireDate = [[NSDate new] dateByAddingTimeInterval:10];
+     
+     NSMutableDictionary *dicUserInfo = [[NSMutableDictionary alloc] init];
+     [dicUserInfo setValue:@"myid" forKey:@"clockID"];
+     NSDictionary *userInfo = dicUserInfo;
+     
+     [XGPush localNotification:fireDate alertBody:@"测试本地推送" badge:2 alertAction:@"确定" userInfo:userInfo];
+     */
+}
+
+- (void)setupViewControolers
+{
+    self.tabBarController = [[ESportsTabBarController alloc] init];
+    
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    self.window.backgroundColor = HexColor(0x0e161f);
+    [self.window setRootViewController:self.tabBarController];
+    [self.window makeKeyAndVisible];
 }
 
 #pragma mark - Core Data stack

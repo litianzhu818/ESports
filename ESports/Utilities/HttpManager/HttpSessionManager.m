@@ -23,6 +23,27 @@
     return _sharedManager;
 }
 
+- (void)requestNewsCarouselImagesWithOffset:(NSInteger)offset
+                              numbersOfPage:(NSInteger)numbersOfPage
+                                      block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(numbersOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:newsCarouselImagsURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

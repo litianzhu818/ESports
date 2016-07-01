@@ -12,6 +12,8 @@
 #import "NetworkAPIs.h"
 #import "AppDelegate.h"
 
+#import <BlocksKit/UIAlertView+BlocksKit.h>
+
 #define AFTKeyWindow [[[(AppDelegate *)[[UIApplication sharedApplication] delegate] window] rootViewController] view]
 
 @implementation NSObject (Custom)
@@ -112,7 +114,7 @@
     [JDStatusBarNotification showProgress:0.0];
 }
 
-#pragma mark NetError
+#pragma mark - NetError
 -(id)handleResponse:(id)responseJSON{
     NSError *error = nil;
     //code为非0值时，表示有错
@@ -131,4 +133,38 @@
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
+
+#pragma mark - UIAlertView
+
+- (void)showAlertTitle:(NSString *)title
+               message:(NSString *)message
+     cancelButtonTitle:(NSString *)cancelButtonTitle
+           cancelBlock:(void (^)(void))cancelBlock
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:cancelButtonTitle
+                                              otherButtonTitles:nil, nil];
+    [alertView bk_setCancelBlock:cancelBlock];
+    [alertView show];
+}
+
+- (void)showAlertTitle:(NSString *)title
+               message:(NSString *)message
+     cancelButtonTitle:(NSString *)cancelButtonTitle
+      otherButtonTitle:(NSString *)otherButtonTitle
+           cancelBlock:(void (^)(void))cancelBlock
+            otherBlock:(void (^)(void))otherBlock
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:cancelButtonTitle
+                                              otherButtonTitles:otherButtonTitle, nil];
+    [alertView bk_setCancelBlock:cancelBlock];
+    [alertView bk_setHandler:otherBlock forButtonAtIndex:1];
+    [alertView show];
+}
+
 @end

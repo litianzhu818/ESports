@@ -11,6 +11,7 @@
 #define SYSTEM_IS_FIRST_LAUNCH @"system_is_first_launch"
 #define WELCOME_IMAGE_URL @"welcome_image_url"
 #define SYSTEM_HTTP_SESSION @"system_http_session"
+#define SYSTEM_DEVICE_TOKEN @"system_device_token"
 
 @implementation SystemConfig
 Single_implementation(SystemConfig);
@@ -54,6 +55,17 @@ Single_implementation(SystemConfig);
 -(NSString *)GetWelcomeImageURL
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:WELCOME_IMAGE_URL];
+}
+
+//存取推送token
+- (void)SetDeviceToken:(NSString *)value
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:SYSTEM_DEVICE_TOKEN];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (NSString *)GetDeviceToken
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SYSTEM_DEVICE_TOKEN];
 }
 
 @end

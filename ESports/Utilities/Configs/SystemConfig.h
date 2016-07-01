@@ -27,4 +27,8 @@ Single_interface(SystemConfig);
 -(void)SetWelcomeImageURL:(NSString *)value;
 -(NSString *)GetWelcomeImageURL;
 
+//存取推送token
+- (void)SetDeviceToken:(NSString *)value;
+- (NSString *)GetDeviceToken;
+
 @end

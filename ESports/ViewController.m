@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "HttpSessionManager.h"
 
 @interface ViewController ()
 

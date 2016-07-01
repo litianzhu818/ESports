@@ -10,6 +10,7 @@
 #define ESports_NetworkAPIs_h
 
 static NSString *const BaseURL = @"http://lol.esportsmatrix.com/";
+static NSString *const newsCarouselImagsURL = @"News/NewsHdp";
 static NSString *const LoginURL = @"<#login_url_string#>";
 
 #endif

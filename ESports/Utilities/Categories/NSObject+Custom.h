@@ -27,4 +27,18 @@
 
 - (void)clearUnusedCellWithTableView:(UITableView *)tableView;
 
+#pragma mark - UIAlertView
+
+- (void)showAlertTitle:(NSString *)title
+               message:(NSString *)message
+     cancelButtonTitle:(NSString *)cancelButtonTitle
+           cancelBlock:(void (^)(void))cancelBlock;
+
+- (void)showAlertTitle:(NSString *)title
+               message:(NSString *)message
+     cancelButtonTitle:(NSString *)cancelButtonTitle
+      otherButtonTitle:(NSString *)otherButtonTitle
+           cancelBlock:(void (^)(void))cancelBlock
+            otherBlock:(void (^)(void))otherBlock;
+
 @end

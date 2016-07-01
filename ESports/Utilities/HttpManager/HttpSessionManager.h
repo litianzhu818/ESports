@@ -12,4 +12,8 @@
 
 + (id)sharedInstance;
 
+- (void)requestNewsCarouselImagesWithOffset:(NSInteger)offset
+                              numbersOfPage:(NSInteger)numbersOfPage
+                                      block:(void (^)(id data, NSError *error))block;
+
 @end

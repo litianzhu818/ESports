@@ -10,6 +10,7 @@
 #import "NSObject+Custom.h"
 #import "SystemConfig.h"
 #import "UserConfig.h"
+#import "HttpSessionClient+MultiLanguage.h"
 
 @implementation HttpSessionClient
 
@@ -85,17 +86,7 @@
     
     return self;
 }
-/**
- *  生成本地化的请求路径（本地化标志+固定路径）
- *
- *  @param path 原始请求路径
- *
- *  @return 带有本地化标注的请求路径
- */
-static inline NSString *locationPathWith(NSString *path)
-{
-    return path;
-}
+
 
 #pragma mark - class public request method
 + (id)requestJsonDataWithPath:(NSString *)aPath
@@ -135,7 +126,7 @@ static inline NSString *locationPathWith(NSString *path)
     //log请求数据
     NSLog(@"\n===========request===========\n%@:\n%@", aPath, params);
     aPath = [aPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    aPath = locationPathWith(aPath);
+    aPath = [self locationPathWithSubPath:aPath];
     
     NSURLSessionDataTask *urlSessionDataTask = nil;
     
