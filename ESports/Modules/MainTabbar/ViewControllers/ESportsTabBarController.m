@@ -115,7 +115,6 @@
     
     [tabBarController reloadItems];
     [[[tabBarController tabBar] backgroundView] setBackgroundColor:HexColor(0x1b2737)];
-    
 }
 
 #pragma mark - 防止tabbar双击
@@ -127,7 +126,6 @@
 }
 
 #pragma mark - 切换语言响应方法
-
 - (void)languageDidChanged
 {
     [self customizeTabBarForController:self];

@@ -9,11 +9,12 @@
 #import "BaseNavigationController.h"
 #import "UINavigationController+RxWebViewNavigation.h"
 
+#define navigation_bar_text_font [UIFont systemFontOfSize:17]
+#define navigation_bar_normal_color [[UIColor whiteColor] colorWithAlphaComponent:0.7]
+#define navigation_bar_highlighted_color [UIColor whiteColor]
+#define navigation_bar_disabled_color [UIColor lightGrayColor]
+
 @interface BaseNavigationController ()<UIGestureRecognizerDelegate>
-
-@property(readonly, nonatomic) UIViewController *activeViewController;
-@property(readonly, nonatomic) UIViewController *destinationViewController;
-
 @end
 
 @implementation BaseNavigationController
@@ -24,7 +25,6 @@
 
 + (void)initialize
 {
-    
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     [navigationBar setBarTintColor:HexColor(0x1b2737)];
     //[navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar"] forBarMetrics:UIBarMetricsDefault];
@@ -47,22 +47,21 @@
     
     // UIControlStateNormal
     NSMutableDictionary *itemAttrs = [NSMutableDictionary dictionary];
-    itemAttrs[NSForegroundColorAttributeName] = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
-    itemAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:17];
+    itemAttrs[NSForegroundColorAttributeName] = navigation_bar_normal_color;
+    itemAttrs[NSFontAttributeName] = navigation_bar_text_font;
     [item setTitleTextAttributes:itemAttrs forState:UIControlStateNormal];
     
     // UIControlStateHighlighted
     NSMutableDictionary *itemHighlightedAttrs = [NSMutableDictionary dictionary];
-    itemHighlightedAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    itemHighlightedAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:17.0f];
+    itemHighlightedAttrs[NSForegroundColorAttributeName] = navigation_bar_highlighted_color;
+    itemHighlightedAttrs[NSFontAttributeName] = navigation_bar_text_font;
     [item setTitleTextAttributes:itemHighlightedAttrs forState:UIControlStateHighlighted];
     
     // UIControlStateDisabled
     NSMutableDictionary *itemDisabledAttrs = [NSMutableDictionary dictionary];
-    itemDisabledAttrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
-    itemDisabledAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:17.0f];
+    itemDisabledAttrs[NSForegroundColorAttributeName] = navigation_bar_disabled_color;
+    itemDisabledAttrs[NSFontAttributeName] = navigation_bar_text_font;
     [item setTitleTextAttributes:itemDisabledAttrs forState:UIControlStateDisabled];
-    
     
     //[item setBackgroundImage:[UIImage imageNamed:@"barButtonItem"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     //[item setBackgroundImage:[UIImage imageNamed:@"barButtonItem"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
@@ -83,12 +82,6 @@
     // Do any additional setup after loading the view.
     [self initializationParameters];
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)initializationParameters
@@ -121,21 +114,6 @@
     return UIStatusBarStyleLightContent;
 }
 
--(UIViewController *)activeViewController
-{
-    return [super topViewController];
-}
-
--(UIViewController *)destinationViewController
-{
-    return ([super.viewControllers count] > 2) ? (UIViewController *)([super.viewControllers objectAtIndex:([super.viewControllers count] - 2)]):nil;
-}
-
--(void)setViewControllers:(NSArray *)viewControllers
-{
-    [self setViewControllers:viewControllers animated:NO];
-}
-
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated
 {
     if ([viewControllers isEqualToArray:super.viewControllers]) return;
@@ -166,95 +144,71 @@
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    NSLog(@"The Current ViewController:%@\nThe Destination ViewController:%@",NSStringFromClass([self.topViewController class]),NSStringFromClass([viewController class]));
     
-    if (self.activeViewController){
+    if (self.childViewControllers.count > 0) { // 如果push进来的不是第一个控制器
         
-        if (self.childViewControllers.count > 0) { // 如果push进来的不是第一个控制器
-            
-            
-            //if (![viewController isKindOfClass:[RxWebViewController class]]) {
-            /*
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            [button setTitle:NSLocalizedStringFromTable(@"left_back_bar_title", NSStringFromClass([self class]), nil)
-                    forState:UIControlStateNormal];
-            [button setTitle:NSLocalizedStringFromTable(@"left_back_bar_title", NSStringFromClass([self class]), nil)
-                    forState:UIControlStateHighlighted];
-            
-            UIImage* backItemImage = [[UIImage imageNamed:@"backItemImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImage* backItemHlImage = [[UIImage imageNamed:@"backItemImage-hl"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            
-            [button setImage:backItemImage forState:UIControlStateNormal];
-            [button setImage:backItemHlImage forState:UIControlStateHighlighted];
-            button.titleLabel.font = [UIFont systemFontOfSize:17.0f];
-            [button sizeToFit];
-            
-            // 让按钮内部的所有内容左对齐
-            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            
-            // 让按钮的内容往左边偏移10
-            button.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-            [button setTitleColor:self.navigationBar.tintColor forState:UIControlStateNormal];
-            [button setTitleColor:[self.navigationBar.tintColor colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
-            [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-             
-             // 修改导航栏左边的item
-             viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-            */
-            UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backItemImage"]
-                                                                         style:UIBarButtonItemStylePlain
-                                                                        target:self
-                                                                        action:@selector(back)];
-            
-            // 修改导航栏左边的item
-            viewController.navigationItem.leftBarButtonItem = backItem;
-            
-            //}
+         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-            // 隐藏tabbar
-            viewController.hidesBottomBarWhenPushed = YES;
-            
-        }else if (self.childViewControllers.count == 0){
-            
-            UIBarButtonItem *changeLanguageItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_change_language"]
-                                                                                   style:UIBarButtonItemStylePlain
-                                                                                  target:self
-                                                                                  action:@selector(showLanguageView)];
-            
-            // 修改导航栏左边的item
-            viewController.navigationItem.rightBarButtonItem = changeLanguageItem;
-        }
-
-        [super pushViewController:viewController animated:animated];
-    }
-}
-
-- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if (self.activeViewController){
-        return [super popToViewController:viewController animated:animated];
+        /*
+         [button setTitle:NSLocalizedStringFromTable(@"left_back_bar_title", NSStringFromClass([self class]), nil)
+         forState:UIControlStateNormal];
+         [button setTitle:NSLocalizedStringFromTable(@"left_back_bar_title", NSStringFromClass([self class]), nil)
+         forState:UIControlStateHighlighted];
+         */
+         
+         UIImage* backItemImage = [[UIImage imageNamed:@"backItemImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+         UIImage* backItemHlImage = [[UIImage imageNamed:@"backItemImage-hl"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+         
+         [button setImage:backItemImage forState:UIControlStateNormal];
+         [button setImage:backItemHlImage forState:UIControlStateHighlighted];
+        
+         button.titleLabel.font = navigation_bar_text_font;
+         [button sizeToFit];
+         
+         // 让按钮内部的所有内容左对齐
+         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+         
+         // 让按钮的内容往左边偏移2
+         button.contentEdgeInsets = UIEdgeInsetsMake(0, -2, 0, 0);
+        
+         [button setTitleColor:navigation_bar_normal_color forState:UIControlStateNormal];
+         [button setTitleColor:navigation_bar_highlighted_color forState:UIControlStateHighlighted];
+        
+         [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+         
+         // 修改导航栏左边的item
+         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        
+        // 隐藏tabbar
+        viewController.hidesBottomBarWhenPushed = YES;
+        
+    }else if (self.childViewControllers.count == 0){
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        //[button setFrame:CGRectMake(0, 0, 40, 40)];
+        
+        UIImage *itemImage = [[UIImage imageNamed:@"nav_change_language_n"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *itemHImage = [[UIImage imageNamed:@"nav_change_language_h"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        
+        [button setImage:itemImage forState:UIControlStateNormal];
+        [button setImage:itemHImage forState:UIControlStateHighlighted];
+        
+        [button setTitleColor:navigation_bar_normal_color forState:UIControlStateNormal];
+        [button setTitleColor:navigation_bar_highlighted_color forState:UIControlStateHighlighted];
+        
+        button.titleLabel.font = navigation_bar_text_font;
+        [button sizeToFit];
+        
+        [button addTarget:self action:@selector(showLanguageView) forControlEvents:UIControlEventTouchUpInside];
+        
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        
+        // 修改导航栏左边的item
+        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
     
-    return @[];
-}
-
-- (UIViewController *)popViewControllerAnimated:(BOOL)animated
-{
-    if (self.activeViewController){
-        return [super popViewControllerAnimated:animated];
-    }
-    
-    return nil;
-}
-
-- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
-{
-    if (self.activeViewController){
-        return [super popToRootViewControllerAnimated:animated];
-    }
-    
-    return @[];
+    [super pushViewController:viewController animated:animated];
 }
 
 #pragma mark - UIGestureRecognizerDelegate methods
