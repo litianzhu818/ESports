@@ -11,6 +11,7 @@
 
 #import "LTZLocalizationManager.h"
 #import "NSObject+localization.h"
+#import "LanguageList.h"
 
 
 #endif /* LTZLocalizationKit_h */

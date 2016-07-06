@@ -23,7 +23,7 @@
     
     [self registerRemoteNotificationWithOptions:launchOptions];
     [self setupViewControolers];
-    [self performSelector:@selector(changedLanguage) withObject:nil];
+//    [self performSelector:@selector(changedLanguage) withObject:nil];
     return YES;
 }
 

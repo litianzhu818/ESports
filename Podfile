@@ -14,4 +14,5 @@ target :ESports do
     pod 'ReactiveCocoa'
     pod 'QBImagePickerController', '2.6.0'
     pod 'BlocksKit' # '~> 2.2.5'
+    pod 'CMPopTipView'
 end

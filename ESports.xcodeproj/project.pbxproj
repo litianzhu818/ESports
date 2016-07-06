@@ -43,6 +43,16 @@
 		E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8B01D267458000A5CE6 /* RDVTabBarController+reloadItems.m */; };
 		E72FD8B41D267C9B000A5CE6 /* nav_change_language_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E72FD8B21D267C9B000A5CE6 /* nav_change_language_h@2x.png */; };
 		E72FD8B51D267C9B000A5CE6 /* nav_change_language_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E72FD8B31D267C9B000A5CE6 /* nav_change_language_n@2x.png */; };
+		E73911B31D2A592D00F4A522 /* sys_language_english@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E73911B01D2A592D00F4A522 /* sys_language_english@2x.png */; };
+		E73911B41D2A592D00F4A522 /* sys_language_s_chinese@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E73911B11D2A592D00F4A522 /* sys_language_s_chinese@2x.png */; };
+		E73911B51D2A592D00F4A522 /* sys_language_t_chinese@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E73911B21D2A592D00F4A522 /* sys_language_t_chinese@2x.png */; };
+		E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E73911B71D2A640B00F4A522 /* cell_line@2x.png */; };
+		E73911C11D2A640B00F4A522 /* PopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911B91D2A640B00F4A522 /* PopMenu.m */; };
+		E73911C21D2A640B00F4A522 /* PopMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BB1D2A640B00F4A522 /* PopMenuCell.m */; };
+		E73911C31D2A640B00F4A522 /* PopMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BD1D2A640B00F4A522 /* PopMenuModel.m */; };
+		E73911C41D2A640B00F4A522 /* PopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */; };
+		E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */; };
+		E760B32B1D2D1CA000F5DB54 /* DropdownMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B32A1D2D1CA000F5DB54 /* DropdownMenuItem.m */; };
 		E7BD57691CF4360D008F2D69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57681CF4360D008F2D69 /* main.m */; };
 		E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576B1CF4360D008F2D69 /* AppDelegate.m */; };
 		E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576E1CF4360D008F2D69 /* ViewController.m */; };
@@ -114,6 +124,23 @@
 		E72FD8B01D267458000A5CE6 /* RDVTabBarController+reloadItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RDVTabBarController+reloadItems.m"; sourceTree = "<group>"; };
 		E72FD8B21D267C9B000A5CE6 /* nav_change_language_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_change_language_h@2x.png"; sourceTree = "<group>"; };
 		E72FD8B31D267C9B000A5CE6 /* nav_change_language_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_change_language_n@2x.png"; sourceTree = "<group>"; };
+		E73911B01D2A592D00F4A522 /* sys_language_english@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sys_language_english@2x.png"; sourceTree = "<group>"; };
+		E73911B11D2A592D00F4A522 /* sys_language_s_chinese@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sys_language_s_chinese@2x.png"; sourceTree = "<group>"; };
+		E73911B21D2A592D00F4A522 /* sys_language_t_chinese@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sys_language_t_chinese@2x.png"; sourceTree = "<group>"; };
+		E73911B71D2A640B00F4A522 /* cell_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_line@2x.png"; sourceTree = "<group>"; };
+		E73911B81D2A640B00F4A522 /* PopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenu.h; sourceTree = "<group>"; };
+		E73911B91D2A640B00F4A522 /* PopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenu.m; sourceTree = "<group>"; };
+		E73911BA1D2A640B00F4A522 /* PopMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenuCell.h; sourceTree = "<group>"; };
+		E73911BB1D2A640B00F4A522 /* PopMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuCell.m; sourceTree = "<group>"; };
+		E73911BC1D2A640B00F4A522 /* PopMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenuModel.h; sourceTree = "<group>"; };
+		E73911BD1D2A640B00F4A522 /* PopMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuModel.m; sourceTree = "<group>"; };
+		E73911BE1D2A640B00F4A522 /* PopMenuStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenuStyle.h; sourceTree = "<group>"; };
+		E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuStyle.m; sourceTree = "<group>"; };
+		E760B3261D2D1C6D00F5DB54 /* DropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenu.h; sourceTree = "<group>"; };
+		E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenu.m; sourceTree = "<group>"; };
+		E760B3291D2D1CA000F5DB54 /* DropdownMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenuItem.h; sourceTree = "<group>"; };
+		E760B32A1D2D1CA000F5DB54 /* DropdownMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenuItem.m; sourceTree = "<group>"; };
+		E768AF301D2A1ACC008CF826 /* LanguageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageList.h; sourceTree = "<group>"; };
 		E7BD57641CF4360D008F2D69 /* ESports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD57681CF4360D008F2D69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E7BD576A1CF4360D008F2D69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -176,6 +203,7 @@
 		E72FD8021D1A4B6A000A5CE6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E760B3201D2D194E00F5DB54 /* DropdownMenu */,
 				E72FD8961D264943000A5CE6 /* MainTabbar */,
 				E72FD86A1D251575000A5CE6 /* Matchs */,
 				E72FD8701D251575000A5CE6 /* News */,
@@ -206,6 +234,7 @@
 				E72FD8431D23D8E2000A5CE6 /* LTZLocalizationManager.m */,
 				E72FD8441D23D8E2000A5CE6 /* NSObject+localization.h */,
 				E72FD8451D23D8E2000A5CE6 /* NSObject+localization.m */,
+				E768AF301D2A1ACC008CF826 /* LanguageList.h */,
 			);
 			path = LTZLocalizationKit;
 			sourceTree = "<group>";
@@ -244,6 +273,7 @@
 		E72FD85D1D2508EC000A5CE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E73911AF1D2A592D00F4A522 /* LanguageIcons */,
 				E72FD85E1D2508EC000A5CE6 /* backItemImage@2x.png */,
 				E72FD85F1D2508EC000A5CE6 /* backItemImage_hl@2x.png */,
 				E72FD8601D2508EC000A5CE6 /* topbar.png */,
@@ -514,6 +544,83 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E73911AF1D2A592D00F4A522 /* LanguageIcons */ = {
+			isa = PBXGroup;
+			children = (
+				E73911B01D2A592D00F4A522 /* sys_language_english@2x.png */,
+				E73911B11D2A592D00F4A522 /* sys_language_s_chinese@2x.png */,
+				E73911B21D2A592D00F4A522 /* sys_language_t_chinese@2x.png */,
+			);
+			path = LanguageIcons;
+			sourceTree = "<group>";
+		};
+		E73911B61D2A62F800F4A522 /* PopMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E73911B71D2A640B00F4A522 /* cell_line@2x.png */,
+				E73911B81D2A640B00F4A522 /* PopMenu.h */,
+				E73911B91D2A640B00F4A522 /* PopMenu.m */,
+				E73911BA1D2A640B00F4A522 /* PopMenuCell.h */,
+				E73911BB1D2A640B00F4A522 /* PopMenuCell.m */,
+				E73911BC1D2A640B00F4A522 /* PopMenuModel.h */,
+				E73911BD1D2A640B00F4A522 /* PopMenuModel.m */,
+				E73911BE1D2A640B00F4A522 /* PopMenuStyle.h */,
+				E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */,
+			);
+			path = PopMenu;
+			sourceTree = "<group>";
+		};
+		E760B3201D2D194E00F5DB54 /* DropdownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E760B3211D2D194E00F5DB54 /* Managers&Helpers */,
+				E760B3221D2D194E00F5DB54 /* Models */,
+				E760B3231D2D194E00F5DB54 /* Resources */,
+				E760B3241D2D194E00F5DB54 /* ViewControllers */,
+				E760B3251D2D194E00F5DB54 /* Views */,
+			);
+			path = DropdownMenu;
+			sourceTree = "<group>";
+		};
+		E760B3211D2D194E00F5DB54 /* Managers&Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Managers&Helpers";
+			sourceTree = "<group>";
+		};
+		E760B3221D2D194E00F5DB54 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E760B3291D2D1CA000F5DB54 /* DropdownMenuItem.h */,
+				E760B32A1D2D1CA000F5DB54 /* DropdownMenuItem.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E760B3231D2D194E00F5DB54 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E760B3241D2D194E00F5DB54 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E760B3251D2D194E00F5DB54 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E760B3261D2D1C6D00F5DB54 /* DropdownMenu.h */,
+				E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E7BD575B1CF4360D008F2D69 = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +670,7 @@
 		E7BD57811CF58893008F2D69 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E73911B61D2A62F800F4A522 /* PopMenu */,
 				E72FD84F1D24F420000A5CE6 /* RxWebViewController */,
 				E72FD8481D23D973000A5CE6 /* DefineValues */,
 				E72FD8401D23D8E2000A5CE6 /* LTZLocalizationKit */,
@@ -684,6 +792,7 @@
 				E72FD8B41D267C9B000A5CE6 /* nav_change_language_h@2x.png in Resources */,
 				E72FD8A91D264943000A5CE6 /* tabbar_ranking_n@2x.png in Resources */,
 				E72FD8661D2508EC000A5CE6 /* topbar@2x.png in Resources */,
+				E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */,
 				E72FD8AA1D264943000A5CE6 /* tabbar_strengthrating_h@2x.png in Resources */,
 				E72FD8A51D264943000A5CE6 /* tabbar_matchs_n@2x.png in Resources */,
 				E72FD8A41D264943000A5CE6 /* tabbar_matchs_h@2x.png in Resources */,
@@ -693,10 +802,13 @@
 				E72FD8901D251721000A5CE6 /* RankingController.xib in Resources */,
 				E72FD8AB1D264943000A5CE6 /* tabbar_strengthrating_n@2x.png in Resources */,
 				E72FD8671D2508EC000A5CE6 /* topbar@3x.png in Resources */,
+				E73911B31D2A592D00F4A522 /* sys_language_english@2x.png in Resources */,
 				E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */,
 				E72FD88B1D2516D8000A5CE6 /* MatchsController.xib in Resources */,
 				E7BD57771CF4360D008F2D69 /* Assets.xcassets in Resources */,
 				E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */,
+				E73911B41D2A592D00F4A522 /* sys_language_s_chinese@2x.png in Resources */,
+				E73911B51D2A592D00F4A522 /* sys_language_t_chinese@2x.png in Resources */,
 				E72FD8B51D267C9B000A5CE6 /* nav_change_language_n@2x.png in Resources */,
 				E72FD8A71D264943000A5CE6 /* tabbar_news_n@2x.png in Resources */,
 				E72FD8651D2508EC000A5CE6 /* topbar.png in Resources */,
@@ -761,6 +873,7 @@
 				E72FD8591D24F420000A5CE6 /* NJKWebViewProgress.m in Sources */,
 				E72FD8471D23D8E2000A5CE6 /* NSObject+localization.m in Sources */,
 				E72FD88F1D251721000A5CE6 /* RankingController.m in Sources */,
+				E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */,
 				E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */,
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */,
@@ -770,8 +883,10 @@
 				E72FD8941D251735000A5CE6 /* StrengthRatingController.m in Sources */,
 				E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */,
 				E7BD57921CF6E77F008F2D69 /* SystemConfig.m in Sources */,
+				E760B32B1D2D1CA000F5DB54 /* DropdownMenuItem.m in Sources */,
 				E7BD57931CF6E77F008F2D69 /* UserConfig.m in Sources */,
 				E72FD8AE1D265A95000A5CE6 /* ESportsTabBarController.m in Sources */,
+				E73911C31D2A640B00F4A522 /* PopMenuModel.m in Sources */,
 				E7BD579B1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m in Sources */,
 				E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */,
 				E72FD8851D251612000A5CE6 /* NewsController.m in Sources */,
@@ -780,8 +895,11 @@
 				E72FD85B1D24F420000A5CE6 /* RxWebViewController.m in Sources */,
 				E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */,
 				E7BD57691CF4360D008F2D69 /* main.m in Sources */,
+				E73911C11D2A640B00F4A522 /* PopMenu.m in Sources */,
+				E73911C21D2A640B00F4A522 /* PopMenuCell.m in Sources */,
 				E72FD85C1D24F420000A5CE6 /* UINavigationController+RxWebViewNavigation.m in Sources */,
 				E72FD85A1D24F420000A5CE6 /* NJKWebViewProgressView.m in Sources */,
+				E73911C41D2A640B00F4A522 /* PopMenuStyle.m in Sources */,
 				E72FD84E1D24D37C000A5CE6 /* BaseNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

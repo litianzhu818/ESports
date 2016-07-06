@@ -135,11 +135,4 @@ CG_INLINE CGRect CGRectMakeWithCenter(CGPoint center, CGFloat width, CGFloat hei
     rect.size.height = height;
     return rect;
 }
-
-#pragma mark - language key.
-
-#define SYS_LANGUAGE_ENGLISH @"en"
-#define SYS_LANGUAGE_S_CHINESE @"zh-Hans"
-#define SYS_LANGUAGE_T_CHINESE @"zh-Hant"
-
 #endif

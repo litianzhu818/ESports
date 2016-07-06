@@ -8,6 +8,8 @@
 
 #import "BaseNavigationController.h"
 #import "UINavigationController+RxWebViewNavigation.h"
+#import "PopMenuModel.h"
+#import "PopMenu.h"
 
 #define navigation_bar_text_font [UIFont systemFontOfSize:17]
 #define navigation_bar_normal_color [[UIColor whiteColor] colorWithAlphaComponent:0.7]
@@ -15,6 +17,10 @@
 #define navigation_bar_disabled_color [UIColor lightGrayColor]
 
 @interface BaseNavigationController ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) NSArray<PopMenuModel *> *items;
+@property (nonatomic, strong) PopMenu *popMenu;
+
 @end
 
 @implementation BaseNavigationController
@@ -31,7 +37,7 @@
     //[navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarWithPrompt"] forBarMetrics:UIBarMetricsDefaultPrompt];
     [navigationBar setTitleTextAttributes:@{
                                             NSFontAttributeName : [UIFont boldSystemFontOfSize:18.0],
-                                            NSForegroundColorAttributeName:[UIColor whiteColor]
+                                            NSForegroundColorAttributeName:navigation_bar_normal_color
                                             }];
     navigationBar.tintColor = [UIColor whiteColor];
     
@@ -39,8 +45,6 @@
         
         navigationBar.translucent = NO;
     }
-    
-    
     
     // 设置item
     UIBarButtonItem *item = [UIBarButtonItem appearance];
@@ -87,8 +91,8 @@
 -(void)initializationParameters
 {
     //Here initialization your parameters
-    [self initializationUI];
     [self initializationData];
+    [self initializationUI];
 }
 
 -(void)initializationUI
@@ -106,6 +110,22 @@
     //Here initialization your data parameters
     
     self.interactivePopGestureRecognizer.delegate = self;
+    
+    self.items = @[[[PopMenuModel alloc] initWithImage:[UIImage imageNamed:@"sys_language_english"] title:@"English"],
+                   [[PopMenuModel alloc] initWithImage:[UIImage imageNamed:@"sys_language_s_chinese"] title:@"简体中文"],
+                   [[PopMenuModel alloc] initWithImage:[UIImage imageNamed:@"sys_language_t_chinese"] title:@"繁體中文"]];
+    
+    self.popMenu = [[PopMenu alloc] initWithImages:[self.items valueForKeyPath:@"image"]
+                                            titles:[self.items valueForKeyPath:@"title"]
+                                       selectBlock:^(NSUInteger index) {
+                                           if (index == 0 && ![[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
+                                               [LTZLocalizationManager setLanguage:SYS_LANGUAGE_ENGLISH];
+                                           }else if(index == 1 && ![[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]){
+                                               [LTZLocalizationManager setLanguage:SYS_LANGUAGE_S_CHINESE];
+                                           }else if(index == 2 && ![[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]){
+                                               [LTZLocalizationManager setLanguage:SYS_LANGUAGE_T_CHINESE];
+                                           }
+                                       }];
 }
 
 
@@ -137,9 +157,10 @@
     [self popViewControllerAnimated:YES];
 }
 
-- (void)showLanguageView
+- (void)showLanguageView:(id)sender
 {
-
+    UIButton *button = (UIButton *)sender;
+    [self.popMenu showAtView:button inView:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -186,7 +207,7 @@
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        //[button setFrame:CGRectMake(0, 0, 40, 40)];
+        [button setFrame:CGRectMake(0, 0, 20, 40)];
         
         UIImage *itemImage = [[UIImage imageNamed:@"nav_change_language_n"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImage *itemHImage = [[UIImage imageNamed:@"nav_change_language_h"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -198,14 +219,14 @@
         [button setTitleColor:navigation_bar_highlighted_color forState:UIControlStateHighlighted];
         
         button.titleLabel.font = navigation_bar_text_font;
-        [button sizeToFit];
+        //[button sizeToFit];
         
-        [button addTarget:self action:@selector(showLanguageView) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(showLanguageView:) forControlEvents:UIControlEventTouchUpInside];
         
-        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         
         // 修改导航栏左边的item
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];;
     }
     
     [super pushViewController:viewController animated:animated];
