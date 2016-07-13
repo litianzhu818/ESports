@@ -200,6 +200,53 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     self.transferNewManager = [[TransferNewManager alloc] init];
     self.hotWordNewManager = [[HotWordNewManager alloc] init];
     
+    // 取缓存中的轮换图片
+    __weak typeof(self) weakSelf = self;
+    
+    [[TMCache sharedCache] objectForKey:newsImagesCacheKey
+                                  block:^(TMCache *cache, NSString *key, id object) {
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      NSArray<NewsRotationImage *> *images = object;
+                                      [strongSelf.images addObjectsFromArray:images];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [strongSelf.hotfocusTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                                      });
+                                      
+                                  }];
+    
+    [[TMCache sharedCache] objectForKey:hotFocusNewsListCacheKey
+                                  block:^(TMCache *cache, NSString *key, NSArray<HotFocusNew *> *HotFocusNews) {
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      [strongSelf.hotFocusNews addObjectsFromArray:HotFocusNews];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [strongSelf.hotfocusTableView reloadData];
+                                      });
+                                  }];
+    
+    [[TMCache sharedCache] objectForKey:transferNewsListCacheKey
+                                  block:^(TMCache *cache, NSString *key, NSArray<TransferNew *> *TransferNews) {
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      [TransferNews enumerateObjectsUsingBlock:^(TransferNew * _Nonnull transferNew, NSUInteger idx, BOOL * _Nonnull stop) {
+                                          [strongSelf.transferNewManager addTransferNew:transferNew];
+                                      }];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [strongSelf.transferTableView reloadData];
+                                      });
+                                  }];
+    
+    [[TMCache sharedCache] objectForKey:hotwordsNewsListCacheKey
+                                  block:^(TMCache *cache, NSString *key, NSArray<HotWordNew *> *HotWordNews) {
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      [HotWordNews enumerateObjectsUsingBlock:^(HotWordNew * _Nonnull hotWordNew, NSUInteger idx, BOOL * _Nonnull stop) {
+                                          [strongSelf.hotWordNewManager addHotWordNew:hotWordNew];
+                                      }];
+                                      
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [strongSelf.hotwordsTableView reloadData];
+                                      });
+                                  }];
+    
+    // 开始网络请求数据
     
 }
 
