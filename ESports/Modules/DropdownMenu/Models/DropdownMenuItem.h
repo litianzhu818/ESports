@@ -12,8 +12,10 @@
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) UIImage *image;
-@property (assign, nonatomic) BOOL isSelected;
 
+- (instancetype)initWithTitle:(NSString *)title;
 
+- (instancetype)initWithTitle:(NSString *)title
+                        image:(UIImage *)image;
 
 @end

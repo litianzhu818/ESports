@@ -21,7 +21,7 @@
                                                object:nil];
     
     
-    self.view.backgroundColor = HexColor(0x0e161f);
+    self.view.backgroundColor = [UIColor blackColor];//HexColor(0x0e161f);
 }
 
 - (void)dealloc
