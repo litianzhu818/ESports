@@ -153,13 +153,39 @@
         SEL originalDeallocSelector = NSSelectorFromString(@"dealloc");
         SEL swizzledDeallocSelector = @selector(localization_dealloc);
         
-        [NSObject exchangeMethodWithClass:class
-                         originalSelector:originalDeallocSelector
-                         swizzledSelector:swizzledDeallocSelector];
+        [class exchangeMethodWithClass:class
+                      originalSelector:originalDeallocSelector
+                      swizzledSelector:swizzledDeallocSelector];
+        
+        /*
+        Class objectClass = object_getClass((id)self);
+        SEL originalNewSelector = @selector(new);
+        SEL swizzledNewSelector = @selector(localization_new);
+        
+        [class exchangeMethodWithClass:objectClass
+                      originalSelector:originalNewSelector
+                      swizzledSelector:swizzledNewSelector];
+         */
+        
     });
 }
 
 #pragma mark - swizzling methods
+/*
++ (id)localization_new
+{
+    id object = [[self class] localization_new];
+    if (!self.hasLocalizationObserver) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(languageDidChanged)
+                                                     name:LTZLocalizationKitLanguageDidChangedKey
+                                                   object:nil];
+        self.hasLocalizationObserver = YES;
+    }
+    //NSLog(@"%@:%@",NSStringFromClass([self class]),@"execute new from localization category");
+    return object;
+}
+ */
 - (id)localization_init
 {
     id object = [self localization_init];
@@ -171,7 +197,7 @@
                                                    object:nil];
         self.hasLocalizationObserver = YES;
     }
-    
+    //NSLog(@"%@:%@",NSStringFromClass([self class]),@"execute init from localization category");
     return object;
 }
 
@@ -187,7 +213,7 @@
             
             
         } @finally {
-            
+            //NSLog(@"%@:%@",NSStringFromClass([self class]),@"execute dealloc from localization category");
         }
         
     }
