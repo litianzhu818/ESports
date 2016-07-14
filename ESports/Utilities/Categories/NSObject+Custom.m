@@ -115,16 +115,40 @@
 }
 
 #pragma mark - NetError
--(id)handleResponse:(id)responseJSON{
+- (id)handleResponse:(id)responseJSON{
     NSError *error = nil;
     //code为非0值时，表示有错
-    NSNumber *resultCode = [responseJSON valueForKeyPath:@"code"];
+    NSNumber *resultCode = [responseJSON valueForKeyPath:@"ErrorCode"];
+    NSNumber *resultSuccess = [responseJSON valueForKeyPath:@"Success"];
     
-    if (resultCode.intValue != 0) {
+    if (resultCode.intValue != 0 && !resultSuccess.boolValue) {
         error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:resultCode.intValue userInfo:responseJSON];
         [self showError:error];
     }
     return error;
+}
+
+- (id)handleResponse:(id)responseJSON error:(NSError **)error
+{
+    id data = nil;
+    //code为0时，表示正常
+    NSNumber *resultCode = [responseJSON valueForKeyPath:@"ErrorCode"];
+    NSNumber *resultSuccess = [responseJSON valueForKeyPath:@"Success"];
+    
+    if (resultCode.intValue != 0 && !resultSuccess.boolValue) {
+        *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:resultCode.intValue userInfo:responseJSON];
+        [self showError:*error];
+        /*
+         if (resultCode.intValue == 1000) {//用户未登录
+         [Login doLogout];
+         [((AppDelegate *)[UIApplication sharedApplication].delegate) setupLoginViewController];
+         }
+         */
+    }else{
+        data = [responseJSON valueForKeyPath:@"Data"];
+    }
+    
+    return data;
 }
 
 - (void)clearUnusedCellWithTableView:(UITableView *)tableView
@@ -165,6 +189,48 @@
     [alertView bk_setCancelBlock:cancelBlock];
     [alertView bk_setHandler:otherBlock forButtonAtIndex:1];
     [alertView show];
+}
+
+#pragma mark - UI methods
+- (CGSize)sizeOfLabelWithString:(NSString *)string font:(UIFont *)font height:(CGFloat)height
+{
+    
+    CGSize labelSize = CGSizeMake(0.0, 0.0);
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:font,
+                                 NSParagraphStyleAttributeName:paragraphStyle.copy
+                                 };
+    
+    labelSize =  [string boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, height)
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:attributes
+                                      context:nil].size;
+    
+    return labelSize;
+}
+
+- (CGSize)sizeOfLabelWithString:(NSString *)string font:(UIFont *)font width:(CGFloat)width
+{
+    CGSize labelSize = CGSizeMake(0.0, 0.0);
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:font,
+                                 NSParagraphStyleAttributeName:paragraphStyle.copy
+                                 };
+    
+    labelSize =  [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:attributes
+                                      context:nil].size;
+    
+    return labelSize;
 }
 
 @end

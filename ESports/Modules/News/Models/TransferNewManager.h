@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) NSMutableArray<TransferNewContainer *> *transferNewContainers;
 
-- (void)addTransferNew:(TransferNew *)transferNew;
+- (NSIndexPath *)addTransferNew:(TransferNew *)transferNew;
 
 @end
 

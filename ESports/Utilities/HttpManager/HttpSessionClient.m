@@ -140,12 +140,13 @@
                                       
                                   }
                                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                       id error = [self handleResponse:responseObject];
+                                       NSError *error = nil;
+                                       id tempdata = [self handleResponse:responseObject error:&error];
                                        if (error) {
                                            [self showError:error];
                                            block(nil, error);
                                        }else{
-                                           block(responseObject, nil);
+                                           block(tempdata, nil);
                                        }
                                   }
                                    failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -165,7 +166,9 @@
                                    }
                                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                         LOG(@"\n%@===========response===========:\n%@", aPath, responseObject);
-                                        id error = [self handleResponse:responseObject];
+                                        NSError *error = nil;
+                                        id tempdata = [self handleResponse:responseObject error:&error];
+                                        
                                         if (error) {
                                             [self showError:error];
                                             block(nil, error);
@@ -175,7 +178,7 @@
                                                  [HttpSessionClient saveCookieData];
                                              }
                                             
-                                            block(responseObject, nil);
+                                            block(tempdata, nil);
                                         }
                                     }
                                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -191,12 +194,13 @@
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
                                        LOG(@"\n%@===========response===========:\n%@", aPath, responseObject);
-                                       id error = [self handleResponse:responseObject];
+                                       NSError *error = nil;
+                                       id tempdata = [self handleResponse:responseObject error:&error];
                                        if (error) {
                                            [self showError:error];
                                            block(nil, error);
                                        }else{
-                                           block(responseObject, nil);
+                                           block(tempdata, nil);
                                        }
                                        
                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -212,12 +216,13 @@
                                    parameters:params
                                       success:^(NSURLSessionDataTask *task, id responseObject) {
                                           LOG(@"\n%@===========response===========:\n%@", aPath, responseObject);
-                                          id error = [self handleResponse:responseObject];
+                                          NSError *error = nil;
+                                          id tempdata = [self handleResponse:responseObject error:&error];
                                           if (error) {
                                               [self showError:error];
                                               block(nil, error);
                                           }else{
-                                              block(responseObject, nil);
+                                              block(tempdata, nil);
                                           }
                                           
                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {

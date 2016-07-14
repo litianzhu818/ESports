@@ -19,21 +19,27 @@
     return self;
 }
 
-- (void)addHotWordNew:(HotWordNew *)hotWordNew
+- (NSIndexPath *)addHotWordNew:(HotWordNew *)hotWordNew
 {
+    __block NSIndexPath *indexPath = nil;
     if (!self.hotWordNewContainers) self.hotWordNewContainers = [NSMutableArray array];
     __block BOOL hasHotWordNewContainer = NO;
     [self.hotWordNewContainers enumerateObjectsUsingBlock:^(HotWordNewContainer * _Nonnull hotWordNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[hotWordNew newsDateString] isEqualToString:hotWordNewContainer.date]) {
             [hotWordNewContainer addHotWordNew:hotWordNew];
             hasHotWordNewContainer = YES;
+            indexPath = [NSIndexPath indexPathForRow:hotWordNewContainer.hotWordNews.count-1 inSection:idx];
         }
     }];
     
     if (!hasHotWordNewContainer) {
         HotWordNewContainer *newHotWordNewContainer = [[HotWordNewContainer alloc] initWithHotWordNew:hotWordNew];
         [self.hotWordNewContainers addObject:newHotWordNewContainer];
+        
+        indexPath = [NSIndexPath indexPathForRow:0 inSection:self.hotWordNewContainers.count-1];
     }
+    
+    return indexPath;
 }
 
 @end

@@ -19,21 +19,25 @@
     return self;
 }
 
-- (void)addTransferNew:(TransferNew *)transferNew
+- (NSIndexPath *)addTransferNew:(TransferNew *)transferNew
 {
     if (!self.transferNewContainers) self.transferNewContainers = [NSMutableArray array];
     __block BOOL hasTransferNewContainer = NO;
+    __block NSIndexPath *indexPath = nil;
     [self.transferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([[transferNew joinTeamDateString] isEqualToString:transferNewContainer.date]) {
             [transferNewContainer addTransferNew:transferNew];
             hasTransferNewContainer = YES;
+            indexPath = [NSIndexPath indexPathForRow:transferNewContainer.transferNews.count-1 inSection:idx];
         }
     }];
     
     if (!hasTransferNewContainer) {
         TransferNewContainer *newTransferNewContainer = [[TransferNewContainer alloc] initWithTransferNew:transferNew];
         [self.transferNewContainers addObject:newTransferNewContainer];
+        indexPath = [NSIndexPath indexPathForRow:0 inSection:self.transferNewContainers.count-1];
     }
+    return indexPath;
 }
 
 @end

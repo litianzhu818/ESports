@@ -15,6 +15,9 @@
 #import "TransferNewManager.h"
 #import "HotWordNewManager.h"
 #import "HotFocusNew.h"
+#import "NewsRotationImageCell.h"
+#import "HttpSessionManager.h"
+#import "HotFocusNewCell.h"
 
 typedef NS_ENUM(NSUInteger, NewsType) {
     NewsTypeHotFocus = 0,
@@ -35,6 +38,12 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 @property (weak, nonatomic) IBOutlet UITableView *transferTableView;
 @property (weak, nonatomic) IBOutlet UITableView *hotwordsTableView;
 
+@property (strong, nonatomic) MJRefreshNormalHeader *hotfocusTableViewHeader;
+@property (strong, nonatomic) MJRefreshAutoNormalFooter *hotfocusTableViewFooter;
+@property (strong, nonatomic) MJRefreshNormalHeader *transferTableViewHeader;
+@property (strong, nonatomic) MJRefreshAutoNormalFooter *transferTableViewFooter;
+@property (strong, nonatomic) MJRefreshNormalHeader *hotwordsTableViewHeader;
+@property (strong, nonatomic) MJRefreshAutoNormalFooter *hotwordsTableViewFooter;
 
 @property (strong, nonatomic) DropdownMenu *dropdownMenu;
 @property (strong, nonatomic) UIButton *button;
@@ -44,6 +53,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 @property (assign, nonatomic) NSInteger transferNewsOffset;
 @property (assign, nonatomic) NSInteger hotwordsNewsOffset;
 @property (assign, nonatomic) NSInteger limitForRequest;
+@property (assign, nonatomic) BOOL showImages;
 
 @property (assign, nonatomic) NSInteger hotfocusNewsFirstRequest;
 @property (assign, nonatomic) NSInteger transferNewsFirstRequest;
@@ -85,7 +95,13 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                            @"view_controller_title":@"News",
                                            @"news_type_hot":@"Hot focus",
                                            @"news_type_transfer":@"Transfer",
-                                           @"news_type_headlines":@"Hot words"
+                                           @"news_type_headlines":@"Hot words",
+                                           @"tableview_header_pull_down_title":@"Pull down to refresh",
+                                           @"tableview_header_release_title":@"Release to refresh",
+                                           @"tableview_header_loading_title":@"Loading...",
+                                           @"tableview_footer_normal_title":@"Clicking to get more data",
+                                           @"tableview_footer_loading_title":@"Loading more...",
+                                           @"tableview_footer_no_data_title":@"There is no more data"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"local_item_global":@"全球",
@@ -98,7 +114,13 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                            @"view_controller_title":@"新闻",
                                            @"news_type_hot":@"热门焦点",
                                            @"news_type_transfer":@"转会新闻",
-                                           @"news_type_headlines":@"头条热话"
+                                           @"news_type_headlines":@"头条热话",
+                                           @"tableview_header_pull_down_title":@"下拉刷新",
+                                           @"tableview_header_release_title":@"松开刷新",
+                                           @"tableview_header_loading_title":@"获取数据中...",
+                                           @"tableview_footer_normal_title":@"点击加载更多数据",
+                                           @"tableview_footer_loading_title":@"正在加载数据...",
+                                           @"tableview_footer_no_data_title":@"没有更多数据了"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"local_item_global":@"全球",
@@ -111,7 +133,13 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                            @"view_controller_title":@"新聞",
                                            @"news_type_hot":@"熱門焦點",
                                            @"news_type_transfer":@"轉會新聞",
-                                           @"news_type_headlines":@"頭條熱話"
+                                           @"news_type_headlines":@"頭條熱話",
+                                           @"tableview_header_pull_down_title":@"下拉刷新",
+                                           @"tableview_header_release_title":@"鬆開刷新",
+                                           @"tableview_header_loading_title":@"獲取數據中...",
+                                           @"tableview_footer_normal_title":@"點擊加載更多數據",
+                                           @"tableview_footer_loading_title":@"正在加載數據...",
+                                           @"tableview_footer_no_data_title":@"沒有更多數據了"
                                            }
                                    };
     
@@ -183,6 +211,65 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     
     [self.segmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     
+    
+    // 为UITableView添加上下拉
+    // 添加下拉刷新
+    self.hotfocusTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadHotfocusData)];
+    // 隐藏时间
+    self.hotfocusTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    [self.hotfocusTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
+    [self.hotfocusTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
+    [self.hotfocusTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
+    self.hotfocusTableView.mj_header = self.hotfocusTableViewHeader;
+    
+
+    // 添加上拉加载更多数据
+    self.hotfocusTableViewFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreHotfocusData)];
+    self.hotfocusTableViewFooter.refreshingTitleHidden = YES;
+    [self.hotfocusTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_normal_title", nil) forState:MJRefreshStateIdle];
+    [self.hotfocusTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
+    [self.hotfocusTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
+    self.hotfocusTableView.mj_footer = self.hotfocusTableViewFooter;
+    
+    // 添加下拉刷新
+    self.transferTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadTransferData)];
+    // 隐藏时间
+    self.transferTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    [self.transferTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
+    [self.transferTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
+    [self.transferTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
+    self.transferTableView.mj_header = self.transferTableViewHeader;
+    
+    
+    // 添加上拉加载更多数据
+    self.transferTableViewFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTransferData)];
+    self.transferTableViewFooter.refreshingTitleHidden = YES;
+    [self.transferTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_normal_title", nil) forState:MJRefreshStateIdle];
+    [self.transferTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
+    [self.transferTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
+    self.transferTableView.mj_footer = self.transferTableViewFooter;
+    
+    // 添加下拉刷新
+    self.hotwordsTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadHotwordsData)];
+    // 隐藏时间
+    self.hotwordsTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    [self.hotwordsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
+    [self.hotwordsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
+    [self.hotwordsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
+    self.hotwordsTableView.mj_header = self.hotwordsTableViewHeader;
+    
+    
+    // 添加上拉加载更多数据
+    self.hotwordsTableViewFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreHotwordsData)];
+    self.hotwordsTableViewFooter.refreshingTitleHidden = YES;
+    [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_normal_title", nil) forState:MJRefreshStateIdle];
+    [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
+    [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
+    self.hotwordsTableView.mj_footer = self.hotwordsTableViewFooter;
+    
+    [self.hotfocusTableView registerNib:[NewsRotationImageCell nib] forCellReuseIdentifier:[NewsRotationImageCell cellIdentifier]];
+    [self.hotfocusTableView registerNib:[HotFocusNewCell nib] forCellReuseIdentifier:[HotFocusNewCell cellIdentifier]];
+    
 }
 
 - (void)loadData
@@ -195,6 +282,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     self.hotfocusNewsFirstRequest = YES;
     self.hotwordsNewsFirstRequest = YES;
     self.transferNewsFirstRequest = YES;
+    self.showImages = NO;
     self.images = [NSMutableArray array];
     self.hotFocusNews = [NSMutableArray array];
     self.transferNewManager = [[TransferNewManager alloc] init];
@@ -209,7 +297,15 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                       NSArray<NewsRotationImage *> *images = object;
                                       [strongSelf.images addObjectsFromArray:images];
                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                          [strongSelf.hotfocusTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                                          if (strongSelf.images.count > 0) {
+                                              if (strongSelf.showImages) {
+                                                  [strongSelf.hotfocusTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                                              }else{
+                                                  [strongSelf.hotfocusTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                                                                                      withRowAnimation:UITableViewRowAnimationFade];
+                                              }
+                                          }
+                                        
                                       });
                                       
                                   }];
@@ -247,6 +343,12 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                   }];
     
     // 开始网络请求数据
+    [self.hotfocusTableView.mj_header beginRefreshing];
+    
+    self.hotfocusTableView.backgroundColor = self.view.backgroundColor;
+    self.transferTableView.backgroundColor = self.view.backgroundColor;
+    self.hotwordsTableView.backgroundColor = self.view.backgroundColor;
+    
     
 }
 
@@ -294,6 +396,309 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     }
 }
 
+- (void)reloadHotfocusData
+{
+    self.hotfocusNewsOffset = 0;
+    self.hotfocusNewsFirstRequest = NO;
+    __weak typeof(self) weakSelf = self;
+    [[HttpSessionManager sharedInstance] requestNewsCarouselImagesWithOffset:0
+                                                               numbersOfPage:5
+                                                                       block:^(NSArray<NSDictionary *> *images, NSError *error) {
+                                                                           
+                                                                           __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                           
+                                                                           if (!error) {
+                                                                               
+                                                                               [strongSelf.images removeAllObjects];
+                                                                               
+                                                                               [images enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                   NewsRotationImage *image = [[NewsRotationImage alloc] initWithDictionary:dic
+                                                                                                                                                      error:nil];
+                                                                                   if (image) {
+                                                                                       [strongSelf.images addObject:image];
+                                                                                   }
+                                                                               }];
+                                                                               
+                                                                               
+                                                                               if (strongSelf.showImages) {
+                                                                                   [strongSelf.hotfocusTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                                                                               }else{
+                                                                                   [strongSelf.hotfocusTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                                                                                                                       withRowAnimation:UITableViewRowAnimationFade];
+                                                                               }
+                                                                               
+                                                                               [[TMCache sharedCache] setObject:strongSelf.images forKey:newsImagesCacheKey];
+                                                                               
+                                                                           }
+                                                                           
+                                                                       }];
+    
+    [[HttpSessionManager sharedInstance] requestHotfocusNewsWithOffset:self.hotfocusNewsOffset
+                                                          limitsOfPage:self.limitForRequest
+                                                                 block:^(NSArray<NSDictionary *> *hotfocusNews, NSError *error) {
+                                                                     
+                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                     
+                                                                     if (!error) {
+                                                                         
+                                                                         if (hotfocusNews.count > 0) {
+                                                                             [strongSelf.hotFocusNews removeAllObjects];
+                                                                             NSMutableArray<HotFocusNew *> *cacheHotFocusNews = [NSMutableArray array];
+                                                                             [hotfocusNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 HotFocusNew *hotFocusNew = [[HotFocusNew alloc] initWithDictionary:dic error:nil];
+                                                                                 if (hotFocusNew) {
+                                                                                     [strongSelf.hotFocusNews addObject:hotFocusNew];
+                                                                                     [cacheHotFocusNews addObject:hotFocusNew];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             
+                                                                             strongSelf.hotfocusNewsOffset += hotfocusNews.count;
+                                                                             if (hotfocusNews.count < strongSelf.limitForRequest) {
+                                                                                 [strongSelf.hotfocusTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                             }
+                                                                             
+                                                                             [strongSelf.hotfocusTableView reloadData];
+                                                                             
+                                                                             [[TMCache sharedCache] setObject:cacheHotFocusNews
+                                                                                                       forKey:hotFocusNewsListCacheKey];
+      
+                                                                         }
+                                                                         
+                                                                     }
+                                                                     
+                                                                     [strongSelf.hotfocusTableView.mj_header endRefreshing];
+                                                                 }];
+}
+
+- (void)loadMoreHotfocusData
+{
+    __weak typeof(self) weakSelf = self;
+    [[HttpSessionManager sharedInstance] requestHotfocusNewsWithOffset:self.hotfocusNewsOffset
+                                                          limitsOfPage:self.limitForRequest
+                                                                 block:^(NSArray<NSDictionary *> *hotfocusNews, NSError *error) {
+                                                                     
+                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                     
+                                                                     BOOL hasMoreData = YES;
+                                                                     
+                                                                     if (!error) {
+                                                                         
+                                                                         if (hotfocusNews.count > 0) {
+                                                                             NSMutableArray<HotFocusNew *> *cacheHotFocusNews = [NSMutableArray array];
+                                                                             
+                                                                             [weakSelf.hotfocusTableView beginUpdates];
+                                                                             
+                                                                             [hotfocusNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 HotFocusNew *hotFocusNew = [[HotFocusNew alloc] initWithDictionary:dic error:nil];
+                                                                                 if (hotFocusNew) {
+                                                                                     [strongSelf.hotFocusNews addObject:hotFocusNew];
+                                                                                     [cacheHotFocusNews addObject:hotFocusNew];
+                                                                                     [strongSelf.hotfocusTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:strongSelf.hotFocusNews.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             [weakSelf.hotfocusTableView endUpdates];
+                                                                             
+                                                                             strongSelf.hotfocusNewsOffset += hotfocusNews.count;
+                                                                             if (hotfocusNews.count < strongSelf.limitForRequest) {
+                                                                                 [strongSelf.hotfocusTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                                 hasMoreData = NO;
+                                                                             }
+                                                                             
+                                                                             [[TMCache sharedCache] setObject:cacheHotFocusNews
+                                                                                                       forKey:hotFocusNewsListCacheKey];
+
+                                                                         }
+                                                                         
+                                                                     }
+                                                                     
+                                                                     if (hasMoreData) {
+                                                                         [strongSelf.hotfocusTableView.mj_header endRefreshing];
+                                                                     }
+                                                                     
+                                                                 }];
+}
+
+- (void)reloadTransferData
+{
+    self.transferNewsOffset = 0;
+    self.transferNewsFirstRequest = NO;
+    __weak typeof(self) weakSelf = self;
+    [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.transferNewsOffset
+                                                          limitsOfPage:self.limitForRequest
+                                                                 block:^(NSArray<NSDictionary *> *transferNews, NSError *error) {
+                                                                     
+                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                     
+                                                                     if (!error) {
+                                                                         
+                                                                         if (transferNews.count > 0) {
+                                                                             [strongSelf.transferNewManager.transferNewContainers removeAllObjects];
+                                                                             NSMutableArray<TransferNew *> *cacheTransferNews = [NSMutableArray array];
+                                                                             
+                                                                             [transferNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 TransferNew *transferNew = [[TransferNew alloc] initWithDictionary:dic error:nil];
+                                                                                 if (transferNew) {
+                                                                                     [strongSelf.transferNewManager addTransferNew:transferNew];
+                                                                                     [cacheTransferNews addObject:transferNew];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             
+                                                                             strongSelf.transferNewsOffset += transferNews.count;
+                                                                             if (transferNews.count < strongSelf.limitForRequest) {
+                                                                                 [strongSelf.transferTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                             }
+                                                                             
+                                                                             [strongSelf.transferTableView reloadData];
+                                                                             
+                                                                             [[TMCache sharedCache] setObject:cacheTransferNews
+                                                                                                       forKey:transferNewsListCacheKey];
+                                                                             
+                                                                         }
+                                                                         
+                                                                     }
+                                                                     
+                                                                     [strongSelf.transferTableView.mj_header endRefreshing];
+                                                                 }];
+}
+
+- (void)loadMoreTransferData
+{
+    __weak typeof(self) weakSelf = self;
+    [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.transferNewsOffset
+                                                          limitsOfPage:self.limitForRequest
+                                                                 block:^(NSArray<NSDictionary *> *transferNews, NSError *error) {
+                                                                     
+                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                     
+                                                                     BOOL hasMoreData = YES;
+                                                                     
+                                                                     if (!error) {
+                                                                         
+                                                                         if (transferNews.count > 0) {
+                                                                             NSMutableArray<TransferNew *> *cacheTransferNews = [NSMutableArray array];
+                                                                             [weakSelf.transferTableView beginUpdates];
+                                                                             
+                                                                             [transferNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 TransferNew *transferNew = [[TransferNew alloc] initWithDictionary:dic error:nil];
+                                                                                 if (transferNew) {
+                                                                                     NSIndexPath *indexPath = [strongSelf.transferNewManager addTransferNew:transferNew];
+                                                                                     [strongSelf.transferTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+                                                                                     [cacheTransferNews addObject:transferNew];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             [weakSelf.transferTableView endUpdates];
+                                                                             
+                                                                             strongSelf.transferNewsOffset += transferNews.count;
+                                                                             if (transferNews.count < strongSelf.limitForRequest) {
+                                                                                 [strongSelf.transferTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                                 hasMoreData = NO;
+                                                                             }
+                                                                             
+                                                                             [[TMCache sharedCache] setObject:cacheTransferNews
+                                                                                                       forKey:transferNewsListCacheKey];
+                                                                         }
+                                                                         
+                                                                     }
+                                                                     
+                                                                     if (hasMoreData) {
+                                                                         [strongSelf.transferTableView.mj_header endRefreshing];
+                                                                     }
+                                                                 }];
+}
+
+- (void)reloadHotwordsData
+{
+    self.hotwordsNewsOffset = 0;
+    self.hotwordsNewsFirstRequest = NO;
+    __weak typeof(self) weakSelf = self;
+    [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.hotwordsNewsOffset
+                                                          limitsOfPage:self.limitForRequest
+                                                                 block:^(NSArray<NSDictionary *> *hotwordsNews, NSError *error) {
+                                                                     
+                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                     
+                                                                     if (!error) {
+                                                                         
+                                                                         if (hotwordsNews.count > 0) {
+                                                                             NSMutableArray<HotWordNew *> *cacheHotWordNews = [NSMutableArray array];
+                                                                             [strongSelf.hotWordNewManager.hotWordNewContainers removeAllObjects];
+                                                                             [hotwordsNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 HotWordNew *hotWordNew = [[HotWordNew alloc] initWithDictionary:dic error:nil];
+                                                                                 if (hotWordNew) {
+                                                                                     [strongSelf.hotWordNewManager addHotWordNew:hotWordNew];
+                                                                                     [cacheHotWordNews addObject:hotWordNew];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             
+                                                                             strongSelf.hotwordsNewsOffset += hotwordsNews.count;
+                                                                             if (hotwordsNews.count < strongSelf.limitForRequest) {
+                                                                                 [strongSelf.hotwordsTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                             }
+                                                                             
+                                                                             [strongSelf.hotwordsTableView reloadData];
+                                                                             
+                                                                             [[TMCache sharedCache] setObject:cacheHotWordNews
+                                                                                                       forKey:hotwordsNewsListCacheKey];
+                                                                             
+                                                                         }
+                                                                         
+                                                                     }
+                                                                     
+                                                                     [strongSelf.hotwordsTableView.mj_header endRefreshing];
+                                                                 }];
+}
+
+- (void)loadMoreHotwordsData
+{
+    __weak typeof(self) weakSelf = self;
+    [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.hotwordsNewsOffset
+                                                          limitsOfPage:self.limitForRequest
+                                                                 block:^(NSArray<NSDictionary *> *hotwordsNews, NSError *error) {
+                                                                     
+                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
+                                                                     
+                                                                     BOOL hasMoreData = YES;
+                                                                     
+                                                                     if (!error) {
+                                                                         
+                                                                         if (hotwordsNews.count > 0) {
+                                                                             NSMutableArray<HotWordNew *> *cacheHotWordNews = [NSMutableArray array];
+                                                                             [weakSelf.hotwordsTableView beginUpdates];
+                                                                             
+                                                                             [hotwordsNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 HotWordNew *hotWordNew = [[HotWordNew alloc] initWithDictionary:dic error:nil];
+                                                                                 if (hotWordNew) {
+                                                                                     NSIndexPath *indexPath = [strongSelf.hotWordNewManager addHotWordNew:hotWordNew];
+                                                                                     [strongSelf.hotwordsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+                                                                                     [cacheHotWordNews addObject:hotWordNew];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             [weakSelf.hotwordsTableView endUpdates];
+                                                                             
+                                                                             strongSelf.hotwordsNewsOffset += hotwordsNews.count;
+                                                                             if (hotwordsNews.count < strongSelf.limitForRequest) {
+                                                                                 [strongSelf.hotwordsTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                                 hasMoreData = NO;
+                                                                             }
+                                                                             
+                                                                             [[TMCache sharedCache] setObject:cacheHotWordNews
+                                                                                                       forKey:hotwordsNewsListCacheKey];
+                                                                         }
+                                                                         
+                                                                     }
+                                                                     
+                                                                     if (hasMoreData) {
+                                                                         [strongSelf.hotwordsTableView.mj_header endRefreshing];
+                                                                     }
+                                                                 }];
+}
+
 #pragma mark - 切换语言响应方法
 - (void)languageDidChanged
 {
@@ -313,6 +718,34 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     [self.segmentedControl setTitle:LTZLocalizedString(@"news_type_hot", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:LTZLocalizedString(@"news_type_transfer", nil) forSegmentAtIndex:1];
     [self.segmentedControl setTitle:LTZLocalizedString(@"news_type_headlines", nil) forSegmentAtIndex:2];
+    
+    [self.hotfocusTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
+    [self.hotfocusTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
+    [self.hotfocusTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
+    
+    [self.hotfocusTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_normal_title", nil) forState:MJRefreshStateIdle];
+    [self.hotfocusTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
+    [self.hotfocusTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
+    
+    [self.transferTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
+    [self.transferTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
+    [self.transferTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
+    
+    [self.transferTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_normal_title", nil) forState:MJRefreshStateIdle];
+    [self.transferTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
+    [self.transferTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
+    
+    [self.hotwordsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
+    [self.hotwordsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
+    [self.hotwordsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
+    
+    [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_normal_title", nil) forState:MJRefreshStateIdle];
+    [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
+    [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
+    
+    [self.hotfocusTableView.mj_header beginRefreshing];
+    [self.transferTableView.mj_header beginRefreshing];
+    [self.hotwordsTableView.mj_header beginRefreshing];
 }
 
 #pragma mark - UISegmentedControl响应事件
@@ -333,7 +766,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                 self.currentNewsType = NewsTypeHotTransfer;
                 if (self.transferNewsFirstRequest) {
                     // 请求转会新闻数据
-                   
+                    [self.transferTableView.mj_header beginRefreshing];
                 }
             }
         }
@@ -344,6 +777,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                 self.currentNewsType = NewsTypeHotWords;
                 if (self.hotwordsNewsFirstRequest) {
                     // 请求热门话题数据
+                    [self.hotwordsTableView.mj_header beginRefreshing];
                 }
             }
         }
@@ -355,8 +789,109 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 }
 
 #pragma mark - UITableViewDelegate methods
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        if (indexPath.row == 0 && self.images.count > 0) {
+            return [NewsRotationImageCell cellHeightWithWidth:CGRectGetWidth([[UIScreen mainScreen] bounds])];
+        }else{
+            return [HotFocusNewCell cellHeight];
+        }
+    }
+    return 44.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        return 0;
+    }
+    return 44.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        return 0;
+    }
+    return 44.0f;
+}
 
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        return nil;
+    }
+    return nil;
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        return nil;
+    }
+    return nil;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
 #pragma mark - UITableViewDataSource methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        
+        NSInteger number = self.hotFocusNews.count;
+        if (self.images.count > 0) {
+            ++number;
+            self.showImages = YES;
+        }
+        return number;
+        
+    }else if ([tableView isEqual:self.transferTableView]) {
+        return self.transferNewManager.transferNewContainers[section].transferNews.count;
+    }else if ([tableView isEqual:self.hotwordsTableView]) {
+        return self.hotWordNewManager.hotWordNewContainers[section].hotWordNews.count;
+    }
+    
+    return 0;
+
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        
+        if (self.images.count > 0 && indexPath.row == 0) {
+            NewsRotationImageCell *cell = [tableView dequeueReusableCellWithIdentifier:[NewsRotationImageCell cellIdentifier]
+                                                                          forIndexPath:indexPath];
+            cell.images = self.images;
+            [cell setClikedBlock:^(NSInteger index) {
+                
+            }];
+            return cell;
+        }else {
+            HotFocusNewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HotFocusNewCell cellIdentifier]
+                                                                    forIndexPath:indexPath];
+            cell.hotFocusNew = self.showImages ? self.hotFocusNews[indexPath.row-1]:self.hotFocusNews[indexPath.row];
+            return cell;
+        }
+        
+    }else if ([tableView isEqual:self.transferTableView]) {
+        
+    }else if ([tableView isEqual:self.hotwordsTableView]) {
+        
+    }
+    return nil;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        return 1;
+    }else if ([tableView isEqual:self.transferTableView]) {
+        return self.transferNewManager.transferNewContainers.count;
+    }else if ([tableView isEqual:self.hotwordsTableView]) {
+        return self.hotWordNewManager.hotWordNewContainers.count;
+    }
+    return 0;
+}
 
 /*
 #pragma mark - Navigation

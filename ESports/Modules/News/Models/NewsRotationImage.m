@@ -40,7 +40,8 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"Id":@"imageId",
                                                        @"Title":@"imageTitle",
-                                                       @"ImgSrc":@"imageUrl"
+                                                       @"ImgSrc":@"imageUrl",
+                                                       @"url":@"detailUrl"
                                                        }];
 }
 

@@ -16,4 +16,16 @@
                               numbersOfPage:(NSInteger)numbersOfPage
                                       block:(void (^)(id data, NSError *error))block;
 
+- (void)requestHotfocusNewsWithOffset:(NSInteger)offset
+                         limitsOfPage:(NSInteger)limitsOfPage
+                                block:(void (^)(id data, NSError *error))block;
+
+- (void)requestTransferNewsWithOffset:(NSInteger)offset
+                         limitsOfPage:(NSInteger)limitsOfPage
+                                block:(void (^)(id data, NSError *error))block;
+
+- (void)requestHotwordsNewsWithOffset:(NSInteger)offset
+                         limitsOfPage:(NSInteger)limitsOfPage
+                                block:(void (^)(id data, NSError *error))block;
+
 @end

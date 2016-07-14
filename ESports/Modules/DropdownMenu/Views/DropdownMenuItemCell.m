@@ -21,7 +21,8 @@
     [super awakeFromNib];
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.contentView.backgroundColor = HexColor(0x0e161f);
+    self.backgroundColor = HexColor(0x0e161f);
+    self.contentView.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0];
     self.titleLabel.textColor = HexColor(0xffffff);
     self.iconImageView.image = [UIImage imageNamed:@"location_selected"];

@@ -44,6 +44,70 @@
                                                      }];
 }
 
+- (void)requestHotfocusNewsWithOffset:(NSInteger)offset
+                         limitsOfPage:(NSInteger)limitsOfPage
+                                block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(limitsOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:hotfocusNewsURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+
+}
+
+- (void)requestTransferNewsWithOffset:(NSInteger)offset
+                         limitsOfPage:(NSInteger)limitsOfPage
+                                block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(limitsOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:transferNewsURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestHotwordsNewsWithOffset:(NSInteger)offset
+                         limitsOfPage:(NSInteger)limitsOfPage
+                                block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(limitsOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:hotwordsNewsURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

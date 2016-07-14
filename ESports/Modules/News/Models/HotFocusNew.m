@@ -20,7 +20,7 @@
 - (NSDate *)NSDateFromNSString:(NSString*)string
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss Z"];
+    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
     return [formatter dateFromString:string];
 }
 

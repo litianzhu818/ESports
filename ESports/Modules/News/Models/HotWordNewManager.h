@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) NSMutableArray<HotWordNewContainer *> *hotWordNewContainers;
 
-- (void)addHotWordNew:(HotWordNew *)hotWordNew;
+- (NSIndexPath *)addHotWordNew:(HotWordNew *)hotWordNew;
 
 @end
 

@@ -68,6 +68,10 @@
 		E760B34D1D36471B00F5DB54 /* NewsRotationImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B34C1D36471B00F5DB54 /* NewsRotationImage.m */; };
 		E760B3501D36559700F5DB54 /* HotWordNewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B34F1D36559700F5DB54 /* HotWordNewManager.m */; };
 		E760B3531D365A4D00F5DB54 /* TransferNewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3521D365A4D00F5DB54 /* TransferNewManager.m */; };
+		E760B3571D37756E00F5DB54 /* NewsRotationImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3551D37756E00F5DB54 /* NewsRotationImageCell.m */; };
+		E760B3581D37756E00F5DB54 /* NewsRotationImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B3561D37756E00F5DB54 /* NewsRotationImageCell.xib */; };
+		E760B35C1D379ADA00F5DB54 /* HotFocusNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B35A1D379ADA00F5DB54 /* HotFocusNewCell.m */; };
+		E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B35B1D379ADA00F5DB54 /* HotFocusNewCell.xib */; };
 		E7BD57691CF4360D008F2D69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57681CF4360D008F2D69 /* main.m */; };
 		E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576B1CF4360D008F2D69 /* AppDelegate.m */; };
 		E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576E1CF4360D008F2D69 /* ViewController.m */; };
@@ -179,6 +183,12 @@
 		E760B34F1D36559700F5DB54 /* HotWordNewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordNewManager.m; sourceTree = "<group>"; };
 		E760B3511D365A4D00F5DB54 /* TransferNewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferNewManager.h; sourceTree = "<group>"; };
 		E760B3521D365A4D00F5DB54 /* TransferNewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferNewManager.m; sourceTree = "<group>"; };
+		E760B3541D37756E00F5DB54 /* NewsRotationImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsRotationImageCell.h; sourceTree = "<group>"; };
+		E760B3551D37756E00F5DB54 /* NewsRotationImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsRotationImageCell.m; sourceTree = "<group>"; };
+		E760B3561D37756E00F5DB54 /* NewsRotationImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsRotationImageCell.xib; sourceTree = "<group>"; };
+		E760B3591D379ADA00F5DB54 /* HotFocusNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotFocusNewCell.h; sourceTree = "<group>"; };
+		E760B35A1D379ADA00F5DB54 /* HotFocusNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotFocusNewCell.m; sourceTree = "<group>"; };
+		E760B35B1D379ADA00F5DB54 /* HotFocusNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotFocusNewCell.xib; sourceTree = "<group>"; };
 		E768AF301D2A1ACC008CF826 /* LanguageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageList.h; sourceTree = "<group>"; };
 		E7BD57641CF4360D008F2D69 /* ESports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD57681CF4360D008F2D69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -432,6 +442,12 @@
 		E72FD8751D251575000A5CE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E760B3541D37756E00F5DB54 /* NewsRotationImageCell.h */,
+				E760B3551D37756E00F5DB54 /* NewsRotationImageCell.m */,
+				E760B3561D37756E00F5DB54 /* NewsRotationImageCell.xib */,
+				E760B3591D379ADA00F5DB54 /* HotFocusNewCell.h */,
+				E760B35A1D379ADA00F5DB54 /* HotFocusNewCell.m */,
+				E760B35B1D379ADA00F5DB54 /* HotFocusNewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -804,12 +820,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7BD577E1CF4360D008F2D69 /* Build configuration list for PBXNativeTarget "ESports" */;
 			buildPhases = (
-				68BDF05A2B9F6DB9F48F9FB5 /* 📦 Check Pods Manifest.lock */,
+				68BDF05A2B9F6DB9F48F9FB5 /* [CP] Check Pods Manifest.lock */,
 				E7BD57601CF4360D008F2D69 /* Sources */,
 				E7BD57611CF4360D008F2D69 /* Frameworks */,
 				E7BD57621CF4360D008F2D69 /* Resources */,
-				60670473CC22A1AB08977B34 /* 📦 Embed Pods Frameworks */,
-				62C732F6CCEAB77E98EFD2F3 /* 📦 Copy Pods Resources */,
+				60670473CC22A1AB08977B34 /* [CP] Embed Pods Frameworks */,
+				62C732F6CCEAB77E98EFD2F3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -865,6 +881,7 @@
 				E72FD8661D2508EC000A5CE6 /* topbar@2x.png in Resources */,
 				E760B3301D2E05DA00F5DB54 /* DropdownMenuItemCell.xib in Resources */,
 				E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */,
+				E760B3581D37756E00F5DB54 /* NewsRotationImageCell.xib in Resources */,
 				E72FD8AA1D264943000A5CE6 /* tabbar_strengthrating_h@2x.png in Resources */,
 				E72FD8A51D264943000A5CE6 /* tabbar_matchs_n@2x.png in Resources */,
 				E760B3401D2FA61000F5DB54 /* LICENSE in Resources */,
@@ -877,6 +894,7 @@
 				E72FD8AB1D264943000A5CE6 /* tabbar_strengthrating_n@2x.png in Resources */,
 				E72FD8671D2508EC000A5CE6 /* topbar@3x.png in Resources */,
 				E73911B31D2A592D00F4A522 /* sys_language_english@2x.png in Resources */,
+				E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */,
 				E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */,
 				E72FD88B1D2516D8000A5CE6 /* MatchsController.xib in Resources */,
 				E7BD57771CF4360D008F2D69 /* Assets.xcassets in Resources */,
@@ -895,14 +913,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		60670473CC22A1AB08977B34 /* 📦 Embed Pods Frameworks */ = {
+		60670473CC22A1AB08977B34 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,14 +928,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ESports/Pods-ESports-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		62C732F6CCEAB77E98EFD2F3 /* 📦 Copy Pods Resources */ = {
+		62C732F6CCEAB77E98EFD2F3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -925,14 +943,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ESports/Pods-ESports-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		68BDF05A2B9F6DB9F48F9FB5 /* 📦 Check Pods Manifest.lock */ = {
+		68BDF05A2B9F6DB9F48F9FB5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -962,6 +980,7 @@
 				E72FD8941D251735000A5CE6 /* StrengthRatingController.m in Sources */,
 				E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */,
 				E7BD57921CF6E77F008F2D69 /* SystemConfig.m in Sources */,
+				E760B35C1D379ADA00F5DB54 /* HotFocusNewCell.m in Sources */,
 				E760B3441D363EC900F5DB54 /* HotWordNew.m in Sources */,
 				E760B32B1D2D1CA000F5DB54 /* DropdownMenuItem.m in Sources */,
 				E7BD57931CF6E77F008F2D69 /* UserConfig.m in Sources */,
@@ -972,6 +991,7 @@
 				E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */,
 				E72FD8851D251612000A5CE6 /* NewsController.m in Sources */,
 				E72FD8461D23D8E2000A5CE6 /* LTZLocalizationManager.m in Sources */,
+				E760B3571D37756E00F5DB54 /* NewsRotationImageCell.m in Sources */,
 				E760B3531D365A4D00F5DB54 /* TransferNewManager.m in Sources */,
 				E72FD88A1D2516D8000A5CE6 /* MatchsController.m in Sources */,
 				E72FD85B1D24F420000A5CE6 /* RxWebViewController.m in Sources */,

@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSString <Optional> *imageId;
 @property (strong, nonatomic) NSString <Optional> *imageTitle;
 @property (strong, nonatomic) NSString <Optional> *imageUrl;
+@property (strong, nonatomic) NSString <Optional> *detailUrl;
 
 @end

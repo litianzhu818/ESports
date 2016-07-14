@@ -23,8 +23,8 @@
 - (void)hideStatusBarProgress;
 
 #pragma mark NetError
--(id)handleResponse:(id)responseJSON;
-
+- (id)handleResponse:(id)responseJSON;
+- (id)handleResponse:(id)responseJSON error:(NSError **)error;
 - (void)clearUnusedCellWithTableView:(UITableView *)tableView;
 
 #pragma mark - UIAlertView
@@ -41,4 +41,8 @@
            cancelBlock:(void (^)(void))cancelBlock
             otherBlock:(void (^)(void))otherBlock;
 
+
+#pragma mark methods
+- (CGSize)sizeOfLabelWithString:(NSString *)string font:(UIFont *)font height:(CGFloat)height;
+- (CGSize)sizeOfLabelWithString:(NSString *)string font:(UIFont *)font width:(CGFloat)width;
 @end
