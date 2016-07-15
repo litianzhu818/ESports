@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *newsImageUrl;
 @property (strong, nonatomic) NSString *newsArea;
 @property (strong, nonatomic) NSDate *newsDate;
+@property (strong, nonatomic) NSString *stringDate;
 
 - (NSString *)newsDateString;
 

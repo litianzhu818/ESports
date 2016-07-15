@@ -6,12 +6,15 @@
 //  Copyright © 2016年 Peter Lee. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <JSONModel/JSONModel.h>
 #import "TransferNew.h"
 
 @class TransferNewContainer;
 
-@interface TransferNewManager : NSObject
+@protocol TransferNew
+@end
+
+@interface TransferNewManager : JSONModel
 
 @property (strong, nonatomic) NSMutableArray<TransferNewContainer *> *transferNewContainers;
 
@@ -19,10 +22,11 @@
 
 @end
 
-@interface TransferNewContainer : NSObject
+@interface TransferNewContainer : JSONModel
 
-@property (strong, nonatomic) NSString *date;
-@property (strong, nonatomic) NSMutableArray<TransferNew *> *transferNews;
+@property (strong, nonatomic) NSDate *date;
+@property (strong, nonatomic) NSString *dateString;
+@property (strong, nonatomic) NSMutableArray<TransferNew> *transferNews;
 
 - (instancetype)initWithTransferNew:(TransferNew *)transferNew;
 - (void)addTransferNew:(TransferNew *)transferNew;

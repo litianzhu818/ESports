@@ -20,12 +20,14 @@
 @property (strong, nonatomic) NSString *joinTeamName;
 @property (strong, nonatomic) NSString *joinTeamImageUrl;
 @property (strong, nonatomic) NSDate *joinTeamDate;
+@property (strong, nonatomic) NSString *joinTeamDateString;
 
 @property (strong, nonatomic) NSString *fromTeamName;
 @property (strong, nonatomic) NSString *fromTeamImageUrl;
-@property (strong, nonatomic) NSDate *fromTeamDate;
 
-- (NSString *)joinTeamDateString;
-- (NSString *)fromTeamDateString;
+@property (strong, nonatomic) NSString *roleName;
+@property (strong, nonatomic) NSString *roleNameEn;
+@property (strong, nonatomic) NSString *roleNameCn;
+@property (strong, nonatomic) NSString *roleNameTw;
 
 @end

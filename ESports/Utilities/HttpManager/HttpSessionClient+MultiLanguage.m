@@ -7,15 +7,16 @@
 //
 
 #import "HttpSessionClient+MultiLanguage.h"
+#import "LTZLocalizationKit.h"
 
 @implementation HttpSessionClient (MultiLanguage)
 
 - (NSString *)locationPathWithSubPath:(NSString *)subPath
 {
     NSString *localization = @"en";// 默认英文
-    if ([[LTZLocalizationManager language] isEqualToString:@"zh-Hans"]) {//简体中文
+    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {//简体中文
         localization = @"zh-CN";
-    }else if ([[LTZLocalizationManager language] isEqualToString:@"zh-Hant"]){//繁体中文
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]){//繁体中文
         localization = @"zh-TW";
     }else{
         //localization = @"en";

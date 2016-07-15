@@ -8,8 +8,11 @@
 
 #import "BaseNavigationController.h"
 #import "UINavigationController+RxWebViewNavigation.h"
+#import "LTZLocalizationKit.h"
 #import "PopMenuModel.h"
 #import "PopMenu.h"
+
+
 
 #define navigation_bar_text_font [UIFont systemFontOfSize:17]
 #define navigation_bar_normal_color [[UIColor whiteColor] colorWithAlphaComponent:0.7]

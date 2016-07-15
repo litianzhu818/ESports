@@ -15,6 +15,7 @@
 
 - (void)setLocalStringDictionary:(NSDictionary<NSString *,NSDictionary *> *)localStringDictionary
 {
+    [self addLanguageChangeNotificationObserver];
     objc_setAssociatedObject(self, @selector(localStringDictionary), localStringDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -142,13 +143,14 @@
         // When swizzling a class method, use the following:
         // Class class = object_getClass((id)self);
         
-        
+        /*
         SEL originalSelector = @selector(init);
         SEL swizzledSelector = @selector(localization_init);
         
         [class exchangeMethodWithClass:class
                       originalSelector:originalSelector
                       swizzledSelector:swizzledSelector];
+         */
         
         SEL originalDeallocSelector = NSSelectorFromString(@"dealloc");
         SEL swizzledDeallocSelector = @selector(localization_dealloc);
@@ -168,6 +170,17 @@
          */
         
     });
+}
+
+- (void)addLanguageChangeNotificationObserver
+{
+    if (!self.hasLocalizationObserver) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(languageDidChanged)
+                                                     name:LTZLocalizationKitLanguageDidChangedKey
+                                                   object:nil];
+        self.hasLocalizationObserver = YES;
+    }
 }
 
 #pragma mark - swizzling methods
@@ -190,13 +203,14 @@
 {
     id object = [self localization_init];
     
-    if (!self.hasLocalizationObserver) {
+    if (!self.hasLocalizationObserver && ![NSStringFromClass([object class]) isEqualToString:@"_CFXNotificationTokenRegistration"]) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(languageDidChanged)
                                                      name:LTZLocalizationKitLanguageDidChangedKey
                                                    object:nil];
         self.hasLocalizationObserver = YES;
     }
+    
     //NSLog(@"%@:%@",NSStringFromClass([self class]),@"execute init from localization category");
     return object;
 }

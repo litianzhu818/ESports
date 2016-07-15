@@ -45,4 +45,8 @@
 #pragma mark methods
 - (CGSize)sizeOfLabelWithString:(NSString *)string font:(UIFont *)font height:(CGFloat)height;
 - (CGSize)sizeOfLabelWithString:(NSString *)string font:(UIFont *)font width:(CGFloat)width;
+
+// 产品能够特殊字符串解析出时间例如@"/Date(1469059200000)/"
+- (NSDate *)dateWithSpecialDateSring:(NSString *)specialDateSring;
+
 @end

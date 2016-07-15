@@ -7,6 +7,7 @@
 //
 
 #import "NewsController.h"
+#import "LTZLocalizationKit.h"
 #import "DropdownMenu.h"
 #import "IonIcons.h"
 #import "MJRefresh.h"
@@ -18,6 +19,8 @@
 #import "NewsRotationImageCell.h"
 #import "HttpSessionManager.h"
 #import "HotFocusNewCell.h"
+#import "NewsTableViewHeader.h"
+
 
 typedef NS_ENUM(NSUInteger, NewsType) {
     NewsTypeHotFocus = 0,
@@ -270,6 +273,12 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     [self.hotfocusTableView registerNib:[NewsRotationImageCell nib] forCellReuseIdentifier:[NewsRotationImageCell cellIdentifier]];
     [self.hotfocusTableView registerNib:[HotFocusNewCell nib] forCellReuseIdentifier:[HotFocusNewCell cellIdentifier]];
     
+    [self.transferTableView registerNib:[NewsTableViewHeader nib]
+     forHeaderFooterViewReuseIdentifier:[NewsTableViewHeader headerReuseIdentifier]];
+    
+    [self.hotwordsTableView registerNib:[NewsTableViewHeader nib]
+     forHeaderFooterViewReuseIdentifier:[NewsTableViewHeader headerReuseIdentifier]];
+    
 }
 
 - (void)loadData
@@ -320,10 +329,10 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                   }];
     
     [[TMCache sharedCache] objectForKey:transferNewsListCacheKey
-                                  block:^(TMCache *cache, NSString *key, NSArray<TransferNew *> *TransferNews) {
+                                  block:^(TMCache *cache, NSString *key, NSArray<TransferNewContainer *> *TransferNewContainers) {
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
-                                      [TransferNews enumerateObjectsUsingBlock:^(TransferNew * _Nonnull transferNew, NSUInteger idx, BOOL * _Nonnull stop) {
-                                          [strongSelf.transferNewManager addTransferNew:transferNew];
+                                      [TransferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
+                                          [strongSelf.transferNewManager.transferNewContainers addObject:transferNewContainer];
                                       }];
                                       dispatch_async(dispatch_get_main_queue(), ^{
                                           [strongSelf.transferTableView reloadData];
@@ -371,7 +380,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
             self.hotfocusTableView.hidden = NO;
             self.transferTableView.hidden = YES;
             self.hotwordsTableView.hidden = YES;
-            [self.view bringSubviewToFront:self.hotwordsTableView];
+            //[self.view bringSubviewToFront:self.hotwordsTableView];
         }
             break;
         case NewsTypeHotTransfer:
@@ -379,7 +388,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
             self.hotfocusTableView.hidden = YES;
             self.transferTableView.hidden = NO;
             self.hotwordsTableView.hidden = YES;
-            [self.view bringSubviewToFront:self.transferTableView];
+            //[self.view bringSubviewToFront:self.transferTableView];
         }
             break;
         case NewsTypeHotWords:
@@ -387,7 +396,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
             self.hotfocusTableView.hidden = YES;
             self.transferTableView.hidden = YES;
             self.hotwordsTableView.hidden = NO;
-            [self.view bringSubviewToFront:self.hotwordsTableView];
+            //[self.view bringSubviewToFront:self.hotwordsTableView];
         }
             break;
             
@@ -427,7 +436,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                                                                        withRowAnimation:UITableViewRowAnimationFade];
                                                                                }
                                                                                
-                                                                               [[TMCache sharedCache] setObject:strongSelf.images forKey:newsImagesCacheKey];
+                                                                               [[TMCache sharedCache] setObject:strongSelf.images
+                                                                                                         forKey:newsImagesCacheKey
+                                                                                                          block:NULL];
                                                                                
                                                                            }
                                                                            
@@ -461,7 +472,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                              [strongSelf.hotfocusTableView reloadData];
                                                                              
                                                                              [[TMCache sharedCache] setObject:cacheHotFocusNews
-                                                                                                       forKey:hotFocusNewsListCacheKey];
+                                                                                                       forKey:hotFocusNewsListCacheKey
+                                                                                                        block:NULL];
       
                                                                          }
                                                                          
@@ -507,7 +519,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                              }
                                                                              
                                                                              [[TMCache sharedCache] setObject:cacheHotFocusNews
-                                                                                                       forKey:hotFocusNewsListCacheKey];
+                                                                                                       forKey:hotFocusNewsListCacheKey
+                                                                                                        block:NULL];
 
                                                                          }
                                                                          
@@ -526,35 +539,36 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     self.transferNewsFirstRequest = NO;
     __weak typeof(self) weakSelf = self;
     [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.transferNewsOffset
-                                                          limitsOfPage:self.limitForRequest
-                                                                 block:^(NSArray<NSDictionary *> *transferNews, NSError *error) {
+                                                          limitsOfPage:5
+                                                                 block:^(NSArray<NSDictionary *> *transferNewContainers, NSError *error) {
                                                                      
                                                                      __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                      
                                                                      if (!error) {
                                                                          
-                                                                         if (transferNews.count > 0) {
+                                                                         if (transferNewContainers.count > 0) {
                                                                              [strongSelf.transferNewManager.transferNewContainers removeAllObjects];
-                                                                             NSMutableArray<TransferNew *> *cacheTransferNews = [NSMutableArray array];
+                                                                             NSMutableArray<TransferNewContainer *> *cacheTransferNewContainers = [NSMutableArray array];
                                                                              
-                                                                             [transferNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                                 TransferNew *transferNew = [[TransferNew alloc] initWithDictionary:dic error:nil];
-                                                                                 if (transferNew) {
-                                                                                     [strongSelf.transferNewManager addTransferNew:transferNew];
-                                                                                     [cacheTransferNews addObject:transferNew];
+                                                                             [transferNewContainers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 TransferNewContainer *container = [[TransferNewContainer alloc] initWithDictionary:dic error:nil];
+                                                                                 if (container) {
+                                                                                     [strongSelf.transferNewManager.transferNewContainers addObject:container];
+                                                                                     [cacheTransferNewContainers addObject:container];
                                                                                  }
                                                                              }];
                                                                              
                                                                              
-                                                                             strongSelf.transferNewsOffset += transferNews.count;
-                                                                             if (transferNews.count < strongSelf.limitForRequest) {
+                                                                             strongSelf.transferNewsOffset += transferNewContainers.count;
+                                                                             if (transferNewContainers.count < 5) {
                                                                                  [strongSelf.transferTableView.mj_footer endRefreshingWithNoMoreData];
                                                                              }
                                                                              
                                                                              [strongSelf.transferTableView reloadData];
                                                                              
-                                                                             [[TMCache sharedCache] setObject:cacheTransferNews
-                                                                                                       forKey:transferNewsListCacheKey];
+                                                                             [[TMCache sharedCache] setObject:cacheTransferNewContainers
+                                                                                                       forKey:transferNewsListCacheKey
+                                                                                                        block:NULL];
                                                                              
                                                                          }
                                                                          
@@ -568,8 +582,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 {
     __weak typeof(self) weakSelf = self;
     [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.transferNewsOffset
-                                                          limitsOfPage:self.limitForRequest
-                                                                 block:^(NSArray<NSDictionary *> *transferNews, NSError *error) {
+                                                          limitsOfPage:5
+                                                                 block:^(NSArray<NSDictionary *> *transferNewContainers, NSError *error) {
                                                                      
                                                                      __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                      
@@ -577,29 +591,31 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                      
                                                                      if (!error) {
                                                                          
-                                                                         if (transferNews.count > 0) {
-                                                                             NSMutableArray<TransferNew *> *cacheTransferNews = [NSMutableArray array];
+                                                                         if (transferNewContainers.count > 0) {
+                                                                             NSMutableArray<TransferNewContainer *> *cacheTransferNewContainers = [NSMutableArray array];
                                                                              [weakSelf.transferTableView beginUpdates];
                                                                              
-                                                                             [transferNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                                 TransferNew *transferNew = [[TransferNew alloc] initWithDictionary:dic error:nil];
-                                                                                 if (transferNew) {
-                                                                                     NSIndexPath *indexPath = [strongSelf.transferNewManager addTransferNew:transferNew];
-                                                                                     [strongSelf.transferTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-                                                                                     [cacheTransferNews addObject:transferNew];
+                                                                             [transferNewContainers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 TransferNewContainer *container = [[TransferNewContainer alloc] initWithDictionary:dic error:nil];
+                                                                                 if (container) {
+                                                                                     [strongSelf.transferNewManager.transferNewContainers addObject:container];
+                                                                                     [strongSelf.transferTableView insertSections:[NSIndexSet indexSetWithIndex:strongSelf.transferNewManager.transferNewContainers.count-1] withRowAnimation:UITableViewRowAnimationBottom];
+                                                                                     [cacheTransferNewContainers addObject:container];
+                                                                                     
                                                                                  }
                                                                              }];
                                                                              
                                                                              [weakSelf.transferTableView endUpdates];
                                                                              
-                                                                             strongSelf.transferNewsOffset += transferNews.count;
-                                                                             if (transferNews.count < strongSelf.limitForRequest) {
+                                                                             strongSelf.transferNewsOffset += transferNewContainers.count;
+                                                                             if (transferNewContainers.count < 5) {
                                                                                  [strongSelf.transferTableView.mj_footer endRefreshingWithNoMoreData];
                                                                                  hasMoreData = NO;
                                                                              }
                                                                              
-                                                                             [[TMCache sharedCache] setObject:cacheTransferNews
-                                                                                                       forKey:transferNewsListCacheKey];
+                                                                             [[TMCache sharedCache] setObject:cacheTransferNewContainers
+                                                                                                       forKey:transferNewsListCacheKey
+                                                                                                        block:NULL];
                                                                          }
                                                                          
                                                                      }
@@ -643,7 +659,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                              [strongSelf.hotwordsTableView reloadData];
                                                                              
                                                                              [[TMCache sharedCache] setObject:cacheHotWordNews
-                                                                                                       forKey:hotwordsNewsListCacheKey];
+                                                                                                       forKey:hotwordsNewsListCacheKey
+                                                                                                        block:NULL];
                                                                              
                                                                          }
                                                                          
@@ -688,7 +705,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                              }
                                                                              
                                                                              [[TMCache sharedCache] setObject:cacheHotWordNews
-                                                                                                       forKey:hotwordsNewsListCacheKey];
+                                                                                                       forKey:hotwordsNewsListCacheKey
+                                                                                                        block:NULL];
                                                                          }
                                                                          
                                                                      }
@@ -804,29 +822,33 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
         return 0;
+    }else{
+        return [NewsTableViewHeader headerHeight];
     }
-    return 44.0f;
+    return 0.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if ([tableView isEqual:self.hotfocusTableView]) {
-        return 0;
-    }
-    return 44.0f;
+    return 0.0f;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
         return nil;
+    }else{
+        NewsTableViewHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[NewsTableViewHeader headerReuseIdentifier]];
+        if ([tableView isEqual:self.transferTableView]) {
+            header.date = self.transferNewManager.transferNewContainers[section].date;
+        }else if ([tableView isEqual:self.hotwordsTableView]){
+            //header.date = self.transferNewManager.transferNewContainers[section].date;
+        }
+        return header;
     }
     return nil;
 }
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if ([tableView isEqual:self.hotfocusTableView]) {
-        return nil;
-    }
     return nil;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -846,11 +868,11 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         }
         return number;
         
-    }else if ([tableView isEqual:self.transferTableView]) {
+    }/*else if ([tableView isEqual:self.transferTableView]) {
         return self.transferNewManager.transferNewContainers[section].transferNews.count;
     }else if ([tableView isEqual:self.hotwordsTableView]) {
         return self.hotWordNewManager.hotWordNewContainers[section].hotWordNews.count;
-    }
+    }*/
     
     return 0;
 
@@ -887,9 +909,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         return 1;
     }else if ([tableView isEqual:self.transferTableView]) {
         return self.transferNewManager.transferNewContainers.count;
-    }else if ([tableView isEqual:self.hotwordsTableView]) {
+    }/*else if ([tableView isEqual:self.hotwordsTableView]) {
         return self.hotWordNewManager.hotWordNewContainers.count;
-    }
+    }*/
     return 0;
 }
 

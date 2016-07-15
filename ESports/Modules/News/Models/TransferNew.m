@@ -7,32 +7,7 @@
 //
 
 #import "TransferNew.h"
-
-@interface JSONValueTransformer (NSDateStringformer)
-
-- (NSDate *)NSDateFromNSString:(NSString*)string;
-- (NSString *)JSONObjectFromNSDate:(NSDate *)date;
-
-@end
-
-@implementation JSONValueTransformer (NSDateStringformer)
-
-- (NSDate *)NSDateFromNSString:(NSString*)string
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss Z"];
-    return [formatter dateFromString:string];
-}
-
-- (NSString *)JSONObjectFromNSDate:(NSDate *)date
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd "];
-    return [formatter stringFromDate:date];
-}
-
-@end
-
+#import "NSObject+Custom.h"
 
 @implementation TransferNew
 
@@ -46,10 +21,13 @@
                                                        @"PlayerSrc":@"playerImageUrl",
                                                        @"JoinTeamName":@"joinTeamName",
                                                        @"JoinTeamSrc":@"joinTeamImageUrl",
-                                                       @"JoinTeamDate":@"joinTeamDate",
+                                                       @"JoinTeamDate":@"joinTeamDateString",
                                                        @"FromTeamName":@"fromTeamName",
                                                        @"FromTeamSrc":@"fromTeamImageUrl",
-                                                       @"FromTeamDate":@"fromTeamDate"
+                                                       @"RoleName":@"roleName",
+                                                       @"RoleNameEn":@"roleNameEn",
+                                                       @"RoleNameCn":@"roleNameCn",
+                                                       @"RoleNameTw":@"roleNameTw"
                                                        }];
 }
 
@@ -58,13 +36,14 @@
     return YES;
 }
 
-- (NSString *)joinTeamDateString
+- (NSDate *)joinTeamDate
 {
-    return [[JSONValueTransformer new] JSONObjectFromNSDate:self.joinTeamDate];
-}
-- (NSString *)fromTeamDateString
-{
-    return [[JSONValueTransformer new] JSONObjectFromNSDate:self.fromTeamDate];
+    if (_joinTeamDate) {
+        return _joinTeamDate;
+    }
+    
+    _joinTeamDate = [self dateWithSpecialDateSring:self.joinTeamDateString];
+    return _joinTeamDate;
 }
 
 @end

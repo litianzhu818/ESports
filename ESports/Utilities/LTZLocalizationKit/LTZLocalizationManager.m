@@ -47,6 +47,16 @@ NSString *const LTZLocalizationKitLanguageDidChangedKey = @"LTZLocalizationKit_L
         //NSArray* languages = [userDefaults objectForKey:@"AppleLanguages"];
         NSArray *languages = [NSLocale preferredLanguages];
         currentlanguage = [languages objectAtIndex:0];
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE90_
+        NSString *countryCode = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+        NSString * suffix = [NSString stringWithFormat:@"-%@",countryCode];
+        
+        if ([currentlanguage hasSuffix:suffix]) {//例如-CN
+            currentlanguage =  [currentlanguage stringByReplacingOccurrencesOfString:suffix withString:@""];
+        }
+#endif
+        
         [userDefaults setValue:currentlanguage forKey:LTZLocalizationKitUserLanguageKey];
         [userDefaults synchronize];
     }

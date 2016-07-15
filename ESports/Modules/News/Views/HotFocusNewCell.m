@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *areaLabelWidthConstraint;
 
 @end
 
@@ -56,12 +57,18 @@
     
     CGFloat height = [self sizeOfLabelWithString:_hotFocusNew.newsTitle
                                             font:self.titleLabel.font
-                                           width:CGRectGetWidth([[UIScreen mainScreen] bounds])-118].height;
+                                           width:CGRectGetWidth([[UIScreen mainScreen] bounds])-118.0f].height;
     if (height >= 37.0) {
         height = 37.0;
     }
     self.titleLabelHeightConstraint.constant = height;
     [self.titleLabel setNeedsUpdateConstraints];
+    
+    CGFloat width = [self sizeOfLabelWithString:_hotFocusNew.newsArea
+                                           font:self.areaLabel.font
+                                          height:14.0f].width+10.0f;
+    self.areaLabelWidthConstraint.constant = width;
+    [self.areaLabel setNeedsUpdateConstraints];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -77,7 +84,6 @@
     CGContextMoveToPoint(context, 0, rect.size.height-2.0);  //起点坐标
     CGContextAddLineToPoint(context, rect.size.width, rect.size.height-2.0);   //终点坐标
     CGContextStrokePath(context);
-    CGContextClosePath(context);
 }
 
 #pragma mark - class methods

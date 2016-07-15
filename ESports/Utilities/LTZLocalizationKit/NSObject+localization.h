@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSDictionary<NSString *, NSDictionary *> *localStringDictionary;
 
 - (void)setTextTable:(NSString *)textTable textKey:(NSString *)textKey;
-
+- (void)addLanguageChangeNotificationObserver;
 - (void)languageDidChanged;
 
 - (id)localization_init;

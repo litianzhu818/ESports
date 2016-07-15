@@ -7,31 +7,7 @@
 //
 
 #import "HotFocusNew.h"
-
-@interface JSONValueTransformer (NSDateStringformer)
-
-- (NSDate *)NSDateFromNSString:(NSString*)string;
-- (NSString *)JSONObjectFromNSDate:(NSDate *)date;
-
-@end
-
-@implementation JSONValueTransformer (NSDateStringformer)
-
-- (NSDate *)NSDateFromNSString:(NSString*)string
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-    return [formatter dateFromString:string];
-}
-
-- (NSString *)JSONObjectFromNSDate:(NSDate *)date
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    return [formatter stringFromDate:date];
-}
-
-@end
+#import "NSObject+Custom.h"
 
 @implementation HotFocusNew
 
@@ -42,7 +18,7 @@
                                                        @"Title":@"newsTitle",
                                                        @"ImgSrc":@"newsImageUrl",
                                                        @"Area":@"newsArea",
-                                                       @"Date":@"newsDate"
+                                                       @"Date":@"stringDate"
                                                        }];
 }
 
@@ -52,9 +28,20 @@
     return YES;
 }
 
+- (NSDate *)newsDate
+{
+    if (_newsDate) {
+        return _newsDate;
+    }
+    _newsDate = [self dateWithSpecialDateSring:self.stringDate];
+    return _newsDate;
+}
+
 - (NSString *)newsDateString
 {
-    return [[JSONValueTransformer new] JSONObjectFromNSDate:self.newsDate];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    return [formatter stringFromDate:self.newsDate];
 }
 
 @end

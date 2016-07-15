@@ -7,6 +7,7 @@
 //
 
 #import "TransferNewManager.h"
+#import "NSObject+Custom.h"
 
 @implementation TransferNewManager
 
@@ -57,7 +58,7 @@
         
         if (transferNew) {
             [self.transferNews addObject:transferNew];
-            self.date = [transferNew joinTeamDateString];
+            self.dateString = [transferNew joinTeamDateString];
         }
     }
     return self;
@@ -74,5 +75,26 @@
     NSArray *descriptors = [NSArray arrayWithObject:descriptor];
     self.transferNews = [NSMutableArray arrayWithArray:[self.transferNews sortedArrayUsingDescriptors:descriptors]];
 }
+
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"Date":@"dateString",
+                                                       @"List":@"transferNews"
+                                                       }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+- (NSDate *)date
+{
+    _date = [self dateWithSpecialDateSring:self.dateString];
+    return _date;
+}
+
 
 @end

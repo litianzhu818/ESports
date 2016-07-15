@@ -67,6 +67,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="areaLabel" destination="gEV-g3-Bwv" id="817-ou-wov"/>
+                <outlet property="areaLabelWidthConstraint" destination="0Po-Zr-e5v" id="fWQ-4H-bnq"/>
                 <outlet property="dateLabel" destination="PBr-GR-BPL" id="h9g-UT-b18"/>
                 <outlet property="iconImageView" destination="SSf-DA-PX2" id="L8v-mz-RRF"/>
                 <outlet property="titleLabel" destination="BMa-oo-TYO" id="Es5-Bv-lY3"/>

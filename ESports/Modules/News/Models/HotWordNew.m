@@ -7,6 +7,7 @@
 //
 
 #import "HotWordNew.h"
+#import "NSObject+Custom.h"
 
 @interface JSONValueTransformer (NSDateStringformer)
 

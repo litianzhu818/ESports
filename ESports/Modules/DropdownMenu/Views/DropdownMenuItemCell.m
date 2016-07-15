@@ -66,10 +66,10 @@
     CGContextFillRect(context, rect);
     
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextStrokeRect(context, CGRectMake(0.0, rect.size.height - 1.0f, rect.size.width, 0.5));
+    CGContextStrokeRect(context, CGRectMake(0.0, rect.size.height - 3.0f, rect.size.width, 2.0));
     
     CGContextSetStrokeColorWithColor(context, HexColor(0x1b2d3d).CGColor);
-    CGContextStrokeRect(context, CGRectMake(0.0, rect.size.height - 0.5f, rect.size.width, 0.5));
+    CGContextStrokeRect(context, CGRectMake(0.0, rect.size.height - 1.0f, rect.size.width, 1.0));
 }
 
 

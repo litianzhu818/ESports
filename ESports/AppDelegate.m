@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ESportsTabBarController.h"
+#import "LTZLocalizationKit.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +24,7 @@
     
     [self registerRemoteNotificationWithOptions:launchOptions];
     [self setupViewControolers];
-//    [self performSelector:@selector(changedLanguage) withObject:nil];
+
     return YES;
 }
 
