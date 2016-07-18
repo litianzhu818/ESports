@@ -76,6 +76,10 @@
 		E760B3621D38D56200F5DB54 /* NewsTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B3611D38D56200F5DB54 /* NewsTableViewHeader.xib */; };
 		E760B3661D38F52D00F5DB54 /* TransferNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3641D38F52D00F5DB54 /* TransferNewCell.m */; };
 		E760B3671D38F52D00F5DB54 /* TransferNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B3651D38F52D00F5DB54 /* TransferNewCell.xib */; };
+		E760B36B1D3C919100F5DB54 /* HotWordNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3691D3C919100F5DB54 /* HotWordNewCell.m */; };
+		E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B36A1D3C919100F5DB54 /* HotWordNewCell.xib */; };
+		E760B3761D3CAD0600F5DB54 /* DetailNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3741D3CAD0600F5DB54 /* DetailNewsController.m */; };
+		E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B3751D3CAD0600F5DB54 /* DetailNewsController.xib */; };
 		E7BD57691CF4360D008F2D69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57681CF4360D008F2D69 /* main.m */; };
 		E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576B1CF4360D008F2D69 /* AppDelegate.m */; };
 		E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576E1CF4360D008F2D69 /* ViewController.m */; };
@@ -199,6 +203,12 @@
 		E760B3631D38F52D00F5DB54 /* TransferNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferNewCell.h; sourceTree = "<group>"; };
 		E760B3641D38F52D00F5DB54 /* TransferNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferNewCell.m; sourceTree = "<group>"; };
 		E760B3651D38F52D00F5DB54 /* TransferNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferNewCell.xib; sourceTree = "<group>"; };
+		E760B3681D3C919100F5DB54 /* HotWordNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordNewCell.h; sourceTree = "<group>"; };
+		E760B3691D3C919100F5DB54 /* HotWordNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordNewCell.m; sourceTree = "<group>"; };
+		E760B36A1D3C919100F5DB54 /* HotWordNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotWordNewCell.xib; sourceTree = "<group>"; };
+		E760B3731D3CAD0600F5DB54 /* DetailNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNewsController.h; sourceTree = "<group>"; };
+		E760B3741D3CAD0600F5DB54 /* DetailNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNewsController.m; sourceTree = "<group>"; };
+		E760B3751D3CAD0600F5DB54 /* DetailNewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNewsController.xib; sourceTree = "<group>"; };
 		E768AF301D2A1ACC008CF826 /* LanguageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageList.h; sourceTree = "<group>"; };
 		E7BD57641CF4360D008F2D69 /* ESports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD57681CF4360D008F2D69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -262,6 +272,7 @@
 		E72FD8021D1A4B6A000A5CE6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E760B36D1D3CACCD00F5DB54 /* DetailNews */,
 				E760B3201D2D194E00F5DB54 /* DropdownMenu */,
 				E72FD8961D264943000A5CE6 /* MainTabbar */,
 				E72FD86A1D251575000A5CE6 /* Matchs */,
@@ -464,6 +475,9 @@
 				E760B3631D38F52D00F5DB54 /* TransferNewCell.h */,
 				E760B3641D38F52D00F5DB54 /* TransferNewCell.m */,
 				E760B3651D38F52D00F5DB54 /* TransferNewCell.xib */,
+				E760B3681D3C919100F5DB54 /* HotWordNewCell.h */,
+				E760B3691D3C919100F5DB54 /* HotWordNewCell.m */,
+				E760B36A1D3C919100F5DB54 /* HotWordNewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -724,6 +738,56 @@
 			path = ionicons;
 			sourceTree = "<group>";
 		};
+		E760B36D1D3CACCD00F5DB54 /* DetailNews */ = {
+			isa = PBXGroup;
+			children = (
+				E760B36E1D3CACCD00F5DB54 /* Managers&Helpers */,
+				E760B36F1D3CACCD00F5DB54 /* Models */,
+				E760B3701D3CACCD00F5DB54 /* Resources */,
+				E760B3711D3CACCD00F5DB54 /* ViewControllers */,
+				E760B3721D3CACCD00F5DB54 /* Views */,
+			);
+			path = DetailNews;
+			sourceTree = "<group>";
+		};
+		E760B36E1D3CACCD00F5DB54 /* Managers&Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Managers&Helpers";
+			sourceTree = "<group>";
+		};
+		E760B36F1D3CACCD00F5DB54 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E760B3701D3CACCD00F5DB54 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E760B3711D3CACCD00F5DB54 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E760B3731D3CAD0600F5DB54 /* DetailNewsController.h */,
+				E760B3741D3CAD0600F5DB54 /* DetailNewsController.m */,
+				E760B3751D3CAD0600F5DB54 /* DetailNewsController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E760B3721D3CACCD00F5DB54 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E7BD575B1CF4360D008F2D69 = {
 			isa = PBXGroup;
 			children = (
@@ -890,6 +954,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E72FD8A61D264943000A5CE6 /* tabbar_news_h@2x.png in Resources */,
+				E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */,
 				E72FD8631D2508EC000A5CE6 /* backItemImage@2x.png in Resources */,
 				E72FD8951D251735000A5CE6 /* StrengthRatingController.xib in Resources */,
 				E760B3621D38D56200F5DB54 /* NewsTableViewHeader.xib in Resources */,
@@ -905,6 +970,7 @@
 				E760B3401D2FA61000F5DB54 /* LICENSE in Resources */,
 				E760B3321D2E386000F5DB54 /* location_selected@2x.png in Resources */,
 				E72FD8A41D264943000A5CE6 /* tabbar_matchs_h@2x.png in Resources */,
+				E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */,
 				E72FD8A81D264943000A5CE6 /* tabbar_ranking_h@2x.png in Resources */,
 				E72FD8861D251612000A5CE6 /* NewsController.xib in Resources */,
 				E72FD8641D2508EC000A5CE6 /* backItemImage_hl@2x.png in Resources */,
@@ -987,10 +1053,12 @@
 				E760B3601D38D34200F5DB54 /* NewsTableViewHeader.m in Sources */,
 				E72FD8471D23D8E2000A5CE6 /* NSObject+localization.m in Sources */,
 				E760B34A1D363F1700F5DB54 /* TransferNew.m in Sources */,
+				E760B36B1D3C919100F5DB54 /* HotWordNewCell.m in Sources */,
 				E760B32F1D2E05DA00F5DB54 /* DropdownMenuItemCell.m in Sources */,
 				E72FD88F1D251721000A5CE6 /* RankingController.m in Sources */,
 				E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */,
 				E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */,
+				E760B3761D3CAD0600F5DB54 /* DetailNewsController.m in Sources */,
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */,
 				E72FD8051D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m in Sources */,

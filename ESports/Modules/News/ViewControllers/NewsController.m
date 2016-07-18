@@ -20,6 +20,9 @@
 #import "HttpSessionManager.h"
 #import "HotFocusNewCell.h"
 #import "NewsTableViewHeader.h"
+#import "TransferNewCell.h"
+#import "HotWordNewCell.h"
+#import "DetailNewsController.h"
 
 
 typedef NS_ENUM(NSUInteger, NewsType) {
@@ -70,6 +73,14 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 @end
 
 @implementation NewsController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.rdv_tabBarController setTabBarHidden:NO];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -279,6 +290,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     [self.hotwordsTableView registerNib:[NewsTableViewHeader nib]
      forHeaderFooterViewReuseIdentifier:[NewsTableViewHeader headerReuseIdentifier]];
     
+    [self.transferTableView registerNib:[TransferNewCell nib] forCellReuseIdentifier:[TransferNewCell cellIdentifier]];
+    [self.hotwordsTableView registerNib:[HotWordNewCell nib] forCellReuseIdentifier:[HotWordNewCell cellIdentifier]];
+    
 }
 
 - (void)loadData
@@ -332,7 +346,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                   block:^(TMCache *cache, NSString *key, NSArray<TransferNewContainer *> *TransferNewContainers) {
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
                                       [TransferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-                                          [strongSelf.transferNewManager.transferNewContainers addObject:transferNewContainer];
+                                          [strongSelf.transferNewManager addTransferNewContainer:transferNewContainer];
                                       }];
                                       dispatch_async(dispatch_get_main_queue(), ^{
                                           [strongSelf.transferTableView reloadData];
@@ -340,10 +354,10 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                   }];
     
     [[TMCache sharedCache] objectForKey:hotwordsNewsListCacheKey
-                                  block:^(TMCache *cache, NSString *key, NSArray<HotWordNew *> *HotWordNews) {
+                                  block:^(TMCache *cache, NSString *key, NSArray<HotWordNewContainer *> *HotWordNewContainers) {
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
-                                      [HotWordNews enumerateObjectsUsingBlock:^(HotWordNew * _Nonnull hotWordNew, NSUInteger idx, BOOL * _Nonnull stop) {
-                                          [strongSelf.hotWordNewManager addHotWordNew:hotWordNew];
+                                      [HotWordNewContainers enumerateObjectsUsingBlock:^(HotWordNewContainer * _Nonnull hotWordNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
+                                          [strongSelf.hotWordNewManager addHotWordNewContainer:hotWordNewContainer];
                                       }];
                                       
                                       dispatch_async(dispatch_get_main_queue(), ^{
@@ -631,34 +645,35 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     self.hotwordsNewsOffset = 0;
     self.hotwordsNewsFirstRequest = NO;
     __weak typeof(self) weakSelf = self;
-    [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.hotwordsNewsOffset
-                                                          limitsOfPage:self.limitForRequest
-                                                                 block:^(NSArray<NSDictionary *> *hotwordsNews, NSError *error) {
+    [[HttpSessionManager sharedInstance] requestHotwordsNewsWithOffset:self.hotwordsNewsOffset
+                                                          limitsOfPage:5
+                                                                 block:^(NSArray<NSDictionary *> *hotWordNewContainers, NSError *error) {
                                                                      
                                                                      __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                      
                                                                      if (!error) {
                                                                          
-                                                                         if (hotwordsNews.count > 0) {
-                                                                             NSMutableArray<HotWordNew *> *cacheHotWordNews = [NSMutableArray array];
+                                                                         if (hotWordNewContainers.count > 0) {
+                                                                             NSMutableArray<HotWordNewContainer *> *cacheHotWordNewContainers = [NSMutableArray array];
                                                                              [strongSelf.hotWordNewManager.hotWordNewContainers removeAllObjects];
-                                                                             [hotwordsNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                                 HotWordNew *hotWordNew = [[HotWordNew alloc] initWithDictionary:dic error:nil];
-                                                                                 if (hotWordNew) {
-                                                                                     [strongSelf.hotWordNewManager addHotWordNew:hotWordNew];
-                                                                                     [cacheHotWordNews addObject:hotWordNew];
+                                                                             [hotWordNewContainers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 HotWordNewContainer *hotWordNewContainer = [[HotWordNewContainer alloc] initWithDictionary:dic error:nil];
+                                                                                 if (hotWordNewContainer) {
+                                                                                     [strongSelf.hotWordNewManager addHotWordNewContainer:hotWordNewContainer];
+                                                                                     [cacheHotWordNewContainers addObject:hotWordNewContainer];
+                                                                                     
                                                                                  }
                                                                              }];
                                                                              
                                                                              
-                                                                             strongSelf.hotwordsNewsOffset += hotwordsNews.count;
-                                                                             if (hotwordsNews.count < strongSelf.limitForRequest) {
+                                                                             strongSelf.hotwordsNewsOffset += hotWordNewContainers.count;
+                                                                             if (hotWordNewContainers.count < 5) {
                                                                                  [strongSelf.hotwordsTableView.mj_footer endRefreshingWithNoMoreData];
                                                                              }
                                                                              
                                                                              [strongSelf.hotwordsTableView reloadData];
                                                                              
-                                                                             [[TMCache sharedCache] setObject:cacheHotWordNews
+                                                                             [[TMCache sharedCache] setObject:cacheHotWordNewContainers
                                                                                                        forKey:hotwordsNewsListCacheKey
                                                                                                         block:NULL];
                                                                              
@@ -673,9 +688,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 - (void)loadMoreHotwordsData
 {
     __weak typeof(self) weakSelf = self;
-    [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.hotwordsNewsOffset
-                                                          limitsOfPage:self.limitForRequest
-                                                                 block:^(NSArray<NSDictionary *> *hotwordsNews, NSError *error) {
+    [[HttpSessionManager sharedInstance] requestHotwordsNewsWithOffset:self.hotwordsNewsOffset
+                                                          limitsOfPage:5
+                                                                 block:^(NSArray<NSDictionary *> *hotWordNewContainers, NSError *error) {
                                                                      
                                                                      __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                      
@@ -683,28 +698,28 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                      
                                                                      if (!error) {
                                                                          
-                                                                         if (hotwordsNews.count > 0) {
-                                                                             NSMutableArray<HotWordNew *> *cacheHotWordNews = [NSMutableArray array];
+                                                                         if (hotWordNewContainers.count > 0) {
+                                                                             NSMutableArray<HotWordNewContainer *> *cacheHotWordNewContainers = [NSMutableArray array];
                                                                              [weakSelf.hotwordsTableView beginUpdates];
                                                                              
-                                                                             [hotwordsNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                                 HotWordNew *hotWordNew = [[HotWordNew alloc] initWithDictionary:dic error:nil];
-                                                                                 if (hotWordNew) {
-                                                                                     NSIndexPath *indexPath = [strongSelf.hotWordNewManager addHotWordNew:hotWordNew];
-                                                                                     [strongSelf.hotwordsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-                                                                                     [cacheHotWordNews addObject:hotWordNew];
+                                                                             [hotWordNewContainers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                HotWordNewContainer *hotWordNewContainer = [[HotWordNewContainer alloc] initWithDictionary:dic error:nil];
+                                                                                 if (hotWordNewContainer) {
+                                                                                     [strongSelf.hotWordNewManager addHotWordNewContainer:hotWordNewContainer];
+                                                                                     [strongSelf.hotwordsTableView insertSections:[NSIndexSet indexSetWithIndex:strongSelf.hotWordNewManager.hotWordNewContainers.count-1] withRowAnimation:UITableViewRowAnimationBottom];
+                                                                                     [cacheHotWordNewContainers addObject:hotWordNewContainer];
                                                                                  }
                                                                              }];
                                                                              
                                                                              [weakSelf.hotwordsTableView endUpdates];
                                                                              
-                                                                             strongSelf.hotwordsNewsOffset += hotwordsNews.count;
-                                                                             if (hotwordsNews.count < strongSelf.limitForRequest) {
+                                                                             strongSelf.hotwordsNewsOffset += hotWordNewContainers.count;
+                                                                             if (hotWordNewContainers.count < 5) {
                                                                                  [strongSelf.hotwordsTableView.mj_footer endRefreshingWithNoMoreData];
                                                                                  hasMoreData = NO;
                                                                              }
                                                                              
-                                                                             [[TMCache sharedCache] setObject:cacheHotWordNews
+                                                                             [[TMCache sharedCache] setObject:cacheHotWordNewContainers
                                                                                                        forKey:hotwordsNewsListCacheKey
                                                                                                         block:NULL];
                                                                          }
@@ -815,6 +830,10 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         }else{
             return [HotFocusNewCell cellHeight];
         }
+    }else if ([tableView isEqual:self.transferTableView]){
+        return [TransferNewCell cellHeight];
+    }else if ([tableView isEqual:self.hotwordsTableView]){
+        return [HotWordNewCell cellHeight];
     }
     return 44.0f;
 }
@@ -841,7 +860,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         if ([tableView isEqual:self.transferTableView]) {
             header.date = self.transferNewManager.transferNewContainers[section].date;
         }else if ([tableView isEqual:self.hotwordsTableView]){
-            //header.date = self.transferNewManager.transferNewContainers[section].date;
+            header.date = self.hotWordNewManager.hotWordNewContainers[section].date;
         }
         return header;
     }
@@ -853,7 +872,17 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if ([tableView isEqual:self.hotfocusTableView]) {
+        HotFocusNew *news = nil;
+        if (self.showImages) {
+            news = self.hotFocusNews[indexPath.row-1];
+        }else{
+            news = self.hotFocusNews[indexPath.row];
+        }
+        
+        DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:news.newsId];
+        [self.navigationController pushViewController:detailNewsController animated:YES];
+    }
 }
 #pragma mark - UITableViewDataSource methods
 
@@ -868,11 +897,11 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         }
         return number;
         
-    }/*else if ([tableView isEqual:self.transferTableView]) {
+    }else if ([tableView isEqual:self.transferTableView]) {
         return self.transferNewManager.transferNewContainers[section].transferNews.count;
     }else if ([tableView isEqual:self.hotwordsTableView]) {
         return self.hotWordNewManager.hotWordNewContainers[section].hotWordNews.count;
-    }*/
+    }
     
     return 0;
 
@@ -885,7 +914,13 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
             NewsRotationImageCell *cell = [tableView dequeueReusableCellWithIdentifier:[NewsRotationImageCell cellIdentifier]
                                                                           forIndexPath:indexPath];
             cell.images = self.images;
+            WEAK_SELF;
             [cell setClikedBlock:^(NSInteger index) {
+                STRONG_SELF;
+                NewsRotationImage *news = strongSelf.images[index];
+                
+                DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:news.imageId];
+                [strongSelf.navigationController pushViewController:detailNewsController animated:YES];
                 
             }];
             return cell;
@@ -898,8 +933,18 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         
     }else if ([tableView isEqual:self.transferTableView]) {
         
-    }else if ([tableView isEqual:self.hotwordsTableView]) {
+        TransferNewCell *cell = [tableView dequeueReusableCellWithIdentifier:[TransferNewCell cellIdentifier]
+                                                                forIndexPath:indexPath];
+        cell.transferNew = self.transferNewManager.transferNewContainers[indexPath.section].transferNews[indexPath.row];
         
+        return cell;
+        
+    }else if ([tableView isEqual:self.hotwordsTableView]) {
+        HotWordNewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HotWordNewCell cellIdentifier]
+                                                                forIndexPath:indexPath];
+        cell.hotWordNew = self.hotWordNewManager.hotWordNewContainers[indexPath.section].hotWordNews[indexPath.row];
+        
+        return cell;
     }
     return nil;
 }
@@ -909,9 +954,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         return 1;
     }else if ([tableView isEqual:self.transferTableView]) {
         return self.transferNewManager.transferNewContainers.count;
-    }/*else if ([tableView isEqual:self.hotwordsTableView]) {
+    }else if ([tableView isEqual:self.hotwordsTableView]) {
         return self.hotWordNewManager.hotWordNewContainers.count;
-    }*/
+    }
     return 0;
 }
 

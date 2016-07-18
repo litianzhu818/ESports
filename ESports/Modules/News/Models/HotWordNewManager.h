@@ -6,23 +6,30 @@
 //  Copyright © 2016年 Peter Lee. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <JSONModel/JSONModel.h>
 #import "HotWordNew.h"
 
 @class HotWordNewContainer;
 
-@interface HotWordNewManager : NSObject
+@protocol HotWordNew
+@end
+
+@interface HotWordNewManager : JSONModel
 
 @property (strong, nonatomic) NSMutableArray<HotWordNewContainer *> *hotWordNewContainers;
 
 - (NSIndexPath *)addHotWordNew:(HotWordNew *)hotWordNew;
 
+- (void)addHotWordNewContainer:(HotWordNewContainer *)hotWordNewContainer;
+- (void)removeAllObjects;
+
 @end
 
-@interface HotWordNewContainer : NSObject
+@interface HotWordNewContainer : JSONModel
 
-@property (strong, nonatomic) NSString *date;
-@property (strong, nonatomic) NSMutableArray<HotWordNew *> *hotWordNews;
+@property (strong, nonatomic) NSDate *date;
+@property (strong, nonatomic) NSString *dateString;
+@property (strong, nonatomic) NSMutableArray<HotWordNew> *hotWordNews;
 
 - (instancetype)initWithHotWordNew:(HotWordNew *)hotWordNew;
 - (void)addHotWordNew:(HotWordNew *)hotWordNew;

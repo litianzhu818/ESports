@@ -7,6 +7,7 @@
 //
 
 #import "HotWordNewManager.h"
+#import "NSObject+Custom.h"
 
 @implementation HotWordNewManager
 
@@ -25,7 +26,7 @@
     if (!self.hotWordNewContainers) self.hotWordNewContainers = [NSMutableArray array];
     __block BOOL hasHotWordNewContainer = NO;
     [self.hotWordNewContainers enumerateObjectsUsingBlock:^(HotWordNewContainer * _Nonnull hotWordNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[hotWordNew newsDateString] isEqualToString:hotWordNewContainer.date]) {
+        if ([[hotWordNew stringDate] isEqualToString:hotWordNewContainer.dateString]) {
             [hotWordNewContainer addHotWordNew:hotWordNew];
             hasHotWordNewContainer = YES;
             indexPath = [NSIndexPath indexPathForRow:hotWordNewContainer.hotWordNews.count-1 inSection:idx];
@@ -41,6 +42,21 @@
     
     return indexPath;
 }
+
+- (void)addHotWordNewContainer:(HotWordNewContainer *)hotWordNewContainer
+{
+    if (!self.hotWordNewContainers) self.hotWordNewContainers = [NSMutableArray array];
+    
+    if (hotWordNewContainer) {
+        [self.hotWordNewContainers addObject:hotWordNewContainer];
+    }
+}
+
+- (void)removeAllObjects
+{
+    [self.hotWordNewContainers removeAllObjects];
+}
+
 
 @end
 
@@ -59,7 +75,7 @@
         
         if (hotWordNew) {
             [self.hotWordNews addObject:hotWordNew];
-            self.date = [hotWordNew newsDateString];
+            self.dateString = [hotWordNew stringDate];
         }
     }
     return self;
@@ -76,5 +92,25 @@
     NSArray *descriptors = [NSArray arrayWithObject:descriptor];
     self.hotWordNews = [NSMutableArray arrayWithArray:[self.hotWordNews sortedArrayUsingDescriptors:descriptors]];
 }
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"Date":@"dateString",
+                                                       @"List":@"hotWordNews"
+                                                       }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+- (NSDate *)date
+{
+    _date = [self dateWithSpecialDateSring:self.dateString];
+    return _date;
+}
+
 
 @end

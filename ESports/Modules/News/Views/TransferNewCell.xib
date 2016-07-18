@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws5-RF-KIy">
-                        <rect key="frame" x="178" y="8" width="84" height="21"/>
+                        <rect key="frame" x="168" y="8" width="94" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="4c8-yU-ych"/>
                         </constraints>
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWG-Qs-Leh">
-                        <rect key="frame" x="179" y="42" width="83" height="21"/>
+                        <rect key="frame" x="169" y="42" width="93" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="PSp-Va-qv1"/>
                         </constraints>
@@ -50,9 +50,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWN-eV-Quh">
-                        <rect key="frame" x="71" y="8" width="70" height="21"/>
+                        <rect key="frame" x="71" y="8" width="60" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="Xvn-qa-6eF"/>
+                            <constraint firstAttribute="width" constant="60" id="Xvn-qa-6eF"/>
                             <constraint firstAttribute="height" constant="21" id="uA4-tZ-Z2k"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -60,9 +60,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYe-eV-xWA">
-                        <rect key="frame" x="71" y="42" width="70" height="21"/>
+                        <rect key="frame" x="71" y="42" width="60" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="nLn-x7-OZ0"/>
+                            <constraint firstAttribute="width" constant="60" id="nLn-x7-OZ0"/>
                             <constraint firstAttribute="height" constant="21" id="wX0-fJ-vjL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -70,14 +70,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rSD-uW-hsw">
-                        <rect key="frame" x="149" y="8" width="21" height="21"/>
+                        <rect key="frame" x="139" y="8" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="E6v-dq-DWA"/>
                             <constraint firstAttribute="width" constant="21" id="Neg-Yl-Dof"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SOE-Ax-5pF">
-                        <rect key="frame" x="150" y="42" width="21" height="21"/>
+                        <rect key="frame" x="140" y="42" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="GnP-eg-tHf"/>
                             <constraint firstAttribute="width" constant="21" id="VSa-C1-QPP"/>
@@ -119,6 +119,17 @@
                     <constraint firstItem="1MO-aY-2yM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="wCX-Ph-eYj"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="fromLabel" destination="B1X-j1-9sx" id="jrd-xi-4Eu"/>
+                <outlet property="fromTeamImageView" destination="SOE-Ax-5pF" id="avc-C6-yS0"/>
+                <outlet property="fromTeamNameLabel" destination="yWG-Qs-Leh" id="eQC-o5-B0s"/>
+                <outlet property="nameLabel" destination="HYe-eV-xWA" id="aRP-72-8cW"/>
+                <outlet property="positionLabel" destination="zWN-eV-Quh" id="xBZ-NG-HQj"/>
+                <outlet property="toLabel" destination="wlE-B6-JOW" id="7wD-sS-K80"/>
+                <outlet property="toTeamImageView" destination="rSD-uW-hsw" id="8sG-3G-gWh"/>
+                <outlet property="toTeamNameLabel" destination="Ws5-RF-KIy" id="Fbm-AD-NKX"/>
+                <outlet property="userIconImageView" destination="1MO-aY-2yM" id="hza-Ol-caX"/>
+            </connections>
             <point key="canvasLocation" x="525" y="260"/>
         </tableViewCell>
     </objects>

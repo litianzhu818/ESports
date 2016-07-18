@@ -8,7 +8,7 @@
 
 #import "HotWordNew.h"
 #import "NSObject+Custom.h"
-
+/*
 @interface JSONValueTransformer (NSDateStringformer)
 
 - (NSDate *)NSDateFromNSString:(NSString*)string;
@@ -33,7 +33,7 @@
 }
 
 @end
-
+*/
 @implementation HotWordNew
 
 +(JSONKeyMapper*)keyMapper
@@ -42,7 +42,8 @@
                                                        @"Id":@"newsId",
                                                        @"Title":@"newsTitle",
                                                        @"ImgSrc":@"newsImageUrl",
-                                                       @"Date":@"newsDate"
+                                                       @"Date":@"stringDate",
+                                                       @"CreateTime":@"stringCreateDate"
                                                        }];
 }
 
@@ -51,9 +52,22 @@
     return YES;
 }
 
-- (NSString *)newsDateString
+- (NSDate *)newsDate
 {
-    return [[JSONValueTransformer new] JSONObjectFromNSDate:self.newsDate];
+    if (_newsDate) {
+        return _newsDate;
+    }
+    _newsDate = [self dateWithSpecialDateSring:self.stringDate];
+    return _newsDate;
+}
+
+- (NSDate *)newsCreateDate
+{
+    if (_newsCreateDate) {
+        return _newsCreateDate;
+    }
+    _newsCreateDate = [self dateWithSpecialDateSring:self.stringCreateDate];
+    return _newsCreateDate;
 }
 
 @end

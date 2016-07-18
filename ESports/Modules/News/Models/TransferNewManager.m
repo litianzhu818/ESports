@@ -41,6 +41,20 @@
     return indexPath;
 }
 
+- (void)addTransferNewContainer:(TransferNewContainer *)transferNewContainer
+{
+    if (!self.transferNewContainers) self.transferNewContainers = [NSMutableArray array];
+    
+    if (transferNewContainer) {
+        [self.transferNewContainers addObject:transferNewContainer];
+    }
+}
+
+- (void)removeAllObjects
+{
+    [self.transferNewContainers removeAllObjects];
+}
+
 @end
 
 @implementation TransferNewContainer
@@ -95,6 +109,5 @@
     _date = [self dateWithSpecialDateSring:self.dateString];
     return _date;
 }
-
 
 @end

@@ -18,9 +18,9 @@ Date: 2016/4/23 16:00:00 +00:00
 @property (strong, nonatomic) NSString *newsId;
 @property (strong, nonatomic) NSString *newsTitle;
 @property (strong, nonatomic) NSString *newsImageUrl;
+@property (strong, nonatomic) NSDate *newsCreateDate;
+@property (strong, nonatomic) NSString *stringCreateDate;
 @property (strong, nonatomic) NSDate *newsDate;
-
-- (NSString *)newsDateString;
-
+@property (strong, nonatomic) NSString *stringDate;
 
 @end

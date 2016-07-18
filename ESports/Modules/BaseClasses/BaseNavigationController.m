@@ -206,7 +206,7 @@
         // 隐藏tabbar
         viewController.hidesBottomBarWhenPushed = YES;
         
-    }else if (self.childViewControllers.count == 0){
+    }//else if (self.childViewControllers.count == 0){
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -230,7 +230,7 @@
         
         // 修改导航栏左边的item
         viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];;
-    }
+    //}
     
     [super pushViewController:viewController animated:animated];
 }

@@ -28,6 +28,7 @@
     // Initialization code
     self.backgroundColor = HexColor(0x16212f);
     self.contentView.backgroundColor = [UIColor clearColor];
+    
     self.dateLabel.textColor = HexColor(0x353c46);
     self.areaLabel.textColor = HexColor(0xcccfd3);
     self.areaLabel.layer.cornerRadius = 2.0f;

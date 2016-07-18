@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LTZLocalizationKit.h"
+#import "RDVTabBarController.h"
 
 @interface BaseViewController : UIViewController
 
