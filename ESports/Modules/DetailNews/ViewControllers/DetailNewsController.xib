@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailNewsController">
             <connections>
+                <outlet property="bottomLabel" destination="OmQ-wx-hmG" id="wnX-2q-v1N"/>
+                <outlet property="tableView" destination="lYW-hS-cod" id="mKn-QL-uj7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +16,35 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lYW-hS-cod">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="569"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="J9j-iZ-Pxv"/>
+                        <outlet property="delegate" destination="-1" id="sJh-s9-h60"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©T.E.C.H.Ltd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmQ-wx-hmG">
+                    <rect key="frame" x="0.0" y="569" width="600" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="tIx-1l-roN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="OmQ-wx-hmG" firstAttribute="top" secondItem="lYW-hS-cod" secondAttribute="bottom" id="QTk-qk-MXv"/>
+                <constraint firstItem="OmQ-wx-hmG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aHt-fm-Ubo"/>
+                <constraint firstAttribute="bottom" secondItem="OmQ-wx-hmG" secondAttribute="bottom" id="hoi-Za-L3r"/>
+                <constraint firstItem="lYW-hS-cod" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hpl-Hz-gtZ"/>
+                <constraint firstItem="lYW-hS-cod" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ms7-JV-gQe"/>
+                <constraint firstAttribute="trailing" secondItem="lYW-hS-cod" secondAttribute="trailing" id="nM6-Wc-Lhr"/>
+                <constraint firstAttribute="trailing" secondItem="OmQ-wx-hmG" secondAttribute="trailing" id="owt-2C-dnD"/>
+            </constraints>
         </view>
     </objects>
 </document>

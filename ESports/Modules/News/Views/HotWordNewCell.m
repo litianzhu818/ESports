@@ -11,6 +11,7 @@
 #import "NSObject+Custom.h"
 
 @interface HotWordNewCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelHeightConstraint;
@@ -24,7 +25,7 @@
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.backgroundColor = HexColor(0x0e161f);
+    self.backgroundColor = HexColor(0x121b27);
     self.contentView.backgroundColor = [UIColor clearColor];
     
     self.titleLabel.textColor = HexColor(0xcdcdce);

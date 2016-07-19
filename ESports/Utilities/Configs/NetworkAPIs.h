@@ -14,6 +14,7 @@ static NSString *const newsCarouselImagsURL = @"News/NewsHdp";
 static NSString *const hotfocusNewsURL = @"News/NewFocus";
 static NSString *const transferNewsURL = @"News/NewsTransfer";
 static NSString *const hotwordsNewsURL = @"News/NewsHeadlines";
+static NSString *const detailNewsURL = @"News/NewsDetail";
 static NSString *const LoginURL = @"<#login_url_string#>";
 
 #endif

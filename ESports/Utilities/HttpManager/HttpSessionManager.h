@@ -28,4 +28,7 @@
                          limitsOfPage:(NSInteger)limitsOfPage
                                 block:(void (^)(id data, NSError *error))block;
 
+- (void)requestDetailNewsWithId:(NSString *)newsId
+                          block:(void (^)(id data, NSError *error))block;
+
 @end

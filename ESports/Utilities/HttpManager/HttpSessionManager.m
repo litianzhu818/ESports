@@ -108,6 +108,25 @@
                                                      }];
 }
 
+- (void)requestDetailNewsWithId:(NSString *)newsId
+                          block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"id":newsId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:detailNewsURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block
