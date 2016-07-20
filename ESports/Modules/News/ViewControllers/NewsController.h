@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 
+
 @interface NewsController : BaseViewController
 
 @end

@@ -28,7 +28,7 @@
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"news":@"News",
-                                           @"matchs":@"Matchs",
+                                           @"matchs":@"Matches",
                                            @"ranking":@"Ranking",
                                            @"strengthrating":@"Strength"
                                            },

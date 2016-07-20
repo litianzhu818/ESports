@@ -108,7 +108,7 @@
 
 - (NSDate *)date
 {
-    _date = [self dateWithSpecialDateSring:self.dateString];
+    if (!_date) _date = [self dateWithSpecialDateSring:self.dateString];
     return _date;
 }
 

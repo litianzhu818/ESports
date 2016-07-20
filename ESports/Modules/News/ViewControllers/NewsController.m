@@ -61,7 +61,6 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 @property (assign, nonatomic) NSInteger limitForRequest;
 @property (assign, nonatomic) BOOL showImages;
 
-@property (assign, nonatomic) NSInteger hotfocusNewsFirstRequest;
 @property (assign, nonatomic) NSInteger transferNewsFirstRequest;
 @property (assign, nonatomic) NSInteger hotwordsNewsFirstRequest;
 
@@ -298,7 +297,6 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     self.hotfocusNewsOffset = 0;
     self.hotwordsNewsOffset = 0;
     self.transferNewsOffset = 0;
-    self.hotfocusNewsFirstRequest = YES;
     self.hotwordsNewsFirstRequest = YES;
     self.transferNewsFirstRequest = YES;
     self.showImages = NO;
@@ -418,7 +416,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 - (void)reloadHotfocusData
 {
     self.hotfocusNewsOffset = 0;
-    self.hotfocusNewsFirstRequest = NO;
+    [self.hotfocusTableView.mj_footer resetNoMoreData];
     __weak typeof(self) weakSelf = self;
     [[HttpSessionManager sharedInstance] requestNewsCarouselImagesWithOffset:0
                                                                numbersOfPage:5
@@ -509,7 +507,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                          if (hotfocusNews.count > 0) {
                                                                              NSMutableArray<HotFocusNew *> *cacheHotFocusNews = [NSMutableArray array];
                                                                              
-                                                                             [weakSelf.hotfocusTableView beginUpdates];
+                                                                             [strongSelf.hotfocusTableView beginUpdates];
                                                                              
                                                                              [hotfocusNews enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
                                                                                  HotFocusNew *hotFocusNew = [[HotFocusNew alloc] initWithDictionary:dic error:nil];
@@ -520,7 +518,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                                  }
                                                                              }];
                                                                              
-                                                                             [weakSelf.hotfocusTableView endUpdates];
+                                                                             [strongSelf.hotfocusTableView endUpdates];
                                                                              
                                                                              strongSelf.hotfocusNewsOffset += hotfocusNews.count;
                                                                              if (hotfocusNews.count < strongSelf.limitForRequest) {
@@ -546,7 +544,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 - (void)reloadTransferData
 {
     self.transferNewsOffset = 0;
-    self.transferNewsFirstRequest = NO;
+    [self.transferTableView.mj_footer resetNoMoreData];
     __weak typeof(self) weakSelf = self;
     [[HttpSessionManager sharedInstance] requestTransferNewsWithOffset:self.transferNewsOffset
                                                           limitsOfPage:5
@@ -603,7 +601,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                          
                                                                          if (transferNewContainers.count > 0) {
                                                                              NSMutableArray<TransferNewContainer *> *cacheTransferNewContainers = [NSMutableArray array];
-                                                                             [weakSelf.transferTableView beginUpdates];
+                                                                             [strongSelf.transferTableView beginUpdates];
                                                                              
                                                                              [transferNewContainers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
                                                                                  TransferNewContainer *container = [[TransferNewContainer alloc] initWithDictionary:dic error:nil];
@@ -615,7 +613,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                                  }
                                                                              }];
                                                                              
-                                                                             [weakSelf.transferTableView endUpdates];
+                                                                             [strongSelf.transferTableView endUpdates];
                                                                              
                                                                              strongSelf.transferNewsOffset += transferNewContainers.count;
                                                                              if (transferNewContainers.count < 5) {
@@ -639,7 +637,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 - (void)reloadHotwordsData
 {
     self.hotwordsNewsOffset = 0;
-    self.hotwordsNewsFirstRequest = NO;
+    [self.hotwordsTableView.mj_footer resetNoMoreData];
     __weak typeof(self) weakSelf = self;
     [[HttpSessionManager sharedInstance] requestHotwordsNewsWithOffset:self.hotwordsNewsOffset
                                                           limitsOfPage:5
@@ -696,7 +694,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                          
                                                                          if (hotWordNewContainers.count > 0) {
                                                                              NSMutableArray<HotWordNewContainer *> *cacheHotWordNewContainers = [NSMutableArray array];
-                                                                             [weakSelf.hotwordsTableView beginUpdates];
+                                                                             [strongSelf.hotwordsTableView beginUpdates];
                                                                              
                                                                              [hotWordNewContainers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
                                                                                 HotWordNewContainer *hotWordNewContainer = [[HotWordNewContainer alloc] initWithDictionary:dic error:nil];
@@ -707,7 +705,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                                  }
                                                                              }];
                                                                              
-                                                                             [weakSelf.hotwordsTableView endUpdates];
+                                                                             [strongSelf.hotwordsTableView endUpdates];
                                                                              
                                                                              strongSelf.hotwordsNewsOffset += hotWordNewContainers.count;
                                                                              if (hotWordNewContainers.count < 5) {
@@ -795,6 +793,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                 self.currentNewsType = NewsTypeHotTransfer;
                 if (self.transferNewsFirstRequest) {
                     // 请求转会新闻数据
+                    self.transferNewsFirstRequest = NO;
                     [self.transferTableView.mj_header beginRefreshing];
                 }
             }
@@ -806,6 +805,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                 self.currentNewsType = NewsTypeHotWords;
                 if (self.hotwordsNewsFirstRequest) {
                     // 请求热门话题数据
+                    self.hotwordsNewsFirstRequest = NO;
                     [self.hotwordsTableView.mj_header beginRefreshing];
                 }
             }

@@ -53,7 +53,8 @@
                                            @"5":@"Thursday",
                                            @"6":@"Friday",
                                            @"7":@"Saturday",
-                                           @"1":@"Sunday"
+                                           @"1":@"Sunday",
+                                           @"today":@"Today"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"2":@"星期一",
@@ -62,7 +63,8 @@
                                            @"5":@"星期四",
                                            @"6":@"星期五",
                                            @"7":@"星期六",
-                                           @"1":@"星期日"
+                                           @"1":@"星期日",
+                                           @"today":@"今天"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"2":@"星期一",
@@ -71,7 +73,8 @@
                                            @"5":@"星期四",
                                            @"6":@"星期五",
                                            @"7":@"星期六",
-                                           @"1":@"星期日"
+                                           @"1":@"星期日",
+                                           @"today":@"今天"
                                            }
                                    };
 }
@@ -93,6 +96,12 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy/MM/dd"];
     dateString = [formatter stringFromDate:self.date];
+    
+    if ([dateString isEqualToString:[formatter stringFromDate:[NSDate date]]]) {
+        self.titleLabel.text = LTZLocalizedString(@"today", nil);
+        return;
+    }
+    
     NSString *weekString = nil;
     NSCalendar* calendar = nil;
     NSDateComponents* components = nil;

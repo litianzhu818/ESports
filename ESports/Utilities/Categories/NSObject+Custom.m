@@ -235,7 +235,13 @@
 
 - (NSDate *)dateWithSpecialDateSring:(NSString *)specialDateSring
 {
-    NSAssert(([specialDateSring hasPrefix:@"/Date("] && [specialDateSring hasSuffix:@")/"]), @"特殊时间字符串格式不正确，正确格式:\"/Date(1469059200000)/\"");
+    
+    //NSAssert(([specialDateSring hasPrefix:@"/Date("] && [specialDateSring hasSuffix:@")/"]), @"特殊时间字符串格式不正确，正确格式:\"/Date(1469059200000)/\"");
+    
+    if (!([specialDateSring hasPrefix:@"/Date("] && [specialDateSring hasSuffix:@")/"])) {
+        LOG(@"%@",@"特殊时间字符串格式不正确，正确格式:\"/Date(1469059200000)/\"");
+    }
+    
     NSString *dateString = [specialDateSring stringByReplacingOccurrencesOfString:@"/Date(" withString:@""];
     dateString = [dateString stringByReplacingOccurrencesOfString:@")/" withString:@""];
     NSTimeInterval seconds = [dateString doubleValue]/1000.0;

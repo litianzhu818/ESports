@@ -105,7 +105,9 @@
                                                                    
                                                                    strongSelf.detailNew = [[DetailNew alloc] initWithDictionary:dic error:nil];
                                                                    
-                                                                   [strongSelf.tableView reloadData];
+                                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                                       [strongSelf.tableView reloadData];
+                                                                   });
                                                                    
                                                                }
                                                                

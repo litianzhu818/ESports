@@ -23,6 +23,8 @@
     return _sharedManager;
 }
 
+#pragma mark - 新闻API
+
 - (void)requestNewsCarouselImagesWithOffset:(NSInteger)offset
                               numbersOfPage:(NSInteger)numbersOfPage
                                       block:(void (^)(id data, NSError *error))block
@@ -116,6 +118,48 @@
                              };
     
     [[HttpSessionClient sharedClient] requestJsonDataWithPath:detailNewsURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+#pragma mark - 赛事API
+- (void)requestMatchProcessWithOffset:(NSInteger)offset
+                        numbersOfPage:(NSInteger)numbersOfPage
+                                block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(numbersOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchProcessURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+- (void)requestMatchResultWithOffset:(NSInteger)offset
+                       numbersOfPage:(NSInteger)numbersOfPage
+                               block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(numbersOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchResultURL
                                                    withParams:params
                                                withMethodType:HttpSessionTypeGET
                                                      andBlock:^(id data, NSError *error) {

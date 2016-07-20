@@ -38,11 +38,7 @@
 
 - (NSDate *)joinTeamDate
 {
-    if (_joinTeamDate) {
-        return _joinTeamDate;
-    }
-    
-    _joinTeamDate = [self dateWithSpecialDateSring:self.joinTeamDateString];
+    if (!_joinTeamDate) _joinTeamDate = [self dateWithSpecialDateSring:self.joinTeamDateString];
     return _joinTeamDate;
 }
 

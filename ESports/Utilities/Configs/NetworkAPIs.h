@@ -15,6 +15,8 @@ static NSString *const hotfocusNewsURL = @"News/NewFocus";
 static NSString *const transferNewsURL = @"News/NewsTransfer";
 static NSString *const hotwordsNewsURL = @"News/NewsHeadlines";
 static NSString *const detailNewsURL = @"News/NewsDetail";
+static NSString *const matchProcessURL = @"Match/MatchFixtures";
+static NSString *const matchResultURL = @"Match/Results";
 static NSString *const LoginURL = @"<#login_url_string#>";
 
 #endif

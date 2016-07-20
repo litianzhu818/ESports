@@ -30,10 +30,7 @@
 
 - (NSDate *)newsDate
 {
-    if (_newsDate) {
-        return _newsDate;
-    }
-    _newsDate = [self dateWithSpecialDateSring:self.stringDate];
+    if (!_newsDate) _newsDate = [self dateWithSpecialDateSring:self.stringDate];
     return _newsDate;
 }
 

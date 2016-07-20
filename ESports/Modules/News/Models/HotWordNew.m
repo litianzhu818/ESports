@@ -54,19 +54,13 @@
 
 - (NSDate *)newsDate
 {
-    if (_newsDate) {
-        return _newsDate;
-    }
-    _newsDate = [self dateWithSpecialDateSring:self.stringDate];
+    if (!_newsDate) _newsDate = [self dateWithSpecialDateSring:self.stringDate];
     return _newsDate;
 }
 
 - (NSDate *)newsCreateDate
 {
-    if (_newsCreateDate) {
-        return _newsCreateDate;
-    }
-    _newsCreateDate = [self dateWithSpecialDateSring:self.stringCreateDate];
+    if (!_newsCreateDate) _newsCreateDate = [self dateWithSpecialDateSring:self.stringCreateDate];
     return _newsCreateDate;
 }
 

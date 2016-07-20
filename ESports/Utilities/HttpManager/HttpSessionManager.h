@@ -12,6 +12,7 @@
 
 + (id)sharedInstance;
 
+#pragma mark - 新闻API
 - (void)requestNewsCarouselImagesWithOffset:(NSInteger)offset
                               numbersOfPage:(NSInteger)numbersOfPage
                                       block:(void (^)(id data, NSError *error))block;
@@ -31,4 +32,12 @@
 - (void)requestDetailNewsWithId:(NSString *)newsId
                           block:(void (^)(id data, NSError *error))block;
 
+#pragma mark - 赛事API
+- (void)requestMatchProcessWithOffset:(NSInteger)offset
+                        numbersOfPage:(NSInteger)numbersOfPage
+                                block:(void (^)(id data, NSError *error))block;
+
+- (void)requestMatchResultWithOffset:(NSInteger)offset
+                       numbersOfPage:(NSInteger)numbersOfPage
+                               block:(void (^)(id data, NSError *error))block;
 @end
