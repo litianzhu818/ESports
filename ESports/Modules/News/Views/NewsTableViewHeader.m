@@ -7,6 +7,7 @@
 //
 
 #import "NewsTableViewHeader.h"
+#import "NSObject+locale.h"
 
 @interface NewsTableViewHeader ()
 
@@ -77,6 +78,7 @@
                                            @"today":@"今天"
                                            }
                                    };
+     
 }
 
 - (void)setDate:(NSDate *)date
@@ -94,7 +96,8 @@
     
     NSString *dateString = nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd"];
+    [formatter setDateFormat:@"yyyy/MM/ddEEEE"];
+    [formatter setLocale:[self currentLocale]];
     dateString = [formatter stringFromDate:self.date];
     
     if ([dateString isEqualToString:[formatter stringFromDate:[NSDate date]]]) {
@@ -102,6 +105,9 @@
         return;
     }
     
+    self.titleLabel.text = dateString;
+    
+    /*
     NSString *weekString = nil;
     NSCalendar* calendar = nil;
     NSDateComponents* components = nil;
@@ -118,6 +124,7 @@
     weekString = [NSString stringWithFormat:@"%@%@",dateString, LTZLocalizedString(weekString, nil)];
     
     self.titleLabel.text = weekString;
+     */
     
 }
 

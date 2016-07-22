@@ -234,6 +234,4 @@
 
     [self localization_dealloc];
 }
-
-
 @end

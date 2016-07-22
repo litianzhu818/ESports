@@ -12,6 +12,7 @@
 @interface ProcessMatchCell : UITableViewCell
 
 @property (strong, nonatomic) ProcessMatch *processMatch;
+@property (copy, nonatomic) void (^liveVideoBlock) (NSString *livePage);
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;

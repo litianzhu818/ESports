@@ -23,10 +23,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oNJ-3B-AQ7">
-                            <rect key="frame" x="180" y="8" width="240" height="29"/>
+                            <rect key="frame" x="170" y="8" width="260" height="29"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="c7B-09-AT0"/>
-                                <constraint firstAttribute="width" constant="240" id="lbK-bt-i5K"/>
+                                <constraint firstAttribute="width" constant="260" id="lbK-bt-i5K"/>
                             </constraints>
                             <segments>
                                 <segment title="赛事进程"/>

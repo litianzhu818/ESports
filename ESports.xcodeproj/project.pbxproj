@@ -51,6 +51,7 @@
 		E73911C21D2A640B00F4A522 /* PopMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BB1D2A640B00F4A522 /* PopMenuCell.m */; };
 		E73911C31D2A640B00F4A522 /* PopMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BD1D2A640B00F4A522 /* PopMenuModel.m */; };
 		E73911C41D2A640B00F4A522 /* PopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */; };
+		E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C9BDE1D421B8C00950981 /* DBManager.m */; };
 		E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */; };
 		E760B32B1D2D1CA000F5DB54 /* DropdownMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B32A1D2D1CA000F5DB54 /* DropdownMenuItem.m */; };
 		E760B32F1D2E05DA00F5DB54 /* DropdownMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B32D1D2E05DA00F5DB54 /* DropdownMenuItemCell.m */; };
@@ -103,6 +104,7 @@
 		E760B3AE1D3F8DE000F5DB54 /* ResultMatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3AC1D3F8DE000F5DB54 /* ResultMatchCell.m */; };
 		E760B3AF1D3F8DE000F5DB54 /* ResultMatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E760B3AD1D3F8DE000F5DB54 /* ResultMatchCell.xib */; };
 		E760B3B21D3F8E5500F5DB54 /* InsertIndexPathModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3B11D3F8E5500F5DB54 /* InsertIndexPathModel.m */; };
+		E760B3B51D40BF8100F5DB54 /* NSObject+locale.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3B41D40BF8100F5DB54 /* NSObject+locale.m */; };
 		E7BD57691CF4360D008F2D69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57681CF4360D008F2D69 /* main.m */; };
 		E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576B1CF4360D008F2D69 /* AppDelegate.m */; };
 		E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576E1CF4360D008F2D69 /* ViewController.m */; };
@@ -186,6 +188,8 @@
 		E73911BD1D2A640B00F4A522 /* PopMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuModel.m; sourceTree = "<group>"; };
 		E73911BE1D2A640B00F4A522 /* PopMenuStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopMenuStyle.h; sourceTree = "<group>"; };
 		E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuStyle.m; sourceTree = "<group>"; };
+		E75C9BDD1D421B8C00950981 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		E75C9BDE1D421B8C00950981 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		E760B3261D2D1C6D00F5DB54 /* DropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenu.h; sourceTree = "<group>"; };
 		E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenu.m; sourceTree = "<group>"; };
 		E760B3291D2D1CA000F5DB54 /* DropdownMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenuItem.h; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 		E760B3AD1D3F8DE000F5DB54 /* ResultMatchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultMatchCell.xib; sourceTree = "<group>"; };
 		E760B3B01D3F8E5500F5DB54 /* InsertIndexPathModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertIndexPathModel.h; sourceTree = "<group>"; };
 		E760B3B11D3F8E5500F5DB54 /* InsertIndexPathModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertIndexPathModel.m; sourceTree = "<group>"; };
+		E760B3B31D40BF8100F5DB54 /* NSObject+locale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+locale.h"; sourceTree = "<group>"; };
+		E760B3B41D40BF8100F5DB54 /* NSObject+locale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+locale.m"; sourceTree = "<group>"; };
 		E768AF301D2A1ACC008CF826 /* LanguageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageList.h; sourceTree = "<group>"; };
 		E7BD57641CF4360D008F2D69 /* ESports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD57681CF4360D008F2D69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -738,6 +744,15 @@
 			path = PopMenu;
 			sourceTree = "<group>";
 		};
+		E75C9BDC1D421B8C00950981 /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				E75C9BDD1D421B8C00950981 /* DBManager.h */,
+				E75C9BDE1D421B8C00950981 /* DBManager.m */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
 		E760B3201D2D194E00F5DB54 /* DropdownMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +947,7 @@
 		E7BD57811CF58893008F2D69 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E75C9BDC1D421B8C00950981 /* DBManager */,
 				E73911B61D2A62F800F4A522 /* PopMenu */,
 				E72FD84F1D24F420000A5CE6 /* RxWebViewController */,
 				E72FD8481D23D973000A5CE6 /* DefineValues */,
@@ -951,6 +967,8 @@
 				E7BD579A1CF6FEFC008F2D69 /* MBProgressHUD+Custom.m */,
 				E7BD57971CF6F4D3008F2D69 /* NSObject+Custom.h */,
 				E7BD57961CF6F4D3008F2D69 /* NSObject+Custom.m */,
+				E760B3B31D40BF8100F5DB54 /* NSObject+locale.h */,
+				E760B3B41D40BF8100F5DB54 /* NSObject+locale.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1155,6 +1173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E760B38F1D3E19BF00F5DB54 /* DetailRelNewsBottomCell.m in Sources */,
+				E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */,
 				E72FD8591D24F420000A5CE6 /* NJKWebViewProgress.m in Sources */,
 				E760B3601D38D34200F5DB54 /* NewsTableViewHeader.m in Sources */,
 				E760B3941D3E1C4700F5DB54 /* DetailNewSubTitleCell.m in Sources */,
@@ -1193,6 +1212,7 @@
 				E72FD8851D251612000A5CE6 /* NewsController.m in Sources */,
 				E760B37B1D3CC6EB00F5DB54 /* DetailNewsTopCell.m in Sources */,
 				E72FD8461D23D8E2000A5CE6 /* LTZLocalizationManager.m in Sources */,
+				E760B3B51D40BF8100F5DB54 /* NSObject+locale.m in Sources */,
 				E760B3661D38F52D00F5DB54 /* TransferNewCell.m in Sources */,
 				E760B3571D37756E00F5DB54 /* NewsRotationImageCell.m in Sources */,
 				E760B3531D365A4D00F5DB54 /* TransferNewManager.m in Sources */,

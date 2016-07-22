@@ -341,9 +341,8 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
     [self.button setTitle:LTZLocalizedString(@"local_bar_item", nil) forState:UIControlStateNormal];
     [self.button setTitle:LTZLocalizedString(@"local_bar_item", nil) forState:UIControlStateHighlighted];
     
-    [self.segmentedControl setTitle:LTZLocalizedString(@"news_type_hot", nil) forSegmentAtIndex:0];
-    [self.segmentedControl setTitle:LTZLocalizedString(@"news_type_transfer", nil) forSegmentAtIndex:1];
-    [self.segmentedControl setTitle:LTZLocalizedString(@"news_type_headlines", nil) forSegmentAtIndex:2];
+    [self.segmentedControl setTitle:LTZLocalizedString(@"matchs_type_process", nil) forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:LTZLocalizedString(@"matchs_type_result", nil) forSegmentAtIndex:1];
     
     [self.processTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
     [self.processTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
