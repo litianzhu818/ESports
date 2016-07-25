@@ -12,6 +12,7 @@
 @interface ResultMatchCell : UITableViewCell
 
 @property (strong, nonatomic) ResultMatch *resultMatch;
+@property (copy, nonatomic) void (^replayBlock) (NSString *matchId);
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;

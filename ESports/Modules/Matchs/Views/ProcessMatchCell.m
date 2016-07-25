@@ -10,6 +10,9 @@
 #import "UIImageView+WebCache.h"
 #import "NSObject+locale.h"
 #import "IonIcons.h"
+#import "DBManager.h"
+#import <EventKit/EventKit.h>
+#import "NSObject+Custom.h"
 
 typedef struct CountDownTimeModel{
     long day;
@@ -62,21 +65,27 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"subscribe",
                                            @"subscribed_title":@"subscribed",
                                            @"watch_title":@"live",
-                                           @"time_title":@"remaining %ld h %ld m"
+                                           @"time_title":@"remaining %ld h %ld m",
+                                           @"event_notice_title":@"At %@,There is a match for %@ and %@",
+                                           @"create_event_success_title":@"creating event success"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"top_title":@"预计比分:",
                                            @"subscribe_title":@"订阅",
                                            @"subscribed_title":@"已订阅",
                                            @"watch_title":@"查看直播",
-                                           @"time_title":@"剩%ld小时%ld分"
+                                           @"time_title":@"剩%ld小时%ld分",
+                                           @"event_notice_title":@"你在%@有%@和%@的比赛，请不要忘记观看",
+                                           @"create_event_success_title":@"已订阅提醒通知"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"top_title":@"預計比分:",
                                            @"subscribe_title":@"訂閱",
                                            @"subscribed_title":@"已訂閱",
                                            @"watch_title":@"查看直播",
-                                           @"time_title":@"剩%ld小時%ld分"
+                                           @"time_title":@"剩%ld小時%ld分",
+                                           @"event_notice_title":@"你在%@有%@和%@的比賽，請不要忘記觀看",
+                                           @"create_event_success_title":@"已訂閱提醒通知"
                                            }
                                    };
     
@@ -153,7 +162,15 @@ typedef struct CountDownTimeModel{
         //[self.aTeamNameLabel setNeedsUpdateConstraints];
         //[self.bTeamNameLabel setNeedsUpdateConstraints];
         
-        
+        if ([[DBManager sharedInstance] existsSubscribeMatchWithMatchId:self.processMatch.processMatchId]) {
+            [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateNormal];
+            [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateHighlighted];
+            self.subscribeButton.enabled = NO;
+        }else{
+            [self.subscribeButton setTitle:LTZLocalizedString(@"subscribe_title", nil) forState:UIControlStateNormal];
+            [self.subscribeButton setTitle:LTZLocalizedString(@"subscribe_title", nil) forState:UIControlStateHighlighted];
+            self.subscribeButton.enabled = YES;
+        }
     }
     
     
@@ -167,13 +184,53 @@ typedef struct CountDownTimeModel{
 - (IBAction)touchOnLiveButtonAction:(id)sender
 {
     if (self.liveVideoBlock) {
-        self.liveVideoBlock(self.processMatch.liveStreamPage);
+        self.liveVideoBlock(self.processMatch.liveVideoApp);
     }
 }
 
 - (IBAction)touchOnSubscribeButtonAction:(id)sender
 {
-    
+    EKEventStore *store = [[EKEventStore alloc] init];
+    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        // handle access here
+        if (granted) {
+            
+            NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
+            [tempFormatter setDateFormat:@"yyyy.MM.dd HH:mm"];
+            
+            //创建事件
+            EKEvent *event  = [EKEvent eventWithEventStore:store];
+            event.title     = [NSString stringWithFormat:LTZLocalizedString(@"event_notice_title", nil),[tempFormatter stringFromDate:self.processMatch.date],self.processMatch.aTeamName,self.processMatch.bTeamName];
+            //event.location = @"test";
+            
+            event.startDate = [NSDate date];
+            event.endDate   = self.processMatch.date;
+            event.allDay = NO;
+            
+            //添加提醒
+            [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -10.0f]]; //前十分钟
+            [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -30.0f]];//前一天(60.0f * -60.0f * 24)
+
+            
+            [event setCalendar:[store defaultCalendarForNewEvents]];
+            
+            NSError *err;
+            [store saveEvent:event span:EKSpanThisEvent error:&err];
+            
+            [[DBManager sharedInstance] insertSubscribeMatchWithMatchId:self.processMatch.processMatchId
+                                                              firstTime:[NSDate dateWithTimeInterval:30.0f sinceDate:event.endDate]
+                                                             secondTime:[NSDate dateWithTimeInterval:10.0f sinceDate:event.endDate] completionBlock:^(BOOL result, NSError *error) {
+                                                                 if (result) {
+                                                                     [self showHudMessage:LTZLocalizedString(@"create_event_success_title", nil)];
+                                                                     [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateNormal];
+                                                                     [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateHighlighted];
+                                                                     self.subscribeButton.enabled = NO;
+                                                                 }
+                                                            }];
+        }else{
+            [self showAlertTitle:@"提示" message:@"您没有获取日历事件的权限，请再设置中开启它" cancelButtonTitle:@"知道了" cancelBlock:^{}];
+        }
+    }];
 }
 
 - (NSString *)timeString

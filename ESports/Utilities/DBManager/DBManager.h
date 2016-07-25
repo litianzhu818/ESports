@@ -12,10 +12,7 @@
 
 typedef NS_ENUM(NSInteger,DatabaseTableType){
     DatabaseTableDefaultType = 0,
-    DatabaseMessageTableType,
-    DatabaseUserInfoTableType,
-    DatabaseLoginUserInfoTableType,
-    
+    DatabaseSubscribeMatchTableType
 };
 
 @interface DBManager : NSObject
@@ -26,7 +23,6 @@ Single_interface(DBManager);
 
 @property (strong, nonatomic) FMDatabaseQueue *databaseQueue;
 
-- (BOOL)setDatabasePath:(NSString *)path;
 - (void)inDatabase:(void (^)(FMDatabase *db))block;
 - (void)inTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block;
 - (void)inDeferredTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block;
@@ -34,11 +30,12 @@ Single_interface(DBManager);
 - (BOOL)existsTableWithName:(NSString *)tableName;
 - (BOOL)createTableWithName:(NSString *)tableName tableType:(DatabaseTableType)tableType;
 
-/*
-- (void)insertMessageValues:(Message *)message toTable:(NSString *)tableName;
-- (void)updateMessageInfo:(Message *)newMessage tableName:(NSString *)tableName;
-- (NSMutableArray *)messagesfrom:(NSString *)userID withCount:(NSInteger)count offset:(NSInteger)offset;
- */
+
+- (void)insertSubscribeMatchWithMatchId:(NSString *)matchId
+                              firstTime:(NSDate *)firstTime
+                             secondTime:(NSDate *)secondTime
+                        completionBlock:(void (^)(BOOL result, NSError *error))completionBlock;
+- (BOOL)existsSubscribeMatchWithMatchId:(NSString *)matchId;
 
 
 

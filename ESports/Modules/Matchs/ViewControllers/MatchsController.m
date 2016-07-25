@@ -19,6 +19,7 @@
 #import "ProcessMatchCell.h"
 #import "ResultMatchCell.h"
 #import "InsertIndexPathModel.h"
+#import "RxWebViewController.h"
 
 static NSString *const matchesProcessListCacheKey = @"matches_controller_matchs_process_cache_key";
 static NSString *const matchesResultListCacheKey = @"matches_controller_mathcs_result_cache_key";
@@ -267,26 +268,30 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
     
     // 取缓存中的轮换图片
     __weak typeof(self) weakSelf = self;
-//    
-//    [[TMCache sharedCache] objectForKey:matchesProcessListCacheKey
-//                                  block:^(TMCache *cache, NSString *key, NSArray<HotFocusNew *> *HotFocusNews) {
-//                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-//                                      [strongSelf.hotFocusNews addObjectsFromArray:HotFocusNews];
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          [strongSelf.hotfocusTableView reloadData];
-//                                      });
-//                                  }];
-//    
-//    [[TMCache sharedCache] objectForKey:matchesResultListCacheKey
-//                                  block:^(TMCache *cache, NSString *key, NSArray<TransferNewContainer *> *TransferNewContainers) {
-//                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-//                                      [TransferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-//                                          [strongSelf.transferNewManager addTransferNewContainer:transferNewContainer];
-//                                      }];
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          [strongSelf.transferTableView reloadData];
-//                                      });
-//                                  }];
+    
+    [[TMCache sharedCache] objectForKey:matchesProcessListCacheKey
+                                  block:^(TMCache *cache, NSString *key, NSArray<ProcessMatch *> *cacheProcessMatches) {
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      [cacheProcessMatches enumerateObjectsUsingBlock:^(ProcessMatch * _Nonnull processMatch, NSUInteger idx, BOOL * _Nonnull stop) {
+                                          [strongSelf.processMatchesManager addProcessMatch:processMatch];
+                                      }];
+                        
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [strongSelf.processTableView reloadData];
+                                      });
+                                  }];
+    
+    [[TMCache sharedCache] objectForKey:matchesResultListCacheKey
+                                  block:^(TMCache *cache, NSString *key, NSArray<ResultMatch *> *cacheResultMatches) {
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      [cacheResultMatches enumerateObjectsUsingBlock:^(ResultMatch * _Nonnull resultMatch, NSUInteger idx, BOOL * _Nonnull stop) {
+                                          [strongSelf.resultMatchesManager addResultMatch:resultMatch];
+                                      }];
+                                      
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [strongSelf.resultTableView reloadData];
+                                      });
+                                  }];
     
     // 开始网络请求数据
     [self.processTableView.mj_header beginRefreshing];
@@ -669,6 +674,12 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
         ProcessMatchCell *cell = [tableView dequeueReusableCellWithIdentifier:[ProcessMatchCell cellIdentifier]
                                                                 forIndexPath:indexPath];
         cell.processMatch = self.processMatchesManager.processMatchesContainers[indexPath.section].processMatches[indexPath.row];
+        WEAK_SELF;
+        [cell setLiveVideoBlock:^(NSString *liveVideoApp) {
+            STRONG_SELF;
+            RxWebViewController *webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:liveVideoApp]];
+            [strongSelf.navigationController pushViewController:webViewController animated:YES];
+        }];
         
         return cell;
         
@@ -676,7 +687,9 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
         ResultMatchCell *cell = [tableView dequeueReusableCellWithIdentifier:[ResultMatchCell cellIdentifier]
                                                                forIndexPath:indexPath];
         cell.resultMatch = self.resultMatchesManager.resultMatchesContainers[indexPath.section].resultMatches[indexPath.row];
-        
+        [cell setReplayBlock:^(NSString *matchId) {
+            
+        }];
         return cell;
     }
     return nil;

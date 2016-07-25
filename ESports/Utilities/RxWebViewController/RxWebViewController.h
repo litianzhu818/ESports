@@ -6,9 +6,9 @@
 //  Copyright © 2015年 roxasora. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface RxWebViewController : UIViewController
+@interface RxWebViewController : BaseViewController
 
 /**
  *  origin url

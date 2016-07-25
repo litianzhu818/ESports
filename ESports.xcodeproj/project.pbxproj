@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB55A45EFCE0F154101452A5 /* libPods-ESports.a */; };
+		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
+		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E72FD8051D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8041D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m */; };
 		E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8371D212A1B000A5CE6 /* BaseViewController.m */; };
 		E72FD8461D23D8E2000A5CE6 /* LTZLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8431D23D8E2000A5CE6 /* LTZLocalizationManager.m */; };
@@ -52,6 +54,7 @@
 		E73911C31D2A640B00F4A522 /* PopMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BD1D2A640B00F4A522 /* PopMenuModel.m */; };
 		E73911C41D2A640B00F4A522 /* PopMenuStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */; };
 		E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C9BDE1D421B8C00950981 /* DBManager.m */; };
+		E75C9C071D45F1A100950981 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75C9C061D45F1A100950981 /* EventKit.framework */; };
 		E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */; };
 		E760B32B1D2D1CA000F5DB54 /* DropdownMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B32A1D2D1CA000F5DB54 /* DropdownMenuItem.m */; };
 		E760B32F1D2E05DA00F5DB54 /* DropdownMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E760B32D1D2E05DA00F5DB54 /* DropdownMenuItemCell.m */; };
@@ -124,6 +127,9 @@
 		0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.debug.xcconfig"; sourceTree = "<group>"; };
 		4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.release.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.release.xcconfig"; sourceTree = "<group>"; };
 		CB55A45EFCE0F154101452A5 /* libPods-ESports.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ESports.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
+		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
+		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
 		E72FD8031D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HttpSessionClient+MultiLanguage.h"; sourceTree = "<group>"; };
 		E72FD8041D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HttpSessionClient+MultiLanguage.m"; sourceTree = "<group>"; };
 		E72FD8361D212A1B000A5CE6 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 		E73911BF1D2A640B00F4A522 /* PopMenuStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopMenuStyle.m; sourceTree = "<group>"; };
 		E75C9BDD1D421B8C00950981 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		E75C9BDE1D421B8C00950981 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		E75C9C061D45F1A100950981 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		E760B3261D2D1C6D00F5DB54 /* DropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenu.h; sourceTree = "<group>"; };
 		E760B3271D2D1C6D00F5DB54 /* DropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenu.m; sourceTree = "<group>"; };
 		E760B3291D2D1CA000F5DB54 /* DropdownMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenuItem.h; sourceTree = "<group>"; };
@@ -308,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75C9C071D45F1A100950981 /* EventKit.framework in Frameworks */,
 				E72FD84B1D23E154000A5CE6 /* CoreGraphics.framework in Frameworks */,
 				C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */,
 			);
@@ -319,6 +327,7 @@
 		9862D763C39376D9EDB3F3EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E75C9C061D45F1A100950981 /* EventKit.framework */,
 				E72FD84A1D23E154000A5CE6 /* CoreGraphics.framework */,
 				CB55A45EFCE0F154101452A5 /* libPods-ESports.a */,
 			);
@@ -465,6 +474,9 @@
 				E72FD8871D2516D8000A5CE6 /* MatchsController.h */,
 				E72FD8881D2516D8000A5CE6 /* MatchsController.m */,
 				E72FD8891D2516D8000A5CE6 /* MatchsController.xib */,
+				E716272C1D461C1500EF6740 /* MatchReplayController.h */,
+				E716272D1D461C1500EF6740 /* MatchReplayController.m */,
+				E716272E1D461C1500EF6740 /* MatchReplayController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1074,6 +1086,7 @@
 				E72FD8B41D267C9B000A5CE6 /* nav_change_language_h@2x.png in Resources */,
 				E72FD8A91D264943000A5CE6 /* tabbar_ranking_n@2x.png in Resources */,
 				E72FD8661D2508EC000A5CE6 /* topbar@2x.png in Resources */,
+				E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */,
 				E760B3301D2E05DA00F5DB54 /* DropdownMenuItemCell.xib in Resources */,
 				E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */,
 				E760B3581D37756E00F5DB54 /* NewsRotationImageCell.xib in Resources */,
@@ -1226,6 +1239,7 @@
 				E760B38A1D3E107200F5DB54 /* DetailHotNewsBottomCell.m in Sources */,
 				E7BD57691CF4360D008F2D69 /* main.m in Sources */,
 				E73911C11D2A640B00F4A522 /* PopMenu.m in Sources */,
+				E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */,
 				E73911C21D2A640B00F4A522 /* PopMenuCell.m in Sources */,
 				E760B3411D2FA61000F5DB54 /* README.md in Sources */,
 				E72FD85C1D24F420000A5CE6 /* UINavigationController+RxWebViewNavigation.m in Sources */,

@@ -82,7 +82,7 @@
     
     self.title = @"";
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    //self.view.backgroundColor = [UIColor whiteColor];
     
     if (self.navigationItem.leftBarButtonItem) {
         self.originalButtonItem = self.navigationItem.leftBarButtonItem;
@@ -100,6 +100,13 @@
     [super viewDidDisappear:animated];
     [self.progressView removeFromSuperview];
     self.webView.delegate = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.rdv_tabBarController setTabBarHidden:YES];
 }
 
 #pragma mark - public funcs

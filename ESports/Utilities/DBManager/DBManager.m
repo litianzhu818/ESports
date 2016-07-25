@@ -8,19 +8,27 @@
 
 #import "DBManager.h"
 
+static NSString *const subscribeMatchTableName = @"SubscribeMatch";
+
 @implementation DBManager
 Single_implementation(DBManager);
 
--(BOOL)setDatabasePath:(NSString *)path
+- (instancetype)init
 {
-    self.DBPath = path;
-    self.databaseQueue = [FMDatabaseQueue databaseQueueWithPath:self.DBPath];
-    if (self.databaseQueue) {
-        return [self createTableWithName:@"DefaultTable" tableType:DatabaseTableDefaultType];
+    self = [super init];
+    if (self) {
+        [self setup];
     }
-    
-    return NO;
+    return self;
 }
+
+- (void)setup
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    self.DBPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ESPorts.sqlite"];
+    self.databaseQueue = [FMDatabaseQueue databaseQueueWithPath:self.DBPath];
+}
+
 #pragma mark -
 #pragma mark - 基础处理方法 Methods
 - (void)inDatabase:(void (^)(FMDatabase *db))block
@@ -52,50 +60,51 @@ Single_implementation(DBManager);
     return isTableExists;
 }
 
-- (BOOL)createMessageTableWithName:(NSString *)tableName
+- (BOOL)createSubscribeMatchTable
 {
     __block BOOL result = NO;
-    if ([self existsTableWithName:tableName]) {
+    
+    if ([self existsTableWithName:subscribeMatchTableName]) {
         return result;
     }
     
-//    NSString *SQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@'\
-//                     ('%@' TEXT PRIMARY KEY AUTOINCREMENT NOT NULL, \
-//                     '%@' TEXT NOT NULL, \
-//                     '%@' TEXT NOT NULL, \
-//                     '%@' TEXT NOT NULL, \
-//                     '%@' INTEGER NOT NULL, \
-//                     '%@' INTEGER NOT NULL, \
-//                     '%@' TEXT, \
-//                     '%@' TEXT, \
-//                     '%@' REAL, \
-//                     '%@' TEXT, \
-//                     '%@' TEXT, \
-//                     '%@' TEXT, \
-//                     '%@' REAL, \
-//                     '%@' REAL, \
-//                     '%@' INTEGER  \
-//                     )",tableName,@"msgID",@"msgFrom",@"msgTo",@"msgTime",\
-//                     @"msgType",@"msgIsSend",@"msgText",\
-//                     @"msgFilePath",@"msgTimeLength",@"msgLongitude",@"msgLatitude",\
-//                     @"msgFileName",@"msgImageWidth",@"msgImageHeight",@"msgTag"];
+    /*
+    NSString *SQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@'\
+                     ('%@' TEXT PRIMARY KEY AUTOINCREMENT NOT NULL, \
+                     '%@' TEXT NOT NULL, \
+                     '%@' TEXT NOT NULL, \
+                     '%@' TEXT NOT NULL, \
+                     '%@' INTEGER NOT NULL, \
+                     '%@' INTEGER NOT NULL, \
+                     '%@' TEXT, \
+                     '%@' TEXT, \
+                     '%@' REAL, \
+                     '%@' TEXT, \
+                     '%@' TEXT, \
+                     '%@' TEXT, \
+                     '%@' REAL, \
+                     '%@' REAL, \
+                     '%@' INTEGER  \
+                     )",tableName,@"msgID",@"msgFrom",@"msgTo",@"msgTime",\
+                     @"msgType",@"msgIsSend",@"msgText",\
+                     @"msgFilePath",@"msgTimeLength",@"msgLongitude",@"msgLatitude",\
+                     @"msgFileName",@"msgImageWidth",@"msgImageHeight",@"msgTag"];
+     */
     
     NSString *createTableSQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@'\
                      ('%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \
                       '%@' TEXT  NOT NULL, \
-                      '%@' INTEGER NOT NULL, \
-                      '%@' TEXT NOT NULL \
-                     )",tableName,@"ID",@"msgID",@"private",@"msgJsonStr"];
+                      '%@' TEXT , \
+                      '%@' TEXT  \
+                     )",subscribeMatchTableName,@"id",@"matchId",@"firstSubscribeTime",@"secondSubscribeTime"];
     
     NSString *createIndexSQL = [NSString stringWithFormat:@"CREATE INDEX IF NOT EXISTS '%@'\
-                                ON '%@'('%@')",[NSString stringWithFormat:@"%@_%@",tableName,@"table_index"],tableName,@"msgID"];
+                                ON '%@'('%@')",[NSString stringWithFormat:@"%@_%@",subscribeMatchTableName,@"table_index"],subscribeMatchTableName,@"matchId"];
     
     
-    NSString *insertValueSQL = [NSString stringWithFormat:@"INSERT INTO '%@'('%@') VALUES('%@')",@"DefaultTable",@"MessageTableName",tableName];
     [self.databaseQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         if([db executeUpdate:createTableSQL]){
             result = [db executeUpdate:createIndexSQL];
-            result = [db executeUpdate:insertValueSQL];
         }
         
         if (!result) {
@@ -141,8 +150,8 @@ Single_implementation(DBManager);
         case DatabaseTableDefaultType:
             result = [self createDefaultTableWithName:tableName];
             break;
-        case DatabaseMessageTableType:
-            result = [self createMessageTableWithName:tableName];
+        case DatabaseSubscribeMatchTableType:
+            result = [self createSubscribeMatchTable];
             break;
             
         default:
@@ -152,80 +161,64 @@ Single_implementation(DBManager);
     return result;
 }
 
+- (void)insertSubscribeMatchWithMatchId:(NSString *)matchId
+                              firstTime:(NSDate *)firstTime
+                             secondTime:(NSDate *)secondTime
+                        completionBlock:(void (^)(BOOL result, NSError *error))completionBlock
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"]; //@"yyyy/MM/dd HH:mm:ss Z"
+    
+    NSString *firstTimeStr = [formatter stringFromDate:firstTime];
+    NSString *secondTimeStr = [formatter stringFromDate:secondTime];
+    
+    NSString *SQL = [NSString stringWithFormat:@"INSERT INTO '%@'('%@','%@','%@') VALUES('%@','%@','%@')",subscribeMatchTableName,@"matchId",@"firstSubscribeTime",@"secondSubscribeTime",matchId,firstTimeStr,secondTimeStr];
+    
+    [self createSubscribeMatchTable];
+    
+    [self.databaseQueue inDatabase:^(FMDatabase *db) {
+        
+        if ([db executeUpdate:SQL]) {
+            
+            if (completionBlock) {
+                
+                MAIN_GCD(^{
+                    completionBlock(YES, nil);
+                });
+                
+            }
+        }else{
+            if (completionBlock) {
+                
+                MAIN_GCD(^{
+                    completionBlock(NO, db.lastError);
+                });
+                
+            }
+        }
+    }];
+}
 
-//#pragma mark -
-//#pragma mark - 聊天信息操作 Methods
-//
-//-(void)getNewMessage:(NSNotification *)notification
-//{
-//    Message *newMessage = notification.object;
-//    
-//    [self insertMessageValues:newMessage toTable:newMessage.fromUser];
-//    if (newMessage.messageType == MessageVoiceType) {
-//        if (newMessage.messageTag && !newMessage.filePath) {
-//            NSString *fullPath = [[[ChatFileManager sharedInstance] userVoiceDocPath] stringByAppendingPathComponent:newMessage.fileName];
-//            GLOBAL_GCD(^{
-//                if([newMessage.fileData writeToFile:fullPath atomically:YES]){
-//                    newMessage.fileData = nil;
-//                    [self updateMessageInfo:newMessage tableName:newMessage.fromUser];
-//                }
-//            });
-//        }
-//        
-//    }
-//
-//}
-//
-//- (void)insertMessageValues:(Message *)message toTable:(NSString *)tableName
-//{
-//    NSString *SQL = [NSString stringWithFormat:@"INSERT INTO '%@'('%@','%@','%@') VALUES('%@',%d,'%@')",tableName,@"msgID",@"private",@"msgJsonStr",message.messageID,(message.messageOtherTag1 ? 1:0),[[message toDictionary] JSONString]];
-//    [self createTableWithName:tableName tableType:DatabaseMessageTableType];
-//    [self.databaseQueue inDatabase:^(FMDatabase *db) {
-//        [db executeUpdate:SQL];
-//        
-//        MAIN_GCD(^{
-//            [NotificationCenter postNotificationName:NEW_MESSAGE object:message];
-//        });
-//    }];
-//}
-///**
-// *  向数据库请求数据，第一次请求是安顺序添加，以后都是插入到数组头部
-// *
-// *  @param userID 表名
-// *  @param count  请求数量
-// *  @param offset 起始位置
-// *  @param isInit 是否是第一次请求
-// *
-// *  @return 全部信息数组
-// */
-//- (NSMutableArray *)messagesfrom:(NSString *)userID withCount:(NSInteger)count offset:(NSInteger)offset
-//{
-//    [self createTableWithName:userID tableType:DatabaseMessageTableType];
-//    NSMutableArray *infoArray = [NSMutableArray array];
-//    NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM '%@' \
-//                                                 WHERE  %@ = 0 \
-//                                                 ORDER BY %@ DESC \
-//                                                 LIMIT %d OFFSET %d",userID,@"private",@"ID",count,offset];
-//    [self.databaseQueue inDatabase:^(FMDatabase *db) {
-//        FMResultSet *rs = [db executeQuery:SQL];
-//        while ([rs next]) {
-//            Message *newMessage = [[Message alloc] init];
-//            [newMessage fromDictionary:[[rs stringForColumn:@"msgJsonStr"] objectFromJSONString]];
-//            [infoArray insertObject:newMessage atIndex:0];
-//        }
-//
-//    }];
-//    
-//    return infoArray;
-//}
-//
-//- (void)updateMessageInfo:(Message *)newMessage tableName:(NSString *)tableName
-//{
-//    NSString *SQL = [NSString stringWithFormat:@"UPDATE '%@' SET %@ = '%@' \
-//                                                 WHERE %@ = '%@'",tableName,@"msgJsonStr",[[newMessage toDictionary] JSONString],@"msgID",newMessage.messageID];
-//    
-//    [self.databaseQueue inDatabase:^(FMDatabase *db) {
-//        [db executeUpdate:SQL];
-//    }];
-//}
+- (BOOL)existsSubscribeMatchWithMatchId:(NSString *)matchId
+{
+    __block BOOL result = NO;
+    
+    [self createSubscribeMatchTable];
+
+    NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM '%@' WHERE %@ = '%@'",subscribeMatchTableName,@"matchId",matchId];
+    
+    [self.databaseQueue inDatabase:^(FMDatabase *db) {
+        
+        FMResultSet *rs = [db executeQuery:SQL];
+        
+        if ([rs stringForColumn:@"matchId"].length > 0) {
+            result = YES;
+        }
+        
+        [rs close];
+    }];
+    
+    return result;
+}
+
 @end

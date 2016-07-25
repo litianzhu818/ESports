@@ -59,7 +59,6 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 @property (assign, nonatomic) NSInteger transferNewsOffset;
 @property (assign, nonatomic) NSInteger hotwordsNewsOffset;
 @property (assign, nonatomic) NSInteger limitForRequest;
-@property (assign, nonatomic) BOOL showImages;
 
 @property (assign, nonatomic) NSInteger transferNewsFirstRequest;
 @property (assign, nonatomic) NSInteger hotwordsNewsFirstRequest;
@@ -299,7 +298,6 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     self.transferNewsOffset = 0;
     self.hotwordsNewsFirstRequest = YES;
     self.transferNewsFirstRequest = YES;
-    self.showImages = NO;
     self.images = [NSMutableArray array];
     self.hotFocusNews = [NSMutableArray array];
     self.transferNewManager = [[TransferNewManager alloc] init];
@@ -315,12 +313,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                       [strongSelf.images addObjectsFromArray:images];
                                       dispatch_async(dispatch_get_main_queue(), ^{
                                           if (strongSelf.images.count > 0) {
-                                              if (strongSelf.showImages) {
-                                                  [strongSelf.hotfocusTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                                              }else{
-                                                  [strongSelf.hotfocusTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                                                                                      withRowAnimation:UITableViewRowAnimationFade];
-                                              }
+                                              
+                                              [strongSelf.hotfocusTableView reloadData];
                                           }
                                         
                                       });
@@ -437,12 +431,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                                }];
                                                                                
                                                                                
-                                                                               if (strongSelf.showImages) {
-                                                                                   [strongSelf.hotfocusTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                                                                               }else{
-                                                                                   [strongSelf.hotfocusTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                                                                                                                       withRowAnimation:UITableViewRowAnimationFade];
-                                                                               }
+                                                                               [strongSelf.hotfocusTableView reloadData];
                                                                                
                                                                                [[TMCache sharedCache] setObject:strongSelf.images
                                                                                                          forKey:newsImagesCacheKey
@@ -870,7 +859,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
         HotFocusNew *news = nil;
-        if (self.showImages) {
+        if (self.images.count > 0) {
             news = self.hotFocusNews[indexPath.row-1];
         }else{
             news = self.hotFocusNews[indexPath.row];
@@ -889,7 +878,6 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         NSInteger number = self.hotFocusNews.count;
         if (self.images.count > 0) {
             ++number;
-            self.showImages = YES;
         }
         return number;
         
@@ -923,7 +911,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         }else {
             HotFocusNewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HotFocusNewCell cellIdentifier]
                                                                     forIndexPath:indexPath];
-            cell.hotFocusNew = self.showImages ? self.hotFocusNews[indexPath.row-1]:self.hotFocusNews[indexPath.row];
+            cell.hotFocusNew = self.images.count > 0 ? self.hotFocusNews[indexPath.row-1]:self.hotFocusNews[indexPath.row];
             return cell;
         }
         
