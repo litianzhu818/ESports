@@ -1,18 +1,17 @@
 //
-//  ResultMatchCell.h
+//  ReplayTopCell.h
 //  ESports
 //
-//  Created by Peter Lee on 16/7/20.
+//  Created by Peter Lee on 16/7/26.
 //  Copyright © 2016年 Peter Lee. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "ResultMatchesManager.h"
 
-@interface ResultMatchCell : UITableViewCell
+@interface ReplayTopCell : UITableViewCell
 
 @property (strong, nonatomic) ResultMatch *resultMatch;
-@property (copy, nonatomic) void (^replayBlock) (ResultMatch *resultMatch);
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;

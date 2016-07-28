@@ -7,7 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "ResultMatchesManager.h"
 
 @interface MatchReplayController : BaseViewController
+
+@property (strong, nonatomic) ResultMatch *resultMatch;
+
+- (instancetype)initWithResultMatch:(ResultMatch *)resultMatch;
 
 @end

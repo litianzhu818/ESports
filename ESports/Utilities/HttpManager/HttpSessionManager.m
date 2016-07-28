@@ -171,6 +171,63 @@
                                                      }];
 }
 
+- (void)requestMatchTeamDataWithMatchId:(NSString *)matchId
+                                  block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"matchId":matchId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchTeamDataURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestMatchPlayerDataWithMatchId:(NSString *)matchId
+                                    block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"matchId":matchId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchPlayerDataURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestMatchReplayVideoWithMatchId:(NSString *)matchId
+                                     block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"matchId":matchId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchReplayVideoURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

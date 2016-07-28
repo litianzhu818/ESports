@@ -20,6 +20,7 @@
 #import "ResultMatchCell.h"
 #import "InsertIndexPathModel.h"
 #import "RxWebViewController.h"
+#import "MatchReplayController.h"
 
 static NSString *const matchesProcessListCacheKey = @"matches_controller_matchs_process_cache_key";
 static NSString *const matchesResultListCacheKey = @"matches_controller_mathcs_result_cache_key";
@@ -687,8 +688,11 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
         ResultMatchCell *cell = [tableView dequeueReusableCellWithIdentifier:[ResultMatchCell cellIdentifier]
                                                                forIndexPath:indexPath];
         cell.resultMatch = self.resultMatchesManager.resultMatchesContainers[indexPath.section].resultMatches[indexPath.row];
-        [cell setReplayBlock:^(NSString *matchId) {
-            
+        WEAK_SELF;
+        [cell setReplayBlock:^(ResultMatch *resultMatch) {
+            STRONG_SELF;
+            MatchReplayController *matchReplayController = [[MatchReplayController alloc] initWithResultMatch:resultMatch];
+            [strongSelf.navigationController pushViewController:matchReplayController animated:YES];
         }];
         return cell;
     }

@@ -16,6 +16,6 @@ target :ESports do
     pod 'BlocksKit' # ,'~> 2.2.5'
     pod 'CMPopTipView'
     pod 'SDCycleScrollView'#,'~> 1.64'
-    pod 'SDCycleScrollView'
+    pod 'HMSegmentedControl'
     pod 'FMDB'
 end

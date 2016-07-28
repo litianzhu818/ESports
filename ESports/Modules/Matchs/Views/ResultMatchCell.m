@@ -107,7 +107,7 @@
 - (IBAction)replayButtonAction:(id)sender
 {
     if (self.replayBlock) {
-        self.replayBlock(self.resultMatch.resultMatchId);
+        self.replayBlock(self.resultMatch);
     }
 }
 
@@ -132,6 +132,5 @@
 {
     return 89;
 }
-
 
 @end

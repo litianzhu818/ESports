@@ -40,4 +40,13 @@
 - (void)requestMatchResultWithOffset:(NSInteger)offset
                        numbersOfPage:(NSInteger)numbersOfPage
                                block:(void (^)(id data, NSError *error))block;
+
+- (void)requestMatchTeamDataWithMatchId:(NSString *)matchId
+                                  block:(void (^)(id data, NSError *error))block;
+
+- (void)requestMatchPlayerDataWithMatchId:(NSString *)matchId
+                                    block:(void (^)(id data, NSError *error))block;
+
+- (void)requestMatchReplayVideoWithMatchId:(NSString *)matchId
+                                     block:(void (^)(id data, NSError *error))block;
 @end

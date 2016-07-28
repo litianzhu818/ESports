@@ -17,6 +17,10 @@ static NSString *const hotwordsNewsURL = @"News/NewsHeadlines";
 static NSString *const detailNewsURL = @"News/NewsDetail";
 static NSString *const matchProcessURL = @"Match/MatchFixtures";
 static NSString *const matchResultURL = @"Match/Results";
+static NSString *const matchTeamDataURL = @"Match/GetTeamGameResults";
+static NSString *const matchPlayerDataURL = @"Match/GetPlayerGameResults";
+static NSString *const matchReplayVideoURL = @"Match/GetGameVideoUrls";
+
 static NSString *const LoginURL = @"<#login_url_string#>";
 
 #endif
