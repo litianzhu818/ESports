@@ -59,7 +59,7 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     
     UIColor *blueColor = HexColor(0x245fa9);
-    UIColor *redColor = HexColor(0x245fa9);
+    UIColor *redColor = HexColor(0xdd222b);
     
     self.titleLabel.textColor = [UIColor whiteColor];
     self.blueTeamNameLabel.textColor = blueColor;

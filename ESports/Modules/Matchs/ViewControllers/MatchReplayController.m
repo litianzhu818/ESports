@@ -114,8 +114,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
                                                                            }];
                                                                            
                                                                            if (strongSelf.currentDisplayType == MatchReplayDisplayTypeTeam) {
-                                                                               //[strongSelf.tableView reloadData];ß
-                                                                               [strongSelf.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(2, strongSelf.matchTeamDatas.count)] withRowAnimation:UITableViewRowAnimationFade];
+                                                                               [strongSelf.tableView reloadData];
+//                                                                               [strongSelf.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(2, strongSelf.matchTeamDatas.count)] withRowAnimation:UITableViewRowAnimationFade];
                                                                            }
                                                                        }
                                                                        
