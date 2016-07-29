@@ -12,9 +12,12 @@
 #import "MBProgressHUD.h"
 #import "HttpSessionManager.h"
 #import "MatchTeamData.h"
+#import "MatchPlayerData.h"
+#import "MatchVideoData.h"
 #import "ExtendTableViewHeaderView.h"
 #import "MatchTeamDataTopCell.h"
 #import "MatchTeamDataCenterCell.h"
+#import "MatchTeamDataBottomCell.h"
 
 typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     MatchReplayDisplayTypeTeam = 0,
@@ -28,6 +31,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 @property (assign, nonatomic) MatchReplayDisplayType currentDisplayType;
 
 @property (strong, nonatomic) NSMutableArray<MatchTeamData *> *matchTeamDatas;
+@property (strong, nonatomic) NSMutableArray<MatchPlayerData *> *matchPlayerDatas;
+@property (strong, nonatomic) NSMutableArray<MatchVideoData *> *matchVideoDatas;
 
 @end
 
@@ -83,6 +88,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     [self.tableView registerNib:[ReplayTypeCell nib] forCellReuseIdentifier:[ReplayTypeCell cellIdentifier]];
     [self.tableView registerNib:[MatchTeamDataTopCell nib] forCellReuseIdentifier:[MatchTeamDataTopCell cellIdentifier]];
     [self.tableView registerNib:[MatchTeamDataCenterCell nib] forCellReuseIdentifier:[MatchTeamDataCenterCell cellIdentifier]];
+    [self.tableView registerNib:[MatchTeamDataBottomCell nib] forCellReuseIdentifier:[MatchTeamDataBottomCell cellIdentifier]];
     
     [self.tableView registerClass:[ExtendTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:[ExtendTableViewHeaderView sectionHeaderViewIdentifier]];
 }
@@ -91,6 +97,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 {
     self.currentDisplayType = MatchReplayDisplayTypeTeam;
     self.matchTeamDatas = [NSMutableArray array];
+    self.matchPlayerDatas = [NSMutableArray array];
+    self.matchVideoDatas = [NSMutableArray array];
     
     WEAK_SELF;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -123,6 +131,77 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
                                                                    }];
 }
 
+- (void)setCurrentDisplayType:(MatchReplayDisplayType)currentDisplayType
+{
+    _currentDisplayType = currentDisplayType;
+    
+    if (_currentDisplayType == MatchReplayDisplayTypePlayer && self.matchPlayerDatas.count < 1) {
+        [self  firstLoadMatchPlayerData];
+    }else if (_currentDisplayType == MatchReplayDisplayTypeVideo && self.matchVideoDatas.count < 1) {
+        [self  firstLoadMatchVideoData];
+    }
+}
+
+- (void)firstLoadMatchPlayerData
+{
+    WEAK_SELF;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[HttpSessionManager sharedInstance] requestMatchPlayerDataWithMatchId:self.resultMatch.resultMatchId
+                                                                   block:^(NSArray<NSDictionary *> *matchPlayerDataDics, NSError *error) {
+                                                                       
+                                                                       STRONG_SELF;
+                                                                       
+                                                                       if (!error) {
+                                                                           
+                                                                           [strongSelf.matchPlayerDatas removeAllObjects];
+                                                                           
+                                                                           [matchPlayerDataDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                               MatchPlayerData *playerData = [[MatchPlayerData alloc] initWithDictionary:dic error:nil];
+                                                                               if (playerData) {
+                                                                                   [strongSelf.matchPlayerDatas addObject:playerData];
+                                                                               }
+                                                                           }];
+                                                                           
+                                                                           if (strongSelf.currentDisplayType == MatchReplayDisplayTypePlayer) {
+                                                                               [strongSelf.tableView reloadData];
+                                                                           }
+                                                                       }
+                                                                       
+                                                                       [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                                   }];
+}
+
+- (void)firstLoadMatchVideoData
+{
+    WEAK_SELF;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[HttpSessionManager sharedInstance] requestMatchReplayVideoWithMatchId:self.resultMatch.resultMatchId
+                                                                     block:^(NSArray<NSDictionary *> *matchVideoDataDics, NSError *error) {
+                                                                         
+                                                                         STRONG_SELF;
+                                                                         
+                                                                         if (!error) {
+                                                                             
+                                                                             [strongSelf.matchVideoDatas removeAllObjects];
+                                                                             
+                                                                             [matchVideoDataDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                 MatchVideoData *videoData = [[MatchVideoData alloc] initWithDictionary:dic error:nil];
+                                                                                 if (videoData) {
+                                                                                     [strongSelf.matchVideoDatas addObject:videoData];
+                                                                                 }
+                                                                             }];
+                                                                             
+                                                                             if (strongSelf.currentDisplayType == MatchReplayDisplayTypeVideo) {
+                                                                                 [strongSelf.tableView reloadData];
+                                                                             }
+                                                                         }
+                                                                         
+                                                                         [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                                     }];
+}
+
 #pragma mark - 切换语言响应方法
 - (void)languageDidChanged
 {
@@ -152,6 +231,12 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             return [MatchTeamDataTopCell cellHeight];
         }else if (indexPath.row == 1){
             return [MatchTeamDataCenterCell cellHeight];
+        }else if (indexPath.row == 2){
+            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section-2];
+            return [MatchTeamDataBottomCell cellHeightWithMatchTeamData:teamData isPicks:YES];
+        }else if (indexPath.row == 3){
+            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section-2];
+            return [MatchTeamDataBottomCell cellHeightWithMatchTeamData:teamData isPicks:NO];
         }
     }
     
@@ -213,7 +298,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam){
         MatchTeamData *teamData = self.matchTeamDatas[section - 2];
         if (teamData.isExtend) {
-            count = 2;
+            count = 4;
         }else{
             count = 0;
         }
@@ -232,8 +317,11 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     }else if (indexPath.section == 1 && indexPath.row == 0) {
         ReplayTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:[ReplayTypeCell cellIdentifier]
                                                               forIndexPath:indexPath];
+        WEAK_SELF;
         [cell setSelectedIndexBlock:^(NSInteger index) {
+            STRONG_SELF;
             
+            strongSelf.currentDisplayType = index;
         }];
         return cell;
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam) {
@@ -253,6 +341,20 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             cell.redTeamName = self.resultMatch.bTeamName;
             cell.matchTeamData = self.matchTeamDatas[indexPath.section - 2];
             
+            return cell;
+        }else if (indexPath.row == 2) {
+            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section - 2];
+            MatchTeamDataBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataBottomCell cellIdentifier]
+                                                                            forIndexPath:indexPath];
+            cell.isPicks = YES;
+            cell.matchTeamData = teamData;
+            return cell;
+        }else if (indexPath.row == 3) {
+            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section - 2];
+            MatchTeamDataBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataBottomCell cellIdentifier]
+                                                                            forIndexPath:indexPath];
+            cell.isPicks = NO;
+            cell.matchTeamData = teamData;
             return cell;
         }
     }

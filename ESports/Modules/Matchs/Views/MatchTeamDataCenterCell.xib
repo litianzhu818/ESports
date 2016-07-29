@@ -326,16 +326,20 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="blueDragonImageView" destination="Xiv-wl-VAJ" id="ckZ-DA-gDp"/>
+                <outlet property="blueDragonImageViewLeftConstraint" destination="09B-jF-rE2" id="htg-36-Ymv"/>
                 <outlet property="blueDragonImageViewWidthConstraint" destination="x8n-Da-MUI" id="yxz-Rd-fsT"/>
                 <outlet property="blueDragonScoreLabel" destination="DRg-40-lK9" id="UXk-cY-uXR"/>
                 <outlet property="blueGoldDiffImageView" destination="Eb1-Ax-oQq" id="cOo-5v-T1c"/>
+                <outlet property="blueGoldDiffImageViewLeftConstraint" destination="KoA-xL-6aG" id="pcS-mB-w1v"/>
                 <outlet property="blueGoldDiffImageViewWidthConstraint" destination="QI7-Wm-6sP" id="Vv4-Mo-hGK"/>
                 <outlet property="blueGoldDiffScoreLabel" destination="Enh-FO-yJf" id="Utz-CW-hHE"/>
                 <outlet property="blueKillImageView" destination="jnV-xb-lJr" id="90V-Iu-fm1"/>
+                <outlet property="blueKillImageViewLeftConstraint" destination="fm3-ED-yBo" id="igj-9U-V4X"/>
                 <outlet property="blueKillImageViewWidthConstraint" destination="NMc-B1-VVE" id="I0w-uO-45E"/>
                 <outlet property="blueKillScoreLabel" destination="qme-za-oz4" id="sRR-5d-o2s"/>
                 <outlet property="blueTeamNameLabel" destination="Gaf-8a-y9b" id="gKE-h6-InP"/>
                 <outlet property="blueTowerImageView" destination="cp4-rw-TM6" id="pRR-id-dF1"/>
+                <outlet property="blueTowerImageViewLeftConstraint" destination="oOI-VP-fIL" id="nbs-E9-db2"/>
                 <outlet property="blueTowerImageViewWidthConstraint" destination="d7M-vW-XE2" id="Wq2-dW-z0b"/>
                 <outlet property="blueTowerScoreLabel" destination="7cQ-TV-wnF" id="UHS-1g-kIE"/>
                 <outlet property="dragonLabel" destination="cCB-5y-zeY" id="A5m-tM-21c"/>
