@@ -330,7 +330,7 @@
                 <outlet property="blueDragonImageViewWidthConstraint" destination="x8n-Da-MUI" id="yxz-Rd-fsT"/>
                 <outlet property="blueDragonScoreLabel" destination="DRg-40-lK9" id="UXk-cY-uXR"/>
                 <outlet property="blueGoldDiffImageView" destination="Eb1-Ax-oQq" id="cOo-5v-T1c"/>
-                <outlet property="blueGoldDiffImageViewLeftConstraint" destination="KoA-xL-6aG" id="pcS-mB-w1v"/>
+                <outlet property="blueGoldDiffImageViewLeftConstraint" destination="X22-XN-ded" id="yIE-GB-gaw"/>
                 <outlet property="blueGoldDiffImageViewWidthConstraint" destination="QI7-Wm-6sP" id="Vv4-Mo-hGK"/>
                 <outlet property="blueGoldDiffScoreLabel" destination="Enh-FO-yJf" id="Utz-CW-hHE"/>
                 <outlet property="blueKillImageView" destination="jnV-xb-lJr" id="90V-Iu-fm1"/>

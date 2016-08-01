@@ -53,16 +53,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWJ-iY-YIL">
                         <rect key="frame" x="66" y="66" width="246" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcO-PE-cdT">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="gnr-92-ib8"/>
-                                    <constraint firstAttribute="height" constant="21" id="niU-4V-QN3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tb-gd-d3G">
                                 <rect key="frame" x="62" y="0.0" width="60" height="21"/>
                                 <constraints>
@@ -93,6 +83,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dnN-16-wWs">
+                                <rect key="frame" x="205" y="23" width="23" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="EHT-I2-WGN"/>
+                                    <constraint firstAttribute="width" constant="23" id="tCC-ac-9r4"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qIQ-82-fa8">
                                 <rect key="frame" x="143" y="23" width="23" height="23"/>
                                 <constraints>
@@ -120,13 +117,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dnN-16-wWs">
-                                <rect key="frame" x="205" y="23" width="23" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcO-PE-cdT">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="EHT-I2-WGN"/>
-                                    <constraint firstAttribute="width" constant="23" id="tCC-ac-9r4"/>
+                                    <constraint firstAttribute="width" constant="60" id="gnr-92-ib8"/>
+                                    <constraint firstAttribute="height" constant="21" id="niU-4V-QN3"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -171,6 +171,26 @@
                     <constraint firstAttribute="bottom" secondItem="VWJ-iY-YIL" secondAttribute="bottom" constant="8" id="zZG-ef-ZH7"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="carryImageView" destination="qIQ-82-fa8" id="naq-WQ-8WP"/>
+                <outlet property="carryLabel" destination="dGx-fT-Gdi" id="htS-Bu-kkl"/>
+                <outlet property="carryLabelWidthConstraint" destination="Gl7-Jq-HPO" id="hrj-na-g6o"/>
+                <outlet property="iconiImageView" destination="HXK-kb-ASe" id="m3L-bx-toa"/>
+                <outlet property="kdaLabel" destination="lcO-PE-cdT" id="W7M-hY-aGT"/>
+                <outlet property="kdaLabelWidthConstraint" destination="gnr-92-ib8" id="XUI-UU-hAU"/>
+                <outlet property="kdaValueLabel" destination="tmY-mM-pBQ" id="MT8-vk-YE4"/>
+                <outlet property="kdaValueLabelWidthConstraint" destination="y7o-kS-NqZ" id="p3e-UI-2kt"/>
+                <outlet property="killCountLabel" destination="4tb-gd-d3G" id="6vl-po-Xnu"/>
+                <outlet property="killCountLabelWidthConstraint" destination="jcA-cL-diY" id="oAH-3M-45x"/>
+                <outlet property="killCountVauleLabel" destination="G9m-Ni-X5i" id="EXh-1d-FT5"/>
+                <outlet property="killCountvalueLabelWidthConstraint" destination="gLy-Iw-DEW" id="pJj-iK-tRX"/>
+                <outlet property="playerNameLabel" destination="0w7-6e-gGh" id="T5K-8C-FQM"/>
+                <outlet property="roleLabel" destination="NrP-3Q-Q5M" id="1Og-x9-8f5"/>
+                <outlet property="teamNameLabel" destination="ZAb-Sq-q7h" id="iAR-ko-4kS"/>
+                <outlet property="trollImageView" destination="dnN-16-wWs" id="oGk-Ua-4mU"/>
+                <outlet property="trollLabel" destination="iSx-ao-52F" id="olh-ZF-lMm"/>
+                <outlet property="trollLabelWidthConstraint" destination="e0v-mY-C3y" id="fOc-Kn-aQ0"/>
+            </connections>
             <point key="canvasLocation" x="448" y="299.5"/>
         </tableViewCell>
     </objects>

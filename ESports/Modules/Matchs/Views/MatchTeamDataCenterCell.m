@@ -178,12 +178,12 @@
     
     self.blueTowerScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.tower20];
     self.blueDragonScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.dragon20];
-    self.blueGoldDiffScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.goldDiffAt25];
+    self.blueGoldDiffScoreLabel.text = [NSString stringWithFormat:@"%.f",_matchTeamData.blueTeamGameData.goldDiffAt25];
     self.blueKillScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.kill];
     
     self.redTowerScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.tower20];
     self.redDragonScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.dragon20];
-    self.redGoldDiffScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.goldDiffAt25];
+    self.redGoldDiffScoreLabel.text = [NSString stringWithFormat:@"%.f",_matchTeamData.redTeamGameData.goldDiffAt25];
     self.redKillScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.kill];
     
     [self justWidthConstraintWithImageView:self.blueTowerImageView
@@ -232,25 +232,25 @@
     CGFloat totalWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - 8.0*3;
     
     if (blueScore == 0 && redScore == 0) {
-    
         widthConstraint.constant = totalWidth*0.5;
         leftConstraint.constant = 8.0f;
         [imageView setNeedsLayout];
-        
         return;
     };
     
-    
     NSInteger totalScore = blueScore+redScore;
-    
     CGFloat blueWidth = totalWidth *((CGFloat)blueScore/(CGFloat)totalScore);
     
-    widthConstraint.constant = blueWidth;
-    if (blueScore == 0 || blueScore == totalScore) {
+    if (blueScore == 0) {
         leftConstraint.constant = 0.0f;
+    }else if (blueScore == totalScore) {
+        leftConstraint.constant = 0.0f;
+        blueWidth += 8.0f;
     }else{
         leftConstraint.constant = 8.0f;
     }
+    
+    widthConstraint.constant = blueWidth;
     [imageView setNeedsLayout];
 }
 
@@ -286,14 +286,17 @@
         blueWidth = totalWidth;
     }
     
-    widthConstraint.constant = blueWidth;
-    
-    if (blueWidth == 0 || blueWidth == totalWidth) {
+
+    if (blueWidth == 0) {
         leftConstraint.constant = 0.0f;
+    }else if (blueWidth == totalWidth){
+        leftConstraint.constant = 0.0f;
+        blueWidth += 8.0f;
     }else{
         leftConstraint.constant = 8.0f;
     }
     
+    widthConstraint.constant = blueWidth;
     [imageView setNeedsLayout];
 }
 

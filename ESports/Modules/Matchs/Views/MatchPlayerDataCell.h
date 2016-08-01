@@ -12,6 +12,8 @@
 @interface MatchPlayerDataCell : UITableViewCell
 
 @property (strong, nonatomic) MatchPlayerDetailData *matchPlayerDetailData;
+@property (strong, nonatomic) NSString *teamName;
+@property (assign, nonatomic) BOOL isBlueTeam;
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;
