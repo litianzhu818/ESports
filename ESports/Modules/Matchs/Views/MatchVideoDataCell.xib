@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MatchVideoDataCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一局" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ado-78-qYz">
+                        <rect key="frame" x="8" y="8" width="173" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6xN-Yp-BIn">
+                        <rect key="frame" x="277" y="4" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="HQz-AM-fv3"/>
+                            <constraint firstAttribute="width" constant="35" id="wIe-RM-VMp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已有重播" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xY7-vn-FBb">
+                        <rect key="frame" x="189" y="8" width="80" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="r4L-wB-NTb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="6xN-Yp-BIn" secondAttribute="bottom" constant="6" id="7hf-cg-a9i"/>
+                    <constraint firstAttribute="trailing" secondItem="6xN-Yp-BIn" secondAttribute="trailing" constant="8" id="BH6-e6-TBC"/>
+                    <constraint firstItem="xY7-vn-FBb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="BVY-Yj-75T"/>
+                    <constraint firstItem="6xN-Yp-BIn" firstAttribute="leading" secondItem="xY7-vn-FBb" secondAttribute="trailing" constant="8" id="H38-pq-uB1"/>
+                    <constraint firstAttribute="bottom" secondItem="xY7-vn-FBb" secondAttribute="bottom" constant="10" id="NIz-kA-hfK"/>
+                    <constraint firstItem="6xN-Yp-BIn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="NMa-oK-csv"/>
+                    <constraint firstAttribute="bottom" secondItem="Ado-78-qYz" secondAttribute="bottom" constant="10" id="RvD-5E-bHX"/>
+                    <constraint firstItem="Ado-78-qYz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="b8K-X0-E7b"/>
+                    <constraint firstItem="Ado-78-qYz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="nwZ-hm-kCE"/>
+                    <constraint firstItem="xY7-vn-FBb" firstAttribute="leading" secondItem="Ado-78-qYz" secondAttribute="trailing" constant="8" id="vkY-vH-mIb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="hasVideoTitleLabel" destination="xY7-vn-FBb" id="0aJ-xu-qmt"/>
+                <outlet property="titleLabel" destination="Ado-78-qYz" id="wq5-qx-FdK"/>
+                <outlet property="videoImageView" destination="6xN-Yp-BIn" id="i3Z-Nt-tLa"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

@@ -116,7 +116,7 @@
 @property (strong, nonatomic) NSString *gameOrder;
 @property (strong, nonatomic) NSArray<MatchPlayerDetailData> *bluePlayersDetailData;
 @property (strong, nonatomic) NSArray<MatchPlayerDetailData> *redPlayersDetailData;
-
+@property (strong, nonatomic) NSArray<MatchPlayerDetailData *> *playersDetailDatas;
 @property (assign, nonatomic) BOOL isExtend;
 
 @end

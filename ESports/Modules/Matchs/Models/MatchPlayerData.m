@@ -24,6 +24,14 @@
     return YES;
 }
 
+- (NSArray<MatchPlayerDetailData *> *)playersDetailDatas
+{
+    NSMutableArray<MatchPlayerDetailData *> *datas = [NSMutableArray array];
+    [datas addObjectsFromArray:self.bluePlayersDetailData];
+    [datas addObjectsFromArray:self.redPlayersDetailData];
+    return datas;
+}
+
 @end
 
 @implementation MatchPlayerDetailData

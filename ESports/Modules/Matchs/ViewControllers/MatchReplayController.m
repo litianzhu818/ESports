@@ -18,6 +18,9 @@
 #import "MatchTeamDataTopCell.h"
 #import "MatchTeamDataCenterCell.h"
 #import "MatchTeamDataBottomCell.h"
+#import "MatchPlayerDataCell.h"
+#import "MatchVideoDataCell.h"
+#import "RxWebViewController.h"
 
 typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     MatchReplayDisplayTypeTeam = 0,
@@ -89,7 +92,9 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     [self.tableView registerNib:[MatchTeamDataTopCell nib] forCellReuseIdentifier:[MatchTeamDataTopCell cellIdentifier]];
     [self.tableView registerNib:[MatchTeamDataCenterCell nib] forCellReuseIdentifier:[MatchTeamDataCenterCell cellIdentifier]];
     [self.tableView registerNib:[MatchTeamDataBottomCell nib] forCellReuseIdentifier:[MatchTeamDataBottomCell cellIdentifier]];
-    
+    [self.tableView registerNib:[MatchPlayerDataCell nib] forCellReuseIdentifier:[MatchPlayerDataCell cellIdentifier]];
+    [self.tableView registerNib:[MatchVideoDataCell nib] forCellReuseIdentifier:[MatchVideoDataCell cellIdentifier]];
+
     [self.tableView registerClass:[ExtendTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:[ExtendTableViewHeaderView sectionHeaderViewIdentifier]];
 }
 
@@ -133,12 +138,19 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 
 - (void)setCurrentDisplayType:(MatchReplayDisplayType)currentDisplayType
 {
+    
+    if (_currentDisplayType == currentDisplayType) return;
+    
     _currentDisplayType = currentDisplayType;
     
-    if (_currentDisplayType == MatchReplayDisplayTypePlayer && self.matchPlayerDatas.count < 1) {
+    if (_currentDisplayType == MatchReplayDisplayTypeTeam) {
+        [self.tableView reloadData];
+    }else if (_currentDisplayType == MatchReplayDisplayTypePlayer && self.matchPlayerDatas.count < 1) {
         [self  firstLoadMatchPlayerData];
     }else if (_currentDisplayType == MatchReplayDisplayTypeVideo && self.matchVideoDatas.count < 1) {
         [self  firstLoadMatchVideoData];
+    }else{
+        [self.tableView reloadData];
     }
 }
 
@@ -217,6 +229,10 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     NSInteger count = 2;
     if (self.currentDisplayType == MatchReplayDisplayTypeTeam) {
         count += self.matchTeamDatas.count;
+    }else if (self.currentDisplayType == MatchReplayDisplayTypePlayer) {
+        count = self.matchPlayerDatas.count;
+    }else if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {
+        ++count;
     }
     return count;
 }
@@ -238,6 +254,10 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             MatchTeamData *teamData = self.matchTeamDatas[indexPath.section-2];
             return [MatchTeamDataBottomCell cellHeightWithMatchTeamData:teamData isPicks:NO];
         }
+    }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer){
+        return [MatchPlayerDataCell cellHeight];
+    }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypeVideo){
+        return [MatchVideoDataCell cellHeight];
     }
     
     return 0.0f;
@@ -247,6 +267,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     CGFloat height = 10.0f;
     if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam) {
         height = [ExtendTableViewHeaderView sectionHeaderViewHeight];
+    }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
+        height = [ExtendTableViewHeaderView sectionHeaderViewHeight];
     }
     return height;
 }
@@ -254,6 +276,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 {
     CGFloat height = 0.000001f;
     if (section >= 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam) {
+        height = 10.0f;
+    }else if (section >= 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
         height = 10.0f;
     }
     return height;
@@ -274,16 +298,33 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             [strongSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
         }];
         return headerView;
+    }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
+        ExtendTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[ExtendTableViewHeaderView sectionHeaderViewIdentifier]];
+        headerView.title = self.matchPlayerDatas[section-2].gameOrder;
+        headerView.isExtend = self.matchPlayerDatas[section-2].isExtend;
+        
+        WEAK_SELF;
+        [headerView setSectionIndex:section tapBlock:^(NSInteger sectionIndex, BOOL isExtend) {
+            STRONG_SELF;
+            MatchPlayerData *playerData = strongSelf.matchPlayerDatas[sectionIndex-2];
+            playerData.isExtend = isExtend;
+            [strongSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+        }];
+        return headerView;
     }
     return nil;
 }
-//- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return nil;
-//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {
+        MatchVideoData *videoData = self.matchVideoDatas[indexPath.row];
+        if (videoData.videoUrlApp.length > 0) {
+            RxWebViewController *webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:videoData.videoUrlApp]];
+            [self.navigationController pushViewController:webViewController animated:YES];
+        }
+        
+    }
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -303,6 +344,15 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             count = 0;
         }
         
+    }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
+        MatchPlayerData *playerData = self.matchPlayerDatas[section - 2];
+        if (playerData.isExtend) {
+            count = playerData.bluePlayersDetailData.count + playerData.redPlayersDetailData.count;
+        }else{
+            count = 0;
+        }
+    }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypeVideo){
+        count = self.matchVideoDatas.count;
     }
     
     return count;
@@ -357,6 +407,23 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             cell.matchTeamData = teamData;
             return cell;
         }
+    }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
+        MatchPlayerDataCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchPlayerDataCell cellIdentifier]
+                                                                        forIndexPath:indexPath];
+        MatchPlayerDetailData *playerDetailData = self.matchPlayerDatas[indexPath.section-2].playersDetailDatas[indexPath.row];
+        
+        BOOL isBlueTeamPlayer = [self.matchPlayerDatas[indexPath.section-2].bluePlayersDetailData containsObject:playerDetailData];
+        cell.isBlueTeam = isBlueTeamPlayer;
+        cell.teamName = isBlueTeamPlayer ? self.resultMatch.aTeamName:self.resultMatch.bTeamName;
+        cell.matchPlayerDetailData = playerDetailData;
+        return cell;
+    }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypeVideo) {
+        
+        MatchVideoDataCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchVideoDataCell cellIdentifier]
+                                                                    forIndexPath:indexPath];
+        cell.matchVideoData = self.matchVideoDatas[indexPath.row];
+        return cell;
+        
     }
     
     return nil;
