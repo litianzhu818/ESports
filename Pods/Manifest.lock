@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
   - AFNetworking (3.1.0):
     - AFNetworking/NSURLSession (= 3.1.0)
     - AFNetworking/Reachability (= 3.1.0)
@@ -56,6 +57,7 @@ PODS:
   - TPKeyboardAvoiding (1.3)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.2.0)
   - AFNetworking (= 3.1.0)
   - BlocksKit
   - CMPopTipView
@@ -74,6 +76,7 @@ DEPENDENCIES:
   - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   CMPopTipView: 774e0230b5c73abb3c39051da6d8a383373c4f7f
@@ -91,6 +94,6 @@ SPEC CHECKSUMS:
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: ca620cd5acddaa6ada027aa449465f05d42b9436
+PODFILE CHECKSUM: 382c43292cee59be8e456f7ec4c91cf9b4b63e14
 
 COCOAPODS: 1.0.1

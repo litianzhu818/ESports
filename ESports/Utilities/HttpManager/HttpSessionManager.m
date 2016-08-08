@@ -228,6 +228,40 @@
                                                      }];
 }
 
+
+#pragma mark - 积分API
+- (void)requestMatchPointsTypeListWithBlock:(void (^)(id data, NSError *error))block
+{
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchPointsTypeListURL
+                                                   withParams:nil
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+- (void)requestTeamListWithPointsTypeId:(NSString *)pointsTypeId
+                                  block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"pointsTypeId":pointsTypeId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:matchStandingListURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

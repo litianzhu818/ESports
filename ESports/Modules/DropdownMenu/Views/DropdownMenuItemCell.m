@@ -58,19 +58,29 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    if (!self.hasBottomLine) return;
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetFillColorWithColor(context, self.contentView.backgroundColor.CGColor);
-    CGContextFillRect(context, rect);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineWidth(context, 1);  //线宽
+    CGContextSetAllowsAntialiasing(context, true);
     
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextStrokeRect(context, CGRectMake(0.0, rect.size.height - 3.0f, rect.size.width, 2.0));
+    CGContextSetStrokeColorWithColor(context, HexColor(0x000000).CGColor);  //线的颜色
     
-    CGContextSetStrokeColorWithColor(context, HexColor(0x1b2d3d).CGColor);
-    CGContextStrokeRect(context, CGRectMake(0.0, rect.size.height - 1.0f, rect.size.width, 1.0));
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, rect.size.height-2.0);  //起点坐标
+    CGContextAddLineToPoint(context, rect.size.width, rect.size.height-2.0);   //终点坐标
+    CGContextStrokePath(context);
+    
+    
+    
+    CGContextSetStrokeColorWithColor(context, HexColor(0x1b2d3d).CGColor);  //线的颜色
+    
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, rect.size.height-1.0);  //起点坐标
+    CGContextAddLineToPoint(context, rect.size.width, rect.size.height-1.0);   //终点坐标
+    CGContextStrokePath(context);
 }
+
 
 
 #pragma mark - class methods

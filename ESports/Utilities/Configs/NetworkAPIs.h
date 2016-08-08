@@ -20,6 +20,8 @@ static NSString *const matchResultURL = @"Match/Results";
 static NSString *const matchTeamDataURL = @"Match/GetTeamGameResults";
 static NSString *const matchPlayerDataURL = @"Match/GetPlayerGameResults";
 static NSString *const matchReplayVideoURL = @"Match/GetGameVideoUrls";
+static NSString *const matchPointsTypeListURL = @"Match/PointsType";
+static NSString *const matchStandingListURL = @"Match/PointsList";
 
 static NSString *const LoginURL = @"<#login_url_string#>";
 

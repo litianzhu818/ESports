@@ -49,4 +49,9 @@
 
 - (void)requestMatchReplayVideoWithMatchId:(NSString *)matchId
                                      block:(void (^)(id data, NSError *error))block;
+
+#pragma mark - 积分API
+- (void)requestMatchPointsTypeListWithBlock:(void (^)(id data, NSError *error))block;
+- (void)requestTeamListWithPointsTypeId:(NSString *)pointsTypeId
+                                  block:(void (^)(id data, NSError *error))block;
 @end

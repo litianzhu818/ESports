@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB55A45EFCE0F154101452A5 /* libPods-ESports.a */; };
+		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
 		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71627321D47516900EF6740 /* ReplayTopCell.m */; };
@@ -39,6 +40,12 @@
 		E717B30C1D51D4B100BE98A3 /* MatchVideoDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E717B30A1D51D4B100BE98A3 /* MatchVideoDataCell.xib */; };
 		E717B30F1D51DBCF00BE98A3 /* match_video_data_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E717B30D1D51DBCF00BE98A3 /* match_video_data_n@2x.png */; };
 		E717B3101D51DBCF00BE98A3 /* match_video_data_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E717B30E1D51DBCF00BE98A3 /* match_video_data_h@2x.png */; };
+		E717B3131D5334DC00BE98A3 /* PointsType.m in Sources */ = {isa = PBXBuildFile; fileRef = E717B3121D5334DC00BE98A3 /* PointsType.m */; };
+		E717B3171D53381D00BE98A3 /* MatchStandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E717B3151D53381D00BE98A3 /* MatchStandingCell.m */; };
+		E717B3181D53381D00BE98A3 /* MatchStandingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E717B3161D53381D00BE98A3 /* MatchStandingCell.xib */; };
+		E717B31B1D533DAE00BE98A3 /* PointsTypeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E717B31A1D533DAE00BE98A3 /* PointsTypeSelectView.m */; };
+		E717B31D1D533DD200BE98A3 /* PointsTypeSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E717B31C1D533DD200BE98A3 /* PointsTypeSelectView.xib */; };
+		E717B31F1D533F6B00BE98A3 /* match_points_type_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E717B31E1D533F6B00BE98A3 /* match_points_type_bg@2x.png */; };
 		E72FD8051D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8041D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m */; };
 		E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8371D212A1B000A5CE6 /* BaseViewController.m */; };
 		E72FD8461D23D8E2000A5CE6 /* LTZLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E72FD8431D23D8E2000A5CE6 /* LTZLocalizationManager.m */; };
@@ -156,6 +163,8 @@
 		0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.debug.xcconfig"; sourceTree = "<group>"; };
 		4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.release.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.release.xcconfig"; sourceTree = "<group>"; };
 		CB55A45EFCE0F154101452A5 /* libPods-ESports.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ESports.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
+		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
 		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
 		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
@@ -201,6 +210,15 @@
 		E717B30A1D51D4B100BE98A3 /* MatchVideoDataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchVideoDataCell.xib; sourceTree = "<group>"; };
 		E717B30D1D51DBCF00BE98A3 /* match_video_data_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "match_video_data_n@2x.png"; sourceTree = "<group>"; };
 		E717B30E1D51DBCF00BE98A3 /* match_video_data_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "match_video_data_h@2x.png"; sourceTree = "<group>"; };
+		E717B3111D5334DC00BE98A3 /* PointsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsType.h; sourceTree = "<group>"; };
+		E717B3121D5334DC00BE98A3 /* PointsType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsType.m; sourceTree = "<group>"; };
+		E717B3141D53381D00BE98A3 /* MatchStandingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchStandingCell.h; sourceTree = "<group>"; };
+		E717B3151D53381D00BE98A3 /* MatchStandingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchStandingCell.m; sourceTree = "<group>"; };
+		E717B3161D53381D00BE98A3 /* MatchStandingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchStandingCell.xib; sourceTree = "<group>"; };
+		E717B3191D533DAE00BE98A3 /* PointsTypeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTypeSelectView.h; sourceTree = "<group>"; };
+		E717B31A1D533DAE00BE98A3 /* PointsTypeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTypeSelectView.m; sourceTree = "<group>"; };
+		E717B31C1D533DD200BE98A3 /* PointsTypeSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointsTypeSelectView.xib; sourceTree = "<group>"; };
+		E717B31E1D533F6B00BE98A3 /* match_points_type_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "match_points_type_bg@2x.png"; sourceTree = "<group>"; };
 		E72FD8031D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HttpSessionClient+MultiLanguage.h"; sourceTree = "<group>"; };
 		E72FD8041D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HttpSessionClient+MultiLanguage.m"; sourceTree = "<group>"; };
 		E72FD8361D212A1B000A5CE6 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -706,6 +724,10 @@
 		E72FD8781D251575000A5CE6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E717B3111D5334DC00BE98A3 /* PointsType.h */,
+				E717B3121D5334DC00BE98A3 /* PointsType.m */,
+				E715509B1D5882CE0073F159 /* PointsTeam.h */,
+				E715509C1D5882CE0073F159 /* PointsTeam.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -713,6 +735,7 @@
 		E72FD8791D251575000A5CE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E717B31E1D533F6B00BE98A3 /* match_points_type_bg@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -730,6 +753,12 @@
 		E72FD87B1D251575000A5CE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E717B3141D53381D00BE98A3 /* MatchStandingCell.h */,
+				E717B3151D53381D00BE98A3 /* MatchStandingCell.m */,
+				E717B3161D53381D00BE98A3 /* MatchStandingCell.xib */,
+				E717B3191D533DAE00BE98A3 /* PointsTypeSelectView.h */,
+				E717B31A1D533DAE00BE98A3 /* PointsTypeSelectView.m */,
+				E717B31C1D533DD200BE98A3 /* PointsTypeSelectView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1218,6 +1247,7 @@
 				E760B38B1D3E107200F5DB54 /* DetailHotNewsBottomCell.xib in Resources */,
 				E760B3401D2FA61000F5DB54 /* LICENSE in Resources */,
 				E760B3321D2E386000F5DB54 /* location_selected@2x.png in Resources */,
+				E717B31F1D533F6B00BE98A3 /* match_points_type_bg@2x.png in Resources */,
 				E72FD8A41D264943000A5CE6 /* tabbar_matchs_h@2x.png in Resources */,
 				E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */,
 				E760B3901D3E19BF00F5DB54 /* DetailRelNewsBottomCell.xib in Resources */,
@@ -1237,12 +1267,14 @@
 				E716276A1D4B542E00EF6740 /* MatchPlayerDataCell.xib in Resources */,
 				E71627551D4A0FBE00EF6740 /* MatchTeamDataCenterCell.xib in Resources */,
 				E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */,
+				E717B3181D53381D00BE98A3 /* MatchStandingCell.xib in Resources */,
 				E717B3061D519FD800BE98A3 /* match_player_data_carry@2x.png in Resources */,
 				E716273A1D47674900EF6740 /* ReplayTypeCell.xib in Resources */,
 				E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */,
 				E72FD88B1D2516D8000A5CE6 /* MatchsController.xib in Resources */,
 				E7BD57771CF4360D008F2D69 /* Assets.xcassets in Resources */,
 				E760B3351D2E39AD00F5DB54 /* location_drop_n@2x.png in Resources */,
+				E717B31D1D533DD200BE98A3 /* PointsTypeSelectView.xib in Resources */,
 				E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */,
 				E71627461D49AD8400EF6740 /* match_team_data_arrow@2x.png in Resources */,
 				E73911B41D2A592D00F4A522 /* sys_language_s_chinese@2x.png in Resources */,
@@ -1338,10 +1370,12 @@
 				E760B3A51D3F621400F5DB54 /* ResultMatchesManager.m in Sources */,
 				E716273D1D48A27300EF6740 /* MatchTeamData.m in Sources */,
 				E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */,
+				E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */,
 				E760B3831D3CDD6600F5DB54 /* DetailNewsCenterCell.m in Sources */,
 				E72FD8051D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m in Sources */,
 				E717B30B1D51D4B100BE98A3 /* MatchVideoDataCell.m in Sources */,
 				E7BD57981CF6F4D3008F2D69 /* NSObject+Custom.m in Sources */,
+				E717B3171D53381D00BE98A3 /* MatchStandingCell.m in Sources */,
 				E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */,
 				E716275E1D4B33ED00EF6740 /* MatchPickCell.m in Sources */,
 				E72FD8941D251735000A5CE6 /* StrengthRatingController.m in Sources */,
@@ -1373,6 +1407,7 @@
 				E71627691D4B542E00EF6740 /* MatchPlayerDataCell.m in Sources */,
 				E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */,
 				E760B3A91D3F847D00F5DB54 /* ProcessMatchCell.m in Sources */,
+				E717B31B1D533DAE00BE98A3 /* PointsTypeSelectView.m in Sources */,
 				E760B34D1D36471B00F5DB54 /* NewsRotationImage.m in Sources */,
 				E760B39E1D3E279B00F5DB54 /* DetailNewSubRelCell.m in Sources */,
 				E760B3501D36559700F5DB54 /* HotWordNewManager.m in Sources */,
@@ -1389,6 +1424,7 @@
 				E72FD85A1D24F420000A5CE6 /* NJKWebViewProgressView.m in Sources */,
 				E73911C41D2A640B00F4A522 /* PopMenuStyle.m in Sources */,
 				E72FD84E1D24D37C000A5CE6 /* BaseNavigationController.m in Sources */,
+				E717B3131D5334DC00BE98A3 /* PointsType.m in Sources */,
 				E760B33E1D2FA61000F5DB54 /* IonIcons.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

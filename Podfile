@@ -18,4 +18,5 @@ target :ESports do
     pod 'SDCycleScrollView'#,'~> 1.64'
     pod 'HMSegmentedControl'
     pod 'FMDB'
+    pod 'ActionSheetPicker-3.0', '~> 2.2.0'
 end
