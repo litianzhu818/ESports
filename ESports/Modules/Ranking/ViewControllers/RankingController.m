@@ -48,11 +48,11 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
 
 @end
 
-@interface RankingController ()
+@interface RankingController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) PointsTypeSelectView *pointsTypeSelectView;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic)  UITableView *tableView;
 @property (strong, nonatomic) MJRefreshNormalHeader *tableViewHeader;
 
 @property (strong, nonatomic) DropdownMenu *dropdownMenu;
@@ -108,7 +108,10 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                            @"tableview_header_loading_title":@"Loading...",
                                            @"tableview_footer_normal_title":@"Clicking to get more data",
                                            @"tableview_footer_loading_title":@"Loading more...",
-                                           @"tableview_footer_no_data_title":@"There is no more data"
+                                           @"tableview_footer_no_data_title":@"There is no more data",
+                                           @"picker_title":@"Match types",
+                                           @"picker_cancel_title":@"Cancel",
+                                           @"picker_select_title":@"Done"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"title":@"积分排行榜",
@@ -126,7 +129,10 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                            @"tableview_header_loading_title":@"获取数据中...",
                                            @"tableview_footer_normal_title":@"点击加载更多数据",
                                            @"tableview_footer_loading_title":@"正在加载数据...",
-                                           @"tableview_footer_no_data_title":@"没有更多数据了"
+                                           @"tableview_footer_no_data_title":@"没有更多数据了",
+                                           @"picker_title":@"赛事类型",
+                                           @"picker_cancel_title":@"取消",
+                                           @"picker_select_title":@"选择"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"title":@"積分排行榜",
@@ -144,11 +150,16 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                            @"tableview_header_loading_title":@"獲取數據中...",
                                            @"tableview_footer_normal_title":@"點擊加載更多數據",
                                            @"tableview_footer_loading_title":@"正在加載數據...",
-                                           @"tableview_footer_no_data_title":@"沒有更多數據了"
+                                           @"tableview_footer_no_data_title":@"沒有更多數據了",
+                                           @"picker_title":@"賽事類型",
+                                           @"picker_cancel_title":@"取消",
+                                           @"picker_select_title":@"選擇"
                                            
                                            }
                                    };
     self.title = LTZLocalizedString(@"title", nil);
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.dropdownMenu = [[DropdownMenu alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), CGRectGetHeight([[UIScreen mainScreen] bounds]))
                                                       Items:@[[[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_global", nil)],
@@ -192,31 +203,37 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     // 修改tableview的背景颜色
     self.tableView.backgroundColor = self.view.backgroundColor;
     
-//    self.actionSheetStringPicker = [[ActionSheetStringPicker alloc] initWithTarget:self successAction:@selector(selectAction) cancelAction:@selector(cancelAction) origin:self.view];
-//    self.actionSheetStringPicker.title = @"1234";
-//    
-//    ActionSheetStringPicker z
     
     self.pointsTypeSelectView = [PointsTypeSelectView instanceFromNib];
+    self.pointsTypeSelectView.translatesAutoresizingMaskIntoConstraints = NO;
     self.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_wait_download", nil);
     WEAK_SELF;
     [self.pointsTypeSelectView setTapActionBlock:^{
         STRONG_SELF;
-        NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
-        
-        [ActionSheetStringPicker showPickerWithTitle:@"Select a Color"
-                                                rows:colors
-                                    initialSelection:0
-                                           doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                               NSLog(@"Picker: %@, Index: %@, value: %@",
-                                                     picker, selectedIndex, selectedValue);
-                                           }
-                                         cancelBlock:^(ActionSheetStringPicker *picker) {
-                                             NSLog(@"Block Picker Canceled");
-                                         }
-                                              origin:strongSelf.view];
+        [strongSelf.actionSheetStringPicker showActionSheetPicker];
     }];
+    
     [self.view addSubview:self.pointsTypeSelectView];
+    
+    self.tableView = ({
+    
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.backgroundColor = self.view.backgroundColor;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        UIView *view = [UIView new];
+        view.backgroundColor = self.view.backgroundColor;
+        [tableView setTableFooterView:view];
+        
+        [tableView registerNib:[MatchStandingCell nib] forCellReuseIdentifier:[MatchStandingCell cellIdentifier]];
+        
+        [self.view addSubview:tableView];
+        tableView;
+    });
+    
     [self.view bringSubviewToFront:self.dropdownMenu];
     
     NSMutableArray *constraints = [NSMutableArray array];
@@ -224,15 +241,15 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                                                              options:0
                                                                              metrics:nil
                                                                                views:NSDictionaryOfVariableBindings(_pointsTypeSelectView)]];
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.0-[_pointsTypeSelectView(==100)]"
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0.0-[_tableView]-0.0-|"
                                                                              options:0
                                                                              metrics:nil
-                                                                               views:NSDictionaryOfVariableBindings(_pointsTypeSelectView)]];
+                                                                               views:NSDictionaryOfVariableBindings(_tableView)]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.0-[_pointsTypeSelectView(==100)]-0.0-[_tableView]-0.0-|"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:NSDictionaryOfVariableBindings(_pointsTypeSelectView, _tableView)]];
     [self.view addConstraints:constraints];
-    
-    [self.pointsTypeSelectView setNeedsUpdateConstraints];
-    
-    
     
     
     // 为UITableView添加上下拉
@@ -244,26 +261,43 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     [self.tableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
     [self.tableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
     self.tableView.mj_header = self.tableViewHeader;
-    
-    
-    [self.tableView registerNib:[MatchStandingCell nib] forCellReuseIdentifier:[MatchStandingCell cellIdentifier]];
-    
-    UIView *view = [UIView new];
-    view.backgroundColor = self.view.backgroundColor;
-    [self.tableView setTableFooterView:view];
-
-    NSLog(@"%@##%@",NSStringFromCGRect(self.pointsTypeSelectView.frame),NSStringFromCGRect(self.view.frame));
-    
 }
 
-- (void)selectAction
+- (ActionSheetStringPicker *)actionSheetStringPicker
 {
+    if (!_actionSheetStringPicker) {
+        
+        NSInteger index = [self.pointsTypes indexOfObject:self.currentPointsType];
+        NSArray *titles = [self.pointsTypes valueForKeyPath:@"pointsTypeName"];
+        WEAK_SELF;
+        _actionSheetStringPicker = [[ActionSheetStringPicker alloc] initWithTitle:LTZLocalizedString(@"picker_title", nil)
+                                                                             rows:titles
+                                                                 initialSelection:index
+                                                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                            
+                                                                            STRONG_SELF;
+                                                                            strongSelf.currentPointsType = strongSelf.pointsTypes[selectedIndex];
+                                                                            
+                                                                        } cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                            
+                                                                        } origin:self.view];
+        _actionSheetStringPicker.pickerBackgroundColor = HexColor(0x0e161f);
+        _actionSheetStringPicker.toolbarBackgroundColor = HexColor(0x121b27);
+        _actionSheetStringPicker.toolbarButtonsColor = HexColor(0x8b8d95);
+        _actionSheetStringPicker.titleTextAttributes = @{NSForegroundColorAttributeName:HexColor(0xa7a8ab)};
+        
+        UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] init];
+        cancelBarButtonItem.title = LTZLocalizedString(@"picker_cancel_title", nil);
+        UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] init];
+        doneBarButtonItem.title = LTZLocalizedString(@"picker_select_title", nil);
+        
+        [_actionSheetStringPicker setCancelButton:cancelBarButtonItem];
+        [_actionSheetStringPicker setDoneButton:doneBarButtonItem];
+        
+        [_actionSheetStringPicker setTextColor:HexColor(0x8b8d95)];
+    }
 
-}
-
-- (void)cancelAction
-{
-
+    return _actionSheetStringPicker;
 }
 
 - (void)loadData
@@ -326,6 +360,8 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     if (self.pointsTypes.count == 0) {
         self.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_no_data", nil);
     }
+    
+    self.actionSheetStringPicker = nil;
 }
 
 #pragma mark - 网络请求数据
@@ -356,6 +392,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
             
             if (strongSelf.pointsTypes.count > 0 && !containsCurrentPointsType) {
                 strongSelf.currentPointsType = strongSelf.pointsTypes[0];
+                strongSelf.actionSheetStringPicker = nil;
             }else if (self.pointsTypes.count == 0){
                 strongSelf.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_no_data", nil);
             }

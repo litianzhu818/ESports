@@ -69,7 +69,7 @@
 {
     self.backgroundColor = HexColor(0x121b27);
     
-    //[self.backgroundView bringSubviewToFront:self.backgroundButton];
+    [self.backgroundView bringSubviewToFront:self.backgroundButton];
     
     self.teamNameLabel.textColor = HexColor(0xa7a8ab);
     
@@ -101,8 +101,7 @@
     [self.backgroundButton setBackgroundImage:image forState:UIControlStateNormal];
     [self.backgroundButton setBackgroundImage:image forState:UIControlStateHighlighted];
     
-//    self.backgroundButton.backgroundColor = [HexColor(0x121b27) colorWithAlphaComponent:0.0000001];
-//    [self.backgroundButton addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
+    //[self.backgroundButton addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
@@ -222,33 +221,33 @@
     [view setNeedsUpdateConstraints];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //your code here
-    
-    [super touchesBegan:touches withEvent:event];
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //your code here
-    
-    // check touch up inside
-    if ([self superview]) {
-        UITouch *touch = [touches anyObject];
-        CGPoint point = [touch locationInView:[self superview]];
-        //TODO:这里可以将触摸范围扩大，便于操作，例如：
-        CGRect validTouchArea = CGRectMake((self.frame.origin.x - 10),
-                                           (self.frame.origin.y - 10),
-                                           (self.frame.size.width + 10),
-                                           (self.frame.size.height + 10));
-        if (CGRectContainsPoint(validTouchArea, point)) {
-            //your code here
-            [self tapAction:nil];
-        }
-    }
-    
-    [super touchesEnded:touches withEvent:event];
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    //your code here
+//    
+//    [super touchesBegan:touches withEvent:event];
+//}
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    //your code here
+//    
+//    // check touch up inside
+//    if ([self superview]) {
+//        UITouch *touch = [touches anyObject];
+//        CGPoint point = [touch locationInView:[self superview]];
+//        //TODO:这里可以将触摸范围扩大，便于操作，例如：
+//        CGRect validTouchArea = CGRectMake((self.frame.origin.x - 10),
+//                                           (self.frame.origin.y - 10),
+//                                           (self.frame.size.width + 10),
+//                                           (self.frame.size.height + 10));
+//        if (CGRectContainsPoint(validTouchArea, point)) {
+//            //your code here
+//            [self tapAction:nil];
+//        }
+//    }
+//    
+//    [super touchesEnded:touches withEvent:event];
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.
