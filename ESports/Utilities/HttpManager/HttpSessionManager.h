@@ -54,4 +54,23 @@
 - (void)requestMatchPointsTypeListWithBlock:(void (^)(id data, NSError *error))block;
 - (void)requestTeamListWithPointsTypeId:(NSString *)pointsTypeId
                                   block:(void (^)(id data, NSError *error))block;
+
+#pragma mark - 实力评级API
+- (void)requestStrengthScoreTeamsListWithOffset:(NSInteger)offset
+                                  numbersOfPage:(NSInteger)numbersOfPage
+                                          block:(void (^)(id data, NSError *error))block;
+
+- (void)requestStrengthScorePlayersListWithOffset:(NSInteger)offset
+                                    numbersOfPage:(NSInteger)numbersOfPage
+                                            block:(void (^)(id data, NSError *error))block;
+
+- (void)requestStrengthScoreTeamDetailWithTeamId:(NSString *)teamId
+                                           block:(void (^)(id data, NSError *error))block;
+
+- (void)requestStrengthScorePlayerDetailWithPlayerId:(NSString *)playerId
+                                               block:(void (^)(id data, NSError *error))block;
+
+
+
+
 @end

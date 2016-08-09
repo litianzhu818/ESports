@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="StrengScorePlayerCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMh-9N-ry3">
+                        <rect key="frame" x="461" y="8" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="ca3-eG-NkY"/>
+                            <constraint firstAttribute="width" constant="27" id="oTd-J2-jwy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ranking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPM-gs-h4Y">
+                        <rect key="frame" x="8" y="8" width="50" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="Rgo-Ba-LJW"/>
+                            <constraint firstAttribute="height" constant="27" id="xcn-DA-otF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfS-bf-4Qo">
+                        <rect key="frame" x="101" y="8" width="338" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="2Ot-wt-IOO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7PR-za-AQS">
+                        <rect key="frame" x="66" y="8" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="h71-SN-SaR"/>
+                            <constraint firstAttribute="width" constant="27" id="qrQ-3j-ohQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StrengScore" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCX-Rl-fRm">
+                        <rect key="frame" x="509" y="8" width="83" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="ScX-mu-0eP"/>
+                            <constraint firstAttribute="width" constant="83" id="qIR-U4-bao"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RPM-gs-h4Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="1PM-nu-euE"/>
+                    <constraint firstItem="GfS-bf-4Qo" firstAttribute="leading" secondItem="7PR-za-AQS" secondAttribute="trailing" constant="8" id="7cY-dR-Nuj"/>
+                    <constraint firstItem="qCX-Rl-fRm" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Fta-vX-DQM"/>
+                    <constraint firstItem="GfS-bf-4Qo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GjX-VY-fuw"/>
+                    <constraint firstItem="qCX-Rl-fRm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="I03-2I-Mid"/>
+                    <constraint firstItem="qCX-Rl-fRm" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="L1e-U1-hgt"/>
+                    <constraint firstItem="RPM-gs-h4Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="New-UN-BBy"/>
+                    <constraint firstItem="qCX-Rl-fRm" firstAttribute="leading" secondItem="LMh-9N-ry3" secondAttribute="trailing" constant="21" id="YKt-6F-9Lz"/>
+                    <constraint firstItem="LMh-9N-ry3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ZXf-Xq-Ujh"/>
+                    <constraint firstItem="LMh-9N-ry3" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="aUn-Jc-zJW"/>
+                    <constraint firstItem="7PR-za-AQS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="fOW-Ss-dgF"/>
+                    <constraint firstItem="GfS-bf-4Qo" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="jsE-nF-HYe"/>
+                    <constraint firstItem="7PR-za-AQS" firstAttribute="leading" secondItem="RPM-gs-h4Y" secondAttribute="trailing" constant="8" id="nnP-82-Ioz"/>
+                    <constraint firstItem="7PR-za-AQS" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="pl4-Rd-Q8Z"/>
+                    <constraint firstItem="RPM-gs-h4Y" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ytI-MI-DRL"/>
+                    <constraint firstItem="LMh-9N-ry3" firstAttribute="leading" secondItem="GfS-bf-4Qo" secondAttribute="trailing" constant="22" id="zoU-L8-WYV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameTitleLabel" destination="GfS-bf-4Qo" id="AHZ-cI-y2L"/>
+                <outlet property="rankingTitleLabel" destination="RPM-gs-h4Y" id="Bc3-0Q-CNE"/>
+                <outlet property="rankingTitleLabelWidthConstraint" destination="Rgo-Ba-LJW" id="HCR-7A-774"/>
+                <outlet property="regionImageView" destination="LMh-9N-ry3" id="bUn-ak-21E"/>
+                <outlet property="scoreTitleLabel" destination="qCX-Rl-fRm" id="4QR-fM-sye"/>
+                <outlet property="scoreTitleLabelWidthConstraint" destination="qIR-U4-bao" id="Chz-KM-Ijs"/>
+                <outlet property="teamImageView" destination="7PR-za-AQS" id="A5R-HC-Y2P"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

@@ -262,6 +262,88 @@
                                                      }];
 }
 
+
+#pragma mark - 实力评级API
+- (void)requestStrengthScoreTeamsListWithOffset:(NSInteger)offset
+                                  numbersOfPage:(NSInteger)numbersOfPage
+                                          block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(numbersOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScoreTeamsListURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestStrengthScorePlayersListWithOffset:(NSInteger)offset
+                                    numbersOfPage:(NSInteger)numbersOfPage
+                                            block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"start":@(offset),
+                             @"limit":@(numbersOfPage)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScorePlayersListURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestStrengthScoreTeamDetailWithTeamId:(NSString *)teamId
+                                           block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"teamId":teamId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScoreTeamsDetailURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestStrengthScorePlayerDetailWithPlayerId:(NSString *)playerId
+                                               block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"playerId":playerId
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScorePlayersDetailURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block
