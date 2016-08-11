@@ -20,7 +20,10 @@
                                                        @"GlobalRanking":@"playerGlobalRanking",
                                                        @"RegionLogo":@"playerRegionImageUrl",
                                                        @"Strength":@"playerStrength",
-                                                       @"Price":@"playerPrice"
+                                                       @"Price":@"playerPrice",
+                                                       @"PriRoleIdce":@"playerRoleId",
+                                                       @"TeamParentRegionId":@"playerTeamParentRegionId",
+                                                       @"RegionRanking":@"playerRegionRanking"
                                                        }];
 }
 

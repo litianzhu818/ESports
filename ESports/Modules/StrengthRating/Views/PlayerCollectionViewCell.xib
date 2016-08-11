@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PlayerCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="64" height="92"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="64" height="92"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dg5-27-wpo">
+                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="6bj-XM-uZb"/>
+                            <constraint firstAttribute="width" constant="48" id="GiQ-7o-XVR"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaU-Vt-MdI">
+                        <rect key="frame" x="0.0" y="64" width="64" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="BYM-ri-T8T"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="SaU-Vt-MdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="E3V-We-3q2"/>
+                <constraint firstItem="dg5-27-wpo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="INs-5p-k3x"/>
+                <constraint firstItem="dg5-27-wpo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="YDf-R9-BLA"/>
+                <constraint firstItem="SaU-Vt-MdI" firstAttribute="top" secondItem="dg5-27-wpo" secondAttribute="bottom" constant="8" id="c4X-r8-yNh"/>
+                <constraint firstAttribute="trailing" secondItem="dg5-27-wpo" secondAttribute="trailing" constant="8" id="tlx-tI-zpZ"/>
+                <constraint firstAttribute="trailing" secondItem="SaU-Vt-MdI" secondAttribute="trailing" id="xyl-KC-vym"/>
+            </constraints>
+            <size key="customSize" width="68" height="122"/>
+            <connections>
+                <outlet property="playerImageView" destination="dg5-27-wpo" id="n39-Oq-f0z"/>
+                <outlet property="playerImageViewHeightConstraint" destination="6bj-XM-uZb" id="iap-Bl-aRL"/>
+                <outlet property="playerImageViewWidthConstraint" destination="GiQ-7o-XVR" id="xdZ-rH-U6t"/>
+                <outlet property="playerNameLabel" destination="SaU-Vt-MdI" id="sG1-ER-NNf"/>
+            </connections>
+            <point key="canvasLocation" x="525" y="277"/>
+        </collectionViewCell>
+    </objects>
+</document>

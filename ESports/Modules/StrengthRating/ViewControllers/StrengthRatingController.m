@@ -17,6 +17,8 @@
 #import "StrengScorePlayer.h"
 #import "StrengScoreTeamCell.h"
 #import "StrengScorePlayerCell.h"
+#import "StrengthRankingTeamController.h"
+#import "StrengthRankingPlayerController.h"
 
 static NSString *const strengthScoreTeamsListCacheKey = @"strengthScore_controller_teams_list_cache_key";
 static NSString *const strengthScorePlayersListCacheKey = @"strengthScore_controller_players_list_cache_key";
@@ -702,8 +704,16 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     if ([tableView isEqual:self.teamsTableView]) {
         
-    }else if ([tableView isEqual:self.playersTableView]) {
+        StrengScoreTeam *team = self.teams[indexPath.row];
+        StrengthRankingTeamController *teamController = [[StrengthRankingTeamController alloc] initWithTeamId:team.teamId];
+        [self.navigationController pushViewController:teamController animated:YES];
         
+    }else if ([tableView isEqual:self.playersTableView]) {
+
+        StrengScorePlayer *player = self.players[indexPath.row];
+        StrengthRankingPlayerController *playerController = [[StrengthRankingPlayerController alloc] initWithPlayerId:player.playerId
+                                                                                                                 role:player.playerRoleId];
+        [self.navigationController pushViewController:playerController animated:YES];
     }
 }
 #pragma mark - UITableViewDataSource methods

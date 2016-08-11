@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="165" id="KGk-i7-Jjw" customClass="StrengScoreTeamTopCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uLU-9C-eNb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DuF-Ui-bgU">
+                        <rect key="frame" x="130" y="12" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="3qd-e4-t4C"/>
+                            <constraint firstAttribute="height" constant="60" id="SbI-J3-0Yd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5u1-82-ptx">
+                        <rect key="frame" x="8" y="85" width="304" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="4Mi-Vv-mI3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdM-MK-RAm">
+                        <rect key="frame" x="252" y="8" width="60" height="26"/>
+                        <color key="backgroundColor" red="0.28255116759999999" green="0.3136637988" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="PtV-We-R9h"/>
+                            <constraint firstAttribute="width" constant="60" id="y6C-DE-aTt"/>
+                        </constraints>
+                        <state key="normal" title="关注">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="folowAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Snd-AN-iLQ"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5u1-82-ptx" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="1LN-c6-aYQ"/>
+                    <constraint firstAttribute="trailing" secondItem="uLU-9C-eNb" secondAttribute="trailing" id="20q-Se-YxF"/>
+                    <constraint firstAttribute="trailing" secondItem="fdM-MK-RAm" secondAttribute="trailing" constant="8" id="94h-Ky-gpv"/>
+                    <constraint firstItem="DuF-Ui-bgU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="AfV-6t-aTm"/>
+                    <constraint firstItem="5u1-82-ptx" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="H01-E4-K6f"/>
+                    <constraint firstItem="fdM-MK-RAm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Qpb-hJ-t9z"/>
+                    <constraint firstItem="5u1-82-ptx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="dBh-jv-I3y"/>
+                    <constraint firstItem="uLU-9C-eNb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="f72-fp-hmv"/>
+                    <constraint firstItem="DuF-Ui-bgU" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="jWV-d5-2WF"/>
+                    <constraint firstAttribute="bottom" secondItem="uLU-9C-eNb" secondAttribute="bottom" id="mCG-Nj-k7F"/>
+                    <constraint firstItem="uLU-9C-eNb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pHT-3a-ADC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="followButton" destination="fdM-MK-RAm" id="8Vm-8n-k4y"/>
+                <outlet property="teamBackImageView" destination="uLU-9C-eNb" id="Ndr-Tn-Wvi"/>
+                <outlet property="teamLogoImageView" destination="DuF-Ui-bgU" id="f1h-Rj-dlD"/>
+                <outlet property="teamNameLabel" destination="5u1-82-ptx" id="sr5-jl-Kzz"/>
+            </connections>
+            <point key="canvasLocation" x="479" y="323"/>
+        </tableViewCell>
+    </objects>
+</document>
