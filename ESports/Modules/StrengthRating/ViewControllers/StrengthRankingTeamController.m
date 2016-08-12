@@ -13,6 +13,7 @@
 #import "StrengScoreTeamTopCell.h"
 #import "StrengScoreTeamSecondCell.h"
 #import "StrengScoreTeamThirdCell.h"
+#import "StrengScoreTeamFourthCell.h"
 
 @interface StrengthRankingTeamController ()
 
@@ -72,7 +73,7 @@
     [self.tableView registerNib:[StrengScoreTeamTopCell nib] forCellReuseIdentifier:[StrengScoreTeamTopCell cellIdentifier]];
     [self.tableView registerNib:[StrengScoreTeamSecondCell nib] forCellReuseIdentifier:[StrengScoreTeamSecondCell cellIdentifier]];
     [self.tableView registerNib:[StrengScoreTeamThirdCell nib] forCellReuseIdentifier:[StrengScoreTeamThirdCell cellIdentifier]];
-//    [self.tableView registerNib:[DetailHotNewsBottomCell nib] forCellReuseIdentifier:[DetailHotNewsBottomCell cellIdentifier]];
+    [self.tableView registerNib:[StrengScoreTeamFourthCell nib] forCellReuseIdentifier:[StrengScoreTeamFourthCell cellIdentifier]];
     
     UIView *tableViewFooterView = [[UIView alloc] init];
     tableViewFooterView.backgroundColor = self.view.backgroundColor;
@@ -126,6 +127,8 @@
         return [StrengScoreTeamSecondCell cellHeight];
     }else if (indexPath.row == 2) {
         return [StrengScoreTeamThirdCell cellHeight];
+    }else if (indexPath.row == 3) {
+        return [StrengScoreTeamFourthCell cellHeight];
     }
     return 0.0f;
 }
@@ -156,7 +159,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 3;
+    NSInteger count = 4;
     
     return count;
 }
@@ -176,6 +179,11 @@
         StrengScoreTeamThirdCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamThirdCell cellIdentifier]
                                                                           forIndexPath:indexPath];
         cell.players = self.teamDetail.teamPlayers;
+        return cell;
+    }else if (indexPath.row == 3) {
+        StrengScoreTeamFourthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFourthCell cellIdentifier]
+                                                                         forIndexPath:indexPath];
+        cell.teamDetail = self.teamDetail;
         return cell;
     }
     return nil;
