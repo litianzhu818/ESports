@@ -39,6 +39,8 @@ PODS:
   - JSONModel (1.3.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
+  - PNChart (0.8.9):
+    - UICountingLabel (~> 1.2.0)
   - QBImagePickerController (2.6.0)
   - RDVTabBarController (1.1.9)
   - ReactiveCocoa (2.5):
@@ -55,6 +57,7 @@ PODS:
   - SDWebImage/Core (3.8.1)
   - TMCache (2.1.0)
   - TPKeyboardAvoiding (1.3)
+  - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.2.0)
@@ -67,6 +70,7 @@ DEPENDENCIES:
   - JSONModel
   - MBProgressHUD
   - MJRefresh
+  - PNChart
   - QBImagePickerController (= 2.6.0)
   - RDVTabBarController
   - ReactiveCocoa
@@ -86,6 +90,7 @@ SPEC CHECKSUMS:
   JSONModel: 81c06ecf99190a25fa6aafceea5faffa7880868a
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
   QBImagePickerController: 095c2b2973de4da267334d2cfcac989c2eb5cdc2
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
@@ -93,7 +98,8 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
+  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: 382c43292cee59be8e456f7ec4c91cf9b4b63e14
+PODFILE CHECKSUM: 945ce6c2ac8d4796f5d60ffede26fdd2cda36adf
 
 COCOAPODS: 1.0.1

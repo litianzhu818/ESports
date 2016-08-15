@@ -62,6 +62,7 @@
 
 - (void)requestStrengthScorePlayersListWithOffset:(NSInteger)offset
                                     numbersOfPage:(NSInteger)numbersOfPage
+                                           roleId:(NSString *)roleId
                                             block:(void (^)(id data, NSError *error))block;
 
 - (void)requestStrengthScoreTeamDetailWithTeamId:(NSString *)teamId
@@ -70,7 +71,7 @@
 - (void)requestStrengthScorePlayerDetailWithPlayerId:(NSString *)playerId
                                                block:(void (^)(id data, NSError *error))block;
 
-
+- (void)requestStrengthScorePlayerRolesWithBlock:(void (^)(id data, NSError *error))block;
 
 
 @end

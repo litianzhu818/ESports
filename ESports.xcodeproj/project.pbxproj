@@ -32,6 +32,8 @@
 		E71550D31D5CA2190073F159 /* StrengScoreTeamThirdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71550D11D5CA2190073F159 /* StrengScoreTeamThirdCell.xib */; };
 		E71550D71D5DA5D10073F159 /* StrengScoreTeamFourthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550D51D5DA5D10073F159 /* StrengScoreTeamFourthCell.m */; };
 		E71550D81D5DA5D10073F159 /* StrengScoreTeamFourthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71550D61D5DA5D10073F159 /* StrengScoreTeamFourthCell.xib */; };
+		E71550DC1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550DA1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m */; };
+		E71550DD1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71550DB1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib */; };
 		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
 		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71627321D47516900EF6740 /* ReplayTopCell.m */; };
@@ -224,6 +226,9 @@
 		E71550D41D5DA5D10073F159 /* StrengScoreTeamFourthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeamFourthCell.h; sourceTree = "<group>"; };
 		E71550D51D5DA5D10073F159 /* StrengScoreTeamFourthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScoreTeamFourthCell.m; sourceTree = "<group>"; };
 		E71550D61D5DA5D10073F159 /* StrengScoreTeamFourthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScoreTeamFourthCell.xib; sourceTree = "<group>"; };
+		E71550D91D5DD62A0073F159 /* StrengScoreTeamFifthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeamFifthCell.h; sourceTree = "<group>"; };
+		E71550DA1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScoreTeamFifthCell.m; sourceTree = "<group>"; };
+		E71550DB1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScoreTeamFifthCell.xib; sourceTree = "<group>"; };
 		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
 		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
 		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
@@ -904,6 +909,9 @@
 				E71550D41D5DA5D10073F159 /* StrengScoreTeamFourthCell.h */,
 				E71550D51D5DA5D10073F159 /* StrengScoreTeamFourthCell.m */,
 				E71550D61D5DA5D10073F159 /* StrengScoreTeamFourthCell.xib */,
+				E71550D91D5DD62A0073F159 /* StrengScoreTeamFifthCell.h */,
+				E71550DA1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m */,
+				E71550DB1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1366,6 +1374,7 @@
 				E760B3AF1D3F8DE000F5DB54 /* ResultMatchCell.xib in Resources */,
 				E73911B31D2A592D00F4A522 /* sys_language_english@2x.png in Resources */,
 				E716276A1D4B542E00EF6740 /* MatchPlayerDataCell.xib in Resources */,
+				E71550DD1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib in Resources */,
 				E71627551D4A0FBE00EF6740 /* MatchTeamDataCenterCell.xib in Resources */,
 				E71550BD1D5C22120073F159 /* StrengthRankingPlayerController.xib in Resources */,
 				E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */,
@@ -1518,6 +1527,7 @@
 				E71550BC1D5C22120073F159 /* StrengthRankingPlayerController.m in Sources */,
 				E71550D21D5CA2190073F159 /* StrengScoreTeamThirdCell.m in Sources */,
 				E72FD88A1D2516D8000A5CE6 /* MatchsController.m in Sources */,
+				E71550DC1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m in Sources */,
 				E72FD85B1D24F420000A5CE6 /* RxWebViewController.m in Sources */,
 				E71627691D4B542E00EF6740 /* MatchPlayerDataCell.m in Sources */,
 				E71550CD1D5C9D460073F159 /* PlayerCollectionViewCell.m in Sources */,

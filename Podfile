@@ -19,4 +19,5 @@ target :ESports do
     pod 'HMSegmentedControl'
     pod 'FMDB'
     pod 'ActionSheetPicker-3.0', '~> 2.2.0'
+    pod 'PNChart'
 end

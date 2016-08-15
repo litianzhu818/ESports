@@ -22,6 +22,7 @@
 
 static NSString *const strengthScoreTeamsListCacheKey = @"strengthScore_controller_teams_list_cache_key";
 static NSString *const strengthScorePlayersListCacheKey = @"strengthScore_controller_players_list_cache_key";
+static NSString *const strengthScorePlayerRoleListCacheKey = @"strengthScore_controller_player_role_list_cache_key";
 
 typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     StrengthScoreTypeTeams = 0,
@@ -62,6 +63,8 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 
 @property (strong, nonatomic) NSMutableArray<StrengScoreTeam *> *teams;
 @property (strong, nonatomic) NSMutableArray<StrengScorePlayer *> *players;
+@property (strong, nonatomic) NSMutableArray<NSString *> *roleIds;
+@property (strong, nonatomic) NSString *currentRoleId;
 
 @end
 
@@ -305,6 +308,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 - (void)loadData
 {
     self.currentStrengthScoreType = StrengthScoreTypeTeams;
+    self.currentRoleId = @"0";
     self.limitForRequest = 20;
     self.teamsListOffset = 0;
     self.playersListOffset = 0;
@@ -312,9 +316,19 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     self.teams = [NSMutableArray array];
     self.players = [NSMutableArray array];
+    self.roleIds = [NSMutableArray array];
+    
     
     // 取缓存中的轮换图片
     __weak typeof(self) weakSelf = self;
+    
+    [[TMCache sharedCache] objectForKey:strengthScorePlayerRoleListCacheKey
+                                  block:^(TMCache *cache, NSString *key, NSArray<NSString *> *cacheStrengScorePlayerRoles) {
+                                      
+                                      __strong typeof(weakSelf) strongSelf = weakSelf;
+                                      [strongSelf.roleIds addObjectsFromArray:cacheStrengScorePlayerRoles];
+                                      
+                                    }];
     
     [[TMCache sharedCache] objectForKey:strengthScoreTeamsListCacheKey
                                   block:^(TMCache *cache, NSString *key, NSArray<StrengScoreTeam *> *cacheStrengScoreTeams) {
@@ -340,6 +354,33 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     // 开始网络请求数据
     [self.teamsTableView.mj_header beginRefreshing];
+    
+    // 请求role列表
+    [[HttpSessionManager sharedInstance] requestStrengthScorePlayerRolesWithBlock:^(NSArray<NSString *> *dics, NSError *error) {
+        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        if (!error) {
+            
+            if (dics.count > 0) {
+                
+                [strongSelf.roleIds removeAllObjects];
+                
+                NSMutableArray<NSString *> *cachePlayerRoleList = [NSMutableArray array];
+                
+                [dics enumerateObjectsUsingBlock:^(NSString * _Nonnull roleId, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [strongSelf.roleIds addObject:roleId];
+                    [cachePlayerRoleList addObject:roleId];
+                }];
+                
+                [[TMCache sharedCache] setObject:cachePlayerRoleList
+                                          forKey:strengthScorePlayerRoleListCacheKey
+                                           block:NULL];
+                
+            }
+        }
+        
+    }];
     
 }
 
@@ -624,7 +665,8 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     __weak typeof(self) weakSelf = self;
     
     [[HttpSessionManager sharedInstance] requestStrengthScorePlayersListWithOffset:self.playersListOffset
-                                                        numbersOfPage:self.limitForRequest
+                                                                     numbersOfPage:self.limitForRequest
+                                                                            roleId:(NSString *)roleId
                                                                 block:^(NSArray<NSDictionary *> *dics, NSError *error) {
                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                     

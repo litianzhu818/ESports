@@ -287,11 +287,15 @@
 
 - (void)requestStrengthScorePlayersListWithOffset:(NSInteger)offset
                                     numbersOfPage:(NSInteger)numbersOfPage
+                                           roleId:(NSString *)roleId
                                             block:(void (^)(id data, NSError *error))block
 {
+    if (!roleId) roleId = @"0";
+    
     NSDictionary *params = @{
                              @"start":@(offset),
-                             @"limit":@(numbersOfPage)
+                             @"limit":@(numbersOfPage),
+                             @"roleId":roleId
                              };
     
     [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScorePlayersListURL
@@ -334,6 +338,20 @@
     
     [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScorePlayersDetailURL
                                                    withParams:params
+                                               withMethodType:HttpSessionTypeGET
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+- (void)requestStrengthScorePlayerRolesWithBlock:(void (^)(id data, NSError *error))block
+{
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScorePlayerRoleListURL
+                                                   withParams:nil
                                                withMethodType:HttpSessionTypeGET
                                                      andBlock:^(id data, NSError *error) {
                                                          if (data) {

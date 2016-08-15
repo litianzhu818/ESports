@@ -26,6 +26,7 @@ static NSString *const strengthScoreTeamsListURL = @"Team/GetRankings";
 static NSString *const strengthScorePlayersListURL = @"Player/GetRankings";
 static NSString *const strengthScoreTeamsDetailURL = @"Team/GetTeamDetails";
 static NSString *const strengthScorePlayersDetailURL = @"Player/GetPlayerDetails";
+static NSString *const strengthScorePlayerRoleListURL = @"Player/GetRoleList";
 
 static NSString *const LoginURL = @"<#login_url_string#>";
 
