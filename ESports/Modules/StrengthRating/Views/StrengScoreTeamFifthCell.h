@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StrengScoreTeamDetail.h"
 
 @interface StrengScoreTeamFifthCell : UITableViewCell
+
+@property (strong, nonatomic) StrengScoreTeamDetail *teamDetail;
+
++ (UINib *)nib;
++ (NSString *)cellIdentifier;
++ (CGFloat)cellHeight;
 
 @end

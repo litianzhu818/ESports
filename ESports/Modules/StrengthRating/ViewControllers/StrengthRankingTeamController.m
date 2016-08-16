@@ -14,6 +14,7 @@
 #import "StrengScoreTeamSecondCell.h"
 #import "StrengScoreTeamThirdCell.h"
 #import "StrengScoreTeamFourthCell.h"
+#import "StrengScoreTeamFifthCell.h"
 
 @interface StrengthRankingTeamController ()
 
@@ -74,6 +75,7 @@
     [self.tableView registerNib:[StrengScoreTeamSecondCell nib] forCellReuseIdentifier:[StrengScoreTeamSecondCell cellIdentifier]];
     [self.tableView registerNib:[StrengScoreTeamThirdCell nib] forCellReuseIdentifier:[StrengScoreTeamThirdCell cellIdentifier]];
     [self.tableView registerNib:[StrengScoreTeamFourthCell nib] forCellReuseIdentifier:[StrengScoreTeamFourthCell cellIdentifier]];
+    [self.tableView registerNib:[StrengScoreTeamFifthCell nib] forCellReuseIdentifier:[StrengScoreTeamFifthCell cellIdentifier]];
     
     UIView *tableViewFooterView = [[UIView alloc] init];
     tableViewFooterView.backgroundColor = self.view.backgroundColor;
@@ -129,6 +131,8 @@
         return [StrengScoreTeamThirdCell cellHeight];
     }else if (indexPath.row == 3) {
         return [StrengScoreTeamFourthCell cellHeight];
+    }else if (indexPath.row == 4) {
+        return [StrengScoreTeamFifthCell cellHeight];
     }
     return 0.0f;
 }
@@ -159,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 4;
+    NSInteger count = 5;
     
     return count;
 }
@@ -183,6 +187,11 @@
     }else if (indexPath.row == 3) {
         StrengScoreTeamFourthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFourthCell cellIdentifier]
                                                                          forIndexPath:indexPath];
+        cell.teamDetail = self.teamDetail;
+        return cell;
+    }else if (indexPath.row == 4) {
+        StrengScoreTeamFifthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFifthCell cellIdentifier]
+                                                                          forIndexPath:indexPath];
         cell.teamDetail = self.teamDetail;
         return cell;
     }

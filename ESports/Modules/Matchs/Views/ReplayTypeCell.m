@@ -45,7 +45,7 @@
     
     self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[LTZLocalizedString(@"team_title", nil),LTZLocalizedString(@"player_title", nil),LTZLocalizedString(@"video_title", nil)]];
     self.segmentedControl.frame = CGRectMake(0, 0,CGRectGetWidth([[UIScreen mainScreen] bounds]), 44);
-    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
     //self.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;

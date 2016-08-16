@@ -621,6 +621,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     [self.playersTableView.mj_footer resetNoMoreData];
     [[HttpSessionManager sharedInstance] requestStrengthScorePlayersListWithOffset:self.playersListOffset
                                                         numbersOfPage:self.limitForRequest
+                                                            roleId:self.currentRoleId
                                                                 block:^(NSArray<NSDictionary *> *dics, NSError *error) {
                                                                     
                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -666,7 +667,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     [[HttpSessionManager sharedInstance] requestStrengthScorePlayersListWithOffset:self.playersListOffset
                                                                      numbersOfPage:self.limitForRequest
-                                                                            roleId:(NSString *)roleId
+                                                                            roleId:self.currentRoleId
                                                                 block:^(NSArray<NSDictionary *> *dics, NSError *error) {
                                                                     __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                     
