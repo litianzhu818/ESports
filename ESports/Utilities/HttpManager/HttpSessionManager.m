@@ -330,10 +330,12 @@
 }
 
 - (void)requestStrengthScorePlayerDetailWithPlayerId:(NSString *)playerId
+                                        playerRoleId:(NSString *)playerRoleId
                                                block:(void (^)(id data, NSError *error))block
 {
     NSDictionary *params = @{
-                             @"playerId":playerId
+                             @"playerId":playerId,
+                             @"roleId":playerRoleId
                              };
     
     [[HttpSessionClient sharedClient] requestJsonDataWithPath:strengthScorePlayersDetailURL

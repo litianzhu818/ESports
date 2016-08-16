@@ -21,7 +21,7 @@
                                                        @"RegionLogo":@"playerRegionImageUrl",
                                                        @"Strength":@"playerStrength",
                                                        @"Price":@"playerPrice",
-                                                       @"PriRoleIdce":@"playerRoleId",
+                                                       @"RoleId":@"playerRoleId",
                                                        @"TeamParentRegionId":@"playerTeamParentRegionId",
                                                        @"RegionRanking":@"playerRegionRanking"
                                                        }];

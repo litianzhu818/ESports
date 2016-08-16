@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StrengthRankingPlayerController">
             <connections>
+                <outlet property="tableView" destination="VBX-HZ-w2S" id="3fv-lG-XvW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,17 +16,21 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ARK-dJ-435">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="VBX-HZ-w2S">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9hF-Wg-F1E"/>
+                        <outlet property="delegate" destination="-1" id="hxl-RK-RUZ"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="ARK-dJ-435" secondAttribute="trailing" id="HAp-d9-TmI"/>
-                <constraint firstItem="ARK-dJ-435" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kPk-bX-EQ5"/>
-                <constraint firstItem="ARK-dJ-435" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oJN-Yr-civ"/>
-                <constraint firstAttribute="bottom" secondItem="ARK-dJ-435" secondAttribute="bottom" id="vZz-wP-cFX"/>
+                <constraint firstAttribute="bottom" secondItem="VBX-HZ-w2S" secondAttribute="bottom" id="FpU-Hh-0nJ"/>
+                <constraint firstAttribute="trailing" secondItem="VBX-HZ-w2S" secondAttribute="trailing" id="JiP-rL-tPM"/>
+                <constraint firstItem="VBX-HZ-w2S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gT8-nR-8po"/>
+                <constraint firstItem="VBX-HZ-w2S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kEf-Ew-DFx"/>
             </constraints>
         </view>
     </objects>

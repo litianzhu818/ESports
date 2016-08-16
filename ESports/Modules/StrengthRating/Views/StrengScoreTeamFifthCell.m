@@ -286,7 +286,12 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
         return [PNLineChartDataItem dataItemWithY:yValue];
     };
 
-    self.lineChart.chartData = @[data];
+    if (self.lineChart.chartData) {
+        [self.lineChart updateChartData:@[data]];
+    }else{
+        self.lineChart.chartData = @[data];
+    }
+    
     [self.lineChart strokeChart];
 }
 

@@ -69,6 +69,7 @@
                                            block:(void (^)(id data, NSError *error))block;
 
 - (void)requestStrengthScorePlayerDetailWithPlayerId:(NSString *)playerId
+                                        playerRoleId:(NSString *)playerRoleId
                                                block:(void (^)(id data, NSError *error))block;
 
 - (void)requestStrengthScorePlayerRolesWithBlock:(void (^)(id data, NSError *error))block;
