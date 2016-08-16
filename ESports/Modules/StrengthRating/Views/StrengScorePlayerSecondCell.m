@@ -103,7 +103,7 @@
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"region_title":@"地区",
-                                           @"ranking_title":@"全球排名",
+                                           @"global_ranking_title":@"全球排名",
                                            @"ranking_title":@"位置排名",
                                            @"matrix_title":@"matrix价值",
                                            @"win_rate_title":@"胜率",
@@ -113,7 +113,7 @@
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"region_title":@"地区",
-                                           @"ranking_title":@"全球排名",
+                                           @"global_ranking_title":@"全球排名",
                                            @"ranking_title":@"位置排名",
                                            @"matrix_title":@"matrix价值",
                                            @"win_rate_title":@"胜率",

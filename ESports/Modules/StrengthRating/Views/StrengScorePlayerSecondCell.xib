@@ -319,18 +319,18 @@
                 <outlet property="globalRankingValueLabel" destination="oNV-2u-Ki5" id="yVS-7m-TJG"/>
                 <outlet property="globalRankingView" destination="4Ah-e9-flu" id="2aU-Kz-9SH"/>
                 <outlet property="globalRankingViewWidthConstraint" destination="bMo-9q-Waj" id="BRe-AI-Njq"/>
-                <outlet property="kdaTitleLabel" destination="H1p-w3-57H" id="6as-xQ-e1F"/>
-                <outlet property="kdaValueLabel" destination="mZf-GZ-PkD" id="RzL-wv-Hqz"/>
-                <outlet property="kdaView" destination="VBZ-ep-MFA" id="we7-aR-VYl"/>
-                <outlet property="kdaViewWidthConstraint" destination="x4x-67-NBM" id="Ds1-aA-3aK"/>
-                <outlet property="matrixPriceTitleLabel" destination="lzq-u2-P0t" id="Tgq-GK-RM0"/>
-                <outlet property="matrixPriceValueLabel" destination="E2p-A2-L7n" id="hjq-2f-jw3"/>
-                <outlet property="matrixPriceView" destination="RxR-Wr-ise" id="S7z-pg-njR"/>
-                <outlet property="matrixPriceViewWidthConstraint" destination="BBa-JZ-FYx" id="Ea7-D9-zbI"/>
-                <outlet property="offeredRateTitleLabel" destination="aml-ao-cJo" id="epl-Cb-XhX"/>
-                <outlet property="offeredRateValueLabel" destination="ziu-3b-Bb0" id="2nu-qg-kdT"/>
-                <outlet property="offeredRateView" destination="4JP-uZ-XzU" id="PnM-IY-2ea"/>
-                <outlet property="offeredRateViewWidthConstraint" destination="IVW-Uj-tqj" id="FDa-cO-zVT"/>
+                <outlet property="kdaTitleLabel" destination="Ri2-we-1VO" id="Zt3-6g-4d7"/>
+                <outlet property="kdaValueLabel" destination="t2s-e0-dbb" id="PqY-35-1Uy"/>
+                <outlet property="kdaView" destination="Cx8-pK-dzK" id="pji-rs-bXM"/>
+                <outlet property="kdaViewWidthConstraint" destination="Nio-Zk-ybI" id="Vrq-RE-LaP"/>
+                <outlet property="matrixPriceTitleLabel" destination="aml-ao-cJo" id="ch1-vd-bgY"/>
+                <outlet property="matrixPriceValueLabel" destination="ziu-3b-Bb0" id="wtr-tk-4BJ"/>
+                <outlet property="matrixPriceView" destination="4JP-uZ-XzU" id="XB8-GR-jzo"/>
+                <outlet property="matrixPriceViewWidthConstraint" destination="IVW-Uj-tqj" id="SUe-Fp-P5E"/>
+                <outlet property="offeredRateTitleLabel" destination="H1p-w3-57H" id="YYv-fO-URH"/>
+                <outlet property="offeredRateValueLabel" destination="mZf-GZ-PkD" id="sdI-a8-Iha"/>
+                <outlet property="offeredRateView" destination="VBZ-ep-MFA" id="mPm-sl-oRB"/>
+                <outlet property="offeredRateViewWidthConstraint" destination="x4x-67-NBM" id="KPt-yP-9mD"/>
                 <outlet property="rankingTitleLabel" destination="jTx-aI-V9L" id="P8F-gy-5A9"/>
                 <outlet property="rankingValueLabel" destination="4VG-Xm-vlQ" id="3we-eQ-Mdr"/>
                 <outlet property="rankingView" destination="C2H-5d-PcW" id="aqs-TW-5ix"/>
@@ -343,10 +343,10 @@
                 <outlet property="strengthValueLabel" destination="AHs-T3-cbJ" id="WFW-ck-UTp"/>
                 <outlet property="strengthView" destination="gH4-Ze-wDx" id="KCD-LA-eka"/>
                 <outlet property="strengthViewWidthConstraint" destination="YTq-kh-sNQ" id="vUd-Kn-Rse"/>
-                <outlet property="winRateTitleLabel" destination="Ri2-we-1VO" id="mNP-rj-OX4"/>
-                <outlet property="winRateValueLabel" destination="t2s-e0-dbb" id="9Ti-du-lC8"/>
-                <outlet property="winRateView" destination="Cx8-pK-dzK" id="JI7-5R-Arf"/>
-                <outlet property="winRateViewWidthConstraint" destination="Nio-Zk-ybI" id="NdH-jI-cH7"/>
+                <outlet property="winRateTitleLabel" destination="lzq-u2-P0t" id="3Qp-t1-ngA"/>
+                <outlet property="winRateValueLabel" destination="E2p-A2-L7n" id="iuM-nd-R78"/>
+                <outlet property="winRateView" destination="RxR-Wr-ise" id="zaY-gu-NwM"/>
+                <outlet property="winRateViewWidthConstraint" destination="BBa-JZ-FYx" id="Hbx-FE-7JG"/>
             </connections>
         </tableViewCell>
     </objects>
