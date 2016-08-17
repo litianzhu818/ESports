@@ -55,6 +55,7 @@
                                    };
     
     self.titleLabel.textColor = HexColor(0x5ed2f7);
+    self.titleLabel.backgroundColor = HexColor(0x131b28);
     self.titleLabel.text = LTZLocalizedString(@"win_rate_title", nil);
     self.noDataTitleLabel.hidden = YES;
     
