@@ -16,6 +16,8 @@
 #import "StrengScoreTeamFourthCell.h"
 #import "StrengScoreTeamFifthCell.h"
 
+#import "StrengthRankingPlayerController.h"
+
 @interface StrengthRankingTeamController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,13 +61,13 @@
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"view_controller_title":@"Detail"
+                                           @"view_controller_title":@"Team Detail"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"view_controller_title":@"详情"
+                                           @"view_controller_title":@"战队详情"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"view_controller_title":@"詳情"
+                                           @"view_controller_title":@"戰隊詳情"
                                            }
                                    };
     
@@ -183,6 +185,14 @@
         StrengScoreTeamThirdCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamThirdCell cellIdentifier]
                                                                           forIndexPath:indexPath];
         cell.players = self.teamDetail.teamPlayers;
+        WEAK_SELF;
+        [cell setSelectedBlock:^(NSString *playerId, NSString *playerRoleId) {
+            STRONG_SELF;
+            
+            StrengthRankingPlayerController *playerController = [[StrengthRankingPlayerController alloc] initWithPlayerId:playerId
+                                                                                                                     role:playerRoleId];
+            [strongSelf.navigationController pushViewController:playerController animated:YES];
+        }];
         return cell;
     }else if (indexPath.row == 3) {
         StrengScoreTeamFourthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFourthCell cellIdentifier]

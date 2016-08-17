@@ -687,7 +687,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                                                                     
                                                                                     [strongSelf.players addObject:player];
                                                                                     [cacheStrengScorePlayers addObject:player];
-                                                                                    [strongSelf.teamsTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:strongSelf.players.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+                                                                                    [strongSelf.playersTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:strongSelf.players.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
                                                                                 }
                                                                                 
                                                                             }];

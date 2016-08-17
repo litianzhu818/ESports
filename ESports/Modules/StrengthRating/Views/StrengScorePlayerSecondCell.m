@@ -151,7 +151,13 @@
     
     [self.regionImageView sd_setImageWithURL:[NSURL URLWithString:self.playerDetail.playerRegionImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.globalRankingValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerGlobalRanking];
+    if (self.playerDetail.playerGlobalRanking == 0) {
+         self.globalRankingValueLabel.text = @"I.R.D";
+    }
     self.rankingValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerRanking];
+    if (self.playerDetail.playerRanking == 0) {
+         self.rankingValueLabel.text = @"I.R.D";
+    }
     self.matrixPriceValueLabel.text = [self getStringFromStrength:self.playerDetail.playerPrice];
     
     
@@ -181,8 +187,6 @@
     CGContextSetStrokeColorWithColor(context, HexColor(0x1f262e).CGColor);  //线的颜色
     
     CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds])/4;
-    CGFloat height = width*3/4;
-    
     
     CGContextBeginPath(context);
     

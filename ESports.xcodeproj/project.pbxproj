@@ -38,6 +38,9 @@
 		E71550ED1D6342600073F159 /* StrengScorePlayerTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71550EB1D6342600073F159 /* StrengScorePlayerTopCell.xib */; };
 		E71550F11D63440C0073F159 /* StrengScorePlayerSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550EF1D63440C0073F159 /* StrengScorePlayerSecondCell.m */; };
 		E71550F21D63440C0073F159 /* StrengScorePlayerSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71550F01D63440C0073F159 /* StrengScorePlayerSecondCell.xib */; };
+		E71550F91D64368C0073F159 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E71550FB1D64368C0073F159 /* InfoPlist.strings */; };
+		E71551021D643F750073F159 /* StrengScorePlayerThirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551001D643F750073F159 /* StrengScorePlayerThirdCell.m */; };
+		E71551031D643F750073F159 /* StrengScorePlayerThirdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71551011D643F750073F159 /* StrengScorePlayerThirdCell.xib */; };
 		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
 		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71627321D47516900EF6740 /* ReplayTopCell.m */; };
@@ -239,6 +242,17 @@
 		E71550EE1D63440C0073F159 /* StrengScorePlayerSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerSecondCell.h; sourceTree = "<group>"; };
 		E71550EF1D63440C0073F159 /* StrengScorePlayerSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerSecondCell.m; sourceTree = "<group>"; };
 		E71550F01D63440C0073F159 /* StrengScorePlayerSecondCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerSecondCell.xib; sourceTree = "<group>"; };
+		E71550F31D64363E0073F159 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		E71550F41D64363F0073F159 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E71550F51D6436430073F159 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		E71550F61D6436430073F159 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E71550FA1D64368C0073F159 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E71550FC1D64368D0073F159 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E71550FD1D64368E0073F159 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E71550FE1D64368F0073F159 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E71550FF1D643F750073F159 /* StrengScorePlayerThirdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerThirdCell.h; sourceTree = "<group>"; };
+		E71551001D643F750073F159 /* StrengScorePlayerThirdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerThirdCell.m; sourceTree = "<group>"; };
+		E71551011D643F750073F159 /* StrengScorePlayerThirdCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerThirdCell.xib; sourceTree = "<group>"; };
 		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
 		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
 		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
@@ -928,6 +942,9 @@
 				E71550EE1D63440C0073F159 /* StrengScorePlayerSecondCell.h */,
 				E71550EF1D63440C0073F159 /* StrengScorePlayerSecondCell.m */,
 				E71550F01D63440C0073F159 /* StrengScorePlayerSecondCell.xib */,
+				E71550FF1D643F750073F159 /* StrengScorePlayerThirdCell.h */,
+				E71551001D643F750073F159 /* StrengScorePlayerThirdCell.m */,
+				E71551011D643F750073F159 /* StrengScorePlayerThirdCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1203,6 +1220,7 @@
 				E7BD57761CF4360D008F2D69 /* Assets.xcassets */,
 				E7BD57781CF4360D008F2D69 /* LaunchScreen.storyboard */,
 				E7BD577B1CF4360D008F2D69 /* Info.plist */,
+				E71550FB1D64368C0073F159 /* InfoPlist.strings */,
 				E7BD57731CF4360D008F2D69 /* ESports.xcdatamodeld */,
 				E7BD57671CF4360D008F2D69 /* Supporting Files */,
 			);
@@ -1324,6 +1342,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = E7BD575B1CF4360D008F2D69;
 			productRefGroup = E7BD57651CF4360D008F2D69 /* Products */;
@@ -1340,6 +1360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71551031D643F750073F159 /* StrengScorePlayerThirdCell.xib in Resources */,
 				E72FD8A61D264943000A5CE6 /* tabbar_news_h@2x.png in Resources */,
 				E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */,
 				E71627351D47516900EF6740 /* ReplayTopCell.xib in Resources */,
@@ -1369,6 +1390,7 @@
 				E72FD8A51D264943000A5CE6 /* tabbar_matchs_n@2x.png in Resources */,
 				E760B39A1D3E1DB800F5DB54 /* DetailNewSubNewCell.xib in Resources */,
 				E71627451D49AD8400EF6740 /* match_replay_play@2x.png in Resources */,
+				E71550F91D64368C0073F159 /* InfoPlist.strings in Resources */,
 				E760B38B1D3E107200F5DB54 /* DetailHotNewsBottomCell.xib in Resources */,
 				E760B3401D2FA61000F5DB54 /* LICENSE in Resources */,
 				E760B3321D2E386000F5DB54 /* location_selected@2x.png in Resources */,
@@ -1493,6 +1515,7 @@
 				E760B34A1D363F1700F5DB54 /* TransferNew.m in Sources */,
 				E760B36B1D3C919100F5DB54 /* HotWordNewCell.m in Sources */,
 				E760B32F1D2E05DA00F5DB54 /* DropdownMenuItemCell.m in Sources */,
+				E71551021D643F750073F159 /* StrengScorePlayerThirdCell.m in Sources */,
 				E72FD88F1D251721000A5CE6 /* RankingController.m in Sources */,
 				E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */,
 				E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */,
@@ -1580,10 +1603,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		E71550FB1D64368C0073F159 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E71550FA1D64368C0073F159 /* Base */,
+				E71550FC1D64368D0073F159 /* en */,
+				E71550FD1D64368E0073F159 /* zh-Hans */,
+				E71550FE1D64368F0073F159 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		E7BD57701CF4360D008F2D69 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E7BD57711CF4360D008F2D69 /* Base */,
+				E71550F31D64363E0073F159 /* zh-Hans */,
+				E71550F51D6436430073F159 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1592,6 +1628,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7BD57791CF4360D008F2D69 /* Base */,
+				E71550F41D64363F0073F159 /* zh-Hans */,
+				E71550F61D6436430073F159 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

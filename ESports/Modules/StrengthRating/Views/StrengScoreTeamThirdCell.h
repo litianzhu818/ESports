@@ -12,6 +12,7 @@
 @interface StrengScoreTeamThirdCell : UITableViewCell
 
 @property (strong, nonatomic) NSArray<StrengScoreTeamPlayer *> *players;
+@property (copy, nonatomic) void (^selectedBlock) (NSString *playerId, NSString *playerRoleId);
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;

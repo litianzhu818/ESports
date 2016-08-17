@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  ESports
+
+  Created by Peter Lee on 16/8/17.
+  Copyright © 2016年 Peter Lee. All rights reserved.
+*/
+
+/* App traditional chinese display name */
+"CFBundleDisplayName" = "lol電競魔方";

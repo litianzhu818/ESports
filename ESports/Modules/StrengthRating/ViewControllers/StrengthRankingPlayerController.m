@@ -57,13 +57,13 @@
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"view_controller_title":@"Detail"
+                                           @"view_controller_title":@"Player Detail"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"view_controller_title":@"详情"
+                                           @"view_controller_title":@"选手详情"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"view_controller_title":@"詳情"
+                                           @"view_controller_title":@"選手詳情"
                                            }
                                    };
     

@@ -127,6 +127,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.selectedBlock) {
+        StrengScoreTeamPlayer *player = self.players[indexPath.item];
+        self.selectedBlock(player.playerId, player.playerRoleId);
+    }
 }
 
 
