@@ -1,5 +1,5 @@
 //
-//  StrengScorePlayerThirdCell.h
+//  StrengScorePlayerFourthCell.h
 //  ESports
 //
 //  Created by Peter Lee on 16/8/17.
@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "StrengScorePlayerDetail.h"
 
-@interface StrengScorePlayerThirdCell : UITableViewCell
+@interface StrengScorePlayerFourthCell : UITableViewCell
 
 @property (strong, nonatomic) StrengScorePlayerDetail *playerDetail;
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;
-+ (CGFloat)cellHeightWithPlayerDetail:(StrengScorePlayerDetail *)playerDetail;
++ (CGFloat)cellHeight;
 
 @end

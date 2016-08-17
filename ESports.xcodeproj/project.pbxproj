@@ -41,6 +41,11 @@
 		E71550F91D64368C0073F159 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E71550FB1D64368C0073F159 /* InfoPlist.strings */; };
 		E71551021D643F750073F159 /* StrengScorePlayerThirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551001D643F750073F159 /* StrengScorePlayerThirdCell.m */; };
 		E71551031D643F750073F159 /* StrengScorePlayerThirdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71551011D643F750073F159 /* StrengScorePlayerThirdCell.xib */; };
+		E71551071D6453CB0073F159 /* PickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551051D6453CB0073F159 /* PickerCollectionViewCell.m */; };
+		E71551081D6453CB0073F159 /* PickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71551061D6453CB0073F159 /* PickerCollectionViewCell.xib */; };
+		E715510A1D645A000073F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71551091D645A000073F159 /* Assets.xcassets */; };
+		E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E715510C1D6464D00073F159 /* StrengScorePlayerFourthCell.m */; };
+		E715510F1D6464D00073F159 /* StrengScorePlayerFourthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715510D1D6464D00073F159 /* StrengScorePlayerFourthCell.xib */; };
 		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
 		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71627321D47516900EF6740 /* ReplayTopCell.m */; };
@@ -181,7 +186,6 @@
 		E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD576E1CF4360D008F2D69 /* ViewController.m */; };
 		E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BD57701CF4360D008F2D69 /* Main.storyboard */; };
 		E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57731CF4360D008F2D69 /* ESports.xcdatamodeld */; };
-		E7BD57771CF4360D008F2D69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BD57761CF4360D008F2D69 /* Assets.xcassets */; };
 		E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BD57781CF4360D008F2D69 /* LaunchScreen.storyboard */; };
 		E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57871CF5A0AC008F2D69 /* HttpSessionClient.m */; };
 		E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BD57891CF5A0AC008F2D69 /* HttpSessionManager.m */; };
@@ -253,6 +257,13 @@
 		E71550FF1D643F750073F159 /* StrengScorePlayerThirdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerThirdCell.h; sourceTree = "<group>"; };
 		E71551001D643F750073F159 /* StrengScorePlayerThirdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerThirdCell.m; sourceTree = "<group>"; };
 		E71551011D643F750073F159 /* StrengScorePlayerThirdCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerThirdCell.xib; sourceTree = "<group>"; };
+		E71551041D6453CB0073F159 /* PickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCollectionViewCell.h; sourceTree = "<group>"; };
+		E71551051D6453CB0073F159 /* PickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCollectionViewCell.m; sourceTree = "<group>"; };
+		E71551061D6453CB0073F159 /* PickerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		E71551091D645A000073F159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E715510B1D6464D00073F159 /* StrengScorePlayerFourthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerFourthCell.h; sourceTree = "<group>"; };
+		E715510C1D6464D00073F159 /* StrengScorePlayerFourthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerFourthCell.m; sourceTree = "<group>"; };
+		E715510D1D6464D00073F159 /* StrengScorePlayerFourthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerFourthCell.xib; sourceTree = "<group>"; };
 		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
 		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
 		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
@@ -467,7 +478,6 @@
 		E7BD576E1CF4360D008F2D69 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E7BD57711CF4360D008F2D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E7BD57741CF4360D008F2D69 /* ESports.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ESports.xcdatamodel; sourceTree = "<group>"; };
-		E7BD57761CF4360D008F2D69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7BD57791CF4360D008F2D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7BD577B1CF4360D008F2D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7BD57851CF58BD6008F2D69 /* ESports.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESports.pch; sourceTree = "<group>"; };
@@ -945,6 +955,12 @@
 				E71550FF1D643F750073F159 /* StrengScorePlayerThirdCell.h */,
 				E71551001D643F750073F159 /* StrengScorePlayerThirdCell.m */,
 				E71551011D643F750073F159 /* StrengScorePlayerThirdCell.xib */,
+				E71551041D6453CB0073F159 /* PickerCollectionViewCell.h */,
+				E71551051D6453CB0073F159 /* PickerCollectionViewCell.m */,
+				E71551061D6453CB0073F159 /* PickerCollectionViewCell.xib */,
+				E715510B1D6464D00073F159 /* StrengScorePlayerFourthCell.h */,
+				E715510C1D6464D00073F159 /* StrengScorePlayerFourthCell.m */,
+				E715510D1D6464D00073F159 /* StrengScorePlayerFourthCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1216,8 +1232,8 @@
 				E7BD576D1CF4360D008F2D69 /* ViewController.h */,
 				E7BD576E1CF4360D008F2D69 /* ViewController.m */,
 				E7BD57851CF58BD6008F2D69 /* ESports.pch */,
+				E71551091D645A000073F159 /* Assets.xcassets */,
 				E7BD57701CF4360D008F2D69 /* Main.storyboard */,
-				E7BD57761CF4360D008F2D69 /* Assets.xcassets */,
 				E7BD57781CF4360D008F2D69 /* LaunchScreen.storyboard */,
 				E7BD577B1CF4360D008F2D69 /* Info.plist */,
 				E71550FB1D64368C0073F159 /* InfoPlist.strings */,
@@ -1362,6 +1378,7 @@
 			files = (
 				E71551031D643F750073F159 /* StrengScorePlayerThirdCell.xib in Resources */,
 				E72FD8A61D264943000A5CE6 /* tabbar_news_h@2x.png in Resources */,
+				E71551081D6453CB0073F159 /* PickerCollectionViewCell.xib in Resources */,
 				E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */,
 				E71627351D47516900EF6740 /* ReplayTopCell.xib in Resources */,
 				E717B30C1D51D4B100BE98A3 /* MatchVideoDataCell.xib in Resources */,
@@ -1405,6 +1422,7 @@
 				E72FD8861D251612000A5CE6 /* NewsController.xib in Resources */,
 				E760B3861D3CE00800F5DB54 /* error.html in Resources */,
 				E716275A1D4AF92000EF6740 /* MatchTeamDataBottomCell.xib in Resources */,
+				E715510A1D645A000073F159 /* Assets.xcassets in Resources */,
 				E760B39F1D3E279B00F5DB54 /* DetailNewSubRelCell.xib in Resources */,
 				E72FD8641D2508EC000A5CE6 /* backItemImage_hl@2x.png in Resources */,
 				E72FD8901D251721000A5CE6 /* RankingController.xib in Resources */,
@@ -1420,9 +1438,9 @@
 				E717B3181D53381D00BE98A3 /* MatchStandingCell.xib in Resources */,
 				E717B3061D519FD800BE98A3 /* match_player_data_carry@2x.png in Resources */,
 				E716273A1D47674900EF6740 /* ReplayTypeCell.xib in Resources */,
+				E715510F1D6464D00073F159 /* StrengScorePlayerFourthCell.xib in Resources */,
 				E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */,
 				E72FD88B1D2516D8000A5CE6 /* MatchsController.xib in Resources */,
-				E7BD57771CF4360D008F2D69 /* Assets.xcassets in Resources */,
 				E760B3351D2E39AD00F5DB54 /* location_drop_n@2x.png in Resources */,
 				E717B31D1D533DD200BE98A3 /* PointsTypeSelectView.xib in Resources */,
 				E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */,
@@ -1527,11 +1545,13 @@
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E71550A71D59E8640073F159 /* StrengScoreTeamCell.m in Sources */,
 				E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */,
+				E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */,
 				E760B3A51D3F621400F5DB54 /* ResultMatchesManager.m in Sources */,
 				E716273D1D48A27300EF6740 /* MatchTeamData.m in Sources */,
 				E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */,
 				E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */,
 				E760B3831D3CDD6600F5DB54 /* DetailNewsCenterCell.m in Sources */,
+				E71551071D6453CB0073F159 /* PickerCollectionViewCell.m in Sources */,
 				E72FD8051D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m in Sources */,
 				E717B30B1D51D4B100BE98A3 /* MatchVideoDataCell.m in Sources */,
 				E7BD57981CF6F4D3008F2D69 /* NSObject+Custom.m in Sources */,
@@ -1724,6 +1744,7 @@
 			baseConfigurationReference = 0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
@@ -1741,6 +1762,7 @@
 			baseConfigurationReference = 4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";

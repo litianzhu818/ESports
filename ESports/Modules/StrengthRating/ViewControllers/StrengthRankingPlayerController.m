@@ -12,6 +12,7 @@
 #import "StrengScorePlayerDetail.h"
 #import "StrengScorePlayerTopCell.h"
 #import "StrengScorePlayerSecondCell.h"
+#import "StrengScorePlayerThirdCell.h"
 
 @interface StrengthRankingPlayerController ()
 
@@ -71,7 +72,7 @@
     
     [self.tableView registerNib:[StrengScorePlayerTopCell nib] forCellReuseIdentifier:[StrengScorePlayerTopCell cellIdentifier]];
     [self.tableView registerNib:[StrengScorePlayerSecondCell nib] forCellReuseIdentifier:[StrengScorePlayerSecondCell cellIdentifier]];
-//    [self.tableView registerNib:[StrengScoreTeamThirdCell nib] forCellReuseIdentifier:[StrengScoreTeamThirdCell cellIdentifier]];
+    [self.tableView registerNib:[StrengScorePlayerThirdCell nib] forCellReuseIdentifier:[StrengScorePlayerThirdCell cellIdentifier]];
 //    [self.tableView registerNib:[StrengScoreTeamFourthCell nib] forCellReuseIdentifier:[StrengScoreTeamFourthCell cellIdentifier]];
 //    [self.tableView registerNib:[StrengScoreTeamFifthCell nib] forCellReuseIdentifier:[StrengScoreTeamFifthCell cellIdentifier]];
     
@@ -123,9 +124,9 @@
         return [StrengScorePlayerTopCell cellHeight];
     }else if (indexPath.row == 1) {
         return [StrengScorePlayerSecondCell cellHeight];
-    }//else if (indexPath.row == 2) {
-//        return [StrengScoreTeamThirdCell cellHeight];
-//    }else if (indexPath.row == 3) {
+    }else if (indexPath.row == 2) {
+        return [StrengScorePlayerThirdCell cellHeightWithPlayerDetail:self.playerDetail];
+    }//else if (indexPath.row == 3) {
 //        return [StrengScoreTeamFourthCell cellHeight];
 //    }else if (indexPath.row == 4) {
 //        return [StrengScoreTeamFifthCell cellHeight];
@@ -159,7 +160,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 2;
+    NSInteger count = 3;
     
     return count;
 }
@@ -175,12 +176,12 @@
                                                                           forIndexPath:indexPath];
         cell.playerDetail = self.playerDetail;
         return cell;
-    }//else if (indexPath.row == 2) {
-//        StrengScoreTeamThirdCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamThirdCell cellIdentifier]
-//                                                                         forIndexPath:indexPath];
-//        cell.players = self.teamDetail.teamPlayers;
-//        return cell;
-//    }else if (indexPath.row == 3) {
+    }else if (indexPath.row == 2) {
+        StrengScorePlayerThirdCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScorePlayerThirdCell cellIdentifier]
+                                                                         forIndexPath:indexPath];
+        cell.playerDetail = self.playerDetail;
+        return cell;
+    }//else if (indexPath.row == 3) {
 //        StrengScoreTeamFourthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFourthCell cellIdentifier]
 //                                                                          forIndexPath:indexPath];
 //        cell.teamDetail = self.teamDetail;
