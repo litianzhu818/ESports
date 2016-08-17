@@ -13,6 +13,8 @@
 #import "StrengScorePlayerTopCell.h"
 #import "StrengScorePlayerSecondCell.h"
 #import "StrengScorePlayerThirdCell.h"
+#import "StrengScorePlayerFourthCell.h"
+#import "StrengScorePlayerFifthCell.h"
 
 @interface StrengthRankingPlayerController ()
 
@@ -73,8 +75,8 @@
     [self.tableView registerNib:[StrengScorePlayerTopCell nib] forCellReuseIdentifier:[StrengScorePlayerTopCell cellIdentifier]];
     [self.tableView registerNib:[StrengScorePlayerSecondCell nib] forCellReuseIdentifier:[StrengScorePlayerSecondCell cellIdentifier]];
     [self.tableView registerNib:[StrengScorePlayerThirdCell nib] forCellReuseIdentifier:[StrengScorePlayerThirdCell cellIdentifier]];
-//    [self.tableView registerNib:[StrengScoreTeamFourthCell nib] forCellReuseIdentifier:[StrengScoreTeamFourthCell cellIdentifier]];
-//    [self.tableView registerNib:[StrengScoreTeamFifthCell nib] forCellReuseIdentifier:[StrengScoreTeamFifthCell cellIdentifier]];
+    [self.tableView registerNib:[StrengScorePlayerFourthCell nib] forCellReuseIdentifier:[StrengScorePlayerFourthCell cellIdentifier]];
+    [self.tableView registerNib:[StrengScorePlayerFifthCell nib] forCellReuseIdentifier:[StrengScorePlayerFifthCell cellIdentifier]];
     
     UIView *tableViewFooterView = [[UIView alloc] init];
     tableViewFooterView.backgroundColor = self.view.backgroundColor;
@@ -126,11 +128,11 @@
         return [StrengScorePlayerSecondCell cellHeight];
     }else if (indexPath.row == 2) {
         return [StrengScorePlayerThirdCell cellHeightWithPlayerDetail:self.playerDetail];
-    }//else if (indexPath.row == 3) {
-//        return [StrengScoreTeamFourthCell cellHeight];
-//    }else if (indexPath.row == 4) {
-//        return [StrengScoreTeamFifthCell cellHeight];
-//    }
+    }else if (indexPath.row == 3) {
+        return [StrengScorePlayerFourthCell cellHeight];
+    }else if (indexPath.row == 4) {
+        return [StrengScorePlayerFifthCell cellHeight];
+    }
     return 0.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -160,7 +162,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 3;
+    NSInteger count = 5;
     
     return count;
 }
@@ -181,17 +183,17 @@
                                                                          forIndexPath:indexPath];
         cell.playerDetail = self.playerDetail;
         return cell;
-    }//else if (indexPath.row == 3) {
-//        StrengScoreTeamFourthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFourthCell cellIdentifier]
-//                                                                          forIndexPath:indexPath];
-//        cell.teamDetail = self.teamDetail;
-//        return cell;
-//    }else if (indexPath.row == 4) {
-//        StrengScoreTeamFifthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScoreTeamFifthCell cellIdentifier]
-//                                                                         forIndexPath:indexPath];
-//        cell.teamDetail = self.teamDetail;
-//        return cell;
-//    }
+    }else if (indexPath.row == 3) {
+        StrengScorePlayerFourthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScorePlayerFourthCell cellIdentifier]
+                                                                          forIndexPath:indexPath];
+        cell.playerDetail = self.playerDetail;
+        return cell;
+    }else if (indexPath.row == 4) {
+        StrengScorePlayerFifthCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScorePlayerFifthCell cellIdentifier]
+                                                                         forIndexPath:indexPath];
+        cell.playerDetail = self.playerDetail;
+        return cell;
+    }
     return nil;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

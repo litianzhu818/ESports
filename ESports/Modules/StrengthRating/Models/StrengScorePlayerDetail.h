@@ -9,27 +9,27 @@
 #import <JSONModel/JSONModel.h>
 /*
 {
-    *AvgKillParticipation = "0.7548";
-    *Carry = "0.8";
-    *Cs15Min = "71.08";
-    *GlobalRanking = 1;
-    *Kda = "10.66";
-    *LaneLose15Min = 0;
-    *LaneWin15Min = "0.04";
-    *PlayerId = 348;
-    *PlayerLogo = "http://cdn.esportsmatrix.com/Content/images/uploaded/player/e504ba22-bd0a-4cc1-9370-35c05dd56c7c.jpg";
-    *PlayerName = Peanut;
-    *Price = 23254137;
-    *Ranking = 0;
-    *RegionLogo = "http:cdn.esportsmatrix.com/Content/images/uploaded/region/7d7f87f0-2648-4a18-b726-a705db19805d.png";
-    *RegionName = "\U97e9\U56fd";
-    *RegionRanking = 0;
-    *RoleId = 5;
-    *RoleRanking = 1;
-    *Strength = 2120;
-    *TeamParentRegionId = 0;
-    *TrollFeed = "0.04";
-    *WinRate = "0.88";
+    AvgKillParticipation = "0.7548";
+    Carry = "0.8";
+    Cs15Min = "71.08";
+    GlobalRanking = 1;
+    Kda = "10.66";
+    LaneLose15Min = 0;
+    LaneWin15Min = "0.04";
+    PlayerId = 348;
+    PlayerLogo = "http://cdn.esportsmatrix.com/Content/images/uploaded/player/e504ba22-bd0a-4cc1-9370-35c05dd56c7c.jpg";
+    PlayerName = Peanut;
+    Price = 23254137;
+    Ranking = 0;
+    RegionLogo = "http:cdn.esportsmatrix.com/Content/images/uploaded/region/7d7f87f0-2648-4a18-b726-a705db19805d.png";
+    RegionName = "\U97e9\U56fd";
+    RegionRanking = 0;
+    RoleId = 5;
+    RoleRanking = 1;
+    Strength = 2120;
+    TeamParentRegionId = 0;
+    TrollFeed = "0.04";
+    WinRate = "0.88";
     MostPickChampions =     (
                              {
                                  Logo = "http://cdn.esportsmatrix.com/Content/images/uploaded/champion/05a054ab-d141-4834-a168-897e788ca69c.png";

@@ -46,6 +46,10 @@
 		E715510A1D645A000073F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71551091D645A000073F159 /* Assets.xcassets */; };
 		E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E715510C1D6464D00073F159 /* StrengScorePlayerFourthCell.m */; };
 		E715510F1D6464D00073F159 /* StrengScorePlayerFourthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715510D1D6464D00073F159 /* StrengScorePlayerFourthCell.xib */; };
+		E71551141D648B1C0073F159 /* JYLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551111D648B1C0073F159 /* JYLegendView.m */; };
+		E71551151D648B1C0073F159 /* JYRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551131D648B1C0073F159 /* JYRadarChart.m */; };
+		E71551191D6493D30073F159 /* StrengScorePlayerFifthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551171D6493D30073F159 /* StrengScorePlayerFifthCell.m */; };
+		E715511A1D6493D30073F159 /* StrengScorePlayerFifthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71551181D6493D30073F159 /* StrengScorePlayerFifthCell.xib */; };
 		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
 		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71627321D47516900EF6740 /* ReplayTopCell.m */; };
@@ -264,6 +268,13 @@
 		E715510B1D6464D00073F159 /* StrengScorePlayerFourthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerFourthCell.h; sourceTree = "<group>"; };
 		E715510C1D6464D00073F159 /* StrengScorePlayerFourthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerFourthCell.m; sourceTree = "<group>"; };
 		E715510D1D6464D00073F159 /* StrengScorePlayerFourthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerFourthCell.xib; sourceTree = "<group>"; };
+		E71551101D648B1C0073F159 /* JYLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLegendView.h; sourceTree = "<group>"; };
+		E71551111D648B1C0073F159 /* JYLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLegendView.m; sourceTree = "<group>"; };
+		E71551121D648B1C0073F159 /* JYRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYRadarChart.h; sourceTree = "<group>"; };
+		E71551131D648B1C0073F159 /* JYRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYRadarChart.m; sourceTree = "<group>"; };
+		E71551161D6493D30073F159 /* StrengScorePlayerFifthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerFifthCell.h; sourceTree = "<group>"; };
+		E71551171D6493D30073F159 /* StrengScorePlayerFifthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerFifthCell.m; sourceTree = "<group>"; };
+		E71551181D6493D30073F159 /* StrengScorePlayerFifthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerFifthCell.xib; sourceTree = "<group>"; };
 		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
 		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
 		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
@@ -876,6 +887,10 @@
 		E72FD87D1D251575000A5CE6 /* Managers&Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E71551101D648B1C0073F159 /* JYLegendView.h */,
+				E71551111D648B1C0073F159 /* JYLegendView.m */,
+				E71551121D648B1C0073F159 /* JYRadarChart.h */,
+				E71551131D648B1C0073F159 /* JYRadarChart.m */,
 			);
 			path = "Managers&Helpers";
 			sourceTree = "<group>";
@@ -961,6 +976,9 @@
 				E715510B1D6464D00073F159 /* StrengScorePlayerFourthCell.h */,
 				E715510C1D6464D00073F159 /* StrengScorePlayerFourthCell.m */,
 				E715510D1D6464D00073F159 /* StrengScorePlayerFourthCell.xib */,
+				E71551161D6493D30073F159 /* StrengScorePlayerFifthCell.h */,
+				E71551171D6493D30073F159 /* StrengScorePlayerFifthCell.m */,
+				E71551181D6493D30073F159 /* StrengScorePlayerFifthCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1456,6 +1474,7 @@
 				E72FD8A71D264943000A5CE6 /* tabbar_news_n@2x.png in Resources */,
 				E717B3071D519FD800BE98A3 /* match_player_data_troll@2x.png in Resources */,
 				E72FD8651D2508EC000A5CE6 /* topbar.png in Resources */,
+				E715511A1D6493D30073F159 /* StrengScorePlayerFifthCell.xib in Resources */,
 				E71550C41D5C74610073F159 /* streng_ranking_detail_bg@2x.png in Resources */,
 				E71550ED1D6342600073F159 /* StrengScorePlayerTopCell.xib in Resources */,
 				E760B3361D2E39AD00F5DB54 /* location_drop_h@2x.png in Resources */,
@@ -1519,6 +1538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71551151D648B1C0073F159 /* JYRadarChart.m in Sources */,
 				E760B38F1D3E19BF00F5DB54 /* DetailRelNewsBottomCell.m in Sources */,
 				E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */,
 				E72FD8591D24F420000A5CE6 /* NJKWebViewProgress.m in Sources */,
@@ -1544,6 +1564,7 @@
 				E760B3991D3E1DB800F5DB54 /* DetailNewSubNewCell.m in Sources */,
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E71550A71D59E8640073F159 /* StrengScoreTeamCell.m in Sources */,
+				E71551141D648B1C0073F159 /* JYLegendView.m in Sources */,
 				E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */,
 				E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */,
 				E760B3A51D3F621400F5DB54 /* ResultMatchesManager.m in Sources */,
@@ -1587,6 +1608,7 @@
 				E71550B11D5ADD950073F159 /* StrengthRankingTeamController.m in Sources */,
 				E760B3531D365A4D00F5DB54 /* TransferNewManager.m in Sources */,
 				E71550BC1D5C22120073F159 /* StrengthRankingPlayerController.m in Sources */,
+				E71551191D6493D30073F159 /* StrengScorePlayerFifthCell.m in Sources */,
 				E71550D21D5CA2190073F159 /* StrengScoreTeamThirdCell.m in Sources */,
 				E72FD88A1D2516D8000A5CE6 /* MatchsController.m in Sources */,
 				E71550DC1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m in Sources */,
