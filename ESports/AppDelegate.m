@@ -70,6 +70,13 @@
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     //notification是发送推送时传入的字典信息
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"message"
+                                                    message:notification.alertBody
+                                                   delegate:nil
+                                          cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    [alert show];
+    
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_

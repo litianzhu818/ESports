@@ -810,7 +810,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
-        if (indexPath.row == 0 && self.images.count > 0) {
+        if (indexPath.row == 0) {
             return [NewsRotationImageCell cellHeightWithWidth:CGRectGetWidth([[UIScreen mainScreen] bounds])];
         }else{
             return [HotFocusNewCell cellHeight];
@@ -858,15 +858,11 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
-        HotFocusNew *news = nil;
-        if (self.images.count > 0) {
-            news = self.hotFocusNews[indexPath.row-1];
-        }else{
-            news = self.hotFocusNews[indexPath.row];
+        if (indexPath.row > 0) {
+            HotFocusNew *news = self.hotFocusNews[indexPath.row-1];
+            DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:news.newsId];
+            [self.navigationController pushViewController:detailNewsController animated:YES];
         }
-        
-        DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:news.newsId];
-        [self.navigationController pushViewController:detailNewsController animated:YES];
     }
 }
 #pragma mark - UITableViewDataSource methods
@@ -876,9 +872,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     if ([tableView isEqual:self.hotfocusTableView]) {
         
         NSInteger number = self.hotFocusNews.count;
-        if (self.images.count > 0) {
-            ++number;
-        }
+        ++number;
         return number;
         
     }else if ([tableView isEqual:self.transferTableView]) {
@@ -894,7 +888,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
         
-        if (self.images.count > 0 && indexPath.row == 0) {
+        if (indexPath.row == 0) {
             NewsRotationImageCell *cell = [tableView dequeueReusableCellWithIdentifier:[NewsRotationImageCell cellIdentifier]
                                                                           forIndexPath:indexPath];
             cell.images = self.images;

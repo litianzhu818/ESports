@@ -94,9 +94,8 @@ Single_implementation(DBManager);
     NSString *createTableSQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@'\
                      ('%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \
                       '%@' TEXT  NOT NULL, \
-                      '%@' TEXT , \
                       '%@' TEXT  \
-                     )",subscribeMatchTableName,@"id",@"matchId",@"firstSubscribeTime",@"secondSubscribeTime"];
+                     )",subscribeMatchTableName,@"id",@"matchId",@"time"];
     
     NSString *createIndexSQL = [NSString stringWithFormat:@"CREATE INDEX IF NOT EXISTS '%@'\
                                 ON '%@'('%@')",[NSString stringWithFormat:@"%@_%@",subscribeMatchTableName,@"table_index"],subscribeMatchTableName,@"matchId"];
@@ -162,17 +161,15 @@ Single_implementation(DBManager);
 }
 
 - (void)insertSubscribeMatchWithMatchId:(NSString *)matchId
-                              firstTime:(NSDate *)firstTime
-                             secondTime:(NSDate *)secondTime
+                              time:(NSDate *)time
                         completionBlock:(void (^)(BOOL result, NSError *error))completionBlock
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm"]; //@"yyyy/MM/dd HH:mm:ss Z"
     
-    NSString *firstTimeStr = [formatter stringFromDate:firstTime];
-    NSString *secondTimeStr = [formatter stringFromDate:secondTime];
-    
-    NSString *SQL = [NSString stringWithFormat:@"INSERT INTO '%@'('%@','%@','%@') VALUES('%@','%@','%@')",subscribeMatchTableName,@"matchId",@"firstSubscribeTime",@"secondSubscribeTime",matchId,firstTimeStr,secondTimeStr];
+    NSString *timeStr = [formatter stringFromDate:time];
+//    NSString *insertSql2 = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@') VALUES ('%@', '%@', '%@')",TABLENAME, NAME, AGE, ADDRESS, @"李四", @"12", @"济南"];
+    NSString *SQL = [NSString stringWithFormat:@"INSERT INTO '%@'('%@', '%@') VALUES('%@','%@')",subscribeMatchTableName,@"matchId",@"time",matchId,timeStr];
     
     [self createSubscribeMatchTable];
     
@@ -205,17 +202,16 @@ Single_implementation(DBManager);
     
     [self createSubscribeMatchTable];
 
-    NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM '%@' WHERE %@ = '%@'",subscribeMatchTableName,@"matchId",matchId];
-    
+    NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM SubscribeMatch WHERE matchId = '%@'",matchId];
+  
     [self.databaseQueue inDatabase:^(FMDatabase *db) {
         
         FMResultSet *rs = [db executeQuery:SQL];
         
-        if ([rs stringForColumn:@"matchId"].length > 0) {
+        if (rs) {
             result = YES;
+            [rs close];
         }
-        
-        [rs close];
     }];
     
     return result;

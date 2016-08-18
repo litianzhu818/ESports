@@ -13,12 +13,12 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"GameOrder":@"gameOrder",
-                                                       @"BlueTeamLogo":@"buleTeamImageUrl",
-                                                       @"RedTeamLogo":@"redTeamImageUrl",
-                                                       @"GameResults":@"teamGameResult",
-                                                       @"BlueTeamGameStats":@"blueTeamGameData",
-                                                       @"RedTeamGameStats":@"redTeamGameData"
+                                                       @"MatchId":@"matchId",
+                                                       @"TeamAScore":@"teamAScore",
+                                                       @"TeamBScore":@"teamBScore",
+                                                       @"TeamAInfo":@"teamAInfo",
+                                                       @"TeamBInfo":@"teamBInfo",
+                                                       @"GameDetailList":@"gameOrders"
                                                        }];
 }
 
@@ -29,17 +29,16 @@
 
 @end
 
-@implementation MatchTeamGameData
+@implementation MatchTeamGameOrder
 
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"Dragon20":@"dragon20",
-                                                       @"Tower20":@"tower20",
-                                                       @"GoldDiffAt25":@"goldDiffAt25",
-                                                       @"Kill":@"kill",
-                                                       @"BannedChampions":@"bannedChampions",
-                                                       @"PickedChampions":@"pickedChampions"
+                                                       @"GameOrder":@"gameOrder",
+                                                       @"IsTeamARedSide":@"isATeamRedSide",
+                                                       @"TeamAGameStats":@"teamAGameState",
+                                                       @"TeamBGameStats":@"teamBGameState",
+                                                       @"TeamAGameResult":@"teamAGameResult"
                                                        }];
 }
 
@@ -47,7 +46,9 @@
 {
     return YES;
 }
+
 @end
+
 
 @implementation MatchTeamGameResult
 
@@ -59,7 +60,8 @@
                                                        @"Fd":@"firstDragon",
                                                        @"Fbaron":@"firstBigDragon",
                                                        @"Ft":@"firstTower",
-                                                       @"Win":@"firstAncientDragon"
+                                                       @"Fe":@"firstAncientDragon",
+                                                       @"Win":@"win"
                                                        }];
 }
 
@@ -69,3 +71,46 @@
 }
 
 @end
+
+
+@implementation MatchTeamGameState
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"Assist":@"teamAssist",
+                                                       @"Death":@"teamDeath",
+                                                       @"Dragon20":@"teamDragon20",
+                                                       @"GoldDiffAt25":@"teamGoldDiffAt25",
+                                                       @"Kill":@"teamKill",
+                                                       @"Tower20":@"teamTower20",
+                                                       @"BannedChampions":@"teamBannedChampions",
+                                                       @"PickedChampions":@"PickedChampions"
+                                                       }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+@end
+
+@implementation MatchTeam
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"Id":@"teamId",
+                                                       @"Name":@"teamName",
+                                                       @"Logo":@"teamImageUrl",
+                                                       @"Description":@"teamDescription"
+                                                       }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+@end
+

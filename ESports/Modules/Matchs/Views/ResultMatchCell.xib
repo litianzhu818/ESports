@@ -63,7 +63,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="uuc-5c-8Wr"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -74,7 +74,7 @@
                             <constraint firstAttribute="height" constant="40" id="YMZ-Gb-xUx"/>
                             <constraint firstAttribute="width" constant="42" id="o1h-c0-ad6"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -83,7 +83,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="JPD-lH-D6X"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="查看直播">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>

@@ -32,8 +32,7 @@ Single_interface(DBManager);
 
 
 - (void)insertSubscribeMatchWithMatchId:(NSString *)matchId
-                              firstTime:(NSDate *)firstTime
-                             secondTime:(NSDate *)secondTime
+                                   time:(NSDate *)time
                         completionBlock:(void (^)(BOOL result, NSError *error))completionBlock;
 - (BOOL)existsSubscribeMatchWithMatchId:(NSString *)matchId;
 

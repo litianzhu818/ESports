@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) MatchReplayDisplayType currentDisplayType;
 
-@property (strong, nonatomic) NSMutableArray<MatchTeamData *> *matchTeamDatas;
+@property (strong, nonatomic) MatchTeamData *matchTeamData;
 @property (strong, nonatomic) NSMutableArray<MatchPlayerData *> *matchPlayerDatas;
 @property (strong, nonatomic) NSMutableArray<MatchVideoData *> *matchVideoDatas;
 
@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 - (void)loadData
 {
     self.currentDisplayType = MatchReplayDisplayTypeTeam;
-    self.matchTeamDatas = [NSMutableArray array];
+
     self.matchPlayerDatas = [NSMutableArray array];
     self.matchVideoDatas = [NSMutableArray array];
     
@@ -109,26 +109,16 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestMatchTeamDataWithMatchId:self.resultMatch.resultMatchId
-                                                                   block:^(NSArray<NSDictionary *> *matchTeamDataDics, NSError *error) {
+                                                                   block:^(NSDictionary *matchTeamDataDic, NSError *error) {
                                                                        
                                                                        STRONG_SELF;
                                                                        
                                                                        if (!error) {
-                                                                           //NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
                                                                            
-                                                                           [strongSelf.matchTeamDatas removeAllObjects];
-                                                                           
-                                                                           [matchTeamDataDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                               MatchTeamData *teamData = [[MatchTeamData alloc] initWithDictionary:dic error:nil];
-                                                                               if (teamData) {
-                                                                                   [strongSelf.matchTeamDatas addObject:teamData];
-                                                                                   //[indexSet addIndex:(2+idx)];
-                                                                               }
-                                                                           }];
+                                                                           strongSelf.matchTeamData = [[MatchTeamData alloc] initWithDictionary:matchTeamDataDic error:nil];
                                                                            
                                                                            if (strongSelf.currentDisplayType == MatchReplayDisplayTypeTeam) {
                                                                                [strongSelf.tableView reloadData];
-//                                                                               [strongSelf.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(2, strongSelf.matchTeamDatas.count)] withRowAnimation:UITableViewRowAnimationFade];
                                                                            }
                                                                        }
                                                                        
@@ -228,7 +218,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 {
     NSInteger count = 2;
     if (self.currentDisplayType == MatchReplayDisplayTypeTeam) {
-        count += self.matchTeamDatas.count;
+        count += self.matchTeamData.gameOrders.count;
     }else if (self.currentDisplayType == MatchReplayDisplayTypePlayer) {
         count = self.matchPlayerDatas.count;
     }else if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {

@@ -50,6 +50,7 @@
 		E71551151D648B1C0073F159 /* JYRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551131D648B1C0073F159 /* JYRadarChart.m */; };
 		E71551191D6493D30073F159 /* StrengScorePlayerFifthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71551171D6493D30073F159 /* StrengScorePlayerFifthCell.m */; };
 		E715511A1D6493D30073F159 /* StrengScorePlayerFifthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71551181D6493D30073F159 /* StrengScorePlayerFifthCell.xib */; };
+		E715511C1D65A8920073F159 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E715511B1D65A8920073F159 /* libsqlite3.tbd */; };
 		E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = E716272D1D461C1500EF6740 /* MatchReplayController.m */; };
 		E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E716272E1D461C1500EF6740 /* MatchReplayController.xib */; };
 		E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71627321D47516900EF6740 /* ReplayTopCell.m */; };
@@ -275,6 +276,7 @@
 		E71551161D6493D30073F159 /* StrengScorePlayerFifthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScorePlayerFifthCell.h; sourceTree = "<group>"; };
 		E71551171D6493D30073F159 /* StrengScorePlayerFifthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrengScorePlayerFifthCell.m; sourceTree = "<group>"; };
 		E71551181D6493D30073F159 /* StrengScorePlayerFifthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrengScorePlayerFifthCell.xib; sourceTree = "<group>"; };
+		E715511B1D65A8920073F159 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E716272C1D461C1500EF6740 /* MatchReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchReplayController.h; sourceTree = "<group>"; };
 		E716272D1D461C1500EF6740 /* MatchReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchReplayController.m; sourceTree = "<group>"; };
 		E716272E1D461C1500EF6740 /* MatchReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchReplayController.xib; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E715511C1D65A8920073F159 /* libsqlite3.tbd in Frameworks */,
 				E75C9C071D45F1A100950981 /* EventKit.framework in Frameworks */,
 				E72FD84B1D23E154000A5CE6 /* CoreGraphics.framework in Frameworks */,
 				C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */,
@@ -525,6 +528,7 @@
 		9862D763C39376D9EDB3F3EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E715511B1D65A8920073F159 /* libsqlite3.tbd */,
 				E75C9C061D45F1A100950981 /* EventKit.framework */,
 				E72FD84A1D23E154000A5CE6 /* CoreGraphics.framework */,
 				CB55A45EFCE0F154101452A5 /* libPods-ESports.a */,

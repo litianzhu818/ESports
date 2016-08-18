@@ -97,9 +97,9 @@
                                            @"ranking_title":@"ranking",
                                            @"matrix_title":@"matrix price",
                                            @"win_rate_title":@"win rate",
-                                           @"kda_title":@"average KDA",
+                                           @"kda_title":@"avg KDA",
                                            @"offered_rate_title":@"offered rate",
-                                           @"strength_title":@"average strength"
+                                           @"strength_title":@"avg strength"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"region_title":@"地区",

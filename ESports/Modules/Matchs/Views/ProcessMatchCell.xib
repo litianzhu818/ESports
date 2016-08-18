@@ -126,7 +126,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="2fn-1u-L6z"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="查看直播">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -145,7 +145,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="fnH-kz-VmM"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="已订阅">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>

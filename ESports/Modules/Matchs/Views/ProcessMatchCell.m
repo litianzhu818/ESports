@@ -67,7 +67,9 @@ typedef struct CountDownTimeModel{
                                            @"watch_title":@"live",
                                            @"time_title":@"remaining %ld h %ld m",
                                            @"event_notice_title":@"At %@,There is a match for %@ and %@",
-                                           @"create_event_success_title":@"creating event success"
+                                           @"create_event_success_title":@"creating event success",
+                                           @"local_message_first_title":@"After 5 minutes you have a game live between %@ and %@, Don't lose it",
+                                           @"local_message_second_title":@"The live for %@ and %@ will begin immediately, Don't lose it"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"top_title":@"预计比分:",
@@ -76,7 +78,9 @@ typedef struct CountDownTimeModel{
                                            @"watch_title":@"查看直播",
                                            @"time_title":@"剩%ld小时%ld分",
                                            @"event_notice_title":@"你在%@有%@和%@的比赛，请不要忘记观看",
-                                           @"create_event_success_title":@"已订阅提醒通知"
+                                           @"create_event_success_title":@"已订阅提醒通知",
+                                           @"local_message_first_title":@"5分钟后你有%@和%@的比赛直播，请注意观看",
+                                           @"local_message_second_title":@"%@和%@的比赛马上就开始了，请注意观看直播"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"top_title":@"預計比分:",
@@ -85,7 +89,9 @@ typedef struct CountDownTimeModel{
                                            @"watch_title":@"查看直播",
                                            @"time_title":@"剩%ld小時%ld分",
                                            @"event_notice_title":@"你在%@有%@和%@的比賽，請不要忘記觀看",
-                                           @"create_event_success_title":@"已訂閱提醒通知"
+                                           @"create_event_success_title":@"已訂閱提醒通知",
+                                           @"local_message_first_title":@"5分鐘後你有%@和%@的比賽直播，請注意觀看",
+                                           @"local_message_second_title":@"%@和%@的比賽馬上就開始了，請注意觀看直播"
                                            }
                                    };
     
@@ -190,47 +196,74 @@ typedef struct CountDownTimeModel{
 
 - (IBAction)touchOnSubscribeButtonAction:(id)sender
 {
-    EKEventStore *store = [[EKEventStore alloc] init];
-    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        // handle access here
-        if (granted) {
-            
-            NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
-            [tempFormatter setDateFormat:@"yyyy.MM.dd HH:mm"];
-            
-            //创建事件
-            EKEvent *event  = [EKEvent eventWithEventStore:store];
-            event.title     = [NSString stringWithFormat:LTZLocalizedString(@"event_notice_title", nil),[tempFormatter stringFromDate:self.processMatch.date],self.processMatch.aTeamName,self.processMatch.bTeamName];
-            //event.location = @"test";
-            
-            event.startDate = [NSDate date];
-            event.endDate   = self.processMatch.date;
-            event.allDay = NO;
-            
-            //添加提醒
-            [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -10.0f]]; //前十分钟
-            [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -30.0f]];//前一天(60.0f * -60.0f * 24)
+    
+    [[DBManager sharedInstance] insertSubscribeMatchWithMatchId:self.processMatch.processMatchId
+                                                           time:self.processMatch.date
+                                                completionBlock:^(BOOL result, NSError *error) {
+                                                         if (result) {
+                                                             [self showHudMessage:LTZLocalizedString(@"create_event_success_title", nil)];
+                                                             [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateNormal];
+                                                             [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateHighlighted];
+                                                             self.subscribeButton.enabled = NO;
+                                                             
+                                                             [self setLocalNotificationWithTime:self.processMatch.date
+                                                                                      aTeamName:self.processMatch.aTeamName
+                                                                                      bTeamName:self.processMatch.bTeamName
+                                                                                          first:YES];
+                                                             [self setLocalNotificationWithTime:self.processMatch.date
+                                                                                      aTeamName:self.processMatch.aTeamName
+                                                                                      bTeamName:self.processMatch.bTeamName
+                                                                                          first:NO];
+                                                             
+//                                                             [self setLocalNotificationWithTime:[NSDate dateWithTimeInterval:60*7.0f sinceDate:[NSDate date]]
+//                                                                                      aTeamName:self.processMatch.aTeamName
+//                                                                                      bTeamName:self.processMatch.bTeamName
+//                                                                                          first:YES];
+//                                                             [self setLocalNotificationWithTime:[NSDate dateWithTimeInterval:60*7.0f sinceDate:[NSDate date]]
+//                                                                                      aTeamName:self.processMatch.aTeamName
+//                                                                                      bTeamName:self.processMatch.bTeamName
+//                                                                                          first:NO];
+                                                         }
+                                                     }];
+}
 
-            
-            [event setCalendar:[store defaultCalendarForNewEvents]];
-            
-            NSError *err;
-            [store saveEvent:event span:EKSpanThisEvent error:&err];
-            
-            [[DBManager sharedInstance] insertSubscribeMatchWithMatchId:self.processMatch.processMatchId
-                                                              firstTime:[NSDate dateWithTimeInterval:30.0f sinceDate:event.endDate]
-                                                             secondTime:[NSDate dateWithTimeInterval:10.0f sinceDate:event.endDate] completionBlock:^(BOOL result, NSError *error) {
-                                                                 if (result) {
-                                                                     [self showHudMessage:LTZLocalizedString(@"create_event_success_title", nil)];
-                                                                     [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateNormal];
-                                                                     [self.subscribeButton setTitle:LTZLocalizedString(@"subscribed_title", nil) forState:UIControlStateHighlighted];
-                                                                     self.subscribeButton.enabled = NO;
-                                                                 }
-                                                            }];
-        }else{
-            [self showAlertTitle:@"提示" message:@"您没有获取日历事件的权限，请再设置中开启它" cancelButtonTitle:@"知道了" cancelBlock:^{}];
-        }
-    }];
+- (void)setLocalNotificationWithTime:(NSDate *)time
+                           aTeamName:(NSString *)aTeamName
+                           bTeamName:(NSString *)bTeamName
+                               first:(BOOL)first
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    //NSArray *oldNotifications = [application scheduledLocalNotifications];
+    
+    UILocalNotification *newlocalNotification = [[UILocalNotification alloc] init];
+    
+    NSTimeInterval timeInterval = [time timeIntervalSince1970];
+    NSTimeInterval firstTimeInterval = timeInterval - 5 * 60;
+    NSTimeInterval secondTimeInterval = timeInterval - 2 * 60;
+    
+    NSDate *firstTime = [NSDate dateWithTimeIntervalSince1970:firstTimeInterval];
+    NSDate *secondTime = [NSDate dateWithTimeIntervalSince1970:secondTimeInterval];
+    
+    newlocalNotification.fireDate = first ? firstTime:secondTime;
+    newlocalNotification.timeZone = [NSTimeZone defaultTimeZone];
+    //newlocalNotification.repeatInterval = NSWeekCalendarUnit;
+    newlocalNotification.soundName = UILocalNotificationDefaultSoundName;
+    
+    NSString *message = nil;
+    
+    if (first) {
+        message = [NSString stringWithFormat:LTZLocalizedString(@"local_message_first_title", nil),aTeamName, bTeamName];
+    }else{
+        message = [NSString stringWithFormat:LTZLocalizedString(@"local_message_second_title", nil),aTeamName, bTeamName];
+    }
+    
+    newlocalNotification.alertBody = message;
+    newlocalNotification.applicationIconBadgeNumber = 0;
+    
+    NSDictionary *infoDic = @{@"key":@"value"};
+    newlocalNotification.userInfo = infoDic;
+
+    [application scheduleLocalNotification:newlocalNotification];
 }
 
 - (NSString *)timeString

@@ -42,13 +42,13 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"watch_title":@"view replay"
+                                           @"watch_title":@"Game result"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"watch_title":@"查看重播"
+                                           @"watch_title":@"比赛结果"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"watch_title":@"查看重播"
+                                           @"watch_title":@"比賽結果"
                                            }
                                    };
     
@@ -90,6 +90,21 @@
     [self.bTeamImageView sd_setImageWithURL:[NSURL URLWithString:self.resultMatch.bTeamImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.aTeamNameLabel.text = self.resultMatch.aTeamName;
     self.bTeamNameLabel.text = self.resultMatch.bTeamName;
+    
+    NSInteger aScore = [self.resultMatch.aScore integerValue];
+    NSInteger bScore = [self.resultMatch.bScore integerValue];
+    
+    if (aScore == bScore) {
+        self.aScoreLabel.textColor = HexColor(0xc1c1c1);
+        self.bScoreLabel.textColor = HexColor(0xc1c1c1);
+    }else if (aScore > bScore) {
+        self.aScoreLabel.textColor = HexColor(0x449d0f);
+        self.bScoreLabel.textColor = HexColor(0xfe2d2d);
+    }else if (aScore < bScore) {
+        self.aScoreLabel.textColor = HexColor(0xfe2d2d);
+        self.bScoreLabel.textColor = HexColor(0x449d0f);
+    }
+    
     self.aScoreLabel.text = self.resultMatch.aScore;
     self.bScoreLabel.text = self.resultMatch.bScore;
     
@@ -97,9 +112,9 @@
     self.stateButton.layer.cornerRadius = 4.0f;
     self.stateButton.layer.borderColor = HexColor(0x1e66b7).CGColor;
     self.stateButton.layer.borderWidth = 1.0f;
-    [self.stateButton setBackgroundColor:HexColor(0x000000)];
-    [self.stateButton setTitleColor:HexColor(0xa3a3a3) forState:UIControlStateNormal];
-    [self.stateButton setTitleColor:[HexColor(0xa3a3a3) colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
+    [self.stateButton setBackgroundColor:HexColor(0x1e66b7)];
+    [self.stateButton setTitleColor:HexColor(0xffffff) forState:UIControlStateNormal];
+    [self.stateButton setTitleColor:[HexColor(0xffffff) colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
     [self.stateButton setTitle:LTZLocalizedString(@"watch_title", nil) forState:UIControlStateNormal];
     [self.stateButton setTitle:LTZLocalizedString(@"watch_title", nil) forState:UIControlStateHighlighted];
 }
