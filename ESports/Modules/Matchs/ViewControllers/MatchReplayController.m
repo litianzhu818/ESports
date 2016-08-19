@@ -234,15 +234,11 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
         return [ReplayTypeCell cellHeight];
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam){
         if (indexPath.row == 0) {
-            return [MatchTeamDataTopCell cellHeight];
+            return [MatchTeamDataBottomCell cellHeight];
         }else if (indexPath.row == 1){
-            return [MatchTeamDataCenterCell cellHeight];
+            return [MatchTeamDataTopCell cellHeight];
         }else if (indexPath.row == 2){
-            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section-2];
-            return [MatchTeamDataBottomCell cellHeightWithMatchTeamData:teamData isPicks:YES];
-        }else if (indexPath.row == 3){
-            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section-2];
-            return [MatchTeamDataBottomCell cellHeightWithMatchTeamData:teamData isPicks:NO];
+            return [MatchTeamDataCenterCell cellHeight];
         }
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer){
         return [MatchPlayerDataCell cellHeight];
@@ -277,14 +273,33 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 {
     if (section > 1 &&  self.currentDisplayType == MatchReplayDisplayTypeTeam) {
         ExtendTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[ExtendTableViewHeaderView sectionHeaderViewIdentifier]];
-        headerView.title = self.matchTeamDatas[section-2].gameOrder;
-        headerView.isExtend = self.matchTeamDatas[section-2].isExtend;
+        MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[section-2];
+        headerView.title = gameOrder.gameOrder;
+        
+        NSString *winTeamName = nil;
+        
+        if (gameOrder.teamAGameResult.win) {
+            if (gameOrder.isATeamRedSide) {
+                winTeamName = self.matchTeamData.teamAInfo.teamName;
+            }else{
+                winTeamName = self.matchTeamData.teamBInfo.teamName;
+            }
+        }else{
+            if (gameOrder.isATeamRedSide) {
+                winTeamName = self.matchTeamData.teamBInfo.teamName;
+            }else{
+                winTeamName = self.matchTeamData.teamAInfo.teamName;
+            }
+        }
+        
+        headerView.subTitle = winTeamName;
+        headerView.isExtend = gameOrder.isExtend;
         
         WEAK_SELF;
         [headerView setSectionIndex:section tapBlock:^(NSInteger sectionIndex, BOOL isExtend) {
             STRONG_SELF;
-            MatchTeamData *teamData = strongSelf.matchTeamDatas[sectionIndex-2];
-            teamData.isExtend = isExtend;
+            MatchTeamGameOrder *gameOrder = strongSelf.matchTeamData.gameOrders[sectionIndex-2];
+            gameOrder.isExtend = isExtend;
             [strongSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
         }];
         return headerView;
@@ -327,9 +342,9 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     }else if (section == 1){
         count = 1;
     }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam){
-        MatchTeamData *teamData = self.matchTeamDatas[section - 2];
-        if (teamData.isExtend) {
-            count = 4;
+        MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[section-2];
+        if (gameOrder.isExtend) {
+            count = 3;
         }else{
             count = 0;
         }
@@ -366,35 +381,36 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
         return cell;
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypeTeam) {
         if (indexPath.row == 0) {
-            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section - 2];
+            
+            MatchTeamDataBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataBottomCell cellIdentifier]
+                                                                            forIndexPath:indexPath];
+            cell.index = indexPath.section - 2;
+            cell.matchTeamData = self.matchTeamData;
+            return cell;
+            
+        }else if (indexPath.row == 1) {
+            MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
             MatchTeamDataTopCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataTopCell cellIdentifier]
                                                                          forIndexPath:indexPath];
-            cell.blueTeamImageUrl = teamData.buleTeamImageUrl;
-            cell.redTeamImageUrl = teamData.redTeamImageUrl;
-            cell.gameResult = teamData.teamGameResult;
+            if (gameOrder.isATeamRedSide) {
+                cell.redTeamImageUrl = self.matchTeamData.teamAInfo.teamImageUrl;
+                cell.blueTeamImageUrl = self.matchTeamData.teamBInfo.teamImageUrl;
+            }else{
+                cell.redTeamImageUrl = self.matchTeamData.teamBInfo.teamImageUrl;
+                cell.blueTeamImageUrl = self.matchTeamData.teamAInfo.teamImageUrl;
+            }
             
-            return cell;
-        }else if (indexPath.row == 1) {
-            MatchTeamDataCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataCenterCell cellIdentifier]
-                                                                         forIndexPath:indexPath];
-            cell.blueTeamName = self.resultMatch.aTeamName;
-            cell.redTeamName = self.resultMatch.bTeamName;
-            cell.matchTeamData = self.matchTeamDatas[indexPath.section - 2];
+            cell.gameResult = gameOrder.teamAGameResult;
             
             return cell;
         }else if (indexPath.row == 2) {
-            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section - 2];
-            MatchTeamDataBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataBottomCell cellIdentifier]
+            
+            MatchTeamDataCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataCenterCell cellIdentifier]
                                                                             forIndexPath:indexPath];
-            cell.isPicks = YES;
-            cell.matchTeamData = teamData;
-            return cell;
-        }else if (indexPath.row == 3) {
-            MatchTeamData *teamData = self.matchTeamDatas[indexPath.section - 2];
-            MatchTeamDataBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataBottomCell cellIdentifier]
-                                                                            forIndexPath:indexPath];
-            cell.isPicks = NO;
-            cell.matchTeamData = teamData;
+            cell.blueTeamName = self.resultMatch.aTeamName;
+            cell.redTeamName = self.resultMatch.bTeamName;
+            cell.gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
+            
             return cell;
         }
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {

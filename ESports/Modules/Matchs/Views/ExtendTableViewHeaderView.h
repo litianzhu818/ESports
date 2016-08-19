@@ -12,6 +12,7 @@
 
 @property (assign, nonatomic) BOOL isExtend;
 @property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *subTitle;
 @property (assign, nonatomic) NSInteger sectionIndex;
 @property (copy, nonatomic) void (^tapBlock)(NSInteger sectionIndex, BOOL isExtend);
 

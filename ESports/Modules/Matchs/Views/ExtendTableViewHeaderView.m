@@ -17,6 +17,7 @@ static const CGFloat marginWidth = 8.0;
 @property (nonatomic, strong) UIButton *backgroundButton;
 @property (nonatomic, strong) UIImageView *accessoryImageView;
 @property (nonatomic, strong) UILabel *mainTextLabel;
+@property (nonatomic, strong) UILabel *subTextLabel;
 @property (nonatomic, strong) UIView *divider;
 
 @end
@@ -25,6 +26,7 @@ static const CGFloat marginWidth = 8.0;
 @synthesize backgroundButton;
 @synthesize accessoryImageView;
 @synthesize mainTextLabel;
+@synthesize subTextLabel;
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -119,16 +121,29 @@ static const CGFloat marginWidth = 8.0;
         
     });
     
+    // init subTextLabel
+    subTextLabel = ({
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        label.font = [UIFont systemFontOfSize:12.0];
+        label.textAlignment = NSTextAlignmentRight;
+        label.textColor = HexColor(0xafb2b7);
+        [self.contentView addSubview:label];
+        label;
+        
+    });
+    
     
     NSMutableArray *Constraints = [NSMutableArray array];
     
-    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[mainTextLabel]-MARGIN-[accessoryImageView(==MARGIN1)]-MARGIN-|"
+    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[mainTextLabel]-MARGIN-[subTextLabel(==80.0)]-MARGIN-[accessoryImageView(==MARGIN1)]-MARGIN-|"
                                                                                  options:0
                                                                              metrics:@{
                                                                                        @"MARGIN":@(marginWidth),
                                                                                        @"MARGIN1":@(20)
                                                                                        }
-                                                                                   views:NSDictionaryOfVariableBindings(accessoryImageView,mainTextLabel)]];
+                                                                                   views:NSDictionaryOfVariableBindings(accessoryImageView,mainTextLabel,subTextLabel)]];
     
     [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-MARGIN-[accessoryImageView]-MARGIN-|"
                                                                                  options:0
@@ -143,6 +158,12 @@ static const CGFloat marginWidth = 8.0;
                                                                                        @"MARGIN":@(marginWidth)
                                                                                        }
                                                                                views:NSDictionaryOfVariableBindings(mainTextLabel)]];
+    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-MARGIN-[subTextLabel]-MARGIN-|"
+                                                                             options:0
+                                                                             metrics:@{
+                                                                                       @"MARGIN":@(marginWidth)
+                                                                                       }
+                                                                               views:NSDictionaryOfVariableBindings(subTextLabel)]];
     
     [self.contentView addConstraints:Constraints];
     
@@ -190,6 +211,13 @@ static const CGFloat marginWidth = 8.0;
     _title = title;
     NSString *titleString = [NSString stringWithFormat:LTZLocalizedString(@"team_title", nil),_title];;
     [mainTextLabel setText:titleString];
+}
+
+- (void)setSubTitle:(NSString *)subTitle
+{
+    _subTitle = subTitle;
+    
+    self.subTextLabel.text = _subTitle;
 }
 
 - (void)languageDidChanged

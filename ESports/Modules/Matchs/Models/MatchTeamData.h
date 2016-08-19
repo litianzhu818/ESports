@@ -191,7 +191,7 @@
 @class MatchTeamGameState;
 @class MatchTeamGameResult;
 
-@protocol MatchTeamGameData
+@protocol MatchTeamGameOrder
 @end
 
 @interface MatchTeamData : JSONModel
@@ -202,7 +202,7 @@
 @property (strong, nonatomic) MatchTeam *teamAInfo;
 @property (strong, nonatomic) MatchTeam *teamBInfo;
 
-@property (strong, nonatomic) NSArray<MatchTeamGameData> *gameOrders;
+@property (strong, nonatomic) NSArray<MatchTeamGameOrder> *gameOrders;
 
 @end
 
@@ -236,12 +236,12 @@
 
 @interface MatchTeamGameState : JSONModel
 
-@property (assign, nonatomic) NSString *teamAssist;
-@property (assign, nonatomic) NSString *teamDeath;
-@property (assign, nonatomic) NSString *teamDragon20;
-@property (assign, nonatomic) NSString *teamGoldDiffAt25;
-@property (assign, nonatomic) NSString *teamKill;
-@property (assign, nonatomic) NSString *teamTower20;
+@property (strong, nonatomic) NSString *teamAssist;
+@property (strong, nonatomic) NSString *teamDeath;
+@property (strong, nonatomic) NSString *teamDragon20;
+@property (strong, nonatomic) NSString *teamGoldDiffAt25;
+@property (strong, nonatomic) NSString *teamKill;
+@property (strong, nonatomic) NSString *teamTower20;
 @property (strong, nonatomic) NSArray *teamBannedChampions;
 @property (strong, nonatomic) NSArray *PickedChampions;
 

@@ -11,7 +11,7 @@
 
 @interface MatchTeamDataCenterCell : UITableViewCell
 
-@property (strong, nonatomic) MatchTeamData *matchTeamData;
+@property (strong, nonatomic) MatchTeamGameOrder *gameOrder;
 @property (strong, nonatomic) NSString *blueTeamName;
 @property (strong, nonatomic) NSString *redTeamName;
 

@@ -11,12 +11,12 @@
 
 @interface MatchTeamDataBottomCell : UITableViewCell
 
+@property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) MatchTeamData *matchTeamData;
-@property (assign, nonatomic) BOOL isPicks;
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;
-+ (CGFloat)cellHeightWithMatchTeamData:(MatchTeamData *)matchTeamData isPicks:(BOOL)isPicks;
++ (CGFloat)cellHeight;
 
 
 @end

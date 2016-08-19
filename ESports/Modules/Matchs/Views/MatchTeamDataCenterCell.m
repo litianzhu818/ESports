@@ -172,45 +172,83 @@
     self.redTeamNameLabel.text = _redTeamName;
 }
 
-- (void)setMatchTeamData:(MatchTeamData *)matchTeamData
+- (void)setGameOrder:(MatchTeamGameOrder *)gameOrder
 {
-    _matchTeamData = matchTeamData;
+    _gameOrder = gameOrder;
     
-    self.blueTowerScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.tower20];
-    self.blueDragonScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.dragon20];
-    self.blueGoldDiffScoreLabel.text = [NSString stringWithFormat:@"%.f",_matchTeamData.blueTeamGameData.goldDiffAt25];
-    self.blueKillScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.blueTeamGameData.kill];
-    
-    self.redTowerScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.tower20];
-    self.redDragonScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.dragon20];
-    self.redGoldDiffScoreLabel.text = [NSString stringWithFormat:@"%.f",_matchTeamData.redTeamGameData.goldDiffAt25];
-    self.redKillScoreLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)_matchTeamData.redTeamGameData.kill];
-    
-    [self justWidthConstraintWithImageView:self.blueTowerImageView
-                           widthConstraint:self.blueTowerImageViewWidthConstraint
-                            leftConstraint:self.blueTowerImageViewLeftConstraint
-                                 blueScore:_matchTeamData.blueTeamGameData.tower20
-                                  redScore:_matchTeamData.redTeamGameData.tower20];
-    
-    [self justWidthConstraintWithImageView:self.blueDragonImageView
-                           widthConstraint:self.blueDragonImageViewWidthConstraint
-                            leftConstraint:self.blueDragonImageViewLeftConstraint
-                                 blueScore:_matchTeamData.blueTeamGameData.dragon20
-                                  redScore:_matchTeamData.redTeamGameData.dragon20];
-    
-    [self justGoldDiffWidthConstraintWithImageView:self.blueGoldDiffImageView
-                                   widthConstraint:self.blueGoldDiffImageViewWidthConstraint
-                                    leftConstraint:self.blueGoldDiffImageViewLeftConstraint
-                                         blueScore:_matchTeamData.blueTeamGameData.goldDiffAt25
-                                          redScore:_matchTeamData.redTeamGameData.goldDiffAt25];
-
-    
-    [self justWidthConstraintWithImageView:self.blueKillImageView
-                           widthConstraint:self.blueKillImageViewWidthConstraint
-                            leftConstraint:self.blueKillImageViewLeftConstraint
-                                 blueScore:_matchTeamData.blueTeamGameData.kill
-                                  redScore:_matchTeamData.redTeamGameData.kill];
-    
+    if (gameOrder.isATeamRedSide) {
+        self.blueTowerScoreLabel.text = _gameOrder.teamBGameState.teamTower20;
+        self.blueDragonScoreLabel.text = _gameOrder.teamBGameState.teamDragon20;
+        self.blueGoldDiffScoreLabel.text = _gameOrder.teamBGameState.teamGoldDiffAt25;
+        self.blueKillScoreLabel.text = _gameOrder.teamBGameState.teamKill;
+        
+        self.redTowerScoreLabel.text = _gameOrder.teamAGameState.teamTower20;
+        self.redDragonScoreLabel.text = _gameOrder.teamAGameState.teamDragon20;
+        self.redGoldDiffScoreLabel.text = _gameOrder.teamAGameState.teamGoldDiffAt25;
+        self.redKillScoreLabel.text = _gameOrder.teamAGameState.teamKill;
+        
+        
+        [self justWidthConstraintWithImageView:self.blueTowerImageView
+                               widthConstraint:self.blueTowerImageViewWidthConstraint
+                                leftConstraint:self.blueTowerImageViewLeftConstraint
+                                     blueScore:[_gameOrder.teamBGameState.teamTower20 integerValue]
+                                      redScore:[_gameOrder.teamAGameState.teamTower20 integerValue]];
+        
+        [self justWidthConstraintWithImageView:self.blueDragonImageView
+                               widthConstraint:self.blueDragonImageViewWidthConstraint
+                                leftConstraint:self.blueDragonImageViewLeftConstraint
+                                     blueScore:[_gameOrder.teamBGameState.teamDragon20 integerValue]
+                                      redScore:[_gameOrder.teamAGameState.teamDragon20 integerValue]];
+        
+        [self justGoldDiffWidthConstraintWithImageView:self.blueGoldDiffImageView
+                                       widthConstraint:self.blueGoldDiffImageViewWidthConstraint
+                                        leftConstraint:self.blueGoldDiffImageViewLeftConstraint
+                                             blueScore:[_gameOrder.teamBGameState.teamGoldDiffAt25 integerValue]
+                                              redScore:[_gameOrder.teamAGameState.teamGoldDiffAt25 integerValue]];
+        
+        
+        [self justWidthConstraintWithImageView:self.blueKillImageView
+                               widthConstraint:self.blueKillImageViewWidthConstraint
+                                leftConstraint:self.blueKillImageViewLeftConstraint
+                                     blueScore:[_gameOrder.teamBGameState.teamKill integerValue]
+                                      redScore:[gameOrder.teamAGameState.teamKill integerValue]];
+    }else{
+        self.blueTowerScoreLabel.text = _gameOrder.teamAGameState.teamTower20;
+        self.blueDragonScoreLabel.text = _gameOrder.teamAGameState.teamDragon20;
+        self.blueGoldDiffScoreLabel.text = _gameOrder.teamAGameState.teamGoldDiffAt25;
+        self.blueKillScoreLabel.text = _gameOrder.teamAGameState.teamKill;
+        
+        self.redTowerScoreLabel.text = _gameOrder.teamBGameState.teamTower20;
+        self.redDragonScoreLabel.text = _gameOrder.teamBGameState.teamDragon20;
+        self.redGoldDiffScoreLabel.text = _gameOrder.teamBGameState.teamGoldDiffAt25;
+        self.redKillScoreLabel.text = _gameOrder.teamBGameState.teamKill;
+        
+        
+        [self justWidthConstraintWithImageView:self.blueTowerImageView
+                               widthConstraint:self.blueTowerImageViewWidthConstraint
+                                leftConstraint:self.blueTowerImageViewLeftConstraint
+                                     blueScore:[_gameOrder.teamAGameState.teamTower20 integerValue]
+                                      redScore:[_gameOrder.teamBGameState.teamTower20 integerValue]];
+        
+        [self justWidthConstraintWithImageView:self.blueDragonImageView
+                               widthConstraint:self.blueDragonImageViewWidthConstraint
+                                leftConstraint:self.blueDragonImageViewLeftConstraint
+                                     blueScore:[_gameOrder.teamAGameState.teamDragon20 integerValue]
+                                      redScore:[_gameOrder.teamBGameState.teamDragon20 integerValue]];
+        
+        [self justGoldDiffWidthConstraintWithImageView:self.blueGoldDiffImageView
+                                       widthConstraint:self.blueGoldDiffImageViewWidthConstraint
+                                        leftConstraint:self.blueGoldDiffImageViewLeftConstraint
+                                             blueScore:[_gameOrder.teamAGameState.teamGoldDiffAt25 integerValue]
+                                              redScore:[_gameOrder.teamBGameState.teamGoldDiffAt25 integerValue]];
+        
+        
+        [self justWidthConstraintWithImageView:self.blueKillImageView
+                               widthConstraint:self.blueKillImageViewWidthConstraint
+                                leftConstraint:self.blueKillImageViewLeftConstraint
+                                     blueScore:[_gameOrder.teamAGameState.teamKill integerValue]
+                                      redScore:[_gameOrder.teamBGameState.teamKill integerValue]];
+    }
     
 }
 
