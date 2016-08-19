@@ -102,7 +102,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 8.0*4+2*[MatchTeamResultCell cellSize].height;
+    return 4+2*[MatchTeamResultCell cellSize].height;
 }
 
 #pragma mark - UICollectionViewDataSource methods

@@ -13,9 +13,31 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"MatchId":@"matchId",
+                                                       @"TeamAInfo":@"teamAInfo",
+                                                       @"TeamBInfo":@"teamBInfo",
+                                                       @"TeamAScore":@"teamAScore",
+                                                       @"TeamBScore":@"teamBScore",
+                                                       @"PlayerPerformanceList":@"gameOrders"
+                                                       }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+@end
+
+@implementation MatchPlayerGameOrder
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"GameOrder":@"gameOrder",
-                                                       @"BlueTeamPlayersStatsList":@"bluePlayersDetailData",
-                                                       @"RedTeamPlayersStatsList":@"redPlayersDetailData"
+                                                       @"IsTeamARedSide":@"isTeamARedSide",
+                                                       @"TeamAWin":@"isTeamAWin",
+                                                       @"TeamAPlayersStatsList":@"teamAPlayerDetailDatas",
+                                                       @"TeamBPlayersStatsList":@"teamBPlayerDetailDatas"
                                                        }];
 }
 
@@ -24,14 +46,29 @@
     return YES;
 }
 
-- (NSArray<MatchPlayerDetailData *> *)playersDetailDatas
+- (NSArray<MatchPlayerDetailData *> *)teamAllPlayerDetailDatas
 {
     NSMutableArray<MatchPlayerDetailData *> *datas = [NSMutableArray array];
-    [datas addObjectsFromArray:self.bluePlayersDetailData];
-    [datas addObjectsFromArray:self.redPlayersDetailData];
+    
+    if (self.isTeamARedSide) {
+        [self.teamBPlayerDetailDatas enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [datas addObject:obj];
+            MatchPlayerDetailData *redTeamPlayerDetailData = self.teamAPlayerDetailDatas[idx];
+            if (redTeamPlayerDetailData) {
+                [datas addObject:redTeamPlayerDetailData];
+            }
+        }];
+    }else{
+        [self.teamAPlayerDetailDatas enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [datas addObject:obj];
+            MatchPlayerDetailData *redTeamPlayerDetailData = self.teamBPlayerDetailDatas[idx];
+            if (redTeamPlayerDetailData) {
+                [datas addObject:redTeamPlayerDetailData];
+            }
+        }];
+    }
     return datas;
 }
-
 @end
 
 @implementation MatchPlayerDetailData
@@ -42,11 +79,16 @@
                                                        @"PlayerId":@"playerId",
                                                        @"Name":@"playerName",
                                                        @"Role":@"playerRole",
-                                                       @"ChampionLogo":@"playerImageUrl",
+                                                       @"RoleOrder":@"playerRoleOrder",
+                                                       @"TeamName":@"playerTeamName",
                                                        @"Carry":@"carry",
                                                        @"Cs15Min":@"cs15Min",
                                                        @"Kda":@"kda",
-                                                       @"Troll":@"troll"
+                                                       @"Troll":@"troll",
+                                                       @"Kill":@"kill",
+                                                       @"Death":@"death",
+                                                       @"Assist":@"assist",
+                                                       @"ChampionLogo":@"championImageUrl"
                                                        }];
 }
 
@@ -54,5 +96,4 @@
 {
     return YES;
 }
-
 @end

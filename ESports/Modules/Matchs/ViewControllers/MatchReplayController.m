@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 @property (assign, nonatomic) MatchReplayDisplayType currentDisplayType;
 
 @property (strong, nonatomic) MatchTeamData *matchTeamData;
-@property (strong, nonatomic) NSMutableArray<MatchPlayerData *> *matchPlayerDatas;
+@property (strong, nonatomic) MatchPlayerData *matchPlayerData;
 @property (strong, nonatomic) NSMutableArray<MatchVideoData *> *matchVideoDatas;
 
 @end
@@ -101,8 +101,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 - (void)loadData
 {
     self.currentDisplayType = MatchReplayDisplayTypeTeam;
-
-    self.matchPlayerDatas = [NSMutableArray array];
+    
     self.matchVideoDatas = [NSMutableArray array];
     
     WEAK_SELF;
@@ -135,7 +134,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     
     if (_currentDisplayType == MatchReplayDisplayTypeTeam) {
         [self.tableView reloadData];
-    }else if (_currentDisplayType == MatchReplayDisplayTypePlayer && self.matchPlayerDatas.count < 1) {
+    }else if (_currentDisplayType == MatchReplayDisplayTypePlayer && !self.matchPlayerData) {
         [self  firstLoadMatchPlayerData];
     }else if (_currentDisplayType == MatchReplayDisplayTypeVideo && self.matchVideoDatas.count < 1) {
         [self  firstLoadMatchVideoData];
@@ -150,20 +149,13 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestMatchPlayerDataWithMatchId:self.resultMatch.resultMatchId
-                                                                   block:^(NSArray<NSDictionary *> *matchPlayerDataDics, NSError *error) {
+                                                                   block:^(NSDictionary *matchPlayerDataDic, NSError *error) {
                                                                        
                                                                        STRONG_SELF;
                                                                        
                                                                        if (!error) {
-                                                                           
-                                                                           [strongSelf.matchPlayerDatas removeAllObjects];
-                                                                           
-                                                                           [matchPlayerDataDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                               MatchPlayerData *playerData = [[MatchPlayerData alloc] initWithDictionary:dic error:nil];
-                                                                               if (playerData) {
-                                                                                   [strongSelf.matchPlayerDatas addObject:playerData];
-                                                                               }
-                                                                           }];
+                                                                        
+                                                                           strongSelf.matchPlayerData = [[MatchPlayerData alloc] initWithDictionary:matchPlayerDataDic error:nil];
                                                                            
                                                                            if (strongSelf.currentDisplayType == MatchReplayDisplayTypePlayer) {
                                                                                [strongSelf.tableView reloadData];
@@ -220,7 +212,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     if (self.currentDisplayType == MatchReplayDisplayTypeTeam) {
         count += self.matchTeamData.gameOrders.count;
     }else if (self.currentDisplayType == MatchReplayDisplayTypePlayer) {
-        count = self.matchPlayerDatas.count;
+        count = self.matchPlayerData.gameOrders.count;
     }else if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {
         ++count;
     }
@@ -305,14 +297,23 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
         return headerView;
     }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
         ExtendTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[ExtendTableViewHeaderView sectionHeaderViewIdentifier]];
-        headerView.title = self.matchPlayerDatas[section-2].gameOrder;
-        headerView.isExtend = self.matchPlayerDatas[section-2].isExtend;
+        MatchPlayerGameOrder *gameOrder = self.matchPlayerData.gameOrders[section-2];
+        headerView.title = gameOrder.gameOrder;
+        
+        NSString *winTeamName = nil;
+        if (gameOrder.isTeamAWin) {
+             winTeamName = self.matchTeamData.teamAInfo.teamName;
+        }else{
+            winTeamName = self.matchTeamData.teamBInfo.teamName;
+        }
+        headerView.subTitle = winTeamName;
+        headerView.isExtend = gameOrder.isExtend;
         
         WEAK_SELF;
         [headerView setSectionIndex:section tapBlock:^(NSInteger sectionIndex, BOOL isExtend) {
             STRONG_SELF;
-            MatchPlayerData *playerData = strongSelf.matchPlayerDatas[sectionIndex-2];
-            playerData.isExtend = isExtend;
+            MatchPlayerGameOrder *gameOrder = strongSelf.matchPlayerData.gameOrders[sectionIndex-2];
+            gameOrder.isExtend = isExtend;
             [strongSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
         }];
         return headerView;
@@ -350,9 +351,9 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
         }
         
     }else if (section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
-        MatchPlayerData *playerData = self.matchPlayerDatas[section - 2];
-        if (playerData.isExtend) {
-            count = playerData.bluePlayersDetailData.count + playerData.redPlayersDetailData.count;
+        MatchPlayerGameOrder *gameOrder = self.matchPlayerData.gameOrders[section-2];
+        if (gameOrder.isExtend) {
+            count = gameOrder.teamAPlayerDetailDatas.count + gameOrder.teamBPlayerDetailDatas.count;
         }else{
             count = 0;
         }
@@ -407,20 +408,31 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             
             MatchTeamDataCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataCenterCell cellIdentifier]
                                                                             forIndexPath:indexPath];
-            cell.blueTeamName = self.resultMatch.aTeamName;
-            cell.redTeamName = self.resultMatch.bTeamName;
-            cell.gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
+            
+            MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
+            
+            if (gameOrder.isATeamRedSide) {
+                cell.blueTeamName = self.matchTeamData.teamAInfo.teamName;
+                cell.redTeamName = self.matchTeamData.teamBInfo.teamName;
+            }else{
+                cell.blueTeamName = self.matchTeamData.teamBInfo.teamName;
+                cell.redTeamName = self.matchTeamData.teamAInfo.teamName;
+            }
+            
+            cell.gameOrder = gameOrder;
             
             return cell;
         }
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypePlayer) {
         MatchPlayerDataCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchPlayerDataCell cellIdentifier]
                                                                         forIndexPath:indexPath];
-        MatchPlayerDetailData *playerDetailData = self.matchPlayerDatas[indexPath.section-2].playersDetailDatas[indexPath.row];
+        MatchPlayerGameOrder *gameOrder = self.matchPlayerData.gameOrders[indexPath.section-2];
+        MatchPlayerDetailData *playerDetailData = gameOrder.teamAllPlayerDetailDatas[indexPath.row];
         
-        BOOL isBlueTeamPlayer = [self.matchPlayerDatas[indexPath.section-2].bluePlayersDetailData containsObject:playerDetailData];
+        BOOL isBlueTeamPlayer = gameOrder.isTeamARedSide ? [gameOrder.teamBPlayerDetailDatas containsObject:playerDetailData]:[gameOrder.teamAPlayerDetailDatas containsObject:playerDetailData];
+        
         cell.isBlueTeam = isBlueTeamPlayer;
-        cell.teamName = isBlueTeamPlayer ? self.resultMatch.aTeamName:self.resultMatch.bTeamName;
+        cell.teamName = playerDetailData.playerTeamName;
         cell.matchPlayerDetailData = playerDetailData;
         return cell;
     }else if (indexPath.section > 1 && self.currentDisplayType == MatchReplayDisplayTypeVideo) {

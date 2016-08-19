@@ -134,7 +134,7 @@
 {
     [super layoutSubviews];
     
-    [self.iconiImageView sd_setImageWithURL:[NSURL URLWithString:self.matchPlayerDetailData.playerImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.iconiImageView sd_setImageWithURL:[NSURL URLWithString:self.matchPlayerDetailData.championImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.roleLabel.text = self.matchPlayerDetailData.playerRole;
     self.playerNameLabel.text = self.matchPlayerDetailData.playerName;
     self.kdaValueLabel.text = self.matchPlayerDetailData.kda;

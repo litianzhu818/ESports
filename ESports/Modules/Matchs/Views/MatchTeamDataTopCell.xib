@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="f3j-Rw-EuH">
-                        <rect key="frame" x="0.0" y="8" width="320" height="221"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="f3j-Rw-EuH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L0W-wa-Z5h">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -29,7 +29,7 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="f3j-Rw-EuH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="2OW-TX-wil"/>
+                    <constraint firstItem="f3j-Rw-EuH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2OW-TX-wil"/>
                     <constraint firstItem="f3j-Rw-EuH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="T7F-BF-Ag0"/>
                     <constraint firstAttribute="bottom" secondItem="f3j-Rw-EuH" secondAttribute="bottom" id="V62-2G-Ceb"/>
                     <constraint firstAttribute="trailing" secondItem="f3j-Rw-EuH" secondAttribute="trailing" id="eIn-VY-rfe"/>

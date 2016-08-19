@@ -1396,7 +1396,7 @@
 				TargetAttributes = {
 					E7BD57631CF4360D008F2D69 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = PAS524E8WG;
+						DevelopmentTeam = 77B427H67H;
 					};
 				};
 			};
@@ -1807,15 +1807,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
 				INFOPLIST_FILE = ESports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.afusion.ESports;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esportsmatrix.esports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53e6572f-63c3-4ae1-9e86-0201428f9017";
+				PROVISIONING_PROFILE = "398b97ad-f98c-4aee-93a8-030fc3280eeb";
 			};
 			name = Debug;
 		};
@@ -1825,15 +1827,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
 				INFOPLIST_FILE = ESports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.afusion.ESports;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esportsmatrix.esports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53e6572f-63c3-4ae1-9e86-0201428f9017";
+				PROVISIONING_PROFILE = "398b97ad-f98c-4aee-93a8-030fc3280eeb";
 			};
 			name = Release;
 		};

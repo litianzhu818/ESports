@@ -137,7 +137,7 @@ static const CGFloat marginWidth = 8.0;
     
     NSMutableArray *Constraints = [NSMutableArray array];
     
-    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[mainTextLabel]-MARGIN-[subTextLabel(==80.0)]-MARGIN-[accessoryImageView(==MARGIN1)]-MARGIN-|"
+    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[mainTextLabel]-MARGIN-[subTextLabel(==120.0)]-MARGIN-[accessoryImageView(==MARGIN1)]-MARGIN-|"
                                                                                  options:0
                                                                              metrics:@{
                                                                                        @"MARGIN":@(marginWidth),
