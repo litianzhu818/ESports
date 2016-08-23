@@ -19,7 +19,8 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
+- (void)switchToLoginViewController;
+- (void)switchToTabbarViewController;
 
 @end
 

@@ -10,10 +10,15 @@
 #import "ESportsTabBarController.h"
 #import "LTZLocalizationKit.h"
 #import "MatchZoneManager.h"
+#import "BaseNavigationController.h"
+#import "LoginController.h"
+#import "UserConfig.h"
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) UIViewController *rootViewController;
 @property (strong, nonatomic) ESportsTabBarController *tabBarController;
+@property (strong, nonatomic) BaseNavigationController *loginNavigationController;
 
 @end
 
@@ -25,7 +30,7 @@
     
     [self registerRemoteNotificationWithOptions:launchOptions];
     [[MatchZoneManager sharedInstance] initialize];
-    [self setupViewControolers];
+    [self setupViewControllers];
     
     return YES;
 }
@@ -210,14 +215,40 @@
      */
 }
 
-- (void)setupViewControolers
+- (void)setupViewControllers
 {
-    self.tabBarController = [[ESportsTabBarController alloc] init];
-    
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.backgroundColor = HexColor(0x0e161f);
-    [self.window setRootViewController:self.tabBarController];
+    
+    if ([[UserConfig sharedInstance] GetHasLogin]) {
+        [self switchToLoginViewController];
+    }else{
+        [self switchToTabbarViewController];
+    }
+    
     [self.window makeKeyAndVisible];
+}
+
+- (void)switchToLoginViewController
+{
+    if (!self.loginNavigationController) {
+        LoginController *loginController = [[LoginController alloc] init];
+        self.loginNavigationController = [[BaseNavigationController alloc] initWithRootViewController:loginController];
+    }
+    if ([self.rootViewController isEqual:self.loginNavigationController]) return;
+    self.rootViewController = self.loginNavigationController;
+    [self.window setRootViewController:self.loginNavigationController];
+}
+- (void)switchToTabbarViewController
+{
+    if (!self.tabBarController) {
+        self.tabBarController = [[ESportsTabBarController alloc] init];
+    }
+    
+    if ([self.rootViewController isEqual:self.tabBarController]) return;
+    
+    self.rootViewController = self.tabBarController;
+    [self.window setRootViewController:self.tabBarController];
 }
 
 #pragma mark - Core Data stack

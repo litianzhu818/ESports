@@ -11,6 +11,15 @@
 		E71503291D6B0C9300812668 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503271D6B0C9300812668 /* LoginController.m */; };
 		E715032A1D6B0C9300812668 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503281D6B0C9300812668 /* LoginController.xib */; };
 		E715032E1D6C35E900812668 /* MatchZoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E715032D1D6C35E900812668 /* MatchZoneManager.m */; };
+		E71503381D6C500200812668 /* login_back_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E715032F1D6C500200812668 /* login_back_bg@2x.png */; };
+		E71503391D6C500200812668 /* login_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503301D6C500200812668 /* login_close_btn@2x.png */; };
+		E715033A1D6C500200812668 /* login_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503311D6C500200812668 /* login_facebook@2x.png */; };
+		E715033B1D6C500200812668 /* login_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503321D6C500200812668 /* login_logo@2x.png */; };
+		E715033C1D6C500200812668 /* login_name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503331D6C500200812668 /* login_name@2x.png */; };
+		E715033D1D6C500200812668 /* login_pwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503341D6C500200812668 /* login_pwd@2x.png */; };
+		E715033E1D6C500200812668 /* login_qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503351D6C500200812668 /* login_qq@2x.png */; };
+		E715033F1D6C500200812668 /* login_webo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503361D6C500200812668 /* login_webo@2x.png */; };
+		E71503401D6C500200812668 /* login_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503371D6C500200812668 /* login_wechat@2x.png */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -221,6 +230,15 @@
 		E71503281D6B0C9300812668 /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		E715032C1D6C35E900812668 /* MatchZoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchZoneManager.h; sourceTree = "<group>"; };
 		E715032D1D6C35E900812668 /* MatchZoneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchZoneManager.m; sourceTree = "<group>"; };
+		E715032F1D6C500200812668 /* login_back_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_back_bg@2x.png"; sourceTree = "<group>"; };
+		E71503301D6C500200812668 /* login_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_close_btn@2x.png"; sourceTree = "<group>"; };
+		E71503311D6C500200812668 /* login_facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_facebook@2x.png"; sourceTree = "<group>"; };
+		E71503321D6C500200812668 /* login_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_logo@2x.png"; sourceTree = "<group>"; };
+		E71503331D6C500200812668 /* login_name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_name@2x.png"; sourceTree = "<group>"; };
+		E71503341D6C500200812668 /* login_pwd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_pwd@2x.png"; sourceTree = "<group>"; };
+		E71503351D6C500200812668 /* login_qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_qq@2x.png"; sourceTree = "<group>"; };
+		E71503361D6C500200812668 /* login_webo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_webo@2x.png"; sourceTree = "<group>"; };
+		E71503371D6C500200812668 /* login_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_wechat@2x.png"; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -600,6 +618,15 @@
 		E71503231D6B0B7000812668 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E715032F1D6C500200812668 /* login_back_bg@2x.png */,
+				E71503301D6C500200812668 /* login_close_btn@2x.png */,
+				E71503311D6C500200812668 /* login_facebook@2x.png */,
+				E71503321D6C500200812668 /* login_logo@2x.png */,
+				E71503331D6C500200812668 /* login_name@2x.png */,
+				E71503341D6C500200812668 /* login_pwd@2x.png */,
+				E71503351D6C500200812668 /* login_qq@2x.png */,
+				E71503361D6C500200812668 /* login_webo@2x.png */,
+				E71503371D6C500200812668 /* login_wechat@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1514,6 +1541,7 @@
 				E716275F1D4B33ED00EF6740 /* MatchPickCell.xib in Resources */,
 				E760B3621D38D56200F5DB54 /* NewsTableViewHeader.xib in Resources */,
 				E71627441D49AD8400EF6740 /* match_replay_no_play@2x.png in Resources */,
+				E715033B1D6C500200812668 /* login_logo@2x.png in Resources */,
 				E72FD8B41D267C9B000A5CE6 /* nav_change_language_h@2x.png in Resources */,
 				E71551291D66BC890073F159 /* match_death_blue@2x.png in Resources */,
 				E72FD8A91D264943000A5CE6 /* tabbar_ranking_n@2x.png in Resources */,
@@ -1539,8 +1567,10 @@
 				E760B3321D2E386000F5DB54 /* location_selected@2x.png in Resources */,
 				E717B31F1D533F6B00BE98A3 /* match_points_type_bg@2x.png in Resources */,
 				E72FD8A41D264943000A5CE6 /* tabbar_matchs_h@2x.png in Resources */,
+				E71503391D6C500200812668 /* login_close_btn@2x.png in Resources */,
 				E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */,
 				E760B3901D3E19BF00F5DB54 /* DetailRelNewsBottomCell.xib in Resources */,
+				E715033D1D6C500200812668 /* login_pwd@2x.png in Resources */,
 				E715512C1D66BC890073F159 /* match_kill_red@2x.png in Resources */,
 				E71550AD1D59E87E0073F159 /* StrengScorePlayerCell.xib in Resources */,
 				E760B3841D3CDD6600F5DB54 /* DetailNewsCenterCell.xib in Resources */,
@@ -1552,6 +1582,7 @@
 				E716275A1D4AF92000EF6740 /* MatchTeamDataBottomCell.xib in Resources */,
 				E715510A1D645A000073F159 /* Assets.xcassets in Resources */,
 				E760B39F1D3E279B00F5DB54 /* DetailNewSubRelCell.xib in Resources */,
+				E715033C1D6C500200812668 /* login_name@2x.png in Resources */,
 				E72FD8641D2508EC000A5CE6 /* backItemImage_hl@2x.png in Resources */,
 				E71551281D66BC890073F159 /* match_assists_red@2x.png in Resources */,
 				E72FD8901D251721000A5CE6 /* RankingController.xib in Resources */,
@@ -1563,10 +1594,12 @@
 				E71550DD1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib in Resources */,
 				E71627551D4A0FBE00EF6740 /* MatchTeamDataCenterCell.xib in Resources */,
 				E715512D1D66BC890073F159 /* match_team_blue_bg@2x.png in Resources */,
+				E715033E1D6C500200812668 /* login_qq@2x.png in Resources */,
 				E71550BD1D5C22120073F159 /* StrengthRankingPlayerController.xib in Resources */,
 				E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */,
 				E717B3181D53381D00BE98A3 /* MatchStandingCell.xib in Resources */,
 				E717B3061D519FD800BE98A3 /* match_player_data_carry@2x.png in Resources */,
+				E71503381D6C500200812668 /* login_back_bg@2x.png in Resources */,
 				E716273A1D47674900EF6740 /* ReplayTypeCell.xib in Resources */,
 				E715510F1D6464D00073F159 /* StrengScorePlayerFourthCell.xib in Resources */,
 				E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */,
@@ -1576,8 +1609,10 @@
 				E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */,
 				E715512E1D66BC890073F159 /* match_team_red_bg@2x.png in Resources */,
 				E71627461D49AD8400EF6740 /* match_team_data_arrow@2x.png in Resources */,
+				E71503401D6C500200812668 /* login_wechat@2x.png in Resources */,
 				E73911B41D2A592D00F4A522 /* sys_language_s_chinese@2x.png in Resources */,
 				E73911B51D2A592D00F4A522 /* sys_language_t_chinese@2x.png in Resources */,
+				E715033A1D6C500200812668 /* login_facebook@2x.png in Resources */,
 				E72FD8B51D267C9B000A5CE6 /* nav_change_language_n@2x.png in Resources */,
 				E760B37C1D3CC6EB00F5DB54 /* DetailNewsTopCell.xib in Resources */,
 				E760B33F1D2FA61000F5DB54 /* ionicons.ttf in Resources */,
@@ -1591,6 +1626,7 @@
 				E715511A1D6493D30073F159 /* StrengScorePlayerFifthCell.xib in Resources */,
 				E71550C41D5C74610073F159 /* streng_ranking_detail_bg@2x.png in Resources */,
 				E71550ED1D6342600073F159 /* StrengScorePlayerTopCell.xib in Resources */,
+				E715033F1D6C500200812668 /* login_webo@2x.png in Resources */,
 				E760B3361D2E39AD00F5DB54 /* location_drop_h@2x.png in Resources */,
 				E715512A1D66BC890073F159 /* match_death_red@2x.png in Resources */,
 				E71550B21D5ADD950073F159 /* StrengthRankingTeamController.xib in Resources */,

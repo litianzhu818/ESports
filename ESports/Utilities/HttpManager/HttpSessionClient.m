@@ -142,7 +142,6 @@
                                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                        NSError *error = nil;
                                        id tempdata = [self handleResponse:responseObject error:&error];
-                                       [HttpSessionClient saveCookieData];
                                        if (error) {
                                            [self showError:error];
                                            block(nil, error);

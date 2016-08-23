@@ -29,7 +29,7 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"win_rate_title":@"personal game data",
+                                           @"win_rate_title":@"Recent 25 Games Statistics & Analysis",
                                            @"carry_title":@"carry rate",
                                            @"troll_title":@"Offered rate",
                                            @"kda_title":@"Averag KDA",
@@ -37,7 +37,7 @@
                                            @"dao_title":@"fill knife 15m"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"win_rate_title":@"个人比赛数据",
+                                           @"win_rate_title":@"最近25局比赛数据",
                                            @"carry_title":@"carry率",
                                            @"troll_title":@"平均参团率",
                                            @"kda_title":@"平均KDA",
@@ -45,7 +45,7 @@
                                            @"dao_title":@"15分钟补刀"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"win_rate_title":@"個人比賽數據",
+                                           @"win_rate_title":@"最近25局比賽數據",
                                            @"carry_title":@"carry率",
                                            @"troll_title":@"平均參團率",
                                            @"kda_title":@"平均KDA",

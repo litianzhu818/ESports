@@ -105,7 +105,7 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"standing_title":@"standing",
+                                           @"standing_title":@"Rank",
                                            @"team_title":@"team",
                                            @"win_title":@"win",
                                            @"equal_title":@"equal",

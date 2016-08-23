@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"title":@"Team Matrix value trend",
+                                           @"title":@"Team Rating Trend",
                                            @"segmented_10_title":@"10 games",
                                            @"segmented_25_title":@"25 games",
                                            @"segmented_40_title":@"40 games",
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
                                            @"change_rate_title":@"change rate"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"title":@"战队Matrix价值走势",
+                                           @"title":@"实力评分走势",
                                            @"segmented_10_title":@"10局",
                                            @"segmented_25_title":@"25局",
                                            @"segmented_40_title":@"40局",
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
                                            @"change_rate_title":@"百分比变化"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"title":@"戰隊Matrix價值走勢",
+                                           @"title":@"實力評分走勢",
                                            @"segmented_10_title":@"10局",
                                            @"segmented_25_title":@"25局",
                                            @"segmented_40_title":@"40局",

@@ -33,6 +33,18 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"matchZoneId"];
 }
 
+//是否登录了
+- (void)SetHasLogin:(BOOL)value
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:value] forKey:@"user_has_login_key"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (BOOL)GetHasLogin
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"user_has_login_key"] boolValue];
+    
+}
+
 
 //存取用户基本信息的值
 -(void)SetUserInfo:(id)value
@@ -55,16 +67,7 @@
     return  result;
 }
 
-- (void)SetHasLogin:(BOOL)value
-{
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:value] forKey:@"hasLoginkey"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (BOOL)GetHasLogin
-{
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"hasLoginkey"] boolValue];
 
-}
 
 //存取SessionId的值
 -(void)SetSessionId:(NSString *)value

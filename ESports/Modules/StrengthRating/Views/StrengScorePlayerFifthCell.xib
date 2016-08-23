@@ -130,7 +130,7 @@
                             <constraint firstAttribute="bottom" secondItem="bCG-63-lI0" secondAttribute="bottom" id="z3z-jw-6Hc"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I.R.D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-VK-R85">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T.B.D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-VK-R85">
                         <rect key="frame" x="105" y="105" width="110" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="0pj-ps-Kds"/>

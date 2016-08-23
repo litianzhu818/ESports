@@ -17,13 +17,13 @@
 - (void)SetMatchZoneId:(NSString *)zoneId;
 - (NSString *)GetMatchZoneId;
 
+- (void)SetHasLogin:(BOOL)value;
+- (BOOL)GetHasLogin;
+
 //存取用户基本信息的值
 - (void)SetUserInfo:(id)value;
 - (id)GetUserInfo;
 - (BOOL)removeUserInfo;
-
-- (void)SetHasLogin:(BOOL)value;
-- (BOOL)GetHasLogin;
 
 //存取SessionId的值
 -(void)SetSessionId:(NSString *)value;

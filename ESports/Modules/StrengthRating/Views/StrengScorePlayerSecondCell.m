@@ -152,11 +152,11 @@
     [self.regionImageView sd_setImageWithURL:[NSURL URLWithString:self.playerDetail.playerRegionImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.globalRankingValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerGlobalRanking];
     if (self.playerDetail.playerGlobalRanking == 0) {
-         self.globalRankingValueLabel.text = @"I.R.D";
+         self.globalRankingValueLabel.text = @"T.B.D";
     }
     self.rankingValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerRanking];
     if (self.playerDetail.playerRanking == 0) {
-         self.rankingValueLabel.text = @"I.R.D";
+         self.rankingValueLabel.text = @"T.B.D";
     }
     self.matrixPriceValueLabel.text = [self getStringFromStrength:self.playerDetail.playerPrice];
     
