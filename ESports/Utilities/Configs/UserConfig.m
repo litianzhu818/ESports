@@ -22,6 +22,18 @@
     return _sharedInstance;
 }
 
+//存取赛区信息
+- (void)SetMatchZoneId:(NSString *)zoneId
+{
+    [[NSUserDefaults standardUserDefaults] setObject:zoneId forKey:@"matchZoneId"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (NSString *)GetMatchZoneId
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"matchZoneId"];
+}
+
+
 //存取用户基本信息的值
 -(void)SetUserInfo:(id)value
 {

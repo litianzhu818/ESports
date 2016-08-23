@@ -34,6 +34,12 @@
     [self.container removeGestureRecognizer:self.tapGestureRecognizer];
 }
 
+- (void) setSelectedIndex:(NSInteger)selectedIndex
+{
+    self.currentIndex = selectedIndex;
+    [self reloadItems];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
                         Items:(NSArray<DropdownMenuItem *> *) items
                  currentIndex:(NSInteger)currentIndex
@@ -43,6 +49,7 @@
     if (self) {
         self.items = items;
         self.currentIndex = currentIndex;
+        self.selectedBlock = selectedBlock;
         //self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
         
         self.container = ({
@@ -63,6 +70,7 @@
             tableView.delegate = self;
             tableView.dataSource = self;
             [self addSubview:tableView];
+            tableView.scrollEnabled = NO;
             tableView.hidden = YES;
             tableView.backgroundColor = HexColor(0x0e161f);
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

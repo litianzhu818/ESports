@@ -91,7 +91,7 @@
     
     WEAK_SELF;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestStrengthScoreTeamDetailWithTeamId:self.teamId
                                                            block:^(NSDictionary *dic, NSError *error) {
@@ -108,7 +108,7 @@
                                                                    
                                                                }
                                                                
-                                                               [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                               [hud hideAnimated:YES];
                                                                
                                                            }];
 }

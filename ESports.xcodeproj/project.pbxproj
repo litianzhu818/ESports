@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB55A45EFCE0F154101452A5 /* libPods-ESports.a */; };
+		E71503291D6B0C9300812668 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503271D6B0C9300812668 /* LoginController.m */; };
+		E715032A1D6B0C9300812668 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503281D6B0C9300812668 /* LoginController.xib */; };
+		E715032E1D6C35E900812668 /* MatchZoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E715032D1D6C35E900812668 /* MatchZoneManager.m */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -213,6 +216,11 @@
 		0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.debug.xcconfig"; sourceTree = "<group>"; };
 		4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.release.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.release.xcconfig"; sourceTree = "<group>"; };
 		CB55A45EFCE0F154101452A5 /* libPods-ESports.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ESports.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E71503261D6B0C9300812668 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		E71503271D6B0C9300812668 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		E71503281D6B0C9300812668 /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		E715032C1D6C35E900812668 /* MatchZoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchZoneManager.h; sourceTree = "<group>"; };
+		E715032D1D6C35E900812668 /* MatchZoneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchZoneManager.m; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -563,9 +571,70 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E71503201D6B0B7000812668 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				E71503211D6B0B7000812668 /* Managers&Helpers */,
+				E71503221D6B0B7000812668 /* Models */,
+				E71503231D6B0B7000812668 /* Resources */,
+				E71503241D6B0B7000812668 /* ViewControllers */,
+				E71503251D6B0B7000812668 /* Views */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		E71503211D6B0B7000812668 /* Managers&Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Managers&Helpers";
+			sourceTree = "<group>";
+		};
+		E71503221D6B0B7000812668 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E71503231D6B0B7000812668 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E71503241D6B0B7000812668 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E71503261D6B0C9300812668 /* LoginController.h */,
+				E71503271D6B0C9300812668 /* LoginController.m */,
+				E71503281D6B0C9300812668 /* LoginController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E71503251D6B0B7000812668 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E715032B1D6C35CE00812668 /* MatchZone */ = {
+			isa = PBXGroup;
+			children = (
+				E715032C1D6C35E900812668 /* MatchZoneManager.h */,
+				E715032D1D6C35E900812668 /* MatchZoneManager.m */,
+			);
+			path = MatchZone;
+			sourceTree = "<group>";
+		};
 		E72FD8021D1A4B6A000A5CE6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E715032B1D6C35CE00812668 /* MatchZone */,
+				E71503201D6B0B7000812668 /* login */,
 				E760B36D1D3CACCD00F5DB54 /* DetailNews */,
 				E760B3201D2D194E00F5DB54 /* DropdownMenu */,
 				E72FD8961D264943000A5CE6 /* MainTabbar */,
@@ -1397,6 +1466,11 @@
 					E7BD57631CF4360D008F2D69 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 77B427H67H;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1426,6 +1500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71551031D643F750073F159 /* StrengScorePlayerThirdCell.xib in Resources */,
+				E715032A1D6B0C9300812668 /* LoginController.xib in Resources */,
 				E72FD8A61D264943000A5CE6 /* tabbar_news_h@2x.png in Resources */,
 				E71551081D6453CB0073F159 /* PickerCollectionViewCell.xib in Resources */,
 				E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */,
@@ -1601,6 +1676,7 @@
 				E760B3761D3CAD0600F5DB54 /* DetailNewsController.m in Sources */,
 				E71627541D4A0FBE00EF6740 /* MatchTeamDataCenterCell.m in Sources */,
 				E71550B81D5B33CF0073F159 /* StrengScorePlayerDetail.m in Sources */,
+				E715032E1D6C35E900812668 /* MatchZoneManager.m in Sources */,
 				E760B3991D3E1DB800F5DB54 /* DetailNewSubNewCell.m in Sources */,
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E71550A71D59E8640073F159 /* StrengScoreTeamCell.m in Sources */,
@@ -1667,6 +1743,7 @@
 				E716274A1D49DEAE00EF6740 /* MatchTeamDataTopCell.m in Sources */,
 				E71627591D4AF92000EF6740 /* MatchTeamDataBottomCell.m in Sources */,
 				E73911C11D2A640B00F4A522 /* PopMenu.m in Sources */,
+				E71503291D6B0C9300812668 /* LoginController.m in Sources */,
 				E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */,
 				E73911C21D2A640B00F4A522 /* PopMenuCell.m in Sources */,
 				E760B3411D2FA61000F5DB54 /* README.md in Sources */,

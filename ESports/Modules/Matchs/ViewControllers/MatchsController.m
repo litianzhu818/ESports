@@ -21,6 +21,8 @@
 #import "InsertIndexPathModel.h"
 #import "RxWebViewController.h"
 #import "MatchReplayController.h"
+#import "MatchZoneManager.h"
+#import "NSObject+Custom.h"
 
 static NSString *const matchesProcessListCacheKey = @"matches_controller_matchs_process_cache_key";
 static NSString *const matchesResultListCacheKey = @"matches_controller_mathcs_result_cache_key";
@@ -80,6 +82,11 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MatchZoneValueDidChangedKey object:nil];
 }
 
 - (void)loadViews
@@ -143,6 +150,9 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                    };
     self.title = LTZLocalizedString(@"title", nil);
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(matchZoneDidChanged:) name:MatchZoneValueDidChangedKey object:nil];
+    
+    WEAK_SELF;
     self.dropdownMenu = [[DropdownMenu alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), CGRectGetHeight([[UIScreen mainScreen] bounds]))
                                                       Items:@[[[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_global", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lck", nil)],
@@ -151,9 +161,10 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_nalcs", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lms", nil)]
                                                               ]
-                                               currentIndex:0
+                                               currentIndex:[self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]
                                               selectedBlock:^(NSInteger index) {
-                                                  
+                                                  STRONG_SELF;
+                                                  [[MatchZoneManager sharedInstance] setMatchZoneId:[strongSelf currentMatchZoneIdWithIndex:index]];
                                               }];
     [self.view addSubview:self.dropdownMenu];
     
@@ -367,6 +378,14 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
     [self.resultTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
     
 
+    [self.processTableView.mj_header beginRefreshing];
+    [self.resultTableView.mj_header beginRefreshing];
+}
+
+#pragma mark - 切换赛区
+- (void)matchZoneDidChanged:(NSNotification *)notification
+{
+    [self.dropdownMenu setSelectedIndex:[self currentIndexWithMatchZoneId:notification.object]];
     [self.processTableView.mj_header beginRefreshing];
     [self.resultTableView.mj_header beginRefreshing];
 }

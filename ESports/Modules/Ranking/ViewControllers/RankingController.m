@@ -20,7 +20,7 @@
 #import "ActionSheetPicker.h"
 #import "MatchStandingCell.h"
 #import "NSObject+Custom.h"
-
+#import "MatchZoneManager.h"
 
 static NSString *const rankingListCacheKey = @"ranking_controller_ranking_list_cache_key";
 static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_key";
@@ -87,6 +87,11 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MatchZoneValueDidChangedKey object:nil];
 }
 
 - (void)loadViews
@@ -161,6 +166,9 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(matchZoneDidChanged:) name:MatchZoneValueDidChangedKey object:nil];
+    
+    WEAK_SELF;
     self.dropdownMenu = [[DropdownMenu alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), CGRectGetHeight([[UIScreen mainScreen] bounds]))
                                                       Items:@[[[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_global", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lck", nil)],
@@ -169,9 +177,10 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_nalcs", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lms", nil)]
                                                               ]
-                                               currentIndex:0
+                                               currentIndex:[self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]
                                               selectedBlock:^(NSInteger index) {
-                                                  
+                                                  STRONG_SELF;
+                                                  [[MatchZoneManager sharedInstance] setMatchZoneId:[strongSelf currentMatchZoneIdWithIndex:index]];
                                               }];
     [self.view addSubview:self.dropdownMenu];
     
@@ -207,7 +216,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     self.pointsTypeSelectView = [PointsTypeSelectView instanceFromNib];
     self.pointsTypeSelectView.translatesAutoresizingMaskIntoConstraints = NO;
     self.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_wait_download", nil);
-    WEAK_SELF;
+
     [self.pointsTypeSelectView setTapActionBlock:^{
         STRONG_SELF;
         [strongSelf.actionSheetStringPicker showActionSheetPicker];
@@ -364,14 +373,28 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     self.actionSheetStringPicker = nil;
 }
 
+#pragma mark - 切换赛区
+- (void)matchZoneDidChanged:(NSNotification *)notification
+{
+    [self.dropdownMenu setSelectedIndex:[self currentIndexWithMatchZoneId:notification.object]];
+    [self loadPointsTypeData];
+    
+    if (self.pointsTypes.count == 0) {
+        self.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_no_data", nil);
+    }
+    
+    self.actionSheetStringPicker = nil;
+}
+
 #pragma mark - 网络请求数据
 - (void)loadPointsTypeData
 {
     WEAK_SELF;
     
+    self.currentPointsType = nil;
     [self.pointsTypes removeAllObjects];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[HttpSessionManager sharedInstance] requestMatchPointsTypeListWithBlock:^(NSArray<NSDictionary *> *dics, NSError *error) {
         
         STRONG_SELF;
@@ -384,7 +407,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                 PointsType *pointsType = [[PointsType alloc] initWithDictionary:dic error:nil];
                 if (pointsType) {
                     [strongSelf.pointsTypes addObject:pointsType];
-                    if ([strongSelf.currentPointsType.pointsTypeId isEqualToString:pointsType.pointsTypeId]) {
+                    if (strongSelf.currentPointsType && [strongSelf.currentPointsType.pointsTypeId isEqualToString:pointsType.pointsTypeId]) {
                         containsCurrentPointsType = YES;
                     }
                 }
@@ -399,8 +422,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
         }else{
             strongSelf.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_no_data", nil);
         }
-        
-        [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+        [hud hideAnimated:YES];
     }];
 }
 - (void)loadTeamListData

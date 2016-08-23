@@ -23,5 +23,6 @@
 - (void) hideMenu;
 - (BOOL) isShowing;
 - (void) reloadItems;
+- (void) setSelectedIndex:(NSInteger)selectedIndex;
 
 @end

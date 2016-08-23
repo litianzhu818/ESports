@@ -23,7 +23,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = HexColor(0x0e161f);
     self.contentView.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont systemFontOfSize:17.0];
+    self.titleLabel.font = [UIFont systemFontOfSize:14.0];
     self.titleLabel.textColor = HexColor(0xffffff);
     self.iconImageView.image = [UIImage imageNamed:@"location_selected"];
     self.iconImageView.hidden = YES;
@@ -71,8 +71,6 @@
     CGContextAddLineToPoint(context, rect.size.width, rect.size.height-2.0);   //终点坐标
     CGContextStrokePath(context);
     
-    
-    
     CGContextSetStrokeColorWithColor(context, HexColor(0x1b2d3d).CGColor);  //线的颜色
     
     CGContextBeginPath(context);
@@ -86,7 +84,7 @@
 #pragma mark - class methods
 + (CGFloat)cellHeight
 {
-    return 44.0;
+    return 38.0;
 }
 
 + (UINib *)nib

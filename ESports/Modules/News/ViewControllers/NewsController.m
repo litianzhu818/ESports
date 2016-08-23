@@ -23,6 +23,8 @@
 #import "TransferNewCell.h"
 #import "HotWordNewCell.h"
 #import "DetailNewsController.h"
+#import "MatchZoneManager.h"
+#import "NSObject+Custom.h"
 
 
 typedef NS_ENUM(NSUInteger, NewsType) {
@@ -93,6 +95,11 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MatchZoneValueDidChangedKey object:nil];
+}
+
 - (void)loadViews
 {
     self.localStringDictionary = @{
@@ -157,6 +164,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     
     self.title = LTZLocalizedString(@"view_controller_title", nil);
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(matchZoneDidChanged:) name:MatchZoneValueDidChangedKey object:nil];
+    
+    WEAK_SELF;
     self.dropdownMenu = [[DropdownMenu alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), CGRectGetHeight([[UIScreen mainScreen] bounds]))
                                                       Items:@[[[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_global", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lck", nil)],
@@ -165,9 +175,10 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_nalcs", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lms", nil)]
                                                               ]
-                                               currentIndex:0
+                                               currentIndex:[self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]
                                               selectedBlock:^(NSInteger index) {
-                                                  
+                                                  STRONG_SELF;
+                                                  [[MatchZoneManager sharedInstance] setMatchZoneId:[strongSelf currentMatchZoneIdWithIndex:index]];
                                               }];
     [self.view addSubview:self.dropdownMenu];
     
@@ -759,6 +770,15 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_loading_title", nil) forState:MJRefreshStateRefreshing];
     [self.hotwordsTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
     
+    [self.hotfocusTableView.mj_header beginRefreshing];
+    [self.transferTableView.mj_header beginRefreshing];
+    [self.hotwordsTableView.mj_header beginRefreshing];
+}
+
+#pragma mark - 切换赛区
+- (void)matchZoneDidChanged:(NSNotification *)notification
+{
+    [self.dropdownMenu setSelectedIndex:[self currentIndexWithMatchZoneId:notification.object]];
     [self.hotfocusTableView.mj_header beginRefreshing];
     [self.transferTableView.mj_header beginRefreshing];
     [self.hotwordsTableView.mj_header beginRefreshing];

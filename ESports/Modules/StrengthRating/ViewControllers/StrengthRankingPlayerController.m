@@ -90,7 +90,7 @@
     
     WEAK_SELF;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestStrengthScorePlayerDetailWithPlayerId:self.playerId
                                                                          playerRoleId:self.playerRole                                                                                block:^(id dic, NSError *error) {
@@ -106,7 +106,7 @@
                                                                                         
                                                                                     }
                                                                                     
-                                                                                    [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                                                    [hud hideAnimated:YES];
                                                                                 }];
 }
 

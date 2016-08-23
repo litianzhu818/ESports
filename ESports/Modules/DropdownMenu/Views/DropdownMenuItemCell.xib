@@ -16,11 +16,11 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbF-WI-yMC">
                         <rect key="frame" x="10" y="8" width="272" height="27"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E6923EF0-4B10-4079-843D-14DD52F74EEF" translatesAutoresizingMaskIntoConstraints="NO" id="bQs-DN-pe9">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A01D7271-EF01-43CB-A7BB-98385AEF8BD7" translatesAutoresizingMaskIntoConstraints="NO" id="bQs-DN-pe9">
                         <rect key="frame" x="290" y="12" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="pcW-c9-qgh"/>
@@ -44,7 +44,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="E6923EF0-4B10-4079-843D-14DD52F74EEF" width="22" height="17">
+        <image name="A01D7271-EF01-43CB-A7BB-98385AEF8BD7" width="22" height="17">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

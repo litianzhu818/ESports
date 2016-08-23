@@ -13,6 +13,10 @@
 
 + (id)sharedInstance;
 
+//存取赛区信息
+- (void)SetMatchZoneId:(NSString *)zoneId;
+- (NSString *)GetMatchZoneId;
+
 //存取用户基本信息的值
 - (void)SetUserInfo:(id)value;
 - (id)GetUserInfo;

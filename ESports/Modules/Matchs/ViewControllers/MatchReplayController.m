@@ -105,7 +105,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     self.matchVideoDatas = [NSMutableArray array];
     
     WEAK_SELF;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestMatchTeamDataWithMatchId:self.resultMatch.resultMatchId
                                                                    block:^(NSDictionary *matchTeamDataDic, NSError *error) {
@@ -121,7 +121,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
                                                                            }
                                                                        }
                                                                        
-                                                                       [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                                       [hud hideAnimated:YES];
                                                                    }];
 }
 
@@ -146,7 +146,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 - (void)firstLoadMatchPlayerData
 {
     WEAK_SELF;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestMatchPlayerDataWithMatchId:self.resultMatch.resultMatchId
                                                                    block:^(NSDictionary *matchPlayerDataDic, NSError *error) {
@@ -162,14 +162,14 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
                                                                            }
                                                                        }
                                                                        
-                                                                       [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                                       [hud hideAnimated:YES];
                                                                    }];
 }
 
 - (void)firstLoadMatchVideoData
 {
     WEAK_SELF;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestMatchReplayVideoWithMatchId:self.resultMatch.resultMatchId
                                                                      block:^(NSArray<NSDictionary *> *matchVideoDataDics, NSError *error) {
@@ -192,7 +192,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
                                                                              }
                                                                          }
                                                                          
-                                                                         [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                                         [hud hideAnimated:YES];
                                                                      }];
 }
 

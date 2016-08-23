@@ -92,7 +92,7 @@
     if (!self.newsId) return;
     WEAK_SELF;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [[HttpSessionManager sharedInstance] requestDetailNewsWithId:self.newsId
                                                            block:^(id data, NSError *error) {
@@ -111,7 +111,7 @@
                                                                    
                                                                }
                                                                
-                                                               [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                                                               [hud hideAnimated:YES];
                                                             
                                                            }];
 }

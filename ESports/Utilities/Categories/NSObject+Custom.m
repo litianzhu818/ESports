@@ -248,4 +248,24 @@
     return [NSDate dateWithTimeIntervalSince1970:seconds];
 }
 
+- (NSInteger)currentIndexWithMatchZoneId:(NSString *)matchZoneId
+{
+    NSArray *matchZoneIds = @[@"50",@"45",@"44",@"41",@"43",@"42"];
+    NSInteger index = [matchZoneIds indexOfObject:matchZoneId];
+    if (index == NSNotFound) {
+        index = 0;
+    }
+    return index;
+}
+- (NSString *)currentMatchZoneIdWithIndex:(NSInteger)index
+{
+    NSArray *matchZoneIds = @[@"50",@"45",@"44",@"41",@"43",@"42"];
+    
+    if (index <= matchZoneIds.count-1) {
+        return [matchZoneIds objectAtIndex:index];
+    }
+    
+    return matchZoneIds.firstObject;
+}
+
 @end

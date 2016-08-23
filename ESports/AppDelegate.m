@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ESportsTabBarController.h"
 #import "LTZLocalizationKit.h"
+#import "MatchZoneManager.h"
 
 @interface AppDelegate ()
 
@@ -23,8 +24,9 @@
     // Override point for customization after application launch.
     
     [self registerRemoteNotificationWithOptions:launchOptions];
+    [[MatchZoneManager sharedInstance] initialize];
     [self setupViewControolers];
-
+    
     return YES;
 }
 

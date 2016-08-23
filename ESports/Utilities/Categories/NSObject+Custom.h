@@ -49,4 +49,7 @@
 // 产品能够特殊字符串解析出时间例如@"/Date(1469059200000)/"
 - (NSDate *)dateWithSpecialDateSring:(NSString *)specialDateSring;
 
+- (NSInteger)currentIndexWithMatchZoneId:(NSString *)matchZoneId;
+- (NSString *)currentMatchZoneIdWithIndex:(NSInteger)index;
+
 @end

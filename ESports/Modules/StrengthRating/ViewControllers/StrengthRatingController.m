@@ -19,6 +19,8 @@
 #import "StrengScorePlayerCell.h"
 #import "StrengthRankingTeamController.h"
 #import "StrengthRankingPlayerController.h"
+#import "MatchZoneManager.h"
+#import "NSObject+Custom.h"
 
 static NSString *const strengthScoreTeamsListCacheKey = @"strengthScore_controller_teams_list_cache_key";
 static NSString *const strengthScorePlayersListCacheKey = @"strengthScore_controller_players_list_cache_key";
@@ -88,6 +90,11 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MatchZoneValueDidChangedKey object:nil];
 }
 
 - (void)loadViews
@@ -165,6 +172,9 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                    };
     self.title = LTZLocalizedString(@"title", nil);
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(matchZoneDidChanged:) name:MatchZoneValueDidChangedKey object:nil];
+    
+    WEAK_SELF;
     self.dropdownMenu = [[DropdownMenu alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), CGRectGetHeight([[UIScreen mainScreen] bounds]))
                                                       Items:@[[[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_global", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lck", nil)],
@@ -173,9 +183,10 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_nalcs", nil)],
                                                               [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lms", nil)]
                                                               ]
-                                               currentIndex:0
+                                               currentIndex:[self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]
                                               selectedBlock:^(NSInteger index) {
-                                                  
+                                                  STRONG_SELF;
+                                                  [[MatchZoneManager sharedInstance] setMatchZoneId:[strongSelf currentMatchZoneIdWithIndex:index]];
                                               }];
     [self.view addSubview:self.dropdownMenu];
     
@@ -476,6 +487,14 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     [self.playersTableViewFooter setTitle:LTZLocalizedString(@"tableview_footer_no_data_title", nil) forState:MJRefreshStateNoMoreData];
     
     
+    [self.teamsTableView.mj_header beginRefreshing];
+    [self.playersTableView.mj_header beginRefreshing];
+}
+
+#pragma mark - 切换赛区
+- (void)matchZoneDidChanged:(NSNotification *)notification
+{
+    [self.dropdownMenu setSelectedIndex:[self currentIndexWithMatchZoneId:notification.object]];
     [self.teamsTableView.mj_header beginRefreshing];
     [self.playersTableView.mj_header beginRefreshing];
 }
