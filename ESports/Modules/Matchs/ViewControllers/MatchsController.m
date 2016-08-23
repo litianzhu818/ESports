@@ -697,6 +697,7 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
         WEAK_SELF;
         [cell setLiveVideoBlock:^(NSString *liveVideoApp) {
             STRONG_SELF;
+            liveVideoApp = [liveVideoApp stringByReplacingOccurrencesOfString:@"\t" withString:@""];
             RxWebViewController *webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:liveVideoApp]];
             [strongSelf.navigationController pushViewController:webViewController animated:YES];
         }];

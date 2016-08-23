@@ -326,7 +326,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {
         MatchVideoData *videoData = self.matchVideoDatas[indexPath.row];
         if (videoData.videoUrlApp.length > 0) {
-            RxWebViewController *webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:videoData.videoUrlApp]];
+            NSString *liveVideoApp = [videoData.videoUrlApp stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            RxWebViewController *webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:liveVideoApp]];
             [self.navigationController pushViewController:webViewController animated:YES];
         }
         
