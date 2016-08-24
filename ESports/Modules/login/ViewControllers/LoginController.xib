@@ -13,6 +13,7 @@
                 <outlet property="findPwdBtn" destination="kTM-ft-iD5" id="cOy-FA-gas"/>
                 <outlet property="loginButton" destination="aOr-3Z-NqP" id="EKr-5T-5s0"/>
                 <outlet property="logoImageView" destination="T52-fG-N23" id="Te0-ZU-bNb"/>
+                <outlet property="logoNamebackView" destination="rBH-jG-hnF" id="BpC-gT-but"/>
                 <outlet property="nameBottomImageView" destination="gpW-YU-1Ap" id="41t-o5-iIb"/>
                 <outlet property="nameImageView" destination="Vu7-gV-2af" id="enX-b3-TvV"/>
                 <outlet property="nameTextField" destination="kVD-I1-E4S" id="e4j-0V-rvb"/>
@@ -26,6 +27,7 @@
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weChatBtn" destination="IU6-uQ-9vJ" id="8ee-tw-xEV"/>
                 <outlet property="weiboBtn" destination="RtP-VG-rdv" id="VJY-XL-hg1"/>
+                <outlet property="widthLayoutConstraint" destination="kDT-2v-Bmh" id="d4H-fP-ynH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -228,13 +230,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIO-nH-1dp">
                             <rect key="frame" x="364" y="373" width="162" height="30"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JOV-CK-An7">
-                                    <rect key="frame" x="106" y="0.0" width="2" height="30"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="2" id="qSb-Cp-LuQ"/>
-                                    </constraints>
-                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avr-Jm-30l">
                                     <rect key="frame" x="116" y="0.0" width="46" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -258,6 +253,13 @@
                                         <action selector="findPwdAction:" destination="-1" eventType="touchUpInside" id="7P2-KI-IO2"/>
                                     </connections>
                                 </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JOV-CK-An7">
+                                    <rect key="frame" x="106" y="7" width="2" height="15"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="2" id="qSb-Cp-LuQ"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -266,12 +268,12 @@
                                 <constraint firstAttribute="bottom" secondItem="avr-Jm-30l" secondAttribute="bottom" id="Jog-gv-c4d"/>
                                 <constraint firstAttribute="trailing" secondItem="avr-Jm-30l" secondAttribute="trailing" id="Lxw-cm-P7G"/>
                                 <constraint firstItem="avr-Jm-30l" firstAttribute="leading" secondItem="JOV-CK-An7" secondAttribute="trailing" constant="8" id="M0F-Nv-zIW"/>
+                                <constraint firstAttribute="bottom" secondItem="JOV-CK-An7" secondAttribute="bottom" constant="8" id="Uab-mi-eFr"/>
                                 <constraint firstAttribute="height" constant="30" id="Vqg-q2-eOU"/>
                                 <constraint firstItem="kTM-ft-iD5" firstAttribute="leading" secondItem="iIO-nH-1dp" secondAttribute="leading" id="dqt-ii-RJu"/>
                                 <constraint firstItem="avr-Jm-30l" firstAttribute="top" secondItem="iIO-nH-1dp" secondAttribute="top" id="eDF-vn-plK"/>
+                                <constraint firstItem="JOV-CK-An7" firstAttribute="top" secondItem="iIO-nH-1dp" secondAttribute="top" constant="7" id="mAj-GH-Yqj"/>
                                 <constraint firstItem="JOV-CK-An7" firstAttribute="leading" secondItem="kTM-ft-iD5" secondAttribute="trailing" constant="8" id="pjD-U8-AGL"/>
-                                <constraint firstItem="JOV-CK-An7" firstAttribute="top" secondItem="iIO-nH-1dp" secondAttribute="top" id="qDB-yH-LAa"/>
-                                <constraint firstAttribute="bottom" secondItem="JOV-CK-An7" secondAttribute="bottom" id="tdr-G0-Qfe"/>
                                 <constraint firstAttribute="width" constant="162" id="vkh-3E-ekp"/>
                             </constraints>
                         </view>
@@ -311,6 +313,7 @@
                 <constraint firstItem="aDK-6F-0CX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mFL-Pq-fLa"/>
                 <constraint firstAttribute="bottom" secondItem="aDK-6F-0CX" secondAttribute="bottom" id="qhl-z1-qoC"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="515" y="459"/>
         </view>
     </objects>

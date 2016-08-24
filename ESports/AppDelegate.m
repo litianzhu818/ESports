@@ -221,9 +221,9 @@
     self.window.backgroundColor = HexColor(0x0e161f);
     
     if ([[UserConfig sharedInstance] GetHasLogin]) {
-        [self switchToLoginViewController];
-    }else{
         [self switchToTabbarViewController];
+    }else{
+        [self switchToLoginViewController];
     }
     
     [self.window makeKeyAndVisible];

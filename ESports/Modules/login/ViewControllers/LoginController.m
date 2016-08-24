@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *otherLoginWayTitleLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthLayoutConstraint;
+@property (weak, nonatomic) IBOutlet UIView *logoNamebackView;
+
 @property (weak, nonatomic) IBOutlet UIView *bottomBackView;
 
 @property (weak, nonatomic) IBOutlet UIButton *qqBtn;
@@ -149,10 +152,8 @@
     self.title = LTZLocalizedString(@"view_controller_title", nil);
     
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     [self.closeButton setBackgroundImage:[UIImage imageNamed:@"login_close_btn"] forState:UIControlStateNormal];
     [self.closeButton setBackgroundImage:[UIImage imageNamed:@"login_close_btn"] forState:UIControlStateHighlighted];
-    
     [self.closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     
     // 修改导航栏左边的item
@@ -161,6 +162,10 @@
     // 调整UIScrollView contentSize
     CGFloat screenWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
     CGFloat screenHeight = CGRectGetHeight([[UIScreen mainScreen] bounds]);
+    
+    self.widthLayoutConstraint.constant =  screenWidth-72;
+    [self.logoNamebackView setNeedsUpdateConstraints];
+    
     self.scrollView.contentSize = CGSizeMake(screenWidth, screenHeight);
     [self.scrollView setContentInset:UIEdgeInsetsZero];
     
