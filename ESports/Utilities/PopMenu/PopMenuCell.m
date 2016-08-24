@@ -70,7 +70,7 @@ static const CGFloat marginWidth = 6.0;
     [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[_mainImageView(==MARGIN1)]-MARGIN-[_mainTitleLabel]-MARGIN-|"
                                                                              options:0
                                                                              metrics:@{@"MARGIN":[NSNumber numberWithFloat:2*marginWidth],
-                                                                                       @"MARGIN1":[NSNumber numberWithFloat:(popMenuCellHeight - 2*marginWidth)]
+                                                                                       @"MARGIN1":[NSNumber numberWithFloat:(popMenuCellHeight - 2*10)]
                                                                                        }
                                                                                views:NSDictionaryOfVariableBindings(_mainImageView, _mainTitleLabel)]];
     
@@ -82,7 +82,7 @@ static const CGFloat marginWidth = 6.0;
     [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-MARGIN-[_mainImageView]-MARGIN-|"
                                                                              options:0
                                                                              metrics:@{
-                                                                                       @"MARGIN":[NSNumber numberWithFloat:marginWidth]
+                                                                                       @"MARGIN":[NSNumber numberWithFloat:10]
                                                                                        }
                                                                                views:NSDictionaryOfVariableBindings(_mainImageView)]];
     

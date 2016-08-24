@@ -25,17 +25,17 @@
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
     
-    self.collectionView.backgroundColor = HexColor(0x17212e);
+    self.collectionView.backgroundColor = HexColor(0x121b27);
     [self.collectionView registerNib:[MatchTeamResultCell nib] forCellWithReuseIdentifier:[MatchTeamResultCell cellIdentifier]];
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"first_blood_title":@"first boold",
-                                           @"first_tower_title":@"first tower",
-                                           @"first_dragon_title":@"first dragon",
-                                           @"first_big_dragon_title":@"first big dragon",
-                                           @"first_vanguard_title":@"first vanguard",
-                                           @"first_old_dragon_title":@"first old dragon"
+                                           @"first_blood_title":@"First Blood",
+                                           @"first_tower_title":@"First Turret",
+                                           @"first_dragon_title":@"First Dragon",
+                                           @"first_big_dragon_title":@"First Baron",
+                                           @"first_vanguard_title":@"First Herald",
+                                           @"first_old_dragon_title":@"First Elder Dragon"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"first_blood_title":@"一血",
@@ -102,7 +102,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 4+2*[MatchTeamResultCell cellSize].height;
+    return 4+2*[MatchTeamResultCell cellSize].height+8.0;
 }
 
 #pragma mark - UICollectionViewDataSource methods
@@ -133,13 +133,35 @@
         cell.imageUrl = self.gameResult.firstBigDragon ? self.blueTeamImageUrl:self.redTeamImageUrl;
         cell.title = LTZLocalizedString(@"first_big_dragon_title", nil);
     }else if (indexPath.row == 4) {
-        cell.isBlueTeam = self.gameResult.firstVanguard;
-        cell.imageUrl = self.gameResult.firstVanguard ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        if (!self.gameResult.firstVanguard) {
+            cell.hasTeam = NO;
+        }else if ([self.gameResult.firstVanguard isEqualToString:@"1"]) {
+            cell.isBlueTeam = YES;
+            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        }else if ([self.gameResult.firstVanguard isEqualToString:@"0"]) {
+            cell.isBlueTeam = NO;
+            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        }
         cell.title = LTZLocalizedString(@"first_vanguard_title", nil);
+        
     }else if (indexPath.row == 5) {
+        
+        if (!self.gameResult.firstAncientDragon) {
+            cell.hasTeam = NO;
+        }else if ([self.gameResult.firstAncientDragon isEqualToString:@"1"]) {
+            cell.isBlueTeam = YES;
+            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        }else if ([self.gameResult.firstAncientDragon isEqualToString:@"0"]) {
+            cell.isBlueTeam = NO;
+            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        }
+        
+        cell.title = LTZLocalizedString(@"first_old_dragon_title", nil);
+        /*
         cell.isBlueTeam = self.gameResult.firstAncientDragon;
         cell.imageUrl = self.gameResult.firstAncientDragon ? self.blueTeamImageUrl:self.redTeamImageUrl;
         cell.title = LTZLocalizedString(@"first_old_dragon_title", nil);
+         */
     }
     return cell;
 }

@@ -94,8 +94,8 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"title":@"Match",
-                                           @"matchs_type_process":@"Event process",
-                                           @"matchs_type_result":@"The latest results",
+                                           @"matchs_type_process":@"Match Fixtures",
+                                           @"matchs_type_result":@"Latest Results",
                                            @"local_item_global":@"Global",
                                            @"local_item_lck":@"LCK",
                                            @"local_item_eulcs":@"EULCS",
@@ -228,11 +228,11 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
     
     NSDictionary *normalAttributes = @{
                                        NSForegroundColorAttributeName:HexColor(0x6ed4ff),
-                                       NSFontAttributeName:[UIFont systemFontOfSize:16.0f]
+                                       NSFontAttributeName:[UIFont systemFontOfSize:14.0f]
                                        };
     NSDictionary *selectedAttributes = @{
                                          NSForegroundColorAttributeName:[UIColor whiteColor],
-                                         NSFontAttributeName:[UIFont systemFontOfSize:16.0f]
+                                         NSFontAttributeName:[UIFont systemFontOfSize:14.0f]
                                          };
     [self.segmentedControl setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
     [self.segmentedControl setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];

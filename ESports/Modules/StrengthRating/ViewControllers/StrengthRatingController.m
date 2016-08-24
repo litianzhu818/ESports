@@ -250,11 +250,11 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     NSDictionary *normalAttributes = @{
                                        NSForegroundColorAttributeName:HexColor(0x6ed4ff),
-                                       NSFontAttributeName:[UIFont systemFontOfSize:16.0f]
+                                       NSFontAttributeName:[UIFont systemFontOfSize:14.0f]
                                        };
     NSDictionary *selectedAttributes = @{
                                          NSForegroundColorAttributeName:[UIColor whiteColor],
-                                         NSFontAttributeName:[UIFont systemFontOfSize:16.0f]
+                                         NSFontAttributeName:[UIFont systemFontOfSize:14.0f]
                                          };
     [self.segmentedControl setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
     [self.segmentedControl setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];

@@ -22,12 +22,12 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.backgroundColor = HexColor(0x17212e);
+    self.backgroundColor = HexColor(0x121b27);
     self.contentView.backgroundColor = [UIColor clearColor];
     
     self.imageView.clipsToBounds = YES;
     self.imageView.layer.borderWidth = 2.0f;
-    self.imageView.layer.cornerRadius = 35.0f;
+    self.imageView.layer.cornerRadius = 29.0f;
     
 }
 
@@ -47,11 +47,21 @@
 - (void)setIsBlueTeam:(BOOL)isBlueTeam
 {
     _isBlueTeam = isBlueTeam;
-    
+    self.hasTeam = YES;
     if (_isBlueTeam) {
         self.imageView.layer.borderColor = HexColor(0x245fa9).CGColor;
     }else{
         self.imageView.layer.borderColor = HexColor(0x941f2a).CGColor;
+    }
+}
+
+- (void)setHasTeam:(BOOL)hasTeam
+{
+    _hasTeam = hasTeam;
+    
+    if (!_hasTeam) {
+        self.imageView.layer.borderColor = [UIColor clearColor].CGColor;
+        self.imageView.image = [UIImage imageNamed:@"match_team_no_first_data.png"];
     }
 }
 

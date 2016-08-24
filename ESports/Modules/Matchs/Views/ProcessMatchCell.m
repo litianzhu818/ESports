@@ -61,7 +61,7 @@ typedef struct CountDownTimeModel{
     [self.subscribeButton setImage:[IonIcons imageWithIcon:icon_ios7_alarm size:16.0f color:HexColor(0x84dbff)] forState:UIControlStateHighlighted];
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"top_title":@"expected:",
+                                           @"top_title":@"Match Prediction:",
                                            @"subscribe_title":@"subscribe",
                                            @"subscribed_title":@"subscribed",
                                            @"watch_title":@"live",

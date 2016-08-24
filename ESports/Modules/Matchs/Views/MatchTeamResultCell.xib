@@ -23,9 +23,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQ5-6n-DHL">
-                        <rect key="frame" x="8" y="8" width="70" height="70"/>
+                        <rect key="frame" x="14" y="14" width="58" height="58"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="JaF-9F-4ac"/>
+                            <constraint firstAttribute="height" constant="58" id="JaF-9F-4ac"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -33,11 +33,11 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Nob-cb-Pfk" secondAttribute="trailing" id="1V6-u6-6HJ"/>
-                <constraint firstAttribute="trailing" secondItem="dQ5-6n-DHL" secondAttribute="trailing" constant="8" id="6EV-ib-gf4"/>
-                <constraint firstItem="Nob-cb-Pfk" firstAttribute="top" secondItem="dQ5-6n-DHL" secondAttribute="bottom" constant="8" id="6LN-a0-Kep"/>
+                <constraint firstAttribute="trailing" secondItem="dQ5-6n-DHL" secondAttribute="trailing" constant="14" id="6EV-ib-gf4"/>
+                <constraint firstItem="Nob-cb-Pfk" firstAttribute="top" secondItem="dQ5-6n-DHL" secondAttribute="bottom" constant="14" id="6LN-a0-Kep"/>
                 <constraint firstItem="Nob-cb-Pfk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ray-QH-0ll"/>
-                <constraint firstItem="dQ5-6n-DHL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="bSh-s6-1Dk"/>
-                <constraint firstItem="dQ5-6n-DHL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ozZ-YX-8We"/>
+                <constraint firstItem="dQ5-6n-DHL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="bSh-s6-1Dk"/>
+                <constraint firstItem="dQ5-6n-DHL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="14" id="ozZ-YX-8We"/>
             </constraints>
             <size key="customSize" width="88" height="116"/>
             <connections>

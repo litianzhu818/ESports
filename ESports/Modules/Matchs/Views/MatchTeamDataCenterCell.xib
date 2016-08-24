@@ -67,13 +67,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iUQ-S4-bUw">
                                 <rect key="frame" x="164" y="29" width="148" height="8"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="aEB-75-uTb"/>
                                     <constraint firstAttribute="height" constant="8" id="hhF-9b-HOe"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cp4-rw-TM6">
-                                <rect key="frame" x="8" y="29" width="148" height="8"/>
+                                <rect key="frame" x="8" y="29" width="156" height="8"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="d7M-vW-XE2"/>
                                     <constraint firstAttribute="height" constant="8" id="rjq-uE-AxP"/>
                                 </constraints>
                             </imageView>
@@ -100,7 +100,7 @@
                             <constraint firstAttribute="bottom" secondItem="cp4-rw-TM6" secondAttribute="bottom" id="UQ4-y9-gvI"/>
                             <constraint firstItem="XYA-ub-mCG" firstAttribute="top" secondItem="3nh-yf-ze2" secondAttribute="top" id="cYS-Hl-hLh"/>
                             <constraint firstItem="7cQ-TV-wnF" firstAttribute="top" secondItem="3nh-yf-ze2" secondAttribute="top" id="hwe-Rs-GPt"/>
-                            <constraint firstItem="iUQ-S4-bUw" firstAttribute="leading" secondItem="cp4-rw-TM6" secondAttribute="trailing" constant="8" id="oOI-VP-fIL"/>
+                            <constraint firstItem="iUQ-S4-bUw" firstAttribute="leading" secondItem="cp4-rw-TM6" secondAttribute="trailing" id="oOI-VP-fIL"/>
                             <constraint firstAttribute="trailing" secondItem="XYA-ub-mCG" secondAttribute="trailing" constant="8" id="wEB-Ag-p3D"/>
                             <constraint firstItem="cp4-rw-TM6" firstAttribute="leading" secondItem="3nh-yf-ze2" secondAttribute="leading" constant="8" id="yeo-zY-P6y"/>
                             <constraint firstItem="XYA-ub-mCG" firstAttribute="leading" secondItem="TAw-ro-n6U" secondAttribute="trailing" constant="8" id="zoI-mf-DLC"/>
@@ -132,13 +132,13 @@
                                 <rect key="frame" x="164" y="29" width="148" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="BYV-C8-QEQ"/>
+                                    <constraint firstAttribute="width" constant="148" id="y27-tW-R8d"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-wl-VAJ">
-                                <rect key="frame" x="8" y="29" width="148" height="8"/>
+                                <rect key="frame" x="8" y="29" width="156" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="8t1-0g-86T"/>
-                                    <constraint firstAttribute="width" constant="148" id="x8n-Da-MUI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiO-hm-8Cn">
@@ -154,7 +154,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hva-wv-TGJ" firstAttribute="leading" secondItem="Xiv-wl-VAJ" secondAttribute="trailing" constant="8" id="09B-jF-rE2"/>
+                            <constraint firstItem="Hva-wv-TGJ" firstAttribute="leading" secondItem="Xiv-wl-VAJ" secondAttribute="trailing" id="09B-jF-rE2"/>
                             <constraint firstItem="ZiO-hm-8Cn" firstAttribute="leading" secondItem="cCB-5y-zeY" secondAttribute="trailing" constant="8" id="6DJ-YP-iym"/>
                             <constraint firstAttribute="bottom" secondItem="Hva-wv-TGJ" secondAttribute="bottom" id="Ces-oX-WV3"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="Eok-N9-jVy"/>
@@ -196,13 +196,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MPC-8p-rD2">
                                 <rect key="frame" x="164" y="29" width="148" height="8"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="8wn-PQ-flB"/>
                                     <constraint firstAttribute="height" constant="8" id="mJm-5p-vWK"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eb1-Ax-oQq">
-                                <rect key="frame" x="8" y="29" width="148" height="8"/>
+                                <rect key="frame" x="8" y="29" width="156" height="8"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="QI7-Wm-6sP"/>
                                     <constraint firstAttribute="height" constant="8" id="sUS-oN-5jE"/>
                                 </constraints>
                             </imageView>
@@ -226,7 +226,7 @@
                             <constraint firstAttribute="trailing" secondItem="IEf-bE-dvo" secondAttribute="trailing" constant="8" id="KJT-al-5Eq"/>
                             <constraint firstItem="Eb1-Ax-oQq" firstAttribute="leading" secondItem="fAR-p6-ycd" secondAttribute="leading" constant="8" id="KoA-xL-6aG"/>
                             <constraint firstItem="IEf-bE-dvo" firstAttribute="top" secondItem="fAR-p6-ycd" secondAttribute="top" id="Qgs-Yl-jOX"/>
-                            <constraint firstItem="MPC-8p-rD2" firstAttribute="leading" secondItem="Eb1-Ax-oQq" secondAttribute="trailing" constant="8" id="X22-XN-ded"/>
+                            <constraint firstItem="MPC-8p-rD2" firstAttribute="leading" secondItem="Eb1-Ax-oQq" secondAttribute="trailing" id="X22-XN-ded"/>
                             <constraint firstAttribute="height" constant="37" id="Xo2-LT-hBP"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="Yun-r1-WYq"/>
                             <constraint firstItem="IEf-bE-dvo" firstAttribute="leading" secondItem="t4o-cM-Bpl" secondAttribute="trailing" constant="8" id="cy3-GS-fMu"/>
@@ -261,14 +261,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s4I-bH-X6G">
                                 <rect key="frame" x="164" y="29" width="148" height="8"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="739-5l-Bta"/>
                                     <constraint firstAttribute="height" constant="8" id="NGI-a7-B6t"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jnV-xb-lJr">
-                                <rect key="frame" x="8" y="29" width="148" height="8"/>
+                                <rect key="frame" x="8" y="29" width="156" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="A2r-Mz-8Ux"/>
-                                    <constraint firstAttribute="width" constant="148" id="NMc-B1-VVE"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnu-aL-TpF">
@@ -293,7 +293,7 @@
                             <constraint firstAttribute="height" constant="37" id="PWE-md-haZ"/>
                             <constraint firstItem="Rnu-aL-TpF" firstAttribute="leading" secondItem="2q6-0s-w5i" secondAttribute="trailing" constant="8" id="SVP-E3-ofl"/>
                             <constraint firstAttribute="trailing" secondItem="Rnu-aL-TpF" secondAttribute="trailing" constant="8" id="bXW-r2-UEP"/>
-                            <constraint firstItem="s4I-bH-X6G" firstAttribute="leading" secondItem="jnV-xb-lJr" secondAttribute="trailing" constant="8" id="fm3-ED-yBo"/>
+                            <constraint firstItem="s4I-bH-X6G" firstAttribute="leading" secondItem="jnV-xb-lJr" secondAttribute="trailing" id="fm3-ED-yBo"/>
                             <constraint firstItem="Rnu-aL-TpF" firstAttribute="leading" secondItem="2q6-0s-w5i" secondAttribute="trailing" constant="8" id="lMf-CV-NbV"/>
                             <constraint firstAttribute="trailing" secondItem="s4I-bH-X6G" secondAttribute="trailing" constant="8" id="pXa-8m-Tdm"/>
                             <constraint firstItem="qme-za-oz4" firstAttribute="top" secondItem="DvI-WO-nvw" secondAttribute="top" id="rgl-4O-CWo"/>
@@ -325,35 +325,39 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="blueDragonImageView" destination="Xiv-wl-VAJ" id="ckZ-DA-gDp"/>
-                <outlet property="blueDragonImageViewLeftConstraint" destination="09B-jF-rE2" id="htg-36-Ymv"/>
-                <outlet property="blueDragonImageViewWidthConstraint" destination="x8n-Da-MUI" id="yxz-Rd-fsT"/>
-                <outlet property="blueDragonScoreLabel" destination="DRg-40-lK9" id="UXk-cY-uXR"/>
-                <outlet property="blueGoldDiffImageView" destination="Eb1-Ax-oQq" id="cOo-5v-T1c"/>
-                <outlet property="blueGoldDiffImageViewLeftConstraint" destination="X22-XN-ded" id="yIE-GB-gaw"/>
-                <outlet property="blueGoldDiffImageViewWidthConstraint" destination="QI7-Wm-6sP" id="Vv4-Mo-hGK"/>
-                <outlet property="blueGoldDiffScoreLabel" destination="Enh-FO-yJf" id="Utz-CW-hHE"/>
-                <outlet property="blueKillImageView" destination="jnV-xb-lJr" id="90V-Iu-fm1"/>
-                <outlet property="blueKillImageViewLeftConstraint" destination="fm3-ED-yBo" id="igj-9U-V4X"/>
-                <outlet property="blueKillImageViewWidthConstraint" destination="NMc-B1-VVE" id="I0w-uO-45E"/>
-                <outlet property="blueKillScoreLabel" destination="qme-za-oz4" id="sRR-5d-o2s"/>
-                <outlet property="blueTeamNameLabel" destination="Gaf-8a-y9b" id="gKE-h6-InP"/>
-                <outlet property="blueTowerImageView" destination="cp4-rw-TM6" id="pRR-id-dF1"/>
-                <outlet property="blueTowerImageViewLeftConstraint" destination="oOI-VP-fIL" id="nbs-E9-db2"/>
-                <outlet property="blueTowerImageViewWidthConstraint" destination="d7M-vW-XE2" id="Wq2-dW-z0b"/>
-                <outlet property="blueTowerScoreLabel" destination="7cQ-TV-wnF" id="UHS-1g-kIE"/>
+                <outlet property="blueDragonImageView" destination="Hva-wv-TGJ" id="OHj-mP-Bcn"/>
+                <outlet property="blueDragonImageViewLeftConstraint" destination="odv-Xm-ey8" id="eeE-p2-9ZB"/>
+                <outlet property="blueDragonImageViewWidthConstraint" destination="y27-tW-R8d" id="mUf-Om-EBZ"/>
+                <outlet property="blueDragonScoreLabel" destination="ZiO-hm-8Cn" id="kQa-90-NiL"/>
+                <outlet property="blueGoldDiffImageView" destination="MPC-8p-rD2" id="ywz-Nl-Vtp"/>
+                <outlet property="blueGoldDiffImageViewLeftConstraint" destination="4jI-G3-TVe" id="0Ux-Yw-BbS"/>
+                <outlet property="blueGoldDiffImageViewWidthConstraint" destination="8wn-PQ-flB" id="2mD-0K-Ugv"/>
+                <outlet property="blueGoldDiffScoreLabel" destination="IEf-bE-dvo" id="7Ue-Sr-D4u"/>
+                <outlet property="blueKillImageView" destination="s4I-bH-X6G" id="oC9-rf-pwj"/>
+                <outlet property="blueKillImageViewLeftConstraint" destination="pXa-8m-Tdm" id="r3r-r0-a5d"/>
+                <outlet property="blueKillImageViewWidthConstraint" destination="739-5l-Bta" id="Zz4-zG-ajo"/>
+                <outlet property="blueKillScoreLabel" destination="Rnu-aL-TpF" id="Cul-VM-i9Y"/>
+                <outlet property="blueTeamNameLabel" destination="S8S-gb-ha7" id="kMi-eN-mx4"/>
+                <outlet property="blueTowerImageView" destination="iUQ-S4-bUw" id="IXi-2d-m94"/>
+                <outlet property="blueTowerImageViewLeftConstraint" destination="N0a-ew-dlz" id="2fJ-w8-24W"/>
+                <outlet property="blueTowerImageViewWidthConstraint" destination="aEB-75-uTb" id="Mw9-Dm-ZfX"/>
+                <outlet property="blueTowerScoreLabel" destination="XYA-ub-mCG" id="PUd-DB-0sv"/>
                 <outlet property="dragonLabel" destination="cCB-5y-zeY" id="A5m-tM-21c"/>
                 <outlet property="goldDiffLabel" destination="t4o-cM-Bpl" id="CRv-gb-f6y"/>
                 <outlet property="killLabel" destination="2q6-0s-w5i" id="kYU-rG-6TR"/>
-                <outlet property="redDragonImageView" destination="Hva-wv-TGJ" id="8PX-D9-KBl"/>
-                <outlet property="redDragonScoreLabel" destination="ZiO-hm-8Cn" id="78C-EG-Q2g"/>
-                <outlet property="redGoldDiffImageView" destination="MPC-8p-rD2" id="xEb-Gh-VDg"/>
-                <outlet property="redGoldDiffScoreLabel" destination="IEf-bE-dvo" id="jt0-KH-aPc"/>
-                <outlet property="redKillImageView" destination="s4I-bH-X6G" id="AUq-ol-SOa"/>
-                <outlet property="redKillScoreLabel" destination="Rnu-aL-TpF" id="Fkg-Lj-adW"/>
-                <outlet property="redTeamNameLabel" destination="S8S-gb-ha7" id="1Zz-NH-Qcf"/>
-                <outlet property="redTowerImageView" destination="iUQ-S4-bUw" id="yEv-Dt-RNx"/>
-                <outlet property="redTowerScoreLabel" destination="XYA-ub-mCG" id="Blg-6u-aOn"/>
+                <outlet property="redDragonImageView" destination="Xiv-wl-VAJ" id="dKM-ZZ-neP"/>
+                <outlet property="redDragonImageViewLeftConstraint" destination="chi-b5-ZbS" id="N6G-na-xUL"/>
+                <outlet property="redDragonScoreLabel" destination="DRg-40-lK9" id="5yW-MO-jAd"/>
+                <outlet property="redGoldDiffImageView" destination="Eb1-Ax-oQq" id="NAb-Op-meE"/>
+                <outlet property="redGoldDiffImageViewLeftConstraint" destination="KoA-xL-6aG" id="1td-6G-jRo"/>
+                <outlet property="redGoldDiffScoreLabel" destination="Enh-FO-yJf" id="ELN-sD-d3s"/>
+                <outlet property="redKillImageView" destination="jnV-xb-lJr" id="Awr-VH-Yz2"/>
+                <outlet property="redKillImageViewLeftConstraint" destination="x2p-b0-Gfk" id="8Kz-Ht-5vk"/>
+                <outlet property="redKillScoreLabel" destination="qme-za-oz4" id="jnF-HC-lxV"/>
+                <outlet property="redTeamNameLabel" destination="Gaf-8a-y9b" id="DwY-dL-P7b"/>
+                <outlet property="redTowerImageView" destination="cp4-rw-TM6" id="Fts-gl-4TH"/>
+                <outlet property="redTowerImageViewLeftConstraint" destination="yeo-zY-P6y" id="UIS-Dr-3GZ"/>
+                <outlet property="redTowerScoreLabel" destination="7cQ-TV-wnF" id="pLK-PF-eMs"/>
                 <outlet property="titleLabel" destination="SBt-rH-72J" id="qIj-iL-JBV"/>
                 <outlet property="towerLabel" destination="TAw-ro-n6U" id="L5c-Dm-q3P"/>
             </connections>

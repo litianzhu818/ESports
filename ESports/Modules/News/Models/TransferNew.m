@@ -27,7 +27,8 @@
                                                        @"RoleName":@"roleName",
                                                        @"RoleNameEn":@"roleNameEn",
                                                        @"RoleNameCn":@"roleNameCn",
-                                                       @"RoleNameTw":@"roleNameTw"
+                                                       @"RoleNameTw":@"roleNameTw",
+                                                       @"RoleId":@"roleId"
                                                        }];
 }
 

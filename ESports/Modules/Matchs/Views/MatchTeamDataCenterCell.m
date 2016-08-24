@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueTowerImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *redTowerImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueTowerImageViewLeftConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *redTowerImageViewLeftConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *blueDragonScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dragonLabel;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueDragonImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *redDragonImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueDragonImageViewLeftConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *redDragonImageViewLeftConstraint;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *blueGoldDiffScoreLabel;
@@ -39,7 +41,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueGoldDiffImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *redGoldDiffImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueGoldDiffImageViewLeftConstraint;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *redGoldDiffImageViewLeftConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *blueKillScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *killLabel;
@@ -49,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueKillImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *redKillImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *blueKillImageViewLeftConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *redKillImageViewLeftConstraint;
 
 @end
 
@@ -97,10 +100,10 @@
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"notice_title":@"team data statistics",
-                                           @"tower_title":@"Number of towers in 20 minutes",
-                                           @"dragon_title":@"Number of dragons in 20 minutes",
-                                           @"goldDiff_title":@"Economic difference in 25 minutes",
-                                           @"kill_title":@"Total game kill"
+                                           @"tower_title":@"20 min Turret",
+                                           @"dragon_title":@"20 min Dragons",
+                                           @"goldDiff_title":@"25 min Gold Diff",
+                                           @"kill_title":@"Total kill"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"notice_title":@"队伍数据统计",
@@ -188,28 +191,33 @@
         self.redKillScoreLabel.text = _gameOrder.teamAGameState.teamKill;
         
         
-        [self justWidthConstraintWithImageView:self.blueTowerImageView
+        [self justWidthConstraintWithRedImageView:self.redTowerImageView
+                                    blueImageView:self.blueTowerImageView
                                widthConstraint:self.blueTowerImageViewWidthConstraint
-                                leftConstraint:self.blueTowerImageViewLeftConstraint
+                             redLeftConstraint:self.redTowerImageViewLeftConstraint
+                            blueLeftConstraint:self.blueTowerImageViewLeftConstraint
                                      blueScore:[_gameOrder.teamBGameState.teamTower20 integerValue]
                                       redScore:[_gameOrder.teamAGameState.teamTower20 integerValue]];
         
-        [self justWidthConstraintWithImageView:self.blueDragonImageView
+        [self justWidthConstraintWithRedImageView:self.redDragonImageView
+                                    blueImageView:self.blueDragonImageView
                                widthConstraint:self.blueDragonImageViewWidthConstraint
-                                leftConstraint:self.blueDragonImageViewLeftConstraint
+                             redLeftConstraint:self.redDragonImageViewLeftConstraint
+                            blueLeftConstraint:self.blueDragonImageViewLeftConstraint
                                      blueScore:[_gameOrder.teamBGameState.teamDragon20 integerValue]
                                       redScore:[_gameOrder.teamAGameState.teamDragon20 integerValue]];
         
-        [self justGoldDiffWidthConstraintWithImageView:self.blueGoldDiffImageView
+        [self justGoldDiffWidthConstraintWithImageView:self.redGoldDiffImageView
                                        widthConstraint:self.blueGoldDiffImageViewWidthConstraint
-                                        leftConstraint:self.blueGoldDiffImageViewLeftConstraint
                                              blueScore:[_gameOrder.teamBGameState.teamGoldDiffAt25 integerValue]
                                               redScore:[_gameOrder.teamAGameState.teamGoldDiffAt25 integerValue]];
         
         
-        [self justWidthConstraintWithImageView:self.blueKillImageView
+        [self justWidthConstraintWithRedImageView:self.redKillImageView
+                                    blueImageView:self.blueKillImageView
                                widthConstraint:self.blueKillImageViewWidthConstraint
-                                leftConstraint:self.blueKillImageViewLeftConstraint
+                             redLeftConstraint:self.redKillImageViewLeftConstraint
+                            blueLeftConstraint:self.blueKillImageViewLeftConstraint
                                      blueScore:[_gameOrder.teamBGameState.teamKill integerValue]
                                       redScore:[gameOrder.teamAGameState.teamKill integerValue]];
     }else{
@@ -224,28 +232,33 @@
         self.redKillScoreLabel.text = _gameOrder.teamBGameState.teamKill;
         
         
-        [self justWidthConstraintWithImageView:self.blueTowerImageView
+        [self justWidthConstraintWithRedImageView:self.redTowerImageView
+                                    blueImageView:self.blueTowerImageView
                                widthConstraint:self.blueTowerImageViewWidthConstraint
-                                leftConstraint:self.blueTowerImageViewLeftConstraint
+                             redLeftConstraint:self.redTowerImageViewLeftConstraint
+                            blueLeftConstraint:self.blueTowerImageViewLeftConstraint
                                      blueScore:[_gameOrder.teamAGameState.teamTower20 integerValue]
                                       redScore:[_gameOrder.teamBGameState.teamTower20 integerValue]];
         
-        [self justWidthConstraintWithImageView:self.blueDragonImageView
+        [self justWidthConstraintWithRedImageView:self.redDragonImageView
+                                    blueImageView:self.blueDragonImageView
                                widthConstraint:self.blueDragonImageViewWidthConstraint
-                                leftConstraint:self.blueDragonImageViewLeftConstraint
+                             redLeftConstraint:self.redDragonImageViewLeftConstraint
+                            blueLeftConstraint:self.blueDragonImageViewLeftConstraint
                                      blueScore:[_gameOrder.teamAGameState.teamDragon20 integerValue]
                                       redScore:[_gameOrder.teamBGameState.teamDragon20 integerValue]];
         
-        [self justGoldDiffWidthConstraintWithImageView:self.blueGoldDiffImageView
+        [self justGoldDiffWidthConstraintWithImageView:self.redGoldDiffImageView
                                        widthConstraint:self.blueGoldDiffImageViewWidthConstraint
-                                        leftConstraint:self.blueGoldDiffImageViewLeftConstraint
                                              blueScore:[_gameOrder.teamAGameState.teamGoldDiffAt25 integerValue]
                                               redScore:[_gameOrder.teamBGameState.teamGoldDiffAt25 integerValue]];
         
         
-        [self justWidthConstraintWithImageView:self.blueKillImageView
+        [self justWidthConstraintWithRedImageView:self.redKillImageView
+                                    blueImageView:self.blueKillImageView
                                widthConstraint:self.blueKillImageViewWidthConstraint
-                                leftConstraint:self.blueKillImageViewLeftConstraint
+                             redLeftConstraint:self.redKillImageViewLeftConstraint
+                            blueLeftConstraint:self.blueKillImageViewLeftConstraint
                                      blueScore:[_gameOrder.teamAGameState.teamKill integerValue]
                                       redScore:[_gameOrder.teamBGameState.teamKill integerValue]];
     }
@@ -261,18 +274,22 @@
     self.killLabel.text = LTZLocalizedString(@"kill_title", nil);
 }
 
-- (void)justWidthConstraintWithImageView:(UIImageView *)imageView
+- (void)justWidthConstraintWithRedImageView:(UIImageView *)redImageView
+                              blueImageView:(UIImageView *)blueImageView
                          widthConstraint:(NSLayoutConstraint *)widthConstraint
-                          leftConstraint:(NSLayoutConstraint *)leftConstraint
+                       redLeftConstraint:(NSLayoutConstraint *)redLeftConstraint
+                          blueLeftConstraint:(NSLayoutConstraint *)blueLeftConstraint
                                blueScore:(NSInteger)blueScore
                                 redScore:(NSInteger)redScore
 {
-    CGFloat totalWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - 8.0*3;
+    CGFloat totalWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - 8.0*2;
     
     if (blueScore == 0 && redScore == 0) {
         widthConstraint.constant = totalWidth*0.5;
-        leftConstraint.constant = 8.0f;
-        [imageView setNeedsLayout];
+        blueLeftConstraint.constant = 8.0f;
+        redLeftConstraint.constant = 8.0f;
+        [redImageView setNeedsLayout];
+        [blueImageView setNeedsLayout];
         return;
     };
     
@@ -280,35 +297,33 @@
     CGFloat blueWidth = totalWidth *((CGFloat)blueScore/(CGFloat)totalScore);
     
     if (blueScore == 0) {
-        leftConstraint.constant = 0.0f;
-    }else if (blueScore == totalScore) {
-        leftConstraint.constant = 0.0f;
-        blueWidth += 8.0f;
+        blueLeftConstraint.constant = 8.0f;
+        redLeftConstraint.constant = 8.0f;
+        blueWidth = 0;
     }else{
-        leftConstraint.constant = 8.0f;
+        blueLeftConstraint.constant = 8.0f;
+        redLeftConstraint.constant = 8.0f;
     }
     
     widthConstraint.constant = blueWidth;
-    [imageView setNeedsLayout];
+    [redImageView setNeedsLayout];
+    [blueImageView setNeedsLayout];
 }
 
 - (void)justGoldDiffWidthConstraintWithImageView:(UIImageView *)imageView
                          widthConstraint:(NSLayoutConstraint *)widthConstraint
-                                  leftConstraint:(NSLayoutConstraint *)leftConstraint
                                blueScore:(double)blueGoldDiffAt25
                                 redScore:(double)redGoldDiffAt25
 {
-    CGFloat totalWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - 8.0*3;
+    CGFloat totalWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - 8.0*2;
     
     if (blueGoldDiffAt25 == 0 && redGoldDiffAt25 == 0) {
         
         widthConstraint.constant = totalWidth*0.5;
-        leftConstraint.constant = 8.0f;
         [imageView setNeedsLayout];
         
         return;
     };
-    
     
     double totalScore = 7.0;
     
@@ -322,16 +337,6 @@
         blueWidth = 0.0f;
     }else if (redGoldDiffAt25 <= -7) {
         blueWidth = totalWidth;
-    }
-    
-
-    if (blueWidth == 0) {
-        leftConstraint.constant = 0.0f;
-    }else if (blueWidth == totalWidth){
-        leftConstraint.constant = 0.0f;
-        blueWidth += 8.0f;
-    }else{
-        leftConstraint.constant = 8.0f;
     }
     
     widthConstraint.constant = blueWidth;

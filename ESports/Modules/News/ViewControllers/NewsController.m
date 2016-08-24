@@ -25,6 +25,8 @@
 #import "DetailNewsController.h"
 #import "MatchZoneManager.h"
 #import "NSObject+Custom.h"
+#import "StrengthRankingPlayerController.h"
+#import "StrengthRankingTeamController.h"
 
 
 typedef NS_ENUM(NSUInteger, NewsType) {
@@ -112,9 +114,9 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                            @"local_item_lms":@"LMS",
                                            @"local_bar_item":@"area",
                                            @"view_controller_title":@"News",
-                                           @"news_type_hot":@"Hot focus",
+                                           @"news_type_hot":@"Breaking news",
                                            @"news_type_transfer":@"Transfer",
-                                           @"news_type_headlines":@"Hot words",
+                                           @"news_type_headlines":@"Headlines",
                                            @"tableview_header_pull_down_title":@"Pull down to refresh",
                                            @"tableview_header_release_title":@"Release to refresh",
                                            @"tableview_header_loading_title":@"Loading...",
@@ -241,11 +243,11 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     
     NSDictionary *normalAttributes = @{
                                        NSForegroundColorAttributeName:HexColor(0x6ed4ff),
-                                       NSFontAttributeName:[UIFont systemFontOfSize:16.0f]
+                                       NSFontAttributeName:[UIFont systemFontOfSize:14.0f]
                                        };
     NSDictionary *selectedAttributes = @{
                                        NSForegroundColorAttributeName:[UIColor whiteColor],
-                                       NSFontAttributeName:[UIFont systemFontOfSize:16.0f]
+                                       NSFontAttributeName:[UIFont systemFontOfSize:14.0f]
                                        };
     [self.segmentedControl setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
     [self.segmentedControl setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
@@ -922,7 +924,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
             return [HotFocusNewCell cellHeight];
         }
     }else if ([tableView isEqual:self.transferTableView]){
-        return [TransferNewCell cellHeight];
+        TransferNew *transferNew = self.transferNewManager.transferNewContainers[indexPath.section].transferNews[indexPath.row];
+        return [TransferNewCell cellHeightWithTransferNew:transferNew];
     }else if ([tableView isEqual:self.hotwordsTableView]){
         return [HotWordNewCell cellHeight];
     }
@@ -969,6 +972,20 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
             DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:news.newsId];
             [self.navigationController pushViewController:detailNewsController animated:YES];
         }
+    }else if ([tableView isEqual:self.transferTableView]) {
+        /*
+        TransferNew *transferNew = self.transferNewManager.transferNewContainers[indexPath.section].transferNews[indexPath.row];
+        if (transferNew.roleId.length > 0) {
+            StrengthRankingPlayerController *playerDetailController = [[StrengthRankingPlayerController alloc] initWithPlayerId:transferNew.playerId role:transferNew.roleId];
+            [self.navigationController pushViewController:playerDetailController animated:YES];
+        }*/
+        
+    }else if ([tableView isEqual:self.hotwordsTableView]) {
+        HotWordNew *hotWordNew = self.hotWordNewManager.hotWordNewContainers[indexPath.section].hotWordNews[indexPath.row];
+        if (hotWordNew.newsId.length > 0) {
+            DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:hotWordNew.newsId];
+            [self.navigationController pushViewController:detailNewsController animated:YES];
+        }
     }
 }
 #pragma mark - UITableViewDataSource methods
@@ -990,6 +1007,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     return 0;
 
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([tableView isEqual:self.hotfocusTableView]) {
@@ -1020,14 +1038,29 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         TransferNewCell *cell = [tableView dequeueReusableCellWithIdentifier:[TransferNewCell cellIdentifier]
                                                                 forIndexPath:indexPath];
         cell.transferNew = self.transferNewManager.transferNewContainers[indexPath.section].transferNews[indexPath.row];
-        
+        WEAK_SELF;
+        [cell setTapOnPlayerIconBlock:^(NSString *playerId, NSString *roleId) {
+            if (roleId.length > 0) {
+                STRONG_SELF;
+                StrengthRankingPlayerController *playerDetailController = [[StrengthRankingPlayerController alloc] initWithPlayerId:playerId
+                                                                                                                               role:roleId];
+                [strongSelf.navigationController pushViewController:playerDetailController animated:YES];
+            }
+        }];
         return cell;
         
     }else if ([tableView isEqual:self.hotwordsTableView]) {
         HotWordNewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HotWordNewCell cellIdentifier]
                                                                 forIndexPath:indexPath];
         cell.hotWordNew = self.hotWordNewManager.hotWordNewContainers[indexPath.section].hotWordNews[indexPath.row];
-        
+        WEAK_SELF;
+        [cell setTapOnTeamBlock:^(NSString *teamId) {
+            if (teamId.length > 0) {
+                STRONG_SELF;
+                StrengthRankingTeamController *teamDetailController = [[StrengthRankingTeamController alloc] initWithTeamId:teamId];
+                [strongSelf.navigationController pushViewController:teamDetailController animated:YES];
+            }
+        }];
         return cell;
     }
     return nil;

@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *imageUrl;
 @property (strong, nonatomic) NSString *title;
 @property (assign, nonatomic) BOOL isBlueTeam;
+@property (assign, nonatomic) BOOL hasTeam;
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;

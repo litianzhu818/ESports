@@ -7,12 +7,12 @@
 //
 
 #import "HotWordNewCell.h"
-#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "NSObject+Custom.h"
 
 @interface HotWordNewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIButton *iconButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelHeightConstraint;
 
@@ -41,7 +41,12 @@
 {
     [super layoutSubviews];
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.hotWordNew.newsImageUrl] placeholderImage:[UIImage imageNamed:@"占位图"]];
+    [self.iconButton sd_setBackgroundImageWithURL:[NSURL URLWithString:self.hotWordNew.newsImageUrl]
+                                         forState:UIControlStateNormal
+                                 placeholderImage:[UIImage imageNamed:@"占位图"]];
+    [self.iconButton sd_setBackgroundImageWithURL:[NSURL URLWithString:self.hotWordNew.newsImageUrl]
+                                         forState:UIControlStateHighlighted
+                                 placeholderImage:[UIImage imageNamed:@"占位图"]];
     self.titleLabel.text = self.hotWordNew.newsTitle;
     
     CGFloat height = [self sizeOfLabelWithString:self.hotWordNew.newsTitle
@@ -75,6 +80,13 @@
     CGContextMoveToPoint(context, 0, rect.size.height-2.0);  //起点坐标
     CGContextAddLineToPoint(context, rect.size.width, rect.size.height-2.0);   //终点坐标
     CGContextStrokePath(context);
+}
+
+- (IBAction)tapOnTeamLogonAction:(id)sender
+{
+    if (self.tapOnTeamBlock) {
+        self.tapOnTeamBlock(self.hotWordNew.teamId);
+    }
 }
 
 #pragma mark - class methods

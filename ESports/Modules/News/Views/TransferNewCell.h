@@ -12,9 +12,10 @@
 @interface TransferNewCell : UITableViewCell
 
 @property (strong, nonatomic) TransferNew *transferNew;
+@property (copy, nonatomic) void (^tapOnPlayerIconBlock) (NSString *playerId, NSString *playerRoleId);
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeightWithTransferNew:(TransferNew *)transferNew;
 
 @end

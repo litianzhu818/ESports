@@ -12,6 +12,7 @@
 @interface HotWordNewCell : UITableViewCell
 
 @property (strong, nonatomic) HotWordNew *hotWordNew;
+@property (copy, nonatomic) void (^tapOnTeamBlock) (NSString *teamId);
 
 + (UINib *)nib;
 + (NSString *)cellIdentifier;

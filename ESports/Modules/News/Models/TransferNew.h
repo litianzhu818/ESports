@@ -30,4 +30,6 @@
 @property (strong, nonatomic) NSString *roleNameCn;
 @property (strong, nonatomic) NSString *roleNameTw;
 
+@property (strong, nonatomic) NSString *roleId;
+
 @end

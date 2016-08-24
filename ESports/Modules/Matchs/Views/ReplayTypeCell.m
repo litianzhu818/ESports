@@ -27,9 +27,9 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"team_title":@"team data",
-                                           @"player_title":@"players",
-                                           @"video_title":@"replay"
+                                           @"team_title":@"Team Statistics",
+                                           @"player_title":@"Player Statistics",
+                                           @"video_title":@"Replays"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"team_title":@"队伍数据",

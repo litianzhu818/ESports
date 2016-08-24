@@ -42,13 +42,16 @@ static const CGFloat marginWidth = 8.0;
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"team_title":@"the %@ games"
+                                           @"team_title":@"Game %@",
+                                           @"win_titie":@"Win"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"team_title":@"第%@局"
+                                           @"team_title":@"第%@局",
+                                           @"win_titie":@"胜"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"team_title":@"第%@局"
+                                           @"team_title":@"第%@局",
+                                           @"win_titie":@"勝"
                                            }
                                    };
     
@@ -137,7 +140,7 @@ static const CGFloat marginWidth = 8.0;
     
     NSMutableArray *Constraints = [NSMutableArray array];
     
-    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[mainTextLabel]-MARGIN-[subTextLabel(==120.0)]-MARGIN-[accessoryImageView(==MARGIN1)]-MARGIN-|"
+    [Constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-MARGIN-[mainTextLabel(==80.0)]-MARGIN-[subTextLabel]-MARGIN-[accessoryImageView(==MARGIN1)]-MARGIN-|"
                                                                                  options:0
                                                                              metrics:@{
                                                                                        @"MARGIN":@(marginWidth),
@@ -217,13 +220,34 @@ static const CGFloat marginWidth = 8.0;
 {
     _subTitle = subTitle;
     
-    self.subTextLabel.text = _subTitle;
+    
+    NSString *titleString = [NSString stringWithFormat:@"%@ %@",_subTitle, LTZLocalizedString(@"win_titie", nil)];
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleString];
+    
+    [attributedString addAttributes:@{
+                                      NSForegroundColorAttributeName:HexColor(0x6ed4ff)
+                                      }
+                              range:[titleString rangeOfString:LTZLocalizedString(@"win_titie", nil)]];
+    
+    self.subTextLabel.attributedText = attributedString;
 }
 
 - (void)languageDidChanged
 {
     NSString *titleString = [NSString stringWithFormat:LTZLocalizedString(@"team_title", nil),_title];;
     [mainTextLabel setText:titleString];
+    
+    NSString *subTitleString = [NSString stringWithFormat:@"%@ %@",self.subTitle, LTZLocalizedString(@"win_titie", nil)];
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:subTitleString];
+    
+    [attributedString addAttributes:@{
+                                      NSForegroundColorAttributeName:HexColor(0x6ed4ff)
+                                      }
+                              range:[subTitleString rangeOfString:LTZLocalizedString(@"win_titie", nil)]];
+    
+    self.subTextLabel.attributedText = attributedString;
 }
 
 + (CGFloat)sectionHeaderViewHeight

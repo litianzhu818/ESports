@@ -20,6 +20,7 @@
 		E715033E1D6C500200812668 /* login_qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503351D6C500200812668 /* login_qq@2x.png */; };
 		E715033F1D6C500200812668 /* login_webo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503361D6C500200812668 /* login_webo@2x.png */; };
 		E71503401D6C500200812668 /* login_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503371D6C500200812668 /* login_wechat@2x.png */; };
+		E71503421D6D991900812668 /* match_team_no_first_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503411D6D991900812668 /* match_team_no_first_data@2x.png */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -239,6 +240,7 @@
 		E71503351D6C500200812668 /* login_qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_qq@2x.png"; sourceTree = "<group>"; };
 		E71503361D6C500200812668 /* login_webo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_webo@2x.png"; sourceTree = "<group>"; };
 		E71503371D6C500200812668 /* login_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_wechat@2x.png"; sourceTree = "<group>"; };
+		E71503411D6D991900812668 /* match_team_no_first_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "match_team_no_first_data@2x.png"; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 		E72FD86D1D251575000A5CE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E71503411D6D991900812668 /* match_team_no_first_data@2x.png */,
 				E715511F1D66BC890073F159 /* match_assists_blue@2x.png */,
 				E71551201D66BC890073F159 /* match_assists_red@2x.png */,
 				E71551211D66BC890073F159 /* match_death_blue@2x.png */,
@@ -1533,6 +1536,7 @@
 				E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */,
 				E71627351D47516900EF6740 /* ReplayTopCell.xib in Resources */,
 				E717B30C1D51D4B100BE98A3 /* MatchVideoDataCell.xib in Resources */,
+				E71503421D6D991900812668 /* match_team_no_first_data@2x.png in Resources */,
 				E71550C91D5C890C0073F159 /* StrengScoreTeamSecondCell.xib in Resources */,
 				E715511E1D66AE980073F159 /* match_score_bg@2x.png in Resources */,
 				E72FD8631D2508EC000A5CE6 /* backItemImage@2x.png in Resources */,

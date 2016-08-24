@@ -74,13 +74,13 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"view_controller_title":@"Replay"
+                                           @"view_controller_title":@"Results"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"view_controller_title":@"重播"
+                                           @"view_controller_title":@"比赛结果"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"view_controller_title":@"重播"
+                                           @"view_controller_title":@"比賽結果"
                                            }
                                    };
     

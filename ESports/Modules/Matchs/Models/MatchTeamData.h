@@ -227,8 +227,8 @@
 @property (assign, nonatomic) BOOL firstTower;
 @property (assign, nonatomic) BOOL firstDragon;
 @property (assign, nonatomic) BOOL firstBigDragon;
-@property (assign, nonatomic) BOOL firstVanguard;
-@property (assign, nonatomic) BOOL firstAncientDragon;
+@property (strong, nonatomic) NSString *firstVanguard;
+@property (strong, nonatomic) NSString * firstAncientDragon;
 @property (assign, nonatomic) BOOL win;
 
 @end

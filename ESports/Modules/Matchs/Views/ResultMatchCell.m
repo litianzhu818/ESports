@@ -42,7 +42,7 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"watch_title":@"Game result"
+                                           @"watch_title":@"Results"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"watch_title":@"比赛结果"
