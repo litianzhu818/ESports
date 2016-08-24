@@ -81,8 +81,8 @@
             self.redDeathLabel.text = gameOrder.teamAGameState.teamDeath;
             self.redAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
             self.blueKillLabel.text = gameOrder.teamBGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamBGameState.teamKill;
-            self.blueAssistsLabel.text = gameOrder.teamBGameState.teamKill;
+            self.blueDeathLabel.text = gameOrder.teamBGameState.teamDeath;
+            self.blueAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
             [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
             [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
@@ -124,8 +124,8 @@
             self.redDeathLabel.text = gameOrder.teamBGameState.teamDeath;
             self.redAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
             self.blueKillLabel.text = gameOrder.teamAGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamAGameState.teamKill;
-            self.blueAssistsLabel.text = gameOrder.teamAGameState.teamKill;
+            self.blueDeathLabel.text = gameOrder.teamAGameState.teamDeath;
+            self.blueAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
             [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
             [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]
@@ -168,8 +168,8 @@
             self.redDeathLabel.text = gameOrder.teamAGameState.teamDeath;
             self.redAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
             self.blueKillLabel.text = gameOrder.teamBGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamBGameState.teamKill;
-            self.blueAssistsLabel.text = gameOrder.teamBGameState.teamKill;
+            self.blueDeathLabel.text = gameOrder.teamBGameState.teamDeath;
+            self.blueAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
             [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
             [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
@@ -210,8 +210,8 @@
             self.redDeathLabel.text = gameOrder.teamBGameState.teamDeath;
             self.redAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
             self.blueKillLabel.text = gameOrder.teamAGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamAGameState.teamKill;
-            self.blueAssistsLabel.text = gameOrder.teamAGameState.teamKill;
+            self.blueDeathLabel.text = gameOrder.teamAGameState.teamDeath;
+            self.blueAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
             [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
             [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]

@@ -71,16 +71,16 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"title":@"Player Matrix value trend",
-                                           @"segmented_10_title":@"10 games",
-                                           @"segmented_25_title":@"25 games",
-                                           @"segmented_40_title":@"40 games",
-                                           @"acture_price_title":@"acture price",
-                                           @"price_change_title":@"price change",
-                                           @"change_rate_title":@"change rate"
+                                           @"title":@"Matrix Value Trend",
+                                           @"segmented_10_title":@"10 Games",
+                                           @"segmented_25_title":@"25 Games",
+                                           @"segmented_40_title":@"40 Games",
+                                           @"acture_price_title":@"Matrix Value",
+                                           @"price_change_title":@"Change",
+                                           @"change_rate_title":@"Change(%)"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"title":@"选手Matrix价值走势",
+                                           @"title":@"Matrix价值走势",
                                            @"segmented_10_title":@"10局",
                                            @"segmented_25_title":@"25局",
                                            @"segmented_40_title":@"40局",
@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
                                            @"change_rate_title":@"百分比变化"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"title":@"選手Matrix價值走勢",
+                                           @"title":@"Matrix價值走勢",
                                            @"segmented_10_title":@"10局",
                                            @"segmented_25_title":@"25局",
                                            @"segmented_40_title":@"40局",
@@ -202,7 +202,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     
     if (!self.playerDetail) return;
     
-    if (self.playerDetail.playerGlobalRanking == 0) {
+    if (!self.playerDetail.playeRoleRankinge && [self.playerDetail.playeRoleRankinge isEqualToString:@"0"]) {
         self.noDataTitleLabel.hidden = NO;
         self.segmentedControl.hidden = YES;
         self.backView.hidden = YES;
@@ -219,26 +219,38 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     NSInteger minPrice = [self.playerDetail.playerPriceList.firstObject integerValue];
     NSInteger maxPrice = [self.playerDetail.playerPriceList[self.gamesCount-1] integerValue];
     
-    NSInteger priceChange = maxPrice - minPrice;
+    NSInteger priceChange = minPrice - maxPrice;
     
     UIImage *image = nil;
-    
-    if (priceChange < 0) {
-        self.priceChangeValueLabel.textColor = HexColor(0xff2e2a);
-        self.changeRateValueLabel.textColor = HexColor(0xff2e2a);
-        image = [IonIcons imageWithIcon:icon_arrow_down_c size:15.0f color:HexColor(0xff2e2a)];
+    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
+        if (priceChange < 0) {
+            self.priceChangeValueLabel.textColor = HexColor(0xff2e2a);
+            self.changeRateValueLabel.textColor = HexColor(0xff2e2a);
+            image = [IonIcons imageWithIcon:icon_arrow_down_c size:15.0f color:HexColor(0xff2e2a)];
+        }else{
+            self.priceChangeValueLabel.textColor = HexColor(0x46a201);
+            self.changeRateValueLabel.textColor = HexColor(0x46a201);
+            image = [IonIcons imageWithIcon:icon_arrow_up_c size:15.0f color:HexColor(0x46a201)];
+        }
     }else{
-        self.priceChangeValueLabel.textColor = HexColor(0x46a201);
-        self.changeRateValueLabel.textColor = HexColor(0x46a201);
-        image = [IonIcons imageWithIcon:icon_arrow_up_c size:15.0f color:HexColor(0x46a201)];
+        if (priceChange < 0) {
+            
+            self.priceChangeValueLabel.textColor = HexColor(0x46a201);
+            self.changeRateValueLabel.textColor = HexColor(0x46a201);
+            image = [IonIcons imageWithIcon:icon_arrow_down_c size:15.0f color:HexColor(0x46a201)];
+        }else{
+            
+            self.priceChangeValueLabel.textColor = HexColor(0xff2e2a);
+            self.changeRateValueLabel.textColor = HexColor(0xff2e2a);
+            image = [IonIcons imageWithIcon:icon_arrow_up_c size:15.0f color:HexColor(0xff2e2a)];
+        }
     }
-    
-    self.acturePriceValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerStrength];
+    self.acturePriceValueLabel.text = [NSString stringWithFormat:@"%@",[self getStringFromStrength:minPrice]];
     self.priceChangeValueLabel.text = [NSString stringWithFormat:@"%@",[self getStringFromStrength:labs(priceChange)]];
     if (priceChange == 0) {
         self.changeRateValueLabel.text = [NSString stringWithFormat:@"%.2f%@",0.00,@"%"];
     }else{
-        self.changeRateValueLabel.text = [NSString stringWithFormat:@"%.2f%@",fabs(priceChange*1.0/minPrice),@"%"];
+        self.changeRateValueLabel.text = [NSString stringWithFormat:@"%.1f%@",fabs(priceChange*1.0/maxPrice)*100,@"%"];
     }
     
     self.priceChangeImageView.image = image;
@@ -256,8 +268,11 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
         interval = 3;
     }
     
-    for (NSInteger index = 1; index <= self.gamesCount; index = index + interval) {
+    for (NSInteger index = 1 ; index <= self.gamesCount; index = index + interval) {
         [xDatas addObject:[NSString stringWithFormat:@"%ld",(unsigned long)index]];
+    }
+    
+    for (NSInteger index = self.gamesCount ; index > 0; index = index - interval) {
         [yDatas addObject:self.playerDetail.playerPriceList[index-1]];
     }
     
@@ -287,7 +302,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     NSMutableArray *yLabelValues = [NSMutableArray array];
     
     for (NSInteger index = 0; index < 6; ++index) {
-        [yLabelValues addObject:[NSString stringWithFormat:@"%ld",(unsigned long)(self.lineChart.yFixedValueMin + index * eachMinInterval)]];
+        [yLabelValues addObject:[self getStringFromStrength:(self.lineChart.yFixedValueMin + index * eachMinInterval)]];
     }
     
     [self.lineChart setXLabels:xDatas];
@@ -320,10 +335,10 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     NSString *strengthStr = nil;
     if (strength < 1000) {
         strengthStr = [NSString stringWithFormat:@"%ld",(unsigned long)strength];
-    }else if (strength >= 1000 && strength < 10000) {
-        strengthStr = [NSString stringWithFormat:@"%.fk",strength/1000.0f];
-    }else if (strength >= 10000) {
-        strengthStr = [NSString stringWithFormat:@"%.fw",strength/10000.0f];
+    }else if (strength >= 1000 && strength < 1000000) {
+        strengthStr = [NSString stringWithFormat:@"%.1fK",strength/1000.0f];
+    }else if (strength >= 1000000) {
+        strengthStr = [NSString stringWithFormat:@"%.1fM",strength/1000000.0f];
     }
     
     return strengthStr;

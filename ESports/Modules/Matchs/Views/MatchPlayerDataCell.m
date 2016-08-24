@@ -58,7 +58,7 @@
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"kda_title":@"KDA",
-                                           @"kill_count_title":@"Fifteen minute fill knife",
+                                           @"kill_count_title":@"15 min CS",
                                            @"carry_title":@"Carry",
                                            @"troll_title":@"Troll"
                                            },
@@ -83,6 +83,13 @@
     
     self.carryImageView.image = [UIImage imageNamed:@"match_player_data_carry"];
     self.trollImageView.image = [UIImage imageNamed:@"match_player_data_troll"];
+    
+    self.kdaLabel.textColor = HexColor(0xc3c3c3);
+    self.kdaValueLabel.textColor = HexColor(0xc3c3c3);
+    self.killCountLabel.textColor = HexColor(0xc3c3c3);
+    self.killCountVauleLabel.textColor = HexColor(0xc3c3c3);
+    self.carryLabel.textColor = HexColor(0xc3c3c3);
+    self.trollLabel.textColor = HexColor(0xc3c3c3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -101,13 +108,8 @@
     UIColor *currentColor = _isBlueTeam ? blueTeamColor:redTeamColor;
 
     self.playerNameLabel.textColor = currentColor;
-    self.kdaLabel.textColor = currentColor;
-    self.kdaValueLabel.textColor = currentColor;
-    self.killCountLabel.textColor = currentColor;
-    self.killCountVauleLabel.textColor = currentColor;
-    self.carryLabel.textColor = currentColor;
-    self.trollLabel.textColor = currentColor;
-    
+    self.teamNameLabel.textColor = currentColor;
+    self.roleLabel.textColor = currentColor;
 }
 
 - (void)setTeamName:(NSString *)teamName
@@ -137,11 +139,15 @@
     [self.iconiImageView sd_setImageWithURL:[NSURL URLWithString:self.matchPlayerDetailData.championImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.roleLabel.text = self.matchPlayerDetailData.playerRole;
     self.playerNameLabel.text = self.matchPlayerDetailData.playerName;
-    self.kdaValueLabel.text = self.matchPlayerDetailData.kda;
+    self.kdaValueLabel.text = [NSString stringWithFormat:@"%@/%@/%@",self.matchPlayerDetailData.kill,self.matchPlayerDetailData.death,self.matchPlayerDetailData.assist];
     self.killCountVauleLabel.text = self.matchPlayerDetailData.cs15Min;
     
+    self.carryLabel.hidden = !self.matchPlayerDetailData.carry;
     self.carryImageView.hidden = !self.matchPlayerDetailData.carry;
+    
+    self.trollLabel.hidden = !self.matchPlayerDetailData.troll;
     self.trollImageView.hidden = !self.matchPlayerDetailData.troll;
+    
     
 }
 

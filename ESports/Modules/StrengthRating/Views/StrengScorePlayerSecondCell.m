@@ -92,14 +92,14 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"region_title":@"region",
-                                           @"global_ranking_title":@"global ranking",
-                                           @"ranking_title":@"ranking",
-                                           @"matrix_title":@"matrix price",
-                                           @"win_rate_title":@"win rate",
-                                           @"kda_title":@"avg KDA",
-                                           @"offered_rate_title":@"offered rate",
-                                           @"strength_title":@"avg strength"
+                                           @"region_title":@"Nationality",
+                                           @"global_ranking_title":@"Global Rank",
+                                           @"ranking_title":@"Role Rank",
+                                           @"matrix_title":@"Matrix Value",
+                                           @"win_rate_title":@"Win Rate",
+                                           @"kda_title":@"Avg. KDA",
+                                           @"offered_rate_title":@"Avg.Kill Participation",
+                                           @"strength_title":@"Power Rating"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"region_title":@"地区",
@@ -108,18 +108,18 @@
                                            @"matrix_title":@"matrix价值",
                                            @"win_rate_title":@"胜率",
                                            @"kda_title":@"平均KDA",
-                                           @"offered_rate_title":@"参团率",
-                                           @"strength_title":@"平均实力"
+                                           @"offered_rate_title":@"平均参团率",
+                                           @"strength_title":@"实力评级"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"region_title":@"地区",
+                                           @"region_title":@"地區",
                                            @"global_ranking_title":@"全球排名",
                                            @"ranking_title":@"位置排名",
-                                           @"matrix_title":@"matrix价值",
-                                           @"win_rate_title":@"胜率",
+                                           @"matrix_title":@"matrix價值",
+                                           @"win_rate_title":@"勝率",
                                            @"kda_title":@"平均KDA",
-                                           @"offered_rate_title":@"参团率",
-                                           @"strength_title":@"平均实力"
+                                           @"offered_rate_title":@"平均參團率",
+                                           @"strength_title":@"實力評級"
                                            }
                                    };
     
@@ -154,8 +154,8 @@
     if (self.playerDetail.playerGlobalRanking == 0) {
          self.globalRankingValueLabel.text = @"T.B.D";
     }
-    self.rankingValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerRanking];
-    if (self.playerDetail.playerRanking == 0) {
+    self.rankingValueLabel.text = self.playerDetail.playeRoleRankinge;
+    if (!self.playerDetail.playeRoleRankinge || [self.playerDetail.playeRoleRankinge isEqualToString:@"0"]) {
          self.rankingValueLabel.text = @"T.B.D";
     }
     self.matrixPriceValueLabel.text = [self getStringFromStrength:self.playerDetail.playerPrice];
@@ -167,11 +167,11 @@
     
     self.kdaTitleLabel.textColor = [self colorWithKda:self.playerDetail.playerKda];
     self.kdaValueLabel.textColor = [self colorWithKda:self.playerDetail.playerKda];
-    self.kdaValueLabel.text = [NSString stringWithFormat:@"%.lf",self.playerDetail.playerKda];
+    self.kdaValueLabel.text = [NSString stringWithFormat:@"%.1lf",self.playerDetail.playerKda];
     
-    self.offeredRateTitleLabel.textColor = [self colorWithOfferedRate:self.playerDetail.playerCarry];
-    self.offeredRateValueLabel.textColor = [self colorWithOfferedRate:self.playerDetail.playerCarry];
-    self.offeredRateValueLabel.text = [NSString stringWithFormat:@"%.lf",self.playerDetail.playerCarry];
+    self.offeredRateTitleLabel.textColor = [self colorWithOfferedRate:self.playerDetail.playerAvgKillParticipation];
+    self.offeredRateValueLabel.textColor = [self colorWithOfferedRate:self.playerDetail.playerAvgKillParticipation];
+    self.offeredRateValueLabel.text = [NSString stringWithFormat:@"%.1lf%@",self.playerDetail.playerAvgKillParticipation*100,@"%"];
     
     self.strengthValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerStrength];
 }
@@ -216,29 +216,27 @@
     NSString *strengthStr = nil;
     if (strength < 1000) {
         strengthStr = [NSString stringWithFormat:@"%ld",(unsigned long)strength];
-    }else if (strength >= 1000 && strength < 10000) {
-        strengthStr = [NSString stringWithFormat:@"%.fk",strength/1000.0f];
-    }else if (strength >= 10000) {
-        strengthStr = [NSString stringWithFormat:@"%.fw",strength/10000.0f];
+    }else if (strength >= 1000000) {
+        strengthStr = [NSString stringWithFormat:@"%.2fM",strength/1000000.0f];
     }
     
     return strengthStr;
 }
 
-- (UIColor *)colorWithRate:(NSInteger)rate
+- (UIColor *)colorWithRate:(CGFloat)rate
 {
     UIColor *bottomColor = HexColor(0xca0000);
     UIColor *lowColor = HexColor(0xbbb200);
     UIColor *heightColor = HexColor(0x00b600);
     UIColor *topColor = HexColor(0x00ff00);
     
-    if (rate >= 0 && rate <= 25) {
+    if (rate >= 0 && rate <= 0.25) {
         return bottomColor;
-    }else if (rate > 25 && rate <= 50) {
+    }else if (rate > 0.25 && rate <= 0.50) {
         return lowColor;
-    }else if (rate > 50 && rate <= 75) {
+    }else if (rate > 0.50 && rate <= 0.75) {
         return heightColor;
-    }else if (rate > 75) {
+    }else if (rate > 0.75) {
         return topColor;
     }
     
@@ -273,33 +271,33 @@
     UIColor *topColor = HexColor(0x00ff00);
     
     if ([self.playerDetail.playerRoleId isEqualToString:@"1"]) {
-        if (offeredRate >= 0 && offeredRate <= 50) {
+        if (offeredRate >= 0 && offeredRate <= .50) {
             return bottomColor;
-        }else if (offeredRate > 50 && offeredRate <= 55) {
+        }else if (offeredRate > .50 && offeredRate <= .55) {
             return lowColor;
-        }else if (offeredRate > 55 && offeredRate <= 60) {
+        }else if (offeredRate > .55 && offeredRate <= .60) {
             return heightColor;
-        }else if (offeredRate > 60) {
+        }else if (offeredRate > .60) {
             return topColor;
         }
     }else{
     
-        if (offeredRate >= 0 && offeredRate <= 50) {
+        if (offeredRate >= 0 && offeredRate <= .50) {
             return bottomColor;
-        }else if (offeredRate > 50 && offeredRate <= 60) {
+        }else if (offeredRate > .50 && offeredRate <= .60) {
             return lowColor;
-        }else if (offeredRate > 60 && offeredRate <= 70) {
+        }else if (offeredRate > .60 && offeredRate <= .70) {
             return heightColor;
-        }else if (offeredRate > 70) {
+        }else if (offeredRate > .70) {
             return topColor;
         }
     }
     return HexColor(0x878c8f);
 }
 
-- (NSString *)stringFromRate:(NSInteger)rate
+- (NSString *)stringFromRate:(CGFloat)rate
 {
-    NSString *str = [NSString stringWithFormat:@"%ld%@",(unsigned long)rate,@"%"];
+    NSString *str = [NSString stringWithFormat:@"%.f%@",rate*100,@"%"];
     return str;
 }
 

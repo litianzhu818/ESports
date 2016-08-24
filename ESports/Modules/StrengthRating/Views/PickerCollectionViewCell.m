@@ -28,7 +28,7 @@
     self.backgroundColor = HexColor(0x0e1720);
     self.contentView.backgroundColor = [UIColor clearColor];
     
-    self.playerNameLabel.textColor = HexColor(0xb6babd);
+    self.playerNameLabel.textColor = HexColor(0x5fd4f7);
     self.winRateLabel.textColor = HexColor(0x5fd4f7);
     //5fd4f7
     
@@ -40,7 +40,7 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"win_rate_title":@"winrate:"
+                                           @"win_rate_title":@"Win Rate:"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"win_rate_title":@"胜率:"
@@ -49,6 +49,7 @@
                                            @"win_rate_title":@"勝率:"
                                            }
                                    };
+    self.playerNameLabel.text = LTZLocalizedString(@"win_rate_title", nil);
 }
 
 - (void)setPick:(StrengScorePlayerPickChampion *)pick
@@ -63,18 +64,7 @@
     [super layoutSubviews];
     
     [self.playerImageView sd_setImageWithURL:[NSURL URLWithString:self.pick.pickChampionImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
-    self.playerNameLabel.text = self.pick.pickChampionName;
-    
-    NSString *titleString = [NSString stringWithFormat:@"%@%.f%@",LTZLocalizedString(@"win_rate_title", nil),self.pick.pickChampionWinRate,@"%"];
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleString];
-    
-    [attributedString addAttributes:@{
-                                      NSFontAttributeName:[UIFont systemFontOfSize:12.0f]
-                                      }
-                   range:[titleString rangeOfString:LTZLocalizedString(@"win_rate_title", nil)]];
-    
-    self.winRateLabel.attributedText = attributedString;
+    self.winRateLabel.text = [NSString stringWithFormat:@"%.f%@",self.pick.pickChampionWinRate,@"%"];
 }
 
 #pragma mark - class methods
@@ -100,18 +90,9 @@
 {
     if (!self.pick) return;
     
-    NSString *titleString = [NSString stringWithFormat:@"%@%.f%@",LTZLocalizedString(@"win_rate_title", nil),self.pick.pickChampionWinRate,@"%"];
+    self.playerNameLabel.text = LTZLocalizedString(@"win_rate_title", nil);
     
-    
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleString];
-    
-    [attributedString addAttributes:@{
-                                      NSFontAttributeName:[UIFont systemFontOfSize:11.0f]
-                                      }
-                              range:[titleString rangeOfString:LTZLocalizedString(@"win_rate_title", nil)]];
-    
-    self.winRateLabel.attributedText = attributedString;
+    self.winRateLabel.text = [NSString stringWithFormat:@"%.f%@",self.pick.pickChampionWinRate*100,@"%"];
 }
 
 

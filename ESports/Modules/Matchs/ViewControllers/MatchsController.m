@@ -607,7 +607,7 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                      }
                                                                      
                                                                      if (hasMoreData) {
-                                                                         [strongSelf.processTableView.mj_header endRefreshing];
+                                                                         [strongSelf.processTableView.mj_footer endRefreshing];
                                                                      }
                                                                      
                                                                  }];
@@ -711,7 +711,7 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                     }
                                                                     
                                                                     if (hasMoreData) {
-                                                                        [strongSelf.resultTableView.mj_header endRefreshing];
+                                                                        [strongSelf.resultTableView.mj_footer endRefreshing];
                                                                     }
                                                                 }];
 }

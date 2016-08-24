@@ -92,13 +92,13 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"title":@"The last 25 game data",
-                                           @"win_rate_title":@"win rate",
-                                           @"first_blood_title":@"first blood",
-                                           @"first_tower_title":@"first tower",
-                                           @"first_dragon_title":@"first dragon",
-                                           @"first_big_dragon_title":@"first big dragon",
-                                           @"first_vanguard_title":@"first vanguard"
+                                           @"title":@"Recent 25Games Statistics & Analysis",
+                                           @"win_rate_title":@"Win Rate",
+                                           @"first_blood_title":@"First Blood",
+                                           @"first_tower_title":@"First Turret",
+                                           @"first_dragon_title":@"First Dragon",
+                                           @"first_big_dragon_title":@"First Baron",
+                                           @"first_vanguard_title":@"First Herald"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"title":@"最近25场比赛数据",

@@ -117,11 +117,11 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                            @"tableview_footer_normal_title":@"Clicking to get more data",
                                            @"tableview_footer_loading_title":@"Loading more...",
                                            @"tableview_footer_no_data_title":@"There is no more data",
-                                           @"ranking_label_title":@"ranking",
-                                           @"team_name_label_title":@"team",
-                                           @"player_name_label_title":@"name",
-                                           @"region_label_title":@"region",
-                                           @"score_label_title":@"StrengScore"
+                                           @"ranking_label_title":@"Rank",
+                                           @"team_name_label_title":@"Team",
+                                           @"player_name_label_title":@"Player",
+                                           @"region_label_title":@"Region",
+                                           @"score_label_title":@"Rating"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"title":@"实力评级",
@@ -714,7 +714,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                                                      }
                                                                      
                                                                      if (hasMoreData) {
-                                                                         [strongSelf.teamsTableView.mj_header endRefreshing];
+                                                                         [strongSelf.teamsTableView.mj_footer endRefreshing];
                                                                      }
                                                                      
                                                                  }];
@@ -814,7 +814,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                                                     }
                                                                     
                                                                     if (hasMoreData) {
-                                                                        [strongSelf.playersTableView.mj_header endRefreshing];
+                                                                        [strongSelf.playersTableView.mj_footer endRefreshing];
                                                                     }
                                                                 }];
 }

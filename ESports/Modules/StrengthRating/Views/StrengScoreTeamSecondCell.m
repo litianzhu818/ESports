@@ -53,9 +53,9 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"region_title":@"region",
-                                           @"ranking_title":@"global ranking",
-                                           @"strength_title":@"strength score"
+                                           @"region_title":@"Region",
+                                           @"ranking_title":@"Global Rank",
+                                           @"strength_title":@"Team Rating"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"region_title":@"地区",
@@ -127,12 +127,10 @@
 - (NSString *)getStringFromStrength:(NSInteger)strength
 {
     NSString *strengthStr = nil;
-    if (strength < 1000) {
+    if (strength < 1000000) {
         strengthStr = [NSString stringWithFormat:@"%ld",(unsigned long)strength];
-    }else if (strength >= 1000 && strength < 10000) {
-        strengthStr = [NSString stringWithFormat:@"%.fk",strength/1000.0f];
-    }else if (strength >= 10000) {
-        strengthStr = [NSString stringWithFormat:@"%.fw",strength/10000.0f];
+    }else if (strength >= 1000000) {
+        strengthStr = [NSString stringWithFormat:@"%.2fM",strength/1000000.0f];
     }
     
     return strengthStr;

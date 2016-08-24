@@ -563,7 +563,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                      }
                                                                      
                                                                      if (hasMoreData) {
-                                                                         [strongSelf.hotfocusTableView.mj_header endRefreshing];
+                                                                         [strongSelf.hotfocusTableView.mj_footer endRefreshing];
                                                                      }
                                                                      
                                                                  }];
@@ -657,7 +657,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                      }
                                                                      
                                                                      if (hasMoreData) {
-                                                                         [strongSelf.transferTableView.mj_header endRefreshing];
+                                                                         [strongSelf.transferTableView.mj_footer endRefreshing];
                                                                      }
                                                                  }];
 }
@@ -749,7 +749,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                      }
                                                                      
                                                                      if (hasMoreData) {
-                                                                         [strongSelf.hotwordsTableView.mj_header endRefreshing];
+                                                                         [strongSelf.hotwordsTableView.mj_footer endRefreshing];
                                                                      }
                                                                  }];
 }

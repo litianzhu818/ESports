@@ -43,7 +43,8 @@
                                                        @"Title":@"newsTitle",
                                                        @"ImgSrc":@"newsImageUrl",
                                                        @"Date":@"stringDate",
-                                                       @"CreateTime":@"stringCreateDate"
+                                                       @"CreateTime":@"stringCreateDate",
+                                                       @"TeamId":@"teamId"
                                                        }];
 }
 

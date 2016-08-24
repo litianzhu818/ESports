@@ -212,7 +212,7 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
     if (self.currentDisplayType == MatchReplayDisplayTypeTeam) {
         count += self.matchTeamData.gameOrders.count;
     }else if (self.currentDisplayType == MatchReplayDisplayTypePlayer) {
-        count = self.matchPlayerData.gameOrders.count;
+        count += self.matchPlayerData.gameOrders.count;
     }else if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {
         ++count;
     }
@@ -271,17 +271,9 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
         NSString *winTeamName = nil;
         
         if (gameOrder.teamAGameResult.win) {
-            if (gameOrder.isATeamRedSide) {
-                winTeamName = self.matchTeamData.teamAInfo.teamName;
-            }else{
-                winTeamName = self.matchTeamData.teamBInfo.teamName;
-            }
+            winTeamName = self.matchTeamData.teamAInfo.teamName;
         }else{
-            if (gameOrder.isATeamRedSide) {
-                winTeamName = self.matchTeamData.teamBInfo.teamName;
-            }else{
-                winTeamName = self.matchTeamData.teamAInfo.teamName;
-            }
+            winTeamName = self.matchTeamData.teamBInfo.teamName;
         }
         
         headerView.subTitle = winTeamName;
@@ -413,11 +405,11 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
             
             if (gameOrder.isATeamRedSide) {
-                cell.blueTeamName = self.matchTeamData.teamAInfo.teamName;
-                cell.redTeamName = self.matchTeamData.teamBInfo.teamName;
-            }else{
                 cell.blueTeamName = self.matchTeamData.teamBInfo.teamName;
                 cell.redTeamName = self.matchTeamData.teamAInfo.teamName;
+            }else{
+                cell.blueTeamName = self.matchTeamData.teamAInfo.teamName;
+                cell.redTeamName = self.matchTeamData.teamBInfo.teamName;
             }
             
             cell.gameOrder = gameOrder;
