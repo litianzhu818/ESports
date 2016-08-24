@@ -208,7 +208,7 @@ Single_implementation(DBManager);
         
         FMResultSet *rs = [db executeQuery:SQL];
         
-        if (rs) {
+        if ([rs next]) {
             result = YES;
             [rs close];
         }

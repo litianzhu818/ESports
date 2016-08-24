@@ -245,8 +245,8 @@ typedef struct CountDownTimeModel{
     UILocalNotification *newlocalNotification = [[UILocalNotification alloc] init];
     
     NSTimeInterval timeInterval = [time timeIntervalSince1970];
-    NSTimeInterval firstTimeInterval = timeInterval - 5 * 60;
-    NSTimeInterval secondTimeInterval = timeInterval - 2 * 60;
+    NSTimeInterval firstTimeInterval = timeInterval - 60 * 60;
+    NSTimeInterval secondTimeInterval = timeInterval - 10 * 60;
     
     NSDate *firstTime = [NSDate dateWithTimeIntervalSince1970:firstTimeInterval];
     NSDate *secondTime = [NSDate dateWithTimeIntervalSince1970:secondTimeInterval];
