@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"title":@"Ranking",
+                                           @"title":@"Rating",
                                            @"ranking_type_team":@"Team",
                                            @"ranking_type_player":@"Player",
                                            @"local_item_global":@"Global",
@@ -187,18 +187,45 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                               selectedBlock:^(NSInteger index) {
                                                   STRONG_SELF;
                                                   [[MatchZoneManager sharedInstance] setMatchZoneId:[strongSelf currentMatchZoneIdWithIndex:index]];
+                                                 
                                               }];
     [self.view addSubview:self.dropdownMenu];
     
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [self.button setTitle:LTZLocalizedString(@"local_bar_item", nil) forState:UIControlStateNormal];
-    [self.button setTitle:LTZLocalizedString(@"local_bar_item", nil) forState:UIControlStateHighlighted];
+    NSString *buttonTitle = nil;
+    switch ([self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]) {
+        case 0:
+            buttonTitle = LTZLocalizedString(@"local_item_global", nil);
+            break;
+        case 1:
+            buttonTitle = LTZLocalizedString(@"local_item_lck", nil);
+            break;
+        case 2:
+            buttonTitle = LTZLocalizedString(@"local_item_eulcs", nil);
+            break;
+        case 3:
+            buttonTitle = LTZLocalizedString(@"local_item_lpl", nil);
+            break;
+        case 4:
+            buttonTitle = LTZLocalizedString(@"local_item_nalcs", nil);
+            break;
+        case 5:
+            buttonTitle = LTZLocalizedString(@"local_item_lms", nil);
+            break;
+        default:
+            buttonTitle = LTZLocalizedString(@"local_item_global", nil);
+            break;
+    }
     
-    [IonIcons label:self.button.titleLabel setIcon:icon_chevron_down size:17.0f color:[UIColor whiteColor] sizeToFit:NO];
-    [self.button setImage:[IonIcons imageWithIcon:icon_chevron_down size:15.0f color:[[UIColor whiteColor] colorWithAlphaComponent:0.7]] forState:UIControlStateNormal];
-    [self.button setImage:[IonIcons imageWithIcon:icon_chevron_down size:15.0f color:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+    [self.button setTitle:buttonTitle forState:UIControlStateNormal];
+    [self.button setTitle:buttonTitle forState:UIControlStateHighlighted];
+    [self.button.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
+    
+    [IonIcons label:self.button.titleLabel setIcon:icon_chevron_down size:14.0f color:[UIColor whiteColor] sizeToFit:NO];
+    [self.button setImage:[IonIcons imageWithIcon:icon_chevron_down size:12.0f color:[[UIColor whiteColor] colorWithAlphaComponent:0.7]] forState:UIControlStateNormal];
+    [self.button setImage:[IonIcons imageWithIcon:icon_chevron_down size:12.0f color:[UIColor whiteColor]] forState:UIControlStateHighlighted];
     
     // Set the title and icon position
     [self.button sizeToFit];
@@ -443,8 +470,36 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                 ];
     [self.dropdownMenu reloadItems];
     
-    [self.button setTitle:LTZLocalizedString(@"local_bar_item", nil) forState:UIControlStateNormal];
-    [self.button setTitle:LTZLocalizedString(@"local_bar_item", nil) forState:UIControlStateHighlighted];
+    NSString *buttonTitle = nil;
+    switch ([self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]) {
+        case 0:
+            buttonTitle = LTZLocalizedString(@"local_item_global", nil);
+            break;
+        case 1:
+            buttonTitle = LTZLocalizedString(@"local_item_lck", nil);
+            break;
+        case 2:
+            buttonTitle = LTZLocalizedString(@"local_item_eulcs", nil);
+            break;
+        case 3:
+            buttonTitle = LTZLocalizedString(@"local_item_lpl", nil);
+            break;
+        case 4:
+            buttonTitle = LTZLocalizedString(@"local_item_nalcs", nil);
+            break;
+        case 5:
+            buttonTitle = LTZLocalizedString(@"local_item_lms", nil);
+            break;
+        default:
+            buttonTitle = LTZLocalizedString(@"local_item_global", nil);
+            break;
+    }
+    
+    [self.button setTitle:buttonTitle forState:UIControlStateNormal];
+    [self.button setTitle:buttonTitle forState:UIControlStateHighlighted];
+    [self.button sizeToFit];
+    self.button.titleEdgeInsets = UIEdgeInsetsMake(0, -self.button.imageView.frame.size.width-10, 0, self.button.imageView.frame.size.width);
+    self.button.imageEdgeInsets = UIEdgeInsetsMake(0, self.button.titleLabel.frame.size.width-5, 0, -self.button.titleLabel.frame.size.width);
     
     [self.segmentedControl setTitle:LTZLocalizedString(@"ranking_type_team", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:LTZLocalizedString(@"ranking_type_player", nil) forSegmentAtIndex:1];
@@ -495,6 +550,38 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 - (void)matchZoneDidChanged:(NSNotification *)notification
 {
     [self.dropdownMenu setSelectedIndex:[self currentIndexWithMatchZoneId:notification.object]];
+    
+    NSString *buttonTitle = nil;
+    switch ([self currentIndexWithMatchZoneId:[[MatchZoneManager sharedInstance] matchZoneId]]) {
+        case 0:
+            buttonTitle = LTZLocalizedString(@"local_item_global", nil);
+            break;
+        case 1:
+            buttonTitle = LTZLocalizedString(@"local_item_lck", nil);
+            break;
+        case 2:
+            buttonTitle = LTZLocalizedString(@"local_item_eulcs", nil);
+            break;
+        case 3:
+            buttonTitle = LTZLocalizedString(@"local_item_lpl", nil);
+            break;
+        case 4:
+            buttonTitle = LTZLocalizedString(@"local_item_nalcs", nil);
+            break;
+        case 5:
+            buttonTitle = LTZLocalizedString(@"local_item_lms", nil);
+            break;
+        default:
+            buttonTitle = LTZLocalizedString(@"local_item_global", nil);
+            break;
+    }
+    
+    [self.button setTitle:buttonTitle forState:UIControlStateNormal];
+    [self.button setTitle:buttonTitle forState:UIControlStateHighlighted];
+    [self.button sizeToFit];
+    self.button.titleEdgeInsets = UIEdgeInsetsMake(0, -self.button.imageView.frame.size.width-10, 0, self.button.imageView.frame.size.width);
+    self.button.imageEdgeInsets = UIEdgeInsetsMake(0, self.button.titleLabel.frame.size.width-5, 0, -self.button.titleLabel.frame.size.width);
+    
     [self.teamsTableView.mj_header beginRefreshing];
     [self.playersTableView.mj_header beginRefreshing];
 }

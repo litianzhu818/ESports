@@ -65,7 +65,7 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"subscribe",
                                            @"subscribed_title":@"subscribed",
                                            @"watch_title":@"live",
-                                           @"time_title":@"remaining %ld h %ld m",
+                                           @"time_title":@"%ld day %ld hr left",
                                            @"event_notice_title":@"At %@,There is a match for %@ and %@",
                                            @"create_event_success_title":@"creating event success",
                                            @"local_message_first_title":@"After 5 minutes you have a game live between %@ and %@, Don't lose it",
@@ -76,7 +76,7 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"订阅",
                                            @"subscribed_title":@"已订阅",
                                            @"watch_title":@"查看直播",
-                                           @"time_title":@"剩%ld小时%ld分",
+                                           @"time_title":@"剩%ld天%ld小时",
                                            @"event_notice_title":@"你在%@有%@和%@的比赛，请不要忘记观看",
                                            @"create_event_success_title":@"已订阅提醒通知",
                                            @"local_message_first_title":@"5分钟后你有%@和%@的比赛直播，请注意观看",
@@ -87,7 +87,7 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"訂閱",
                                            @"subscribed_title":@"已訂閱",
                                            @"watch_title":@"查看直播",
-                                           @"time_title":@"剩%ld小時%ld分",
+                                           @"time_title":@"剩%ld天%ld小時",
                                            @"event_notice_title":@"你在%@有%@和%@的比賽，請不要忘記觀看",
                                            @"create_event_success_title":@"已訂閱提醒通知",
                                            @"local_message_first_title":@"5分鐘後你有%@和%@的比賽直播，請注意觀看",
@@ -128,7 +128,14 @@ typedef struct CountDownTimeModel{
     self.aTeamNameLabel.text = self.processMatch.aTeamName;
     self.bTeamNameLabel.text = self.processMatch.bTeamName;
     
-    if (self.processMatch.liveStreamPage.length > 0) { // 正在直播
+    
+    //得到相差秒数
+    
+    NSTimeInterval timeInterval = [self.processMatch.date timeIntervalSinceNow];
+    
+    NSTimeInterval oneDayTimeInterval = (NSTimeInterval)(3600*24);
+    
+    if (self.processMatch.liveStreamPage.length > 0 && timeInterval <= oneDayTimeInterval) { // 正在直播
         self.stateButton.clipsToBounds = YES;
         self.stateButton.layer.cornerRadius = 4.0f;
         self.stateButton.layer.borderColor = HexColor(0xff3b3b).CGColor;
@@ -275,21 +282,19 @@ typedef struct CountDownTimeModel{
     NSDate *currentDate = [NSDate date];
     
     //用来得到具体的时差
-    unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour;
     
     NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:currentDate toDate:self.processMatch.date options:0];
     
-    CDTM countDownTimeModel = {.day=0,.hour=0,.minute=0,.second=0};
+    CDTM countDownTimeModel = {.day=0,.hour=0};
     
     if ([currentDate compare:self.processMatch.date] <= NSOrderedSame) {
         countDownTimeModel.day = [dateComponents day];
         countDownTimeModel.hour = [dateComponents hour];
-        countDownTimeModel.minute = [dateComponents minute];
-        countDownTimeModel.second = [dateComponents second];
     }
     
     
-    return [NSString stringWithFormat:LTZLocalizedString(@"time_title", nil),countDownTimeModel.hour+(countDownTimeModel.day*24),countDownTimeModel.minute];
+    return [NSString stringWithFormat:LTZLocalizedString(@"time_title", nil),countDownTimeModel.day,countDownTimeModel.hour];
 }
 
 #pragma mark - class methods
