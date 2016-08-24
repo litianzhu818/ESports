@@ -21,6 +21,8 @@
 #import "StrengthRankingPlayerController.h"
 #import "MatchZoneManager.h"
 #import "NSObject+Custom.h"
+#import "PlayerRole.h"
+#import "ActionSheetStringPicker.h"
 
 static NSString *const strengthScoreTeamsListCacheKey = @"strengthScore_controller_teams_list_cache_key";
 static NSString *const strengthScorePlayersListCacheKey = @"strengthScore_controller_players_list_cache_key";
@@ -42,9 +44,14 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 @property (weak, nonatomic) IBOutlet UILabel *scoreTitleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rankingTitleLabelWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scoreTitleLabelWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBackViewHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UITableView *teamsTableView;
 @property (weak, nonatomic) IBOutlet UITableView *playersTableView;
+
+@property (weak, nonatomic) IBOutlet UIView *playerRoleView;
+@property (weak, nonatomic) IBOutlet UILabel *playerRoleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *playerRoleImageView;
 
 @property (strong, nonatomic) MJRefreshNormalHeader *teamsTableViewHeader;
 @property (strong, nonatomic) MJRefreshAutoNormalFooter *teamsTableViewFooter;
@@ -65,8 +72,10 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 
 @property (strong, nonatomic) NSMutableArray<StrengScoreTeam *> *teams;
 @property (strong, nonatomic) NSMutableArray<StrengScorePlayer *> *players;
-@property (strong, nonatomic) NSMutableArray<NSString *> *roleIds;
+@property (strong, nonatomic) NSMutableArray<PlayerRole *> *playerRoles;
 @property (strong, nonatomic) NSString *currentRoleId;
+
+@property (strong, nonatomic) ActionSheetStringPicker *actionSheetStringPicker;
 
 @end
 
@@ -121,7 +130,11 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                            @"team_name_label_title":@"Team",
                                            @"player_name_label_title":@"Player",
                                            @"region_label_title":@"Region",
-                                           @"score_label_title":@"Rating"
+                                           @"score_label_title":@"Rating",
+                                           @"role_list_all_title":@"Role",
+                                           @"picker_title":@"Roles",
+                                           @"picker_cancel_title":@"Cancel",
+                                           @"picker_select_title":@"Done"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"title":@"实力评级",
@@ -144,7 +157,11 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                            @"team_name_label_title":@"战队",
                                            @"player_name_label_title":@"姓名",
                                            @"region_label_title":@"地区",
-                                           @"score_label_title":@"实力评分"
+                                           @"score_label_title":@"实力评分",
+                                           @"role_list_all_title":@"位置",
+                                           @"picker_title":@"角色",
+                                           @"picker_cancel_title":@"取消",
+                                           @"picker_select_title":@"确定"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"title":@"實力評級",
@@ -167,10 +184,25 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                            @"team_name_label_title":@"戰隊",
                                            @"player_name_label_title":@"姓名",
                                            @"region_label_title":@"地區",
-                                           @"score_label_title":@"實力評分"
+                                           @"score_label_title":@"實力評分",
+                                           @"role_list_all_title":@"位置",
+                                           @"picker_title":@"角色",
+                                           @"picker_cancel_title":@"取消",
+                                           @"picker_select_title":@"確定"
                                            }
                                    };
     self.title = LTZLocalizedString(@"title", nil);
+    
+    self.topBackViewHeightConstraint.constant = 90.0f;
+    [self.topBackgroundView setNeedsUpdateConstraints];
+    self.playerRoleView.hidden = YES;
+    
+    self.playerRoleView.layer.borderWidth = 1.0f;
+    self.playerRoleView.layer.borderColor = HexColor(0xe9912f).CGColor;
+    [self.playerRoleView setBackgroundColor:HexColor(0x173b51)];
+    self.playerRoleLabel.text = LTZLocalizedString(@"role_list_all_title", nil);
+    [self.playerRoleImageView setImage:[IonIcons imageWithIcon:icon_arrow_down_b size:12.0f color:[UIColor whiteColor]]];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(matchZoneDidChanged:) name:MatchZoneValueDidChangedKey object:nil];
     
@@ -354,18 +386,18 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     self.teams = [NSMutableArray array];
     self.players = [NSMutableArray array];
-    self.roleIds = [NSMutableArray array];
+    self.playerRoles = [NSMutableArray array];
     
     
     // 取缓存中的轮换图片
     __weak typeof(self) weakSelf = self;
     
     [[TMCache sharedCache] objectForKey:strengthScorePlayerRoleListCacheKey
-                                  block:^(TMCache *cache, NSString *key, NSArray<NSString *> *cacheStrengScorePlayerRoles) {
+                                  block:^(TMCache *cache, NSString *key, NSArray<PlayerRole *> *cacheStrengScorePlayerRoles) {
                                       
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
-                                      [strongSelf.roleIds addObjectsFromArray:cacheStrengScorePlayerRoles];
-                                      
+                                      [strongSelf.playerRoles addObjectsFromArray:cacheStrengScorePlayerRoles];
+                                      self.currentRoleId = strongSelf.playerRoles[0].roleId;
                                     }];
     
     [[TMCache sharedCache] objectForKey:strengthScoreTeamsListCacheKey
@@ -394,7 +426,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     [self.teamsTableView.mj_header beginRefreshing];
     
     // 请求role列表
-    [[HttpSessionManager sharedInstance] requestStrengthScorePlayerRolesWithBlock:^(NSArray<NSString *> *dics, NSError *error) {
+    [[HttpSessionManager sharedInstance] requestStrengthScorePlayerRolesWithBlock:^(NSArray<NSDictionary *> *dics, NSError *error) {
         
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
@@ -402,13 +434,16 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
             
             if (dics.count > 0) {
                 
-                [strongSelf.roleIds removeAllObjects];
+                [strongSelf.playerRoles removeAllObjects];
                 
-                NSMutableArray<NSString *> *cachePlayerRoleList = [NSMutableArray array];
+                NSMutableArray<PlayerRole *> *cachePlayerRoleList = [NSMutableArray array];
                 
-                [dics enumerateObjectsUsingBlock:^(NSString * _Nonnull roleId, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [strongSelf.roleIds addObject:roleId];
-                    [cachePlayerRoleList addObject:roleId];
+                [dics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull roleDic, NSUInteger idx, BOOL * _Nonnull stop) {
+                    PlayerRole *role = [[PlayerRole alloc] initWithDictionary:roleDic error:nil];
+                    if (role) {
+                        [strongSelf.playerRoles addObject:role];
+                        [cachePlayerRoleList addObject:role];
+                    }
                 }];
                 
                 [[TMCache sharedCache] setObject:cachePlayerRoleList
@@ -441,6 +476,10 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
             self.teamsTableView.hidden = NO;
             self.playersTableView.hidden = YES;
             self.nameTitleLabel.text = LTZLocalizedString(@"team_name_label_title", nil);
+            
+            self.topBackViewHeightConstraint.constant = 90.0f;
+            [self.topBackgroundView setNeedsUpdateConstraints];
+            self.playerRoleView.hidden = YES;
         }
             break;
         case StrengthScoreTypePlayers:
@@ -448,12 +487,91 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
             self.teamsTableView.hidden = YES;
             self.playersTableView.hidden = NO;
             self.nameTitleLabel.text = LTZLocalizedString(@"player_name_label_title", nil);
+            
+            self.topBackViewHeightConstraint.constant = 120.0f;
+            [self.topBackgroundView setNeedsUpdateConstraints];
+            self.playerRoleView.hidden = NO;
         }
             break;
             
         default:
             break;
     }
+}
+
+- (ActionSheetStringPicker *)actionSheetStringPicker
+{
+    if (!_actionSheetStringPicker) {
+        
+        __block NSInteger index = 0;
+        
+        [self.playerRoles enumerateObjectsUsingBlock:^(PlayerRole * _Nonnull role, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([role.roleId isEqualToString:self.currentRoleId]) {
+                index = idx + 1;
+            }
+        }];
+        
+        NSMutableArray *titles = [NSMutableArray arrayWithObject:LTZLocalizedString(@"role_list_all_title", nil)];
+        
+        if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
+            [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameEn"]];
+        }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
+            [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameCn"]];
+        }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
+            [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameTw"]];
+        }
+        
+        
+        WEAK_SELF;
+        _actionSheetStringPicker = [[ActionSheetStringPicker alloc] initWithTitle:LTZLocalizedString(@"picker_title", nil)
+                                                                             rows:titles
+                                                                 initialSelection:index
+                                                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                                            
+                                                                            STRONG_SELF;
+                                                                            if (selectedIndex == 0) {
+                                                                                strongSelf.currentRoleId = @"0";
+                                                                            }else{
+                                                                                strongSelf.currentRoleId = strongSelf.playerRoles[selectedIndex-1].roleId;
+                                                                            }
+                                                                            
+                                                                            strongSelf.playerRoleLabel.text = [titles objectAtIndex:selectedIndex];
+                                                                            
+                                                                        } cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                                            
+                                                                        } origin:self.view];
+        _actionSheetStringPicker.pickerBackgroundColor = HexColor(0x0e161f);
+        _actionSheetStringPicker.toolbarBackgroundColor = HexColor(0x121b27);
+        _actionSheetStringPicker.toolbarButtonsColor = HexColor(0x8b8d95);
+        _actionSheetStringPicker.titleTextAttributes = @{NSForegroundColorAttributeName:HexColor(0xa7a8ab)};
+        
+        UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] init];
+        cancelBarButtonItem.title = LTZLocalizedString(@"picker_cancel_title", nil);
+        UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] init];
+        doneBarButtonItem.title = LTZLocalizedString(@"picker_select_title", nil);
+        
+        [_actionSheetStringPicker setCancelButton:cancelBarButtonItem];
+        [_actionSheetStringPicker setDoneButton:doneBarButtonItem];
+        
+        [_actionSheetStringPicker setTextColor:HexColor(0x8b8d95)];
+    }
+    
+    return _actionSheetStringPicker;
+}
+
+
+- (IBAction)tapOnChangePlayerRoleBtn:(id)sender
+{
+    [self.actionSheetStringPicker showActionSheetPicker];
+}
+
+- (void)setCurrentRoleId:(NSString *)currentRoleId
+{
+    if ([_currentRoleId isEqualToString:currentRoleId]) return;
+    
+    _currentRoleId = currentRoleId;
+    
+    [self reloadPlayerData];
 }
 
 #pragma mark - 切换语言响应方法
@@ -525,6 +643,27 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
         [self adjustWidthWidthConstraint:self.scoreTitleLabelWidthConstraint value:55.0f forView:self.scoreTitleLabel];
     }
     
+    self.actionSheetStringPicker = nil;
+    __block NSInteger index = 0;
+    
+    [self.playerRoles enumerateObjectsUsingBlock:^(PlayerRole * _Nonnull role, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([role.roleId isEqualToString:self.currentRoleId]) {
+            index = idx + 1;
+        }
+    }];
+    
+    NSMutableArray *titles = [NSMutableArray arrayWithObject:LTZLocalizedString(@"role_list_all_title", nil)];
+    
+    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
+        [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameEn"]];
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
+        [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameCn"]];
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
+        [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameTw"]];
+    }
+
+    self.playerRoleLabel.text = titles[index];
+    
     [self.teamsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_pull_down_title", nil) forState:MJRefreshStateIdle];
     [self.teamsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
     [self.teamsTableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
@@ -544,6 +683,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     
     [self.teamsTableView.mj_header beginRefreshing];
     [self.playersTableView.mj_header beginRefreshing];
+
 }
 
 #pragma mark - 切换赛区

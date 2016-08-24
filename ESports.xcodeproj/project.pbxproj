@@ -21,6 +21,7 @@
 		E715033F1D6C500200812668 /* login_webo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503361D6C500200812668 /* login_webo@2x.png */; };
 		E71503401D6C500200812668 /* login_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503371D6C500200812668 /* login_wechat@2x.png */; };
 		E71503421D6D991900812668 /* match_team_no_first_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503411D6D991900812668 /* match_team_no_first_data@2x.png */; };
+		E71503451D6DC53C00812668 /* PlayerRole.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503441D6DC53C00812668 /* PlayerRole.m */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -241,6 +242,8 @@
 		E71503361D6C500200812668 /* login_webo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_webo@2x.png"; sourceTree = "<group>"; };
 		E71503371D6C500200812668 /* login_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_wechat@2x.png"; sourceTree = "<group>"; };
 		E71503411D6D991900812668 /* match_team_no_first_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "match_team_no_first_data@2x.png"; sourceTree = "<group>"; };
+		E71503431D6DC53C00812668 /* PlayerRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRole.h; sourceTree = "<group>"; };
+		E71503441D6DC53C00812668 /* PlayerRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRole.m; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -1036,6 +1039,8 @@
 				E71550A21D59D89F0073F159 /* StrengScorePlayer.m */,
 				E71550B61D5B33CF0073F159 /* StrengScorePlayerDetail.h */,
 				E71550B71D5B33CF0073F159 /* StrengScorePlayerDetail.m */,
+				E71503431D6DC53C00812668 /* PlayerRole.h */,
+				E71503441D6DC53C00812668 /* PlayerRole.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1715,6 +1720,7 @@
 				E760B3B21D3F8E5500F5DB54 /* InsertIndexPathModel.m in Sources */,
 				E760B3761D3CAD0600F5DB54 /* DetailNewsController.m in Sources */,
 				E71627541D4A0FBE00EF6740 /* MatchTeamDataCenterCell.m in Sources */,
+				E71503451D6DC53C00812668 /* PlayerRole.m in Sources */,
 				E71550B81D5B33CF0073F159 /* StrengScorePlayerDetail.m in Sources */,
 				E715032E1D6C35E900812668 /* MatchZoneManager.m in Sources */,
 				E760B3991D3E1DB800F5DB54 /* DetailNewSubNewCell.m in Sources */,
