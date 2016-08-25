@@ -397,7 +397,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
                                       
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
                                       [strongSelf.playerRoles addObjectsFromArray:cacheStrengScorePlayerRoles];
-                                      self.currentRoleId = strongSelf.playerRoles[0].roleId;
+                                      //self.currentRoleId = strongSelf.playerRoles[0].roleId;
                                     }];
     
     [[TMCache sharedCache] objectForKey:strengthScoreTeamsListCacheKey
@@ -570,6 +570,26 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
     if ([_currentRoleId isEqualToString:currentRoleId]) return;
     
     _currentRoleId = currentRoleId;
+    
+    __block NSInteger index = 0;
+    
+    [self.playerRoles enumerateObjectsUsingBlock:^(PlayerRole * _Nonnull role, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([role.roleId isEqualToString:self.currentRoleId]) {
+            index = idx + 1;
+        }
+    }];
+    
+    NSMutableArray *titles = [NSMutableArray arrayWithObject:LTZLocalizedString(@"role_list_all_title", nil)];
+    
+    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
+        [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameEn"]];
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
+        [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameCn"]];
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
+        [titles addObjectsFromArray:[self.playerRoles valueForKeyPath:@"roleNameTw"]];
+    }
+    
+    self.playerRoleLabel.text = titles[index];
     
     [self reloadPlayerData];
 }

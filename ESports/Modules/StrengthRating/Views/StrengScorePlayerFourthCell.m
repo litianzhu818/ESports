@@ -30,11 +30,11 @@
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"win_rate_title":@"Recent 25 Games Statistics & Analysis",
-                                           @"carry_title":@"carry rate",
-                                           @"troll_title":@"Offered rate",
-                                           @"kda_title":@"Averag KDA",
-                                           @"win_title":@"win line rate",
-                                           @"dao_title":@"fill knife 15m"
+                                           @"carry_title":@"Carry",
+                                           @"troll_title":@"Avg. Kill Participation",
+                                           @"kda_title":@"Avg. KDA",
+                                           @"win_title":@"Win Lane",
+                                           @"dao_title":@"15 min CS"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"win_rate_title":@"最近25局比赛数据",
@@ -61,8 +61,8 @@
     
     CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
     
-    self.raderChart = [[JYRadarChart alloc] initWithFrame:CGRectMake(20, 40, width-20, 150)];
-    self.raderChart.center = CGPointMake(width/2, 115);
+    self.raderChart = [[JYRadarChart alloc] initWithFrame:CGRectMake(0, 40, width, 150)];
+    self.raderChart.center = CGPointMake(width/2-20, 115);
     self.raderChart.steps = 10;
     self.raderChart.showStepText = NO;
     self.raderChart.backgroundColor = [UIColor clearColor];
@@ -125,23 +125,23 @@
     
     CGFloat carry = self.playerDetail.playerCarry/self.playerDetail.bestStatsModel.bestCarry;
     NSInteger carryValue = 100*carry;
-    NSString *carryTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"carry_title", nil),carry*100,@"%"];
+    NSString *carryTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"carry_title", nil),self.playerDetail.playerCarry*100,@"%"];
     
     CGFloat offered = self.playerDetail.playerAvgKillParticipation/self.playerDetail.bestStatsModel.bestAvgKillParticipation;
     NSInteger offeredValue = 100*offered;
-    NSString *offeredTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"troll_title", nil),offered*100,@"%"];
+    NSString *offeredTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"troll_title", nil),self.playerDetail.playerAvgKillParticipation*100,@"%"];
     
     CGFloat kda = self.playerDetail.playerKda/self.playerDetail.bestStatsModel.bestAvgKda;
     NSInteger kdaValue = 100*kda;
-    NSString *kdaTitle = [NSString stringWithFormat:@"%@(%.2f)",LTZLocalizedString(@"kda_title", nil),self.playerDetail.playerKda];
+    NSString *kdaTitle = [NSString stringWithFormat:@"%@(%.1f)",LTZLocalizedString(@"kda_title", nil),self.playerDetail.playerKda];
     
     CGFloat win = self.playerDetail.playerLaneWin15Min / self.playerDetail.bestStatsModel.bestWinLane;
     NSInteger winValue = 100*win;
-    NSString *winTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"win_title", nil),100*win,@"%"];
+    NSString *winTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"win_title", nil),100*self.playerDetail.playerLaneWin15Min,@"%"];
     
     CGFloat fillKnife = self.playerDetail.playerCs15Min/self.playerDetail.bestStatsModel.bestCs15Min;
     NSInteger fillKnifeValue = 100*fillKnife;
-    NSString *fillKnifeTitle = [NSString stringWithFormat:@"%@(%.f%@)",LTZLocalizedString(@"dao_title", nil),100*fillKnife,@"%"];
+    NSString *fillKnifeTitle = [NSString stringWithFormat:@"%@(%.1f)",LTZLocalizedString(@"dao_title", nil),self.playerDetail.playerCs15Min];
     
     
     NSArray *data = @[@(carryValue), @(fillKnifeValue), @(winValue),@(kdaValue), @(offeredValue)];
@@ -150,7 +150,7 @@
     [self.raderChart setNeedsDisplay];
     
     CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
-    self.raderChart.center = CGPointMake(width/2, 115);
+    self.raderChart.center = CGPointMake(width/2-20, 115);
 }
 
 

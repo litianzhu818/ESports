@@ -30,13 +30,13 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"win_rate_title":@"common hero winrate"
+                                           @"win_rate_title":@"Most Picks"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"win_rate_title":@"常用英雄胜率"
+                                           @"win_rate_title":@"常用英雄"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"win_rate_title":@"常用英雄勝率"
+                                           @"win_rate_title":@"常用英雄"
                                            }
                                    };
     
