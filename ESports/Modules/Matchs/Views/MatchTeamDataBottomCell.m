@@ -11,9 +11,13 @@
 
 @interface MatchTeamDataBottomCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *winTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *redTeamNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *blueTeamNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *teamAKillImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *teamADeathImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *teamAAssistsImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *teamBKillImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *teamBDeathImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *teamBAssistsImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *redKillLabel;
 @property (weak, nonatomic) IBOutlet UILabel *redDeathLabel;
@@ -58,6 +62,61 @@
     
     //self.blueTeamNameLabel.textColor = HexColor(0xa7a8ab);
     //self.redTeamNameLabel.textColor = HexColor(0xa7a8ab);
+    
+    self.redPicksImageView1.layer.borderWidth = 1.0;
+    self.redPicksImageView1.layer.masksToBounds = YES;
+    
+    self.redPicksImageView2.layer.borderWidth = 1.0;
+    self.redPicksImageView2.layer.masksToBounds = YES;
+    
+    self.redPicksImageView3.layer.borderWidth = 1.0;
+    self.redPicksImageView3.layer.masksToBounds = YES;
+    
+    self.redPicksImageView4.layer.borderWidth = 1.0;
+    self.redPicksImageView4.layer.masksToBounds = YES;
+    
+    self.redPicksImageView5.layer.borderWidth = 1.0;
+    self.redPicksImageView5.layer.masksToBounds = YES;
+    
+    self.bluePicksImageView1.layer.borderWidth = 1.0;
+    self.bluePicksImageView1.layer.masksToBounds = YES;
+    
+    self.bluePicksImageView2.layer.borderWidth = 1.0;
+    self.bluePicksImageView2.layer.masksToBounds = YES;
+    
+    self.bluePicksImageView3.layer.borderWidth = 1.0;
+    self.bluePicksImageView3.layer.masksToBounds = YES;
+    
+    self.bluePicksImageView4.layer.borderWidth = 1.0;
+    self.bluePicksImageView4.layer.masksToBounds = YES;
+    
+    self.bluePicksImageView5.layer.borderWidth = 1.0;
+    self.bluePicksImageView5.layer.masksToBounds = YES;
+    
+
+    self.redBannedImageView1.layer.borderWidth = 1.0;
+    self.redBannedImageView1.layer.masksToBounds = YES;
+    self.redBannedImageView1.layer.borderColor = HexColor(0x2d343a).CGColor;
+    
+    self.redBannedImageView2.layer.borderWidth = 1.0;
+    self.redBannedImageView2.layer.masksToBounds = YES;
+    self.redBannedImageView2.layer.borderColor = HexColor(0x2d343a).CGColor;
+    
+    self.redBannedImageView3.layer.borderWidth = 1.0;
+    self.redBannedImageView3.layer.masksToBounds = YES;
+    self.redBannedImageView3.layer.borderColor = HexColor(0x2d343a).CGColor;
+    
+    self.blueBannedImageView1.layer.borderWidth = 1.0;
+    self.blueBannedImageView1.layer.masksToBounds = YES;
+    self.blueBannedImageView1.layer.borderColor = HexColor(0x2d343a).CGColor;
+    
+    self.blueBannedImageView2.layer.borderWidth = 1.0;
+    self.blueBannedImageView2.layer.masksToBounds = YES;
+    self.blueBannedImageView2.layer.borderColor = HexColor(0x2d343a).CGColor;
+    
+    self.blueBannedImageView3.layer.borderWidth = 1.0;
+    self.blueBannedImageView3.layer.masksToBounds = YES;
+    self.blueBannedImageView3.layer.borderColor = HexColor(0x2d343a).CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -71,181 +130,94 @@
     [super layoutSubviews];
     
     MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[self.index];
+    UIColor *blueTeamColor = HexColor(0x367bd2);
+    UIColor *redTeamColor = HexColor(0xdd222b);
     
-    if (gameOrder.teamAGameResult.win) {
-        if (gameOrder.isATeamRedSide) {
-            self.winTitleLabel.text = @"Win - Loss";
-            self.redTeamNameLabel.text = self.matchTeamData.teamAInfo.teamName;
-            self.blueTeamNameLabel.text = self.matchTeamData.teamBInfo.teamName;
-            self.redKillLabel.text = gameOrder.teamAGameState.teamKill;
-            self.redDeathLabel.text = gameOrder.teamAGameState.teamDeath;
-            self.redAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
-            self.blueKillLabel.text = gameOrder.teamBGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamBGameState.teamDeath;
-            self.blueAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
-            [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[3]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[4]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[3]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[4]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-
-        }else{
-            self.winTitleLabel.text = @"Loss - Win";
-            self.redTeamNameLabel.text = self.matchTeamData.teamBInfo.teamName;
-            self.blueTeamNameLabel.text = self.matchTeamData.teamAInfo.teamName;
-            self.redKillLabel.text = gameOrder.teamBGameState.teamKill;
-            self.redDeathLabel.text = gameOrder.teamBGameState.teamDeath;
-            self.redAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
-            self.blueKillLabel.text = gameOrder.teamAGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamAGameState.teamDeath;
-            self.blueAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
-            [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[3]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[4]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[2]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[3]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[4]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[0]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[1]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[2]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[0]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[1]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[2]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-        }
+    if (gameOrder.isATeamRedSide) {
+        self.teamAKillImageView.image = [UIImage imageNamed:@"match_kill_red.png"];
+        self.teamADeathImageView.image = [UIImage imageNamed:@"match_death_red.png"];
+        self.teamAAssistsImageView.image = [UIImage imageNamed:@"match_assists_red.png"];
+        
+        self.teamBKillImageView.image = [UIImage imageNamed:@"match_kill_blue.png"];
+        self.teamBDeathImageView.image = [UIImage imageNamed:@"match_death_blue.png"];
+        self.teamBAssistsImageView.image = [UIImage imageNamed:@"match_assists_blue.png"];
+        
+        self.redPicksImageView1.layer.borderColor = redTeamColor.CGColor;
+        self.redPicksImageView2.layer.borderColor = redTeamColor.CGColor;
+        self.redPicksImageView3.layer.borderColor = redTeamColor.CGColor;
+        self.redPicksImageView4.layer.borderColor = redTeamColor.CGColor;
+        self.redPicksImageView5.layer.borderColor = redTeamColor.CGColor;
+        
+        self.bluePicksImageView1.layer.borderColor = blueTeamColor.CGColor;
+        self.bluePicksImageView2.layer.borderColor = blueTeamColor.CGColor;
+        self.bluePicksImageView3.layer.borderColor = blueTeamColor.CGColor;
+        self.bluePicksImageView4.layer.borderColor = blueTeamColor.CGColor;
+        self.bluePicksImageView5.layer.borderColor = blueTeamColor.CGColor;
+        
     }else{
-        if (gameOrder.isATeamRedSide) {
-            self.winTitleLabel.text = @"Loss - Win";
-            self.redTeamNameLabel.text = self.matchTeamData.teamAInfo.teamName;
-            self.blueTeamNameLabel.text = self.matchTeamData.teamBInfo.teamName;
-            self.redKillLabel.text = gameOrder.teamAGameState.teamKill;
-            self.redDeathLabel.text = gameOrder.teamAGameState.teamDeath;
-            self.redAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
-            self.blueKillLabel.text = gameOrder.teamBGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamBGameState.teamDeath;
-            self.blueAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
-            [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[3]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[4]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[2]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[3]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[4]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[0]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[1]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[2]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[0]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[1]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[2]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-        }else{
-            self.winTitleLabel.text = @"Win - Loss";
-            self.redTeamNameLabel.text = self.matchTeamData.teamBInfo.teamName;
-            self.blueTeamNameLabel.text = self.matchTeamData.teamAInfo.teamName;
-            self.redKillLabel.text = gameOrder.teamBGameState.teamKill;
-            self.redDeathLabel.text = gameOrder.teamBGameState.teamDeath;
-            self.redAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
-            self.blueKillLabel.text = gameOrder.teamAGameState.teamKill;
-            self.blueDeathLabel.text = gameOrder.teamAGameState.teamDeath;
-            self.blueAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
-            [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[2]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[3]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redPicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[4]]
-                                       placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[2]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[3]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.bluePicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[4]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[0]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[1]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.redBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[2]]
-                                        placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[0]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[1]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-            [self.blueBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[2]]
-                                         placeholderImage:[UIImage imageNamed:@"占位图片"]];
-        }
+        self.teamAKillImageView.image = [UIImage imageNamed:@"match_kill_blue.png"];
+        self.teamADeathImageView.image = [UIImage imageNamed:@"match_death_blue.png"];
+        self.teamAAssistsImageView.image = [UIImage imageNamed:@"match_assists_blue.png"];
+        
+        self.teamBKillImageView.image = [UIImage imageNamed:@"match_kill_red.png"];
+        self.teamBDeathImageView.image = [UIImage imageNamed:@"match_death_red.png"];
+        self.teamBAssistsImageView.image = [UIImage imageNamed:@"match_assists_red.png"];
+        
+        self.redPicksImageView1.layer.borderColor = blueTeamColor.CGColor;
+        self.redPicksImageView2.layer.borderColor = blueTeamColor.CGColor;
+        self.redPicksImageView3.layer.borderColor = blueTeamColor.CGColor;
+        self.redPicksImageView4.layer.borderColor = blueTeamColor.CGColor;
+        self.redPicksImageView5.layer.borderColor = blueTeamColor.CGColor;
+        
+        self.bluePicksImageView1.layer.borderColor = redTeamColor.CGColor;
+        self.bluePicksImageView2.layer.borderColor = redTeamColor.CGColor;
+        self.bluePicksImageView3.layer.borderColor = redTeamColor.CGColor;
+        self.bluePicksImageView4.layer.borderColor = redTeamColor.CGColor;
+        self.bluePicksImageView5.layer.borderColor = redTeamColor.CGColor;
     }
+    
+    
+    self.redKillLabel.text = gameOrder.teamAGameState.teamKill;
+    self.redDeathLabel.text = gameOrder.teamAGameState.teamDeath;
+    self.redAssistsLabel.text = gameOrder.teamAGameState.teamAssist;
+    
+    self.blueKillLabel.text = gameOrder.teamBGameState.teamKill;
+    self.blueDeathLabel.text = gameOrder.teamBGameState.teamDeath;
+    self.blueAssistsLabel.text = gameOrder.teamBGameState.teamAssist;
+    
+    
+    [self.redPicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[0]]
+                               placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redPicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[1]]
+                               placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redPicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[2]]
+                               placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redPicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[3]]
+                               placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redPicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.PickedChampions[4]]
+                               placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.bluePicksImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[0]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.bluePicksImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[1]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.bluePicksImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[2]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.bluePicksImageView4 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[3]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.bluePicksImageView5 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.PickedChampions[4]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[0]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[1]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.redBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamAGameState.teamBannedChampions[2]]
+                                placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.blueBannedImageView1 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[0]]
+                                 placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.blueBannedImageView2 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[1]]
+                                 placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    [self.blueBannedImageView3 sd_setImageWithURL:[NSURL URLWithString:gameOrder.teamBGameState.teamBannedChampions[2]]
+                                 placeholderImage:[UIImage imageNamed:@"占位图片"]];
 }
 
 - (void)setMatchTeamData:(MatchTeamData *)matchTeamData
@@ -285,7 +257,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 126.0f;
+    return 108.0f;
 }
 
 @end
