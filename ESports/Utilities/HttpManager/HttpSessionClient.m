@@ -167,7 +167,7 @@
                                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                         LOG(@"\n%@===========response===========:\n%@", aPath, responseObject);
                                         NSError *error = nil;
-                                        id tempdata = [self handleResponse:responseObject error:&error];
+                                        id tempdata = [self handlePostResponse:responseObject error:&error];
                                         
                                         if (error) {
                                             [self showError:error];

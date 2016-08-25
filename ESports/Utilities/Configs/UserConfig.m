@@ -45,6 +45,16 @@
     
 }
 
+- (void)SetUserName:(NSString *)name
+{
+    [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"login_user_name_key"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (NSString *)GetUserName
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"login_user_name_key"];
+}
+
 
 //存取用户基本信息的值
 -(void)SetUserInfo:(id)value

@@ -20,6 +20,9 @@
 - (void)SetHasLogin:(BOOL)value;
 - (BOOL)GetHasLogin;
 
+- (void)SetUserName:(NSString *)name;
+- (NSString *)GetUserName;
+
 //存取用户基本信息的值
 - (void)SetUserInfo:(id)value;
 - (id)GetUserInfo;

@@ -7,36 +7,24 @@
 //
 
 #import "LoginController.h"
-#import "TPKeyboardAvoidingScrollView.h"
+#import "TPKeyboardAvoidingTableView.h"
 #import "AppDelegate.h"
+#import "LoginCell.h"
+#import "UserConfig.h"
+#import "NSObject+Custom.h"
+#import "HttpSessionManager.h"
+#import "RegosterController.h"
+#import "MBProgressHUD.h"
+#import "NSString+Common.h"
 
 @interface LoginController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
-@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *nameImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *nameBottomImageView;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *pwdImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *pwdBottomImageView;
-@property (weak, nonatomic) IBOutlet UITextField *pwdTextField;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIButton *findPwdBtn;
-@property (weak, nonatomic) IBOutlet UIImageView *findPwdImageView;
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (weak, nonatomic) IBOutlet UILabel *otherLoginWayTitleLabel;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthLayoutConstraint;
-@property (weak, nonatomic) IBOutlet UIView *logoNamebackView;
-
-@property (weak, nonatomic) IBOutlet UIView *bottomBackView;
-
-@property (weak, nonatomic) IBOutlet UIButton *qqBtn;
-@property (weak, nonatomic) IBOutlet UIButton *weiboBtn;
-@property (weak, nonatomic) IBOutlet UIButton *weChatBtn;
-@property (weak, nonatomic) IBOutlet UIButton *faceBookBtn;
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *tableView;
 
 @property (strong, nonatomic) UIButton *closeButton;
+
+@property (strong, nonatomic) NSString *loginName;
+@property (strong, nonatomic) NSString *loginPwd;
 
 @end
 
@@ -47,7 +35,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [self loadViews];
-//    [self loadData];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,206 +43,166 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginAction:(id)sender
-{
-
-}
-
-- (IBAction)findPwdAction:(id)sender
-{
-    
-}
-
-- (IBAction)registerAction:(id)sender
-{
-    
-}
-
-- (IBAction)qqAction:(id)sender
-{
-    
-}
-- (IBAction)weiboAction:(id)sender
-{
-    
-}
-- (IBAction)weChatAction:(id)sender
-{
-    
-}
-- (IBAction)facebookAction:(id)sender
-{
-    
-}
-
 - (void)loadViews
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"local_item_global":@"Global",
-                                           @"local_item_lck":@"LCK",
-                                           @"local_item_eulcs":@"EULCS",
-                                           @"local_item_lpl":@"LPL",
-                                           @"local_item_nalcs":@"NALCS",
-                                           @"local_item_lms":@"LMS",
-                                           @"local_bar_item":@"area",
                                            @"view_controller_title":@"Login",
-                                           @"news_type_hot":@"Hot focus",
-                                           @"news_type_transfer":@"Transfer",
-                                           @"news_type_headlines":@"Hot words",
-                                           @"tableview_header_pull_down_title":@"Pull down to refresh",
-                                           @"tableview_header_release_title":@"Release to refresh",
-                                           @"tableview_header_loading_title":@"Loading...",
-                                           @"tableview_footer_normal_title":@"Clicking to get more data",
-                                           @"tableview_footer_loading_title":@"Loading more...",
-                                           @"tableview_footer_no_data_title":@"There is no more data"
+                                           @"login_no_name_title":@"There is no email,you should input one",
+                                           @"login_no_pwd_title":@"There is no password,you should input one",
+                                           @"login_error_name_title":@"The email you inputed is bad format",
+                                           @"name_or_pwd_error_title":@"Account does not exist or password error"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"local_item_global":@"全球",
-                                           @"local_item_lck":@"LCK",
-                                           @"local_item_eulcs":@"EULCS",
-                                           @"local_item_lpl":@"LPL",
-                                           @"local_item_nalcs":@"NALCS",
-                                           @"local_item_lms":@"LMS",
-                                           @"local_bar_item":@"地区",
                                            @"view_controller_title":@"登录",
-                                           @"news_type_hot":@"热门焦点",
-                                           @"news_type_transfer":@"转会新闻",
-                                           @"news_type_headlines":@"头条热话",
-                                           @"tableview_header_pull_down_title":@"下拉刷新",
-                                           @"tableview_header_release_title":@"松开刷新",
-                                           @"tableview_header_loading_title":@"获取数据中...",
-                                           @"tableview_footer_normal_title":@"点击加载更多数据",
-                                           @"tableview_footer_loading_title":@"正在加载数据...",
-                                           @"tableview_footer_no_data_title":@"没有更多数据了"
+                                           @"login_no_name_title":@"请输入邮箱",
+                                           @"login_no_pwd_title":@"请输入密码",
+                                           @"login_error_name_title":@"邮箱格式不正确",
+                                           @"name_or_pwd_error_title":@"账户不存在或者密码错误"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"local_item_global":@"全球",
-                                           @"local_item_lck":@"LCK",
-                                           @"local_item_eulcs":@"EULCS",
-                                           @"local_item_lpl":@"LPL",
-                                           @"local_item_nalcs":@"NALCS",
-                                           @"local_item_lms":@"LMS",
-                                           @"local_bar_item":@"地區",
                                            @"view_controller_title":@"登入",
-                                           @"news_type_hot":@"熱門焦點",
-                                           @"news_type_transfer":@"轉會新聞",
-                                           @"news_type_headlines":@"頭條熱話",
-                                           @"tableview_header_pull_down_title":@"下拉刷新",
-                                           @"tableview_header_release_title":@"鬆開刷新",
-                                           @"tableview_header_loading_title":@"獲取數據中...",
-                                           @"tableview_footer_normal_title":@"點擊加載更多數據",
-                                           @"tableview_footer_loading_title":@"正在加載數據...",
-                                           @"tableview_footer_no_data_title":@"沒有更多數據了"
+                                           @"login_no_name_title":@"請輸入郵箱",
+                                           @"login_no_pwd_title":@"請輸入密碼",
+                                           @"login_error_name_title":@"郵箱格式不正確",
+                                           @"name_or_pwd_error_title":@"賬戶不存在或者密碼錯誤"
                                            }
                                    };
     
     self.title = LTZLocalizedString(@"view_controller_title", nil);
     
-    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.closeButton setBackgroundImage:[UIImage imageNamed:@"login_close_btn"] forState:UIControlStateNormal];
-    [self.closeButton setBackgroundImage:[UIImage imageNamed:@"login_close_btn"] forState:UIControlStateHighlighted];
-    [self.closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    
     // 修改导航栏左边的item
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.closeButton];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"login_close_btn"]
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(closeAction:)];
     
-    // 调整UIScrollView contentSize
-    CGFloat screenWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
-    CGFloat screenHeight = CGRectGetHeight([[UIScreen mainScreen] bounds]);
-    
-    self.widthLayoutConstraint.constant =  screenWidth-72;
-    [self.logoNamebackView setNeedsUpdateConstraints];
-    
-    self.scrollView.contentSize = CGSizeMake(screenWidth, screenHeight);
-    [self.scrollView setContentInset:UIEdgeInsetsZero];
-    
-    self.backImageView.clipsToBounds = YES;
-    
-    self.nameBottomImageView.backgroundColor = HexColor(0x70767d);
-    self.pwdBottomImageView.backgroundColor = HexColor(0x70767d);
-    self.findPwdImageView.backgroundColor = HexColor(0xbabbbd);
+    [self.tableView registerNib:[LoginCell nib] forCellReuseIdentifier:[LoginCell cellIdentifier]];
     
 }
 
-//- (void)loadData
-//{
-//    self.currentNewsType = NewsTypeHotFocus;
-//    self.limitForRequest = 20;
-//    self.hotfocusNewsOffset = 0;
-//    self.hotwordsNewsOffset = 0;
-//    self.transferNewsOffset = 0;
-//    self.hotwordsNewsFirstRequest = YES;
-//    self.transferNewsFirstRequest = YES;
-//    self.images = [NSMutableArray array];
-//    self.hotFocusNews = [NSMutableArray array];
-//    self.transferNewManager = [[TransferNewManager alloc] init];
-//    self.hotWordNewManager = [[HotWordNewManager alloc] init];
-//    
-//    // 取缓存中的轮换图片
-//    __weak typeof(self) weakSelf = self;
-//    
-//    [[TMCache sharedCache] objectForKey:newsImagesCacheKey
-//                                  block:^(TMCache *cache, NSString *key, id object) {
-//                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-//                                      NSArray<NewsRotationImage *> *images = object;
-//                                      [strongSelf.images addObjectsFromArray:images];
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          if (strongSelf.images.count > 0) {
-//                                              
-//                                              [strongSelf.hotfocusTableView reloadData];
-//                                          }
-//                                          
-//                                      });
-//                                      
-//                                  }];
-//    
-//    [[TMCache sharedCache] objectForKey:hotFocusNewsListCacheKey
-//                                  block:^(TMCache *cache, NSString *key, NSArray<HotFocusNew *> *HotFocusNews) {
-//                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-//                                      [strongSelf.hotFocusNews addObjectsFromArray:HotFocusNews];
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          [strongSelf.hotfocusTableView reloadData];
-//                                      });
-//                                  }];
-//    
-//    [[TMCache sharedCache] objectForKey:transferNewsListCacheKey
-//                                  block:^(TMCache *cache, NSString *key, NSArray<TransferNewContainer *> *TransferNewContainers) {
-//                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-//                                      [TransferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-//                                          [strongSelf.transferNewManager addTransferNewContainer:transferNewContainer];
-//                                      }];
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          [strongSelf.transferTableView reloadData];
-//                                      });
-//                                  }];
-//    
-//    [[TMCache sharedCache] objectForKey:hotwordsNewsListCacheKey
-//                                  block:^(TMCache *cache, NSString *key, NSArray<HotWordNewContainer *> *HotWordNewContainers) {
-//                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-//                                      [HotWordNewContainers enumerateObjectsUsingBlock:^(HotWordNewContainer * _Nonnull hotWordNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-//                                          [strongSelf.hotWordNewManager addHotWordNewContainer:hotWordNewContainer];
-//                                      }];
-//                                      
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          [strongSelf.hotwordsTableView reloadData];
-//                                      });
-//                                  }];
-//    
-//    // 开始网络请求数据
-//    [self.hotfocusTableView.mj_header beginRefreshing];
-//    
-//    self.hotfocusTableView.backgroundColor = self.view.backgroundColor;
-//    self.transferTableView.backgroundColor = self.view.backgroundColor;
-//    self.hotwordsTableView.backgroundColor = self.view.backgroundColor;
-//    
-//    
-//}
+- (void)loadData
+{
+    self.loginName = [[UserConfig sharedInstance] GetUserName];
+}
 
 - (void)closeAction:(id)sender
 {
     [myAppDelegate switchToTabbarViewController];
 }
+
+- (void)loginAction
+{
+    if (!(self.loginName.length > 1)) {
+        [self showHudMessage:LTZLocalizedString(@"login_no_name_title", nil)];
+        return;
+    }
+    
+    if (!(self.loginPwd.length > 1)) {
+        [self showHudMessage:LTZLocalizedString(@"login_no_pwd_title", nil)];
+        return;
+    }
+    if (![self.loginName emailAddressString]) {
+        [self showHudMessage:LTZLocalizedString(@"login_error_name_title", nil)];
+        return;
+    }
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    WEAK_SELF;
+    [[HttpSessionManager sharedInstance] loginWithName:self.loginName
+                                              password:self.loginPwd
+                                                 block:^(id data, NSError *error) {
+                                                     
+                                                     STRONG_SELF;
+                                                     
+                                                     if (!error) {
+                                                         
+                                                         [[UserConfig sharedInstance] SetUserName:strongSelf.loginName];
+                                                         //[[UserConfig sharedInstance] SetHasLogin:YES];
+                                                         [strongSelf closeAction:nil];
+                                                         
+                                                     }else{
+                                                         if (error.localizedDescription) {
+                                                             [strongSelf showHudMessage:error.localizedDescription];
+                                                         }else{
+                                                             [strongSelf showHudMessage:LTZLocalizedString(@"name_or_pwd_error_title", nil)];
+                                                         }
+                                                     }
+                                                     
+                                                     [hud hideAnimated:YES];
+                                                     
+                                                 }];
+}
+
+#pragma mark - UITableViewDelegate methods
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [LoginCell cellHeight];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.0f;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return nil;
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return nil;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+#pragma mark - UITableViewDataSource methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LoginCell *cell = [tableView dequeueReusableCellWithIdentifier:[LoginCell cellIdentifier]
+                                                      forIndexPath:indexPath];
+    cell.loginName = self.loginName;
+    WEAK_SELF;
+    [cell setLoginNameTextChangedBlock:^(NSString *name) {
+        weakSelf.loginName = name;
+    }];
+    
+    [cell setLoginPwdTextChangedBlock:^(NSString *pwd) {
+        weakSelf.loginPwd = pwd;
+    }];
+    
+    [cell setLoginActionBlock:^{
+        [weakSelf loginAction];
+    }];
+    
+    [cell setFindPwdActionBlock:^{
+        [weakSelf showHudMessage:@"It's coming soon..."];
+    }];
+    
+    [cell setRegisterActionBlock:^{
+        [weakSelf.navigationController pushViewController:[RegosterController new] animated:YES];
+    }];
+    
+    [cell setSelectedOtherWayLoginBlock:^(NSInteger loginWay) {
+        [weakSelf showHudMessage:@"It's coming soon..."];
+    }];
+    return cell;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 
 /*
 #pragma mark - Navigation

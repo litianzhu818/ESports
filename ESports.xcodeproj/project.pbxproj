@@ -22,6 +22,11 @@
 		E71503401D6C500200812668 /* login_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503371D6C500200812668 /* login_wechat@2x.png */; };
 		E71503421D6D991900812668 /* match_team_no_first_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503411D6D991900812668 /* match_team_no_first_data@2x.png */; };
 		E71503451D6DC53C00812668 /* PlayerRole.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503441D6DC53C00812668 /* PlayerRole.m */; };
+		E71503491D6E9BF400812668 /* LoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503471D6E9BF400812668 /* LoginCell.m */; };
+		E715034A1D6E9BF400812668 /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503481D6E9BF400812668 /* LoginCell.xib */; };
+		E715034E1D6EBC3200812668 /* RegosterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E715034C1D6EBC3200812668 /* RegosterController.m */; };
+		E715034F1D6EBC3200812668 /* RegosterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715034D1D6EBC3200812668 /* RegosterController.xib */; };
+		E71503521D6EBD7300812668 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503511D6EBD7300812668 /* NSString+Common.m */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -244,6 +249,14 @@
 		E71503411D6D991900812668 /* match_team_no_first_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "match_team_no_first_data@2x.png"; sourceTree = "<group>"; };
 		E71503431D6DC53C00812668 /* PlayerRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRole.h; sourceTree = "<group>"; };
 		E71503441D6DC53C00812668 /* PlayerRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRole.m; sourceTree = "<group>"; };
+		E71503461D6E9BF400812668 /* LoginCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCell.h; sourceTree = "<group>"; };
+		E71503471D6E9BF400812668 /* LoginCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCell.m; sourceTree = "<group>"; };
+		E71503481D6E9BF400812668 /* LoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
+		E715034B1D6EBC3200812668 /* RegosterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegosterController.h; sourceTree = "<group>"; };
+		E715034C1D6EBC3200812668 /* RegosterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegosterController.m; sourceTree = "<group>"; };
+		E715034D1D6EBC3200812668 /* RegosterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegosterController.xib; sourceTree = "<group>"; };
+		E71503501D6EBD7300812668 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
+		E71503511D6EBD7300812668 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -609,6 +622,8 @@
 		E71503211D6B0B7000812668 /* Managers&Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E71503501D6EBD7300812668 /* NSString+Common.h */,
+				E71503511D6EBD7300812668 /* NSString+Common.m */,
 			);
 			path = "Managers&Helpers";
 			sourceTree = "<group>";
@@ -642,6 +657,9 @@
 				E71503261D6B0C9300812668 /* LoginController.h */,
 				E71503271D6B0C9300812668 /* LoginController.m */,
 				E71503281D6B0C9300812668 /* LoginController.xib */,
+				E715034B1D6EBC3200812668 /* RegosterController.h */,
+				E715034C1D6EBC3200812668 /* RegosterController.m */,
+				E715034D1D6EBC3200812668 /* RegosterController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -649,6 +667,9 @@
 		E71503251D6B0B7000812668 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E71503461D6E9BF400812668 /* LoginCell.h */,
+				E71503471D6E9BF400812668 /* LoginCell.m */,
+				E71503481D6E9BF400812668 /* LoginCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1548,6 +1569,7 @@
 				E71550CE1D5C9D460073F159 /* PlayerCollectionViewCell.xib in Resources */,
 				E72FD8951D251735000A5CE6 /* StrengthRatingController.xib in Resources */,
 				E716275F1D4B33ED00EF6740 /* MatchPickCell.xib in Resources */,
+				E715034F1D6EBC3200812668 /* RegosterController.xib in Resources */,
 				E760B3621D38D56200F5DB54 /* NewsTableViewHeader.xib in Resources */,
 				E71627441D49AD8400EF6740 /* match_replay_no_play@2x.png in Resources */,
 				E715033B1D6C500200812668 /* login_logo@2x.png in Resources */,
@@ -1562,6 +1584,7 @@
 				E71550F21D63440C0073F159 /* StrengScorePlayerSecondCell.xib in Resources */,
 				E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */,
 				E71550C21D5C59580073F159 /* StrengScoreTeamTopCell.xib in Resources */,
+				E715034A1D6E9BF400812668 /* LoginCell.xib in Resources */,
 				E760B3581D37756E00F5DB54 /* NewsRotationImageCell.xib in Resources */,
 				E760B3951D3E1C4700F5DB54 /* DetailNewSubTitleCell.xib in Resources */,
 				E717B3101D51DBCF00BE98A3 /* match_video_data_h@2x.png in Resources */,
@@ -1701,6 +1724,7 @@
 				E71551151D648B1C0073F159 /* JYRadarChart.m in Sources */,
 				E760B38F1D3E19BF00F5DB54 /* DetailRelNewsBottomCell.m in Sources */,
 				E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */,
+				E71503491D6E9BF400812668 /* LoginCell.m in Sources */,
 				E72FD8591D24F420000A5CE6 /* NJKWebViewProgress.m in Sources */,
 				E716273F1D48C58C00EF6740 /* ExtendTableViewHeaderView.m in Sources */,
 				E71550C11D5C59580073F159 /* StrengScoreTeamTopCell.m in Sources */,
@@ -1741,6 +1765,7 @@
 				E717B3171D53381D00BE98A3 /* MatchStandingCell.m in Sources */,
 				E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */,
 				E716275E1D4B33ED00EF6740 /* MatchPickCell.m in Sources */,
+				E715034E1D6EBC3200812668 /* RegosterController.m in Sources */,
 				E72FD8941D251735000A5CE6 /* StrengthRatingController.m in Sources */,
 				E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */,
 				E7BD57921CF6E77F008F2D69 /* SystemConfig.m in Sources */,
@@ -1789,6 +1814,7 @@
 				E716274A1D49DEAE00EF6740 /* MatchTeamDataTopCell.m in Sources */,
 				E71627591D4AF92000EF6740 /* MatchTeamDataBottomCell.m in Sources */,
 				E73911C11D2A640B00F4A522 /* PopMenu.m in Sources */,
+				E71503521D6EBD7300812668 /* NSString+Common.m in Sources */,
 				E71503291D6B0C9300812668 /* LoginController.m in Sources */,
 				E716272F1D461C1500EF6740 /* MatchReplayController.m in Sources */,
 				E73911C21D2A640B00F4A522 /* PopMenuCell.m in Sources */,

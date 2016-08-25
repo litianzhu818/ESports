@@ -151,6 +151,44 @@
     return data;
 }
 
+- (id)handlePostResponse:(id)responseJSON error:(NSError **)error
+{
+    id data = nil;
+    //code为1时，表示正常
+    NSNumber *resultSuccess = [responseJSON valueForKeyPath:@"Success"];
+    
+    if (resultSuccess.intValue != 1) {
+        
+        NSData *messageData= [[responseJSON valueForKeyPath:@"Message"] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError *josnError = nil;
+        
+        NSArray<NSDictionary *> *messages = [NSJSONSerialization JSONObjectWithData:messageData
+                                                                            options:NSJSONReadingAllowFragments
+                                                                              error:&josnError];;
+        
+        NSString *errorDcr = [messages[0] objectForKey:@"msg"];
+        
+        if (errorDcr.length > 0) {
+            *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:@{NSLocalizedDescriptionKey:errorDcr}];
+        }else{
+            *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:nil];
+        }
+        
+        [self showError:*error];
+        /*
+         if (resultCode.intValue == 1000) {//用户未登录
+         [Login doLogout];
+         [((AppDelegate *)[UIApplication sharedApplication].delegate) setupLoginViewController];
+         }
+         */
+    }else{
+        data = [responseJSON valueForKeyPath:@"Data"];
+    }
+    
+    return data;
+}
+
 - (void)clearUnusedCellWithTableView:(UITableView *)tableView
 {
     UIView *view = [UIView new];

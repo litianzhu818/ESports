@@ -364,6 +364,29 @@
                                                      }];
 }
 
+#pragma mark - 登录
+- (void)loginWithName:(NSString *)name
+             password:(NSString *)password
+                block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"Email":name,
+                             @"Password":password,
+                             @"RememberMe":@(YES)
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:LoginURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypePOST
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

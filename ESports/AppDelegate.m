@@ -220,7 +220,7 @@
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.backgroundColor = HexColor(0x0e161f);
     
-    if (![[UserConfig sharedInstance] GetHasLogin]) {
+    if ([[UserConfig sharedInstance] GetHasLogin]) {
         [self switchToTabbarViewController];
     }else{
         [self switchToLoginViewController];

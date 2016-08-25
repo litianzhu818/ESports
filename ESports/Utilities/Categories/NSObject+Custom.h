@@ -25,6 +25,7 @@
 #pragma mark NetError
 - (id)handleResponse:(id)responseJSON;
 - (id)handleResponse:(id)responseJSON error:(NSError **)error;
+- (id)handlePostResponse:(id)responseJSON error:(NSError **)error;
 - (void)clearUnusedCellWithTableView:(UITableView *)tableView;
 
 #pragma mark - UIAlertView
