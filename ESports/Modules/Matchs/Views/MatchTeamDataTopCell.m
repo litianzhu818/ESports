@@ -62,16 +62,16 @@
     // Configure the view for the selected state
 }
 
-- (void)setBlueTeamImageUrl:(NSString *)blueTeamImageUrl
+- (void)setTeamBImageUrl:(NSString *)teamBImageUrl
 {
-    _blueTeamImageUrl = blueTeamImageUrl;
+    _teamBImageUrl = teamBImageUrl;
     
     [self.collectionView reloadData];
 }
 
-- (void)setRedTeamImageUrl:(NSString *)redTeamImageUrl
+- (void)setTeamAImageUrl:(NSString *)teamAImageUrl
 {
-    _redTeamImageUrl = redTeamImageUrl;
+    _teamAImageUrl = teamAImageUrl;
     
     [self.collectionView reloadData];
 }
@@ -79,6 +79,13 @@
 - (void)setGameResult:(MatchTeamGameResult *)gameResult
 {
     _gameResult = gameResult;
+    
+    [self.collectionView reloadData];
+}
+
+- (void)setIsARedSide:(BOOL)isARedSide
+{
+    _isARedSide = isARedSide;
     
     [self.collectionView reloadData];
 }
@@ -117,30 +124,30 @@
 {
     MatchTeamResultCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MatchTeamResultCell cellIdentifier] forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        cell.isBlueTeam = self.gameResult.firstBlood;
-        cell.imageUrl = self.gameResult.firstBlood ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        cell.isBlueTeam = self.gameResult.firstBlood ? (self.isARedSide ? NO:YES):(self.isARedSide ? YES:NO);
+        cell.imageUrl = self.gameResult.firstBlood ? self.teamAImageUrl:self.teamBImageUrl;
         cell.title = LTZLocalizedString(@"first_blood_title", nil);
     }else if (indexPath.row == 1) {
-        cell.isBlueTeam = self.gameResult.firstTower;
-        cell.imageUrl = self.gameResult.firstTower ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        cell.isBlueTeam = self.gameResult.firstTower ? (self.isARedSide ? NO:YES) : (self.isARedSide ? YES:NO);
+        cell.imageUrl = self.gameResult.firstTower ? self.teamAImageUrl:self.teamBImageUrl;
         cell.title = LTZLocalizedString(@"first_tower_title", nil);
     }else if (indexPath.row == 2) {
-        cell.isBlueTeam = self.gameResult.firstDragon;
-        cell.imageUrl = self.gameResult.firstDragon ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        cell.isBlueTeam = self.gameResult.firstDragon ? (self.isARedSide ? NO:YES) : (self.isARedSide ? YES:NO);
+        cell.imageUrl = self.gameResult.firstDragon ? self.teamAImageUrl:self.teamBImageUrl;
         cell.title = LTZLocalizedString(@"first_dragon_title", nil);
     }else if (indexPath.row == 3) {
-        cell.isBlueTeam = self.gameResult.firstBigDragon;
-        cell.imageUrl = self.gameResult.firstBigDragon ? self.blueTeamImageUrl:self.redTeamImageUrl;
+        cell.isBlueTeam = self.gameResult.firstBigDragon ? (self.isARedSide ? NO:YES) : (self.isARedSide ? YES:NO);
+        cell.imageUrl = self.gameResult.firstBigDragon ? self.teamAImageUrl:self.teamBImageUrl;
         cell.title = LTZLocalizedString(@"first_big_dragon_title", nil);
     }else if (indexPath.row == 4) {
         if (!self.gameResult.firstVanguard) {
             cell.hasTeam = NO;
         }else if ([self.gameResult.firstVanguard isEqualToString:@"1"]) {
-            cell.isBlueTeam = YES;
-            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+            cell.isBlueTeam = self.isARedSide ? NO:YES;
+            cell.imageUrl = self.teamAImageUrl;
         }else if ([self.gameResult.firstVanguard isEqualToString:@"0"]) {
-            cell.isBlueTeam = NO;
-            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+            cell.isBlueTeam = self.isARedSide ? YES:NO;
+            cell.imageUrl = self.teamBImageUrl;
         }
         cell.title = LTZLocalizedString(@"first_vanguard_title", nil);
         
@@ -149,11 +156,11 @@
         if (!self.gameResult.firstAncientDragon) {
             cell.hasTeam = NO;
         }else if ([self.gameResult.firstAncientDragon isEqualToString:@"1"]) {
-            cell.isBlueTeam = YES;
-            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+            cell.isBlueTeam =self.isARedSide ? NO:YES;
+            cell.imageUrl = self.teamAImageUrl;
         }else if ([self.gameResult.firstAncientDragon isEqualToString:@"0"]) {
-            cell.isBlueTeam = NO;
-            cell.imageUrl = cell.isBlueTeam ? self.blueTeamImageUrl:self.redTeamImageUrl;
+            cell.isBlueTeam = self.isARedSide ? YES:NO;
+            cell.imageUrl = self.teamBImageUrl;
         }
         
         cell.title = LTZLocalizedString(@"first_old_dragon_title", nil);

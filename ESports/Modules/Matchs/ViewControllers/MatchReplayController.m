@@ -386,14 +386,10 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
             MatchTeamDataTopCell *cell = [tableView dequeueReusableCellWithIdentifier:[MatchTeamDataTopCell cellIdentifier]
                                                                          forIndexPath:indexPath];
-            if (gameOrder.isATeamRedSide) {
-                cell.redTeamImageUrl = self.matchTeamData.teamAInfo.teamImageUrl;
-                cell.blueTeamImageUrl = self.matchTeamData.teamBInfo.teamImageUrl;
-            }else{
-                cell.redTeamImageUrl = self.matchTeamData.teamBInfo.teamImageUrl;
-                cell.blueTeamImageUrl = self.matchTeamData.teamAInfo.teamImageUrl;
-            }
             
+            cell.teamAImageUrl = self.matchTeamData.teamAInfo.teamImageUrl;
+            cell.teamBImageUrl = self.matchTeamData.teamBInfo.teamImageUrl;
+            cell.isARedSide = gameOrder.isATeamRedSide;
             cell.gameResult = gameOrder.teamAGameResult;
             
             return cell;

@@ -11,8 +11,9 @@
 
 @interface MatchTeamDataTopCell : UITableViewCell
 
-@property (strong, nonatomic) NSString *blueTeamImageUrl;
-@property (strong, nonatomic) NSString *redTeamImageUrl;
+@property (strong, nonatomic) NSString *teamAImageUrl;
+@property (strong, nonatomic) NSString *teamBImageUrl;
+@property (assign, nonatomic) BOOL isARedSide;
 @property (strong, nonatomic) MatchTeamGameResult *gameResult;
 
 + (UINib *)nib;
