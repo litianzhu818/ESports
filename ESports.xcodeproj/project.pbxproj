@@ -36,6 +36,12 @@
 		E71503621D6EE07500812668 /* EmailRegisterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503601D6EE07500812668 /* EmailRegisterCell.xib */; };
 		E71503661D6EF56F00812668 /* EmailRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503641D6EF56F00812668 /* EmailRegisterController.m */; };
 		E71503671D6EF56F00812668 /* EmailRegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503651D6EF56F00812668 /* EmailRegisterController.xib */; };
+		E715036A1D6F008B00812668 /* picture_placeholder_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503681D6F008B00812668 /* picture_placeholder_big@2x.png */; };
+		E715036B1D6F008B00812668 /* picture_placeholder_little@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503691D6F008B00812668 /* picture_placeholder_little@2x.png */; };
+		E715036F1D6F047200812668 /* InputPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E715036D1D6F047200812668 /* InputPasswordCell.m */; };
+		E71503701D6F047200812668 /* InputPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715036E1D6F047200812668 /* InputPasswordCell.xib */; };
+		E71503741D6F0A6100812668 /* EmailRegisterSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503721D6F0A6100812668 /* EmailRegisterSuccessController.m */; };
+		E71503751D6F0A6100812668 /* EmailRegisterSuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503731D6F0A6100812668 /* EmailRegisterSuccessController.xib */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -278,6 +284,14 @@
 		E71503631D6EF56F00812668 /* EmailRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterController.h; sourceTree = "<group>"; };
 		E71503641D6EF56F00812668 /* EmailRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterController.m; sourceTree = "<group>"; };
 		E71503651D6EF56F00812668 /* EmailRegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailRegisterController.xib; sourceTree = "<group>"; };
+		E71503681D6F008B00812668 /* picture_placeholder_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture_placeholder_big@2x.png"; sourceTree = "<group>"; };
+		E71503691D6F008B00812668 /* picture_placeholder_little@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture_placeholder_little@2x.png"; sourceTree = "<group>"; };
+		E715036C1D6F047200812668 /* InputPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputPasswordCell.h; sourceTree = "<group>"; };
+		E715036D1D6F047200812668 /* InputPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputPasswordCell.m; sourceTree = "<group>"; };
+		E715036E1D6F047200812668 /* InputPasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPasswordCell.xib; sourceTree = "<group>"; };
+		E71503711D6F0A6100812668 /* EmailRegisterSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterSuccessController.h; sourceTree = "<group>"; };
+		E71503721D6F0A6100812668 /* EmailRegisterSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterSuccessController.m; sourceTree = "<group>"; };
+		E71503731D6F0A6100812668 /* EmailRegisterSuccessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailRegisterSuccessController.xib; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -690,6 +704,9 @@
 				E71503631D6EF56F00812668 /* EmailRegisterController.h */,
 				E71503641D6EF56F00812668 /* EmailRegisterController.m */,
 				E71503651D6EF56F00812668 /* EmailRegisterController.xib */,
+				E71503711D6F0A6100812668 /* EmailRegisterSuccessController.h */,
+				E71503721D6F0A6100812668 /* EmailRegisterSuccessController.m */,
+				E71503731D6F0A6100812668 /* EmailRegisterSuccessController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -703,6 +720,9 @@
 				E715035E1D6EE07500812668 /* EmailRegisterCell.h */,
 				E715035F1D6EE07500812668 /* EmailRegisterCell.m */,
 				E71503601D6EE07500812668 /* EmailRegisterCell.xib */,
+				E715036C1D6F047200812668 /* InputPasswordCell.h */,
+				E715036D1D6F047200812668 /* InputPasswordCell.m */,
+				E715036E1D6F047200812668 /* InputPasswordCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1203,6 +1223,8 @@
 		E72FD8991D264943000A5CE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E71503681D6F008B00812668 /* picture_placeholder_big@2x.png */,
+				E71503691D6F008B00812668 /* picture_placeholder_little@2x.png */,
 				E72FD89A1D264943000A5CE6 /* tabbar_matchs_h@2x.png */,
 				E72FD89B1D264943000A5CE6 /* tabbar_matchs_n@2x.png */,
 				E72FD89C1D264943000A5CE6 /* tabbar_news_h@2x.png */,
@@ -1615,10 +1637,12 @@
 				E71550D81D5DA5D10073F159 /* StrengScoreTeamFourthCell.xib in Resources */,
 				E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */,
 				E760B3301D2E05DA00F5DB54 /* DropdownMenuItemCell.xib in Resources */,
+				E715036A1D6F008B00812668 /* picture_placeholder_big@2x.png in Resources */,
 				E71550D31D5CA2190073F159 /* StrengScoreTeamThirdCell.xib in Resources */,
 				E71503551D6ECCC000812668 /* register_or_bg@2x.png in Resources */,
 				E71550F21D63440C0073F159 /* StrengScorePlayerSecondCell.xib in Resources */,
 				E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */,
+				E71503701D6F047200812668 /* InputPasswordCell.xib in Resources */,
 				E71550C21D5C59580073F159 /* StrengScoreTeamTopCell.xib in Resources */,
 				E715034A1D6E9BF400812668 /* LoginCell.xib in Resources */,
 				E760B3581D37756E00F5DB54 /* NewsRotationImageCell.xib in Resources */,
@@ -1635,6 +1659,7 @@
 				E760B3321D2E386000F5DB54 /* location_selected@2x.png in Resources */,
 				E717B31F1D533F6B00BE98A3 /* match_points_type_bg@2x.png in Resources */,
 				E72FD8A41D264943000A5CE6 /* tabbar_matchs_h@2x.png in Resources */,
+				E71503751D6F0A6100812668 /* EmailRegisterSuccessController.xib in Resources */,
 				E71503391D6C500200812668 /* login_close_btn@2x.png in Resources */,
 				E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */,
 				E760B3901D3E19BF00F5DB54 /* DetailRelNewsBottomCell.xib in Resources */,
@@ -1674,6 +1699,7 @@
 				E715510F1D6464D00073F159 /* StrengScorePlayerFourthCell.xib in Resources */,
 				E7BD577A1CF4360D008F2D69 /* LaunchScreen.storyboard in Resources */,
 				E72FD88B1D2516D8000A5CE6 /* MatchsController.xib in Resources */,
+				E715036B1D6F008B00812668 /* picture_placeholder_little@2x.png in Resources */,
 				E760B3351D2E39AD00F5DB54 /* location_drop_n@2x.png in Resources */,
 				E717B31D1D533DD200BE98A3 /* PointsTypeSelectView.xib in Resources */,
 				E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */,
@@ -1802,6 +1828,7 @@
 				E71551071D6453CB0073F159 /* PickerCollectionViewCell.m in Sources */,
 				E72FD8051D1A75FF000A5CE6 /* HttpSessionClient+MultiLanguage.m in Sources */,
 				E717B30B1D51D4B100BE98A3 /* MatchVideoDataCell.m in Sources */,
+				E71503741D6F0A6100812668 /* EmailRegisterSuccessController.m in Sources */,
 				E7BD57981CF6F4D3008F2D69 /* NSObject+Custom.m in Sources */,
 				E717B3171D53381D00BE98A3 /* MatchStandingCell.m in Sources */,
 				E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */,
@@ -1825,6 +1852,7 @@
 				E760B3A21D3F61F800F5DB54 /* ProcessMatchesManager.m in Sources */,
 				E7BD576F1CF4360D008F2D69 /* ViewController.m in Sources */,
 				E72FD8851D251612000A5CE6 /* NewsController.m in Sources */,
+				E715036F1D6F047200812668 /* InputPasswordCell.m in Sources */,
 				E760B37B1D3CC6EB00F5DB54 /* DetailNewsTopCell.m in Sources */,
 				E72FD8461D23D8E2000A5CE6 /* LTZLocalizationManager.m in Sources */,
 				E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */,

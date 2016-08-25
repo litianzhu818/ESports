@@ -29,5 +29,6 @@ static NSString *const strengthScorePlayersDetailURL = @"Player/GetPlayerDetails
 static NSString *const strengthScorePlayerRoleListURL = @"Player/GetRoleList";
 static NSString *const LoginURL = @"Account/Login";
 static NSString *const registerEmailVerifyURL = @"Account/EmailVerify";
+static NSString *const registerEmailURL = @"Account/Register";
 
 #endif

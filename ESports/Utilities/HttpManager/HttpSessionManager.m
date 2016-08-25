@@ -407,6 +407,29 @@
                                                      }];
 }
 
+- (void)registerWithEmail:(NSString *)email
+                 password:(NSString *)password
+          confirmPassword:(NSString *)confirmPassword
+                      block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"Email":email,
+                             @"Password":password,
+                             @"ConfirmPassword":confirmPassword
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:registerEmailURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypePOST
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

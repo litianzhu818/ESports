@@ -51,31 +51,42 @@
                                            @"login_no_name_title":@"There is no email,you should input one",
                                            @"login_no_pwd_title":@"There is no password,you should input one",
                                            @"login_error_name_title":@"The email you inputed is bad format",
-                                           @"name_or_pwd_error_title":@"Account does not exist or password error"
+                                           @"name_or_pwd_error_title":@"Account does not exist or password error",
+                                           @"not_login_btn_title":@"Later do"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"view_controller_title":@"登录",
                                            @"login_no_name_title":@"请输入邮箱",
                                            @"login_no_pwd_title":@"请输入密码",
                                            @"login_error_name_title":@"邮箱格式不正确",
-                                           @"name_or_pwd_error_title":@"账户不存在或者密码错误"
+                                           @"name_or_pwd_error_title":@"账户不存在或者密码错误",
+                                           @"not_login_btn_title":@"暂不登录"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"view_controller_title":@"登入",
                                            @"login_no_name_title":@"請輸入郵箱",
                                            @"login_no_pwd_title":@"請輸入密碼",
                                            @"login_error_name_title":@"郵箱格式不正確",
-                                           @"name_or_pwd_error_title":@"賬戶不存在或者密碼錯誤"
+                                           @"name_or_pwd_error_title":@"賬戶不存在或者密碼錯誤",
+                                           @"not_login_btn_title":@"暫不登錄"
                                            }
                                    };
     
     self.title = LTZLocalizedString(@"view_controller_title", nil);
     
+    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.closeButton setBounds:CGRectMake(0, 0, 60, 30)];
+    [self.closeButton setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.7] forState:UIControlStateNormal];
+    [self.closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    self.closeButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    
+    [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateNormal];
+    [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateHighlighted];
+    
+    [self.closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     // 修改导航栏左边的item
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"login_close_btn"]
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(closeAction:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.closeButton];
     self.backImageView.clipsToBounds = YES;
     [self.tableView registerNib:[LoginCell nib] forCellReuseIdentifier:[LoginCell cellIdentifier]];
     
@@ -89,6 +100,13 @@
 - (void)closeAction:(id)sender
 {
     [myAppDelegate switchToTabbarViewController];
+}
+
+- (void)languageDidChanged
+{
+    self.title = LTZLocalizedString(@"view_controller_title", nil);
+    [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateNormal];
+    [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateHighlighted];
 }
 
 - (void)loginAction
@@ -121,7 +139,7 @@
                                                      if (!error) {
                                                          
                                                          [[UserConfig sharedInstance] SetUserName:strongSelf.loginName];
-                                                         //[[UserConfig sharedInstance] SetHasLogin:YES];
+                                                         [[UserConfig sharedInstance] SetHasLogin:YES];
                                                          [strongSelf closeAction:nil];
                                                          
                                                      }else{

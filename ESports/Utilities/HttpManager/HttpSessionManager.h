@@ -82,4 +82,8 @@
 #pragma mark - 注册
 - (void)checkEmailWithEmail:(NSString *)email
                       block:(void (^)(id data, NSError *error))block;
+- (void)registerWithEmail:(NSString *)email
+                 password:(NSString *)password
+          confirmPassword:(NSString *)confirmPassword
+                    block:(void (^)(id data, NSError *error))block;
 @end

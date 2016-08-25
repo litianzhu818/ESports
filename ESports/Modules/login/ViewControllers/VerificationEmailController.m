@@ -34,19 +34,19 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"view_controller_title":@"Email Register",
+                                           @"view_controller_title":@"Register",
                                            @"no_email_tile":@"Please input your email",
                                            @"email_formart_error_title":@"Email format error",
                                            @"email_no_use_title":@"This email has been registered！"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"view_controller_title":@"邮箱注册",
+                                           @"view_controller_title":@"注册",
                                            @"no_email_tile":@"请填写邮箱",
                                            @"email_formart_error_title":@"邮箱格式错误",
                                            @"email_no_use_title":@"该邮箱已经被注册！"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"view_controller_title":@"郵箱註冊",
+                                           @"view_controller_title":@"註冊",
                                            @"no_email_tile":@"請填寫郵箱",
                                            @"email_formart_error_title":@"郵箱格式錯誤",
                                            @"email_no_use_title":@"該郵箱已經被註冊！"
