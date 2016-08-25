@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerificationEmailController">
+            <connections>
+                <outlet property="backImageView" destination="lep-8m-Mbh" id="Vs0-qJ-fLi"/>
+                <outlet property="tableView" destination="slj-V6-bLk" id="fOQ-N6-hR7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_back_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="lep-8m-Mbh">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="slj-V6-bLk" customClass="TPKeyboardAvoidingTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="QxG-D7-3hF"/>
+                        <outlet property="delegate" destination="-1" id="72U-7M-UgJ"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lep-8m-Mbh" secondAttribute="bottom" id="C92-Tr-NUj"/>
+                <constraint firstItem="slj-V6-bLk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vb5-ao-dhO"/>
+                <constraint firstAttribute="trailing" secondItem="lep-8m-Mbh" secondAttribute="trailing" id="Yzr-nC-tjO"/>
+                <constraint firstAttribute="bottom" secondItem="slj-V6-bLk" secondAttribute="bottom" id="gAH-Ph-HkZ"/>
+                <constraint firstAttribute="trailing" secondItem="slj-V6-bLk" secondAttribute="trailing" id="gqb-k0-vyE"/>
+                <constraint firstItem="slj-V6-bLk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jdp-SZ-Ry3"/>
+                <constraint firstItem="lep-8m-Mbh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wcg-rm-NOb"/>
+                <constraint firstItem="lep-8m-Mbh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xe4-9R-uQ0"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="login_back_bg.png" width="540" height="960"/>
+    </resources>
+</document>

@@ -159,6 +159,22 @@
     
     if (resultSuccess.intValue != 1) {
         
+        NSString *errorData = [responseJSON valueForKeyPath:@"Data"];
+        
+        if (![errorData isKindOfClass:[NSNull class]] && [errorData isKindOfClass:[NSString class]]) {
+            if ([errorData isEqualToString:@"EmailNotConfirmed"]) {
+                if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
+                    [self showHudMessage:@"您的邮箱还没有验证，请及时验证"];
+                }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
+                    [self showHudMessage:@"您的郵箱還沒有驗證，請及時驗證"];
+                }else{
+                    [self showHudMessage:@"You do not verify your email address, please go to verify in time"];
+                }
+                
+                return errorData;
+            }
+        }
+        
         NSData *messageData= [[responseJSON valueForKeyPath:@"Message"] dataUsingEncoding:NSUTF8StringEncoding];
         
         NSError *josnError = nil;

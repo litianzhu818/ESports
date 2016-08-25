@@ -50,9 +50,9 @@
     _detailNew = detailNew;
     
     [self.activityIndicatorView startAnimating];
-    [self.webView setHidden:YES];
+    //[self.webView setHidden:YES];
     
-    NSData *data = [[NSString stringWithFormat:@"%@%@",@"<style> img{width:100%;height:auto} video{width:100%;height:auto} body{color:#ffffff;font-size:30pt;} </style>",_detailNew.newsContent] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [[NSString stringWithFormat:@"%@%@",@"<style> img{width:100%;height:200} video{width:100%;height:auto} iframe{width:100%;height:auto} body{color:#ffffff;font-size:30pt;} </style>",_detailNew.newsContent] dataUsingEncoding:NSUTF8StringEncoding];
     [self.webView loadData:data
                   MIMEType:@"text/html"
           textEncodingName:@"UTF-8"

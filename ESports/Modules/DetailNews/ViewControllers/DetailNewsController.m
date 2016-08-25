@@ -15,11 +15,10 @@
 #import "DetailHotNewsBottomCell.h"
 
 @interface DetailNewsController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
-@property (strong, nonatomic) DetailNew *detailNew;
 
-@property (assign, nonatomic) CGFloat webviewHeight;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+
 
 @end
 
@@ -71,62 +70,82 @@
     
     self.title = LTZLocalizedString(@"view_controller_title", nil);
     
-    self.bottomLabel.backgroundColor = HexColor(0x1b2737);
-    self.bottomLabel.textColor = HexColor(0xbbbfc3);
+    //[self.webView setUserInteractionEnabled:NO];
+    //[self.webView.scrollView setScrollEnabled:NO];
+    [self.webView.scrollView setShowsVerticalScrollIndicator:NO];
+    [self.webView.scrollView setShowsHorizontalScrollIndicator:NO];
+    self.webView.scalesPageToFit = YES;
+    self.webView.scrollView.bounces = NO;
     
-    [self.tableView registerNib:[DetailNewsTopCell nib] forCellReuseIdentifier:[DetailNewsTopCell cellIdentifier]];
-    [self.tableView registerNib:[DetailNewsCenterCell nib] forCellReuseIdentifier:[DetailNewsCenterCell cellIdentifier]];
-    [self.tableView registerNib:[DetailRelNewsBottomCell nib] forCellReuseIdentifier:[DetailRelNewsBottomCell cellIdentifier]];
-    [self.tableView registerNib:[DetailHotNewsBottomCell nib] forCellReuseIdentifier:[DetailHotNewsBottomCell cellIdentifier]];
+    [self.webView setBackgroundColor:[UIColor clearColor]];
+    [self.webView setOpaque:NO];
     
-    UIView *tableViewFooterView = [[UIView alloc] init];
-    tableViewFooterView.backgroundColor = self.view.backgroundColor;
-    self.tableView.backgroundColor = self.view.backgroundColor;
-    
-    self.webviewHeight = 0.0f;
+    [self.activityIndicatorView setHidesWhenStopped:YES];
     
 }
 
 - (void)loadData
 {
     if (!self.newsId) return;
-    WEAK_SELF;
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *baseUrl = @"http://lol.esportsmatrix.com/%@/News/Detail?id=%@";
     
-    [[HttpSessionManager sharedInstance] requestDetailNewsWithId:self.newsId
-                                                           block:^(id data, NSError *error) {
-                                                               
-                                                               STRONG_SELF;
-                                                               
-                                                               if (!error) {
-                                                                   
-                                                                   NSDictionary *dic = [data firstObject];
-                                                                   
-                                                                   strongSelf.detailNew = [[DetailNew alloc] initWithDictionary:dic error:nil];
-                                                                   
-                                                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                                                       [strongSelf.tableView reloadData];
-                                                                   });
-                                                                   
-                                                               }
-                                                               
-                                                               [hud hideAnimated:YES];
-                                                            
-                                                           }];
+    NSURL *requestUrl = [NSURL URLWithString:[NSString stringWithFormat:baseUrl,[self locationPath],self.newsId]];
+    
+    if (requestUrl) {
+        [self.activityIndicatorView startAnimating];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:requestUrl]];
+    }
 }
+
+- (NSString *)locationPath
+{
+    NSString *localization = @"en";// 默认英文
+    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {//简体中文
+        localization = @"zh-CN";
+    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]){//繁体中文
+        localization = @"zh-TW";
+    }else{
+        //localization = @"en";
+    }
+    return localization;
+}
+
 
 
 #pragma mark - 切换语言响应方法
 - (void)languageDidChanged
 {
     self.title = LTZLocalizedString(@"view_controller_title", nil);
-    
-    self.webviewHeight = 0.0f;
-    
     [self loadData];
 }
 
+#pragma mark -  UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.activityIndicatorView stopAnimating];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self.activityIndicatorView stopAnimating];
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"error" ofType:@"html"];
+    NSURL* url = [NSURL fileURLWithPath:path];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
+    [webView loadRequest:request];
+}
+
+
+/*
 #pragma mark - UITableViewDelegate methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,7 +155,7 @@
         if (self.webviewHeight > 0) {
             return self.webviewHeight;
         }
-        return [DetailNewsCenterCell cellHeight];
+        return 200;//[DetailNewsCenterCell cellHeight];
     }else if (indexPath.row == 2 && (self.detailNew.relNews.count > 0)) {
         
         return [DetailRelNewsBottomCell cellHeightWithRelNews:self.detailNew.relNews];
@@ -233,8 +252,7 @@
     
     return 0;
 }
-
-
+*/
 
 /*
 #pragma mark - Navigation

@@ -27,6 +27,15 @@
 		E715034E1D6EBC3200812668 /* RegosterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E715034C1D6EBC3200812668 /* RegosterController.m */; };
 		E715034F1D6EBC3200812668 /* RegosterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715034D1D6EBC3200812668 /* RegosterController.xib */; };
 		E71503521D6EBD7300812668 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503511D6EBD7300812668 /* NSString+Common.m */; };
+		E71503551D6ECCC000812668 /* register_or_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503531D6ECCC000812668 /* register_or_bg@2x.png */; };
+		E71503561D6ECCC000812668 /* register_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E71503541D6ECCC000812668 /* register_success@2x.png */; };
+		E715035A1D6ED34900812668 /* VerificationEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503581D6ED34900812668 /* VerificationEmailController.m */; };
+		E715035B1D6ED34900812668 /* VerificationEmailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503591D6ED34900812668 /* VerificationEmailController.xib */; };
+		E715035D1D6ED8CC00812668 /* register_email_register@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E715035C1D6ED8CC00812668 /* register_email_register@2x.png */; };
+		E71503611D6EE07500812668 /* EmailRegisterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E715035F1D6EE07500812668 /* EmailRegisterCell.m */; };
+		E71503621D6EE07500812668 /* EmailRegisterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503601D6EE07500812668 /* EmailRegisterCell.xib */; };
+		E71503661D6EF56F00812668 /* EmailRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503641D6EF56F00812668 /* EmailRegisterController.m */; };
+		E71503671D6EF56F00812668 /* EmailRegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503651D6EF56F00812668 /* EmailRegisterController.xib */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -257,6 +266,18 @@
 		E715034D1D6EBC3200812668 /* RegosterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegosterController.xib; sourceTree = "<group>"; };
 		E71503501D6EBD7300812668 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		E71503511D6EBD7300812668 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		E71503531D6ECCC000812668 /* register_or_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_or_bg@2x.png"; sourceTree = "<group>"; };
+		E71503541D6ECCC000812668 /* register_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_success@2x.png"; sourceTree = "<group>"; };
+		E71503571D6ED34900812668 /* VerificationEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationEmailController.h; sourceTree = "<group>"; };
+		E71503581D6ED34900812668 /* VerificationEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationEmailController.m; sourceTree = "<group>"; };
+		E71503591D6ED34900812668 /* VerificationEmailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerificationEmailController.xib; sourceTree = "<group>"; };
+		E715035C1D6ED8CC00812668 /* register_email_register@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_email_register@2x.png"; sourceTree = "<group>"; };
+		E715035E1D6EE07500812668 /* EmailRegisterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterCell.h; sourceTree = "<group>"; };
+		E715035F1D6EE07500812668 /* EmailRegisterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterCell.m; sourceTree = "<group>"; };
+		E71503601D6EE07500812668 /* EmailRegisterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailRegisterCell.xib; sourceTree = "<group>"; };
+		E71503631D6EF56F00812668 /* EmailRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterController.h; sourceTree = "<group>"; };
+		E71503641D6EF56F00812668 /* EmailRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterController.m; sourceTree = "<group>"; };
+		E71503651D6EF56F00812668 /* EmailRegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailRegisterController.xib; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -638,6 +659,9 @@
 		E71503231D6B0B7000812668 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E715035C1D6ED8CC00812668 /* register_email_register@2x.png */,
+				E71503531D6ECCC000812668 /* register_or_bg@2x.png */,
+				E71503541D6ECCC000812668 /* register_success@2x.png */,
 				E715032F1D6C500200812668 /* login_back_bg@2x.png */,
 				E71503301D6C500200812668 /* login_close_btn@2x.png */,
 				E71503311D6C500200812668 /* login_facebook@2x.png */,
@@ -660,6 +684,12 @@
 				E715034B1D6EBC3200812668 /* RegosterController.h */,
 				E715034C1D6EBC3200812668 /* RegosterController.m */,
 				E715034D1D6EBC3200812668 /* RegosterController.xib */,
+				E71503571D6ED34900812668 /* VerificationEmailController.h */,
+				E71503581D6ED34900812668 /* VerificationEmailController.m */,
+				E71503591D6ED34900812668 /* VerificationEmailController.xib */,
+				E71503631D6EF56F00812668 /* EmailRegisterController.h */,
+				E71503641D6EF56F00812668 /* EmailRegisterController.m */,
+				E71503651D6EF56F00812668 /* EmailRegisterController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -670,6 +700,9 @@
 				E71503461D6E9BF400812668 /* LoginCell.h */,
 				E71503471D6E9BF400812668 /* LoginCell.m */,
 				E71503481D6E9BF400812668 /* LoginCell.xib */,
+				E715035E1D6EE07500812668 /* EmailRegisterCell.h */,
+				E715035F1D6EE07500812668 /* EmailRegisterCell.m */,
+				E71503601D6EE07500812668 /* EmailRegisterCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1562,6 +1595,7 @@
 				E760B36C1D3C919100F5DB54 /* HotWordNewCell.xib in Resources */,
 				E71627351D47516900EF6740 /* ReplayTopCell.xib in Resources */,
 				E717B30C1D51D4B100BE98A3 /* MatchVideoDataCell.xib in Resources */,
+				E71503671D6EF56F00812668 /* EmailRegisterController.xib in Resources */,
 				E71503421D6D991900812668 /* match_team_no_first_data@2x.png in Resources */,
 				E71550C91D5C890C0073F159 /* StrengScoreTeamSecondCell.xib in Resources */,
 				E715511E1D66AE980073F159 /* match_score_bg@2x.png in Resources */,
@@ -1576,11 +1610,13 @@
 				E72FD8B41D267C9B000A5CE6 /* nav_change_language_h@2x.png in Resources */,
 				E71551291D66BC890073F159 /* match_death_blue@2x.png in Resources */,
 				E72FD8A91D264943000A5CE6 /* tabbar_ranking_n@2x.png in Resources */,
+				E715035B1D6ED34900812668 /* VerificationEmailController.xib in Resources */,
 				E72FD8661D2508EC000A5CE6 /* topbar@2x.png in Resources */,
 				E71550D81D5DA5D10073F159 /* StrengScoreTeamFourthCell.xib in Resources */,
 				E71627301D461C1500EF6740 /* MatchReplayController.xib in Resources */,
 				E760B3301D2E05DA00F5DB54 /* DropdownMenuItemCell.xib in Resources */,
 				E71550D31D5CA2190073F159 /* StrengScoreTeamThirdCell.xib in Resources */,
+				E71503551D6ECCC000812668 /* register_or_bg@2x.png in Resources */,
 				E71550F21D63440C0073F159 /* StrengScorePlayerSecondCell.xib in Resources */,
 				E73911C01D2A640B00F4A522 /* cell_line@2x.png in Resources */,
 				E71550C21D5C59580073F159 /* StrengScoreTeamTopCell.xib in Resources */,
@@ -1605,12 +1641,14 @@
 				E715033D1D6C500200812668 /* login_pwd@2x.png in Resources */,
 				E715512C1D66BC890073F159 /* match_kill_red@2x.png in Resources */,
 				E71550AD1D59E87E0073F159 /* StrengScorePlayerCell.xib in Resources */,
+				E71503621D6EE07500812668 /* EmailRegisterCell.xib in Resources */,
 				E760B3841D3CDD6600F5DB54 /* DetailNewsCenterCell.xib in Resources */,
 				E72FD8A81D264943000A5CE6 /* tabbar_ranking_h@2x.png in Resources */,
 				E71551271D66BC890073F159 /* match_assists_blue@2x.png in Resources */,
 				E760B3AA1D3F847D00F5DB54 /* ProcessMatchCell.xib in Resources */,
 				E72FD8861D251612000A5CE6 /* NewsController.xib in Resources */,
 				E760B3861D3CE00800F5DB54 /* error.html in Resources */,
+				E71503561D6ECCC000812668 /* register_success@2x.png in Resources */,
 				E716275A1D4AF92000EF6740 /* MatchTeamDataBottomCell.xib in Resources */,
 				E715510A1D645A000073F159 /* Assets.xcassets in Resources */,
 				E760B39F1D3E279B00F5DB54 /* DetailNewSubRelCell.xib in Resources */,
@@ -1659,6 +1697,7 @@
 				E71550C41D5C74610073F159 /* streng_ranking_detail_bg@2x.png in Resources */,
 				E71550ED1D6342600073F159 /* StrengScorePlayerTopCell.xib in Resources */,
 				E715033F1D6C500200812668 /* login_webo@2x.png in Resources */,
+				E715035D1D6ED8CC00812668 /* register_email_register@2x.png in Resources */,
 				E760B3361D2E39AD00F5DB54 /* location_drop_h@2x.png in Resources */,
 				E715512A1D66BC890073F159 /* match_death_red@2x.png in Resources */,
 				E71550B21D5ADD950073F159 /* StrengthRankingTeamController.xib in Resources */,
@@ -1724,6 +1763,7 @@
 				E71551151D648B1C0073F159 /* JYRadarChart.m in Sources */,
 				E760B38F1D3E19BF00F5DB54 /* DetailRelNewsBottomCell.m in Sources */,
 				E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */,
+				E715035A1D6ED34900812668 /* VerificationEmailController.m in Sources */,
 				E71503491D6E9BF400812668 /* LoginCell.m in Sources */,
 				E72FD8591D24F420000A5CE6 /* NJKWebViewProgress.m in Sources */,
 				E716273F1D48C58C00EF6740 /* ExtendTableViewHeaderView.m in Sources */,
@@ -1755,6 +1795,7 @@
 				E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */,
 				E760B3A51D3F621400F5DB54 /* ResultMatchesManager.m in Sources */,
 				E716273D1D48A27300EF6740 /* MatchTeamData.m in Sources */,
+				E71503661D6EF56F00812668 /* EmailRegisterController.m in Sources */,
 				E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */,
 				E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */,
 				E760B3831D3CDD6600F5DB54 /* DetailNewsCenterCell.m in Sources */,
@@ -1801,6 +1842,7 @@
 				E71550DC1D5DD62A0073F159 /* StrengScoreTeamFifthCell.m in Sources */,
 				E72FD85B1D24F420000A5CE6 /* RxWebViewController.m in Sources */,
 				E71627691D4B542E00EF6740 /* MatchPlayerDataCell.m in Sources */,
+				E71503611D6EE07500812668 /* EmailRegisterCell.m in Sources */,
 				E71550CD1D5C9D460073F159 /* PlayerCollectionViewCell.m in Sources */,
 				E7BD576C1CF4360D008F2D69 /* AppDelegate.m in Sources */,
 				E760B3A91D3F847D00F5DB54 /* ProcessMatchCell.m in Sources */,

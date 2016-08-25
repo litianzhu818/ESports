@@ -7,9 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailNewsController">
             <connections>
-                <outlet property="bottomLabel" destination="OmQ-wx-hmG" id="wnX-2q-v1N"/>
-                <outlet property="tableView" destination="lYW-hS-cod" id="mKn-QL-uj7"/>
+                <outlet property="activityIndicatorView" destination="Qy1-rK-r3T" id="tA6-l4-uhb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="ow5-Ol-Nc0" id="FZ7-mj-2fp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,33 +17,29 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lYW-hS-cod">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="569"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ow5-Ol-Nc0">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="J9j-iZ-Pxv"/>
-                        <outlet property="delegate" destination="-1" id="sJh-s9-h60"/>
+                        <outlet property="delegate" destination="-1" id="5eQ-9I-Mth"/>
                     </connections>
-                </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©T.E.C.H.Ltd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmQ-wx-hmG">
-                    <rect key="frame" x="0.0" y="569" width="600" height="31"/>
+                </webView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Qy1-rK-r3T">
+                    <rect key="frame" x="282" y="281" width="37" height="37"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="31" id="tIx-1l-roN"/>
+                        <constraint firstAttribute="width" constant="37" id="jK0-mM-Cl8"/>
+                        <constraint firstAttribute="height" constant="37" id="ogw-Dy-tVY"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OmQ-wx-hmG" firstAttribute="top" secondItem="lYW-hS-cod" secondAttribute="bottom" id="QTk-qk-MXv"/>
-                <constraint firstItem="OmQ-wx-hmG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aHt-fm-Ubo"/>
-                <constraint firstAttribute="bottom" secondItem="OmQ-wx-hmG" secondAttribute="bottom" id="hoi-Za-L3r"/>
-                <constraint firstItem="lYW-hS-cod" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hpl-Hz-gtZ"/>
-                <constraint firstItem="lYW-hS-cod" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ms7-JV-gQe"/>
-                <constraint firstAttribute="trailing" secondItem="lYW-hS-cod" secondAttribute="trailing" id="nM6-Wc-Lhr"/>
-                <constraint firstAttribute="trailing" secondItem="OmQ-wx-hmG" secondAttribute="trailing" id="owt-2C-dnD"/>
+                <constraint firstAttribute="trailing" secondItem="ow5-Ol-Nc0" secondAttribute="trailing" id="IeX-fA-UA4"/>
+                <constraint firstItem="ow5-Ol-Nc0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VRr-IA-VZ1"/>
+                <constraint firstItem="ow5-Ol-Nc0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dfO-NS-rbE"/>
+                <constraint firstAttribute="bottom" secondItem="ow5-Ol-Nc0" secondAttribute="bottom" id="iGS-D4-345"/>
+                <constraint firstItem="Qy1-rK-r3T" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="m1e-yN-0RM"/>
+                <constraint firstItem="Qy1-rK-r3T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wUx-YY-pn0"/>
             </constraints>
         </view>
     </objects>

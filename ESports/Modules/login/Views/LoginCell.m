@@ -127,6 +127,8 @@
 
 - (IBAction)loginAction:(id)sender
 {
+    [self.nameTextField resignFirstResponder];
+    [self.pwdTextField resignFirstResponder];
     if (self.loginActionBlock) {
         self.loginActionBlock();
     }

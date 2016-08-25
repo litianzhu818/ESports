@@ -80,7 +80,6 @@
                 block:(void (^)(id data, NSError *error))block;
 
 #pragma mark - 注册
-//- (void)loginWithName:(NSString *)name
-//             password:(NSString *)password
-//                block:(void (^)(id data, NSError *error))block;
+- (void)checkEmailWithEmail:(NSString *)email
+                      block:(void (^)(id data, NSError *error))block;
 @end

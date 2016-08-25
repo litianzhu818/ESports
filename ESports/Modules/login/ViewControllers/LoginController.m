@@ -76,7 +76,7 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(closeAction:)];
-    
+    self.backImageView.clipsToBounds = YES;
     [self.tableView registerNib:[LoginCell nib] forCellReuseIdentifier:[LoginCell cellIdentifier]];
     
 }
@@ -102,10 +102,12 @@
         [self showHudMessage:LTZLocalizedString(@"login_no_pwd_title", nil)];
         return;
     }
+    // 以后可能是手机登录
+    /*
     if (![self.loginName emailAddressString]) {
         [self showHudMessage:LTZLocalizedString(@"login_error_name_title", nil)];
         return;
-    }
+    }*/
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

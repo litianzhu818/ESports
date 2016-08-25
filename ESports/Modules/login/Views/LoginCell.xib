@@ -175,14 +175,14 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_name.png" translatesAutoresizingMaskIntoConstraints="NO" id="DEL-KV-fjd">
-                        <rect key="frame" x="24" y="146" width="24" height="30"/>
+                        <rect key="frame" x="32" y="146" width="24" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="37j-pA-Vx9"/>
                             <constraint firstAttribute="height" constant="30" id="Mqk-b7-UT5"/>
                         </constraints>
                     </imageView>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UnB-TW-eFw">
-                        <rect key="frame" x="56" y="146" width="240" height="30"/>
+                        <rect key="frame" x="64" y="146" width="224" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="txX-ZG-XkI"/>
                         </constraints>
@@ -197,14 +197,14 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pwd.png" translatesAutoresizingMaskIntoConstraints="NO" id="QEW-yi-9kH">
-                        <rect key="frame" x="24" y="194" width="24" height="30"/>
+                        <rect key="frame" x="32" y="194" width="24" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="40V-L8-qri"/>
                             <constraint firstAttribute="width" constant="24" id="Z93-Tc-yF3"/>
                         </constraints>
                     </imageView>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3i9-yY-pWc">
-                        <rect key="frame" x="56" y="194" width="240" height="30"/>
+                        <rect key="frame" x="64" y="194" width="224" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="oot-TQ-2La"/>
                         </constraints>
@@ -230,7 +230,7 @@
                     <constraint firstItem="xQd-w5-Yry" firstAttribute="top" secondItem="DEL-KV-fjd" secondAttribute="bottom" constant="2" id="BHx-2E-oj2"/>
                     <constraint firstItem="9rp-c4-5S9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="CNW-9U-smj"/>
                     <constraint firstItem="8HF-YR-glk" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Cbe-9U-huc"/>
-                    <constraint firstAttribute="trailing" secondItem="3i9-yY-pWc" secondAttribute="trailing" constant="24" id="Fnu-tD-MQM"/>
+                    <constraint firstAttribute="trailing" secondItem="3i9-yY-pWc" secondAttribute="trailing" constant="32" id="Fnu-tD-MQM"/>
                     <constraint firstItem="xQd-w5-Yry" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="IWQ-Wr-F5r"/>
                     <constraint firstAttribute="trailing" secondItem="xQd-w5-Yry" secondAttribute="trailing" constant="24" id="JPw-t0-oCQ"/>
                     <constraint firstItem="DEL-KV-fjd" firstAttribute="top" secondItem="8HF-YR-glk" secondAttribute="bottom" constant="32" id="Jx1-nI-EBN"/>
@@ -243,13 +243,13 @@
                     <constraint firstItem="1UO-5t-1qL" firstAttribute="leading" secondItem="n55-DR-JCS" secondAttribute="leading" id="V43-VV-ZCX"/>
                     <constraint firstItem="2CV-2C-RsD" firstAttribute="top" secondItem="3i9-yY-pWc" secondAttribute="bottom" constant="2" id="Z8i-kk-VaS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2CV-2C-RsD" secondAttribute="trailing" constant="16" id="ZAR-up-Wjl"/>
-                    <constraint firstItem="QEW-yi-9kH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="ckB-dH-eK3"/>
+                    <constraint firstItem="QEW-yi-9kH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="ckB-dH-eK3"/>
                     <constraint firstAttribute="trailing" secondItem="n55-DR-JCS" secondAttribute="trailing" id="cmE-wg-61J"/>
-                    <constraint firstItem="DEL-KV-fjd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="fU0-lT-vuh"/>
+                    <constraint firstItem="DEL-KV-fjd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="fU0-lT-vuh"/>
                     <constraint firstItem="3i9-yY-pWc" firstAttribute="top" secondItem="xQd-w5-Yry" secondAttribute="bottom" constant="15" id="haG-yc-tvv"/>
                     <constraint firstAttribute="trailing" secondItem="1UO-5t-1qL" secondAttribute="trailing" id="jxb-o5-mNa"/>
                     <constraint firstAttribute="bottom" secondItem="n55-DR-JCS" secondAttribute="bottom" id="lTd-qf-lYb"/>
-                    <constraint firstAttribute="trailing" secondItem="UnB-TW-eFw" secondAttribute="trailing" constant="24" id="nEG-Bf-Xdh"/>
+                    <constraint firstAttribute="trailing" secondItem="UnB-TW-eFw" secondAttribute="trailing" constant="32" id="nEG-Bf-Xdh"/>
                     <constraint firstItem="xQd-w5-Yry" firstAttribute="top" secondItem="UnB-TW-eFw" secondAttribute="bottom" constant="2" id="oZx-ql-GrM"/>
                     <constraint firstItem="1UO-5t-1qL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pOX-bP-D4O"/>
                     <constraint firstItem="UnB-TW-eFw" firstAttribute="leading" secondItem="DEL-KV-fjd" secondAttribute="trailing" constant="8" id="sVy-Me-ccY"/>
