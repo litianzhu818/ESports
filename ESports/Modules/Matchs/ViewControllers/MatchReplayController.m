@@ -404,13 +404,8 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
             
             MatchTeamGameOrder *gameOrder = self.matchTeamData.gameOrders[indexPath.section - 2];
             
-            if (gameOrder.isATeamRedSide) {
-                cell.blueTeamName = self.matchTeamData.teamBInfo.teamName;
-                cell.redTeamName = self.matchTeamData.teamAInfo.teamName;
-            }else{
-                cell.blueTeamName = self.matchTeamData.teamAInfo.teamName;
-                cell.redTeamName = self.matchTeamData.teamBInfo.teamName;
-            }
+            cell.blueTeamName = self.matchTeamData.teamBInfo.teamName;
+            cell.redTeamName = self.matchTeamData.teamAInfo.teamName;
             
             cell.gameOrder = gameOrder;
             

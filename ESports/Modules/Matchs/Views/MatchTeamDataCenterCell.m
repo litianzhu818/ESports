@@ -179,7 +179,29 @@
 {
     _gameOrder = gameOrder;
     
+    
+    UIColor *blueColor = HexColor(0x245fa9);
+    UIColor *redColor = HexColor(0xdd222b);
+    
     if (gameOrder.isATeamRedSide) {
+        
+        self.redTeamNameLabel.textColor = redColor;
+        self.blueTeamNameLabel.textColor = blueColor;
+        
+        self.blueTowerImageView.backgroundColor = blueColor;
+        self.redTowerImageView.backgroundColor = redColor;
+        
+        self.blueDragonImageView.backgroundColor = blueColor;
+        self.redDragonImageView.backgroundColor = redColor;
+        
+        
+        self.blueGoldDiffImageView.backgroundColor = blueColor;
+        self.redGoldDiffImageView.backgroundColor = redColor;
+        
+       
+        self.blueKillImageView.backgroundColor = blueColor;
+        self.redKillImageView.backgroundColor = redColor;
+        
         self.blueTowerScoreLabel.text = _gameOrder.teamBGameState.teamTower20;
         self.blueDragonScoreLabel.text = _gameOrder.teamBGameState.teamDragon20;
         self.blueGoldDiffScoreLabel.text = _gameOrder.teamBGameState.teamGoldDiffAt25;
@@ -221,6 +243,23 @@
                                      blueScore:[_gameOrder.teamBGameState.teamKill integerValue]
                                       redScore:[gameOrder.teamAGameState.teamKill integerValue]];
     }else{
+        self.redTeamNameLabel.textColor = blueColor;
+        self.blueTeamNameLabel.textColor = redColor;
+        
+        self.blueTowerImageView.backgroundColor = redColor;
+        self.redTowerImageView.backgroundColor = blueColor;
+        
+        self.blueDragonImageView.backgroundColor = redColor;
+        self.redDragonImageView.backgroundColor = blueColor;
+        
+        
+        self.blueGoldDiffImageView.backgroundColor = redColor;
+        self.redGoldDiffImageView.backgroundColor = blueColor;
+        
+        
+        self.blueKillImageView.backgroundColor = redColor;
+        self.redKillImageView.backgroundColor = blueColor;
+        
         self.blueTowerScoreLabel.text = _gameOrder.teamAGameState.teamTower20;
         self.blueDragonScoreLabel.text = _gameOrder.teamAGameState.teamDragon20;
         self.blueGoldDiffScoreLabel.text = _gameOrder.teamAGameState.teamGoldDiffAt25;
@@ -234,33 +273,33 @@
         
         [self justWidthConstraintWithRedImageView:self.redTowerImageView
                                     blueImageView:self.blueTowerImageView
-                               widthConstraint:self.blueTowerImageViewWidthConstraint
-                             redLeftConstraint:self.redTowerImageViewLeftConstraint
-                            blueLeftConstraint:self.blueTowerImageViewLeftConstraint
-                                     blueScore:[_gameOrder.teamAGameState.teamTower20 integerValue]
-                                      redScore:[_gameOrder.teamBGameState.teamTower20 integerValue]];
+                                  widthConstraint:self.blueTowerImageViewWidthConstraint
+                                redLeftConstraint:self.redTowerImageViewLeftConstraint
+                               blueLeftConstraint:self.blueTowerImageViewLeftConstraint
+                                        blueScore:[_gameOrder.teamBGameState.teamTower20 integerValue]
+                                         redScore:[_gameOrder.teamAGameState.teamTower20 integerValue]];
         
         [self justWidthConstraintWithRedImageView:self.redDragonImageView
                                     blueImageView:self.blueDragonImageView
-                               widthConstraint:self.blueDragonImageViewWidthConstraint
-                             redLeftConstraint:self.redDragonImageViewLeftConstraint
-                            blueLeftConstraint:self.blueDragonImageViewLeftConstraint
-                                     blueScore:[_gameOrder.teamAGameState.teamDragon20 integerValue]
-                                      redScore:[_gameOrder.teamBGameState.teamDragon20 integerValue]];
+                                  widthConstraint:self.blueDragonImageViewWidthConstraint
+                                redLeftConstraint:self.redDragonImageViewLeftConstraint
+                               blueLeftConstraint:self.blueDragonImageViewLeftConstraint
+                                        blueScore:[_gameOrder.teamBGameState.teamDragon20 integerValue]
+                                         redScore:[_gameOrder.teamAGameState.teamDragon20 integerValue]];
         
         [self justGoldDiffWidthConstraintWithImageView:self.redGoldDiffImageView
                                        widthConstraint:self.blueGoldDiffImageViewWidthConstraint
-                                             blueScore:[_gameOrder.teamAGameState.teamGoldDiffAt25 integerValue]
-                                              redScore:[_gameOrder.teamBGameState.teamGoldDiffAt25 integerValue]];
+                                             blueScore:[_gameOrder.teamBGameState.teamGoldDiffAt25 integerValue]
+                                              redScore:[_gameOrder.teamAGameState.teamGoldDiffAt25 integerValue]];
         
         
         [self justWidthConstraintWithRedImageView:self.redKillImageView
                                     blueImageView:self.blueKillImageView
-                               widthConstraint:self.blueKillImageViewWidthConstraint
-                             redLeftConstraint:self.redKillImageViewLeftConstraint
-                            blueLeftConstraint:self.blueKillImageViewLeftConstraint
-                                     blueScore:[_gameOrder.teamAGameState.teamKill integerValue]
-                                      redScore:[_gameOrder.teamBGameState.teamKill integerValue]];
+                                  widthConstraint:self.blueKillImageViewWidthConstraint
+                                redLeftConstraint:self.redKillImageViewLeftConstraint
+                               blueLeftConstraint:self.blueKillImageViewLeftConstraint
+                                        blueScore:[_gameOrder.teamBGameState.teamKill integerValue]
+                                         redScore:[gameOrder.teamAGameState.teamKill integerValue]];
     }
     
 }
