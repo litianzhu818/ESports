@@ -183,30 +183,36 @@
                 *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:nil];
             }
         }else{
-            NSData *messageData= [[responseJSON valueForKeyPath:@"Message"] dataUsingEncoding:NSUTF8StringEncoding];
+            NSString *messageStr = [responseJSON valueForKeyPath:@"Message"];
             
-            NSError *josnError = nil;
-            
-            NSArray<NSDictionary *> *messages = [NSJSONSerialization JSONObjectWithData:messageData
-                                                                                options:NSJSONReadingAllowFragments
-                                                                                  error:&josnError];;
-            
-            NSString *errorDcr = [messages[0] objectForKey:@"msg"];
-            
-            if (errorDcr.length > 0) {
-                if ([errorDcr isEqualToString:@"Email not confirmed."] || [errorDcr isEqualToString:@"邮箱未激活"] || [errorDcr isEqualToString:@"郵箱未激活"]) {
-                    if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
-                        [self showHudMessage:@"您的邮箱还没有验证，请及时验证"];
-                    }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
-                        [self showHudMessage:@"您的郵箱還沒有驗證，請及時驗證"];
-                    }else{
-                        [self showHudMessage:@"You do not verify your email address, please go to verify in time"];
+            if (![messageStr isKindOfClass:[NSNull class]]) {
+                NSData *messageData= [messageStr dataUsingEncoding:NSUTF8StringEncoding];
+                
+                NSError *josnError = nil;
+                
+                NSArray<NSDictionary *> *messages = [NSJSONSerialization JSONObjectWithData:messageData
+                                                                                    options:NSJSONReadingAllowFragments
+                                                                                      error:&josnError];;
+                
+                NSString *errorDcr = [messages[0] objectForKey:@"msg"];
+                
+                if (errorDcr.length > 0) {
+                    if ([errorDcr isEqualToString:@"Email not confirmed."] || [errorDcr isEqualToString:@"邮箱未激活"] || [errorDcr isEqualToString:@"郵箱未激活"]) {
+                        if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
+                            [self showHudMessage:@"您的邮箱还没有验证，请及时验证"];
+                        }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
+                            [self showHudMessage:@"您的郵箱還沒有驗證，請及時驗證"];
+                        }else{
+                            [self showHudMessage:@"You do not verify your email address, please go to verify in time"];
+                        }
+                        
+                        return errorDcr;
                     }
                     
-                    return errorDcr;
+                    *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:@{NSLocalizedDescriptionKey:errorDcr}];
+                }else{
+                    *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:nil];
                 }
-                
-                *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:@{NSLocalizedDescriptionKey:errorDcr}];
             }else{
                 *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:nil];
             }

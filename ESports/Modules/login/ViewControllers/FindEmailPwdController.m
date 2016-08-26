@@ -92,11 +92,11 @@
                                                             FindEmailPwdSuccesController *findEmailPwdSuccesController = [[FindEmailPwdSuccesController alloc] initWithEmail:strongSelf.email];
                                                             [strongSelf.navigationController pushViewController:findEmailPwdSuccesController animated:YES];
                                                         }else{
-                                                            if (error.localizedDescription) {
-                                                                [strongSelf showHudMessage:error.localizedDescription];
-                                                            }else{
+//                                                            if (error.localizedDescription) {
+//                                                                [strongSelf showHudMessage:error.localizedDescription];
+//                                                            }else{
                                                                 [strongSelf showHudMessage:LTZLocalizedString(@"email_no_use_title", nil)];
-                                                            }
+//                                                            }
                                                         }
                                                         
                                                         [hud hideAnimated:YES];
