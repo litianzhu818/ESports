@@ -52,7 +52,10 @@
                                            @"login_no_name_title":@"There is no email,you should input one",
                                            @"login_no_pwd_title":@"There is no password,you should input one",
                                            @"login_error_name_title":@"The email you inputed is bad format",
-                                           @"name_or_pwd_error_title":@"Account does not exist or password error",
+                                           @"name_error_title":@"Account does not exist",
+                                           @"pwd_error_title":@"Password error",
+                                           @"email_not_confirmed_title":@"You do not verify your email address, please go to verify in time",
+                                           @"user_not_active_title":@"Your account is not actived",
                                            @"not_login_btn_title":@"Later do"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
@@ -60,7 +63,10 @@
                                            @"login_no_name_title":@"请输入邮箱",
                                            @"login_no_pwd_title":@"请输入密码",
                                            @"login_error_name_title":@"邮箱格式不正确",
-                                           @"name_or_pwd_error_title":@"账户不存在或者密码错误",
+                                           @"name_error_title":@"账户不存在",
+                                           @"pwd_error_title":@"密码错误",
+                                           @"email_not_confirmed_title":@"您的邮箱还没有验证，请及时验证",
+                                           @"user_not_active_title":@"用户处于失活状态",
                                            @"not_login_btn_title":@"暂不登录"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
@@ -68,7 +74,10 @@
                                            @"login_no_name_title":@"請輸入郵箱",
                                            @"login_no_pwd_title":@"請輸入密碼",
                                            @"login_error_name_title":@"郵箱格式不正確",
-                                           @"name_or_pwd_error_title":@"賬戶不存在或者密碼錯誤",
+                                           @"name_error_title":@"賬戶不存在",
+                                           @"pwd_error_title":@"密碼錯誤",
+                                           @"email_not_confirmed_title":@"您的郵箱還沒有驗證，請及時驗證",
+                                           @"user_not_active_title":@"用戶處於失活狀態",
                                            @"not_login_btn_title":@"暫不登錄"
                                            }
                                    };
@@ -145,9 +154,23 @@
                                                          
                                                      }else{
                                                          if (error.localizedDescription) {
-                                                             [strongSelf showHudMessage:error.localizedDescription];
+                                                             
+                                                             if ([error.localizedDescription isEqualToString:@"UserNotExist"]) {
+                                                                 [strongSelf showHudMessage:LTZLocalizedString(@"name_error_title", nil)];
+                                                             }else if ([error.localizedDescription isEqualToString:@"PasswordInvalid"]) {
+                                                                 [strongSelf showHudMessage:LTZLocalizedString(@"pwd_error_title", nil)];
+                                                             }else if ([error.localizedDescription isEqualToString:@"EmailNotConfirmed"]) {
+                                                                 
+                                                                 [[UserConfig sharedInstance] SetUserName:strongSelf.loginName];
+                                                                 [[UserConfig sharedInstance] SetHasLogin:YES];
+                                                                 [strongSelf closeAction:nil];
+                                                                 [strongSelf showHudMessage:LTZLocalizedString(@"email_not_confirmed_title", nil)];
+                                                                 
+                                                             }else if ([error.localizedDescription isEqualToString:@"UserNotActived"]) {
+                                                                 [strongSelf showHudMessage:LTZLocalizedString(@"user_not_active_title", nil)];
+                                                             }
                                                          }else{
-                                                             [strongSelf showHudMessage:LTZLocalizedString(@"name_or_pwd_error_title", nil)];
+                                                             [strongSelf showHudMessage:LTZLocalizedString(@"pwd_error_title", nil)];
                                                          }
                                                      }
                                                      

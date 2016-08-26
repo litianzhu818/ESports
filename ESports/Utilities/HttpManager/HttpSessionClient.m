@@ -170,7 +170,7 @@
                                         id tempdata = [self handlePostResponse:responseObject error:&error];
                                         
                                         if (error) {
-                                            [self showError:error];
+                                            //[self showError:error];
                                             block(nil, error);
                                         }else{
                                             
@@ -182,7 +182,7 @@
                                         }
                                     }
                                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                        [self showError:error];
+                                        //[self showError:error];
                                         block(nil, error);
                                     }];
             break;

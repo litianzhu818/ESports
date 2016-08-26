@@ -135,7 +135,9 @@ typedef struct CountDownTimeModel{
     
     NSTimeInterval oneDayTimeInterval = (NSTimeInterval)(3600*24);
     
-    if (self.processMatch.liveStreamPage.length > 0 && timeInterval <= oneDayTimeInterval) { // 正在直播
+    if (self.processMatch.liveStreamPage.length > 0
+        && [self isTodayTime:self.processMatch.date]
+        && timeInterval <= oneDayTimeInterval) { // 正在直播
         self.stateButton.clipsToBounds = YES;
         self.stateButton.layer.cornerRadius = 4.0f;
         self.stateButton.layer.borderColor = HexColor(0xff3b3b).CGColor;
@@ -295,6 +297,23 @@ typedef struct CountDownTimeModel{
     
     
     return [NSString stringWithFormat:LTZLocalizedString(@"time_title", nil),countDownTimeModel.day,countDownTimeModel.hour];
+}
+
+- (BOOL)isTodayTime:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY/MM/dd"];
+    
+    NSString *dateSMS = [dateFormatter stringFromDate:date];
+    
+    NSDate *now = [NSDate date];
+    NSString *dateNow = [dateFormatter stringFromDate:now];
+    
+    if ([dateSMS isEqualToString:dateNow]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark - class methods

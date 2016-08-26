@@ -30,7 +30,7 @@ static NSString *const strengthScorePlayerRoleListURL = @"Player/GetRoleList";
 static NSString *const LoginURL = @"Account/Login";
 static NSString *const registerEmailVerifyURL = @"Account/EmailVerify";
 static NSString *const registerEmailURL = @"Account/Register";
-static NSString *const findEmailPasswordURL = @"Account/ForgotPassword";
+static NSString *const findEmailPasswordURL = @"Account/ForgotPasswordForApp";
 
 
 #endif

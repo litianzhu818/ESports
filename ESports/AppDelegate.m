@@ -13,6 +13,7 @@
 #import "BaseNavigationController.h"
 #import "LoginController.h"
 #import "UserConfig.h"
+#import <Bugly/Bugly.h>
 
 @interface AppDelegate ()
 
@@ -29,6 +30,7 @@
     // Override point for customization after application launch.
     
     [self registerRemoteNotificationWithOptions:launchOptions];
+    [self startTencentBuglyMoudle];
     [[MatchZoneManager sharedInstance] initialize];
     [self setupViewControllers];
     
@@ -250,6 +252,12 @@
     self.rootViewController = self.tabBarController;
     [self.window setRootViewController:self.tabBarController];
 }
+
+- (void)startTencentBuglyMoudle
+{
+    [Bugly startWithAppId:@"9be4876ff6"];
+}
+
 
 #pragma mark - Core Data stack
 
