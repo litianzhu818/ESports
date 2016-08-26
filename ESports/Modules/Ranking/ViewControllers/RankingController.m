@@ -162,7 +162,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                            
                                            }
                                    };
-    self.title = LTZLocalizedString(@"title", nil);
+    self.title = LTZLocalizedString(@"view_controller_title", nil);
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
