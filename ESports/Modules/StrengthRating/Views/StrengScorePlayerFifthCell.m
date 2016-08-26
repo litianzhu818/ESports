@@ -77,7 +77,8 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
                                            @"segmented_40_title":@"40 Games",
                                            @"acture_price_title":@"Matrix Value",
                                            @"price_change_title":@"Change",
-                                           @"change_rate_title":@"Change(%)"
+                                           @"change_rate_title":@"Change(%)",
+                                           @"no_data_title":@"T.B.D"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"title":@"Matrix价值走势",
@@ -86,7 +87,8 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
                                            @"segmented_40_title":@"40局",
                                            @"acture_price_title":@"实际价值",
                                            @"price_change_title":@"价值变化",
-                                           @"change_rate_title":@"百分比变化"
+                                           @"change_rate_title":@"百分比变化",
+                                           @"no_data_title":@"判定中"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"title":@"Matrix價值走勢",
@@ -95,7 +97,8 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
                                            @"segmented_40_title":@"40局",
                                            @"acture_price_title":@"實際價值",
                                            @"price_change_title":@"價值變化",
-                                           @"change_rate_title":@"百分比變化"
+                                           @"change_rate_title":@"百分比變化",
+                                           @"no_data_title":@"判定中"
                                            }
                                    };
     
@@ -147,6 +150,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     self.acturePriceTitleLabel.text = LTZLocalizedString(@"acture_price_title", nil);
     self.priceChangeTitleLabel.text = LTZLocalizedString(@"price_change_title", nil);
     self.changeRateTitleLabel.text = LTZLocalizedString(@"change_rate_title", nil);
+    self.noDataTitleLabel.text = LTZLocalizedString(@"no_data_title", nil);
     
     
     self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 110.0, SCREEN_WIDTH, 140)];
@@ -202,7 +206,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     
     if (!self.playerDetail) return;
     
-    if (!self.playerDetail.playeRoleRankinge && [self.playerDetail.playeRoleRankinge isEqualToString:@"0"]) {
+    if (!self.playerDetail.playeRoleRankinge || [self.playerDetail.playeRoleRankinge isEqualToString:@"0"]) {
         self.noDataTitleLabel.hidden = NO;
         self.segmentedControl.hidden = YES;
         self.backView.hidden = YES;
@@ -216,8 +220,20 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     
     }
     
+    if (!self.playerDetail.playerPriceList || self.playerDetail.playerPriceList.count < 1) {
+        return;
+    }
+    
+    NSInteger allCount = 0;
+    
+    if (self.playerDetail.playerPriceList.count < self.gamesCount) {
+        allCount = self.playerDetail.playerPriceList.count;
+    }else{
+        allCount = self.gamesCount;
+    }
+    
     NSInteger minPrice = [self.playerDetail.playerPriceList.firstObject integerValue];
-    NSInteger maxPrice = [self.playerDetail.playerPriceList[self.gamesCount-1] integerValue];
+    NSInteger maxPrice = [self.playerDetail.playerPriceList[allCount-1] integerValue];
     
     NSInteger priceChange = minPrice - maxPrice;
     
@@ -272,7 +288,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
         [xDatas addObject:[NSString stringWithFormat:@"%ld",(unsigned long)index]];
     }
     
-    for (NSInteger index = self.gamesCount ; index > 0; index = index - interval) {
+    for (NSInteger index = allCount ; index > 0; index = index - interval) {
         [yDatas addObject:self.playerDetail.playerPriceList[index-1]];
     }
     
@@ -368,6 +384,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     self.acturePriceTitleLabel.text = LTZLocalizedString(@"acture_price_title", nil);
     self.priceChangeTitleLabel.text = LTZLocalizedString(@"price_change_title", nil);
     self.changeRateTitleLabel.text = LTZLocalizedString(@"change_rate_title", nil);
+    self.noDataTitleLabel.text = LTZLocalizedString(@"no_data_title", nil);
     
     self.segmentedControl.sectionTitles = @[LTZLocalizedString(@"segmented_10_title", nil),
                                             LTZLocalizedString(@"segmented_25_title", nil),

@@ -981,11 +981,13 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
         }*/
         
     }else if ([tableView isEqual:self.hotwordsTableView]) {
+        /*
         HotWordNew *hotWordNew = self.hotWordNewManager.hotWordNewContainers[indexPath.section].hotWordNews[indexPath.row];
         if (hotWordNew.newsId.length > 0) {
             DetailNewsController *detailNewsController = [[DetailNewsController alloc] initWithNewsId:hotWordNew.newsId];
             [self.navigationController pushViewController:detailNewsController animated:YES];
         }
+         */
     }
 }
 #pragma mark - UITableViewDataSource methods

@@ -75,7 +75,7 @@
     [self.webView.scrollView setShowsHorizontalScrollIndicator:NO];
     self.webView.scalesPageToFit = YES;
     self.webView.scrollView.bounces = NO;
-    self.webView.allowsLinkPreview = YES;
+    //self.webView.allowsLinkPreview = YES;
     
     [self.webView setBackgroundColor:[UIColor clearColor]];
     [self.webView setOpaque:NO];
@@ -93,7 +93,7 @@
     NSURL *requestUrl = [NSURL URLWithString:[NSString stringWithFormat:baseUrl,[self locationPath],self.newsId]];
     
     if (requestUrl) {
-        //[self.activityIndicatorView startAnimating];
+        [self.activityIndicatorView startAnimating];
         [self.webView loadRequest:[NSURLRequest requestWithURL:requestUrl]];
     }
 }
@@ -132,11 +132,11 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    //[self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView stopAnimating];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    //[self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView stopAnimating];
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"error" ofType:@"html"];
     NSURL* url = [NSURL fileURLWithPath:path];

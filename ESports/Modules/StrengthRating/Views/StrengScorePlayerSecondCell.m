@@ -99,7 +99,8 @@
                                            @"win_rate_title":@"Win Rate",
                                            @"kda_title":@"Avg. KDA",
                                            @"offered_rate_title":@"Avg.Kill Participation",
-                                           @"strength_title":@"Power Rating"
+                                           @"strength_title":@"Power Rating",
+                                           @"no_value_title":@"T.B.D"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"region_title":@"地区",
@@ -109,7 +110,8 @@
                                            @"win_rate_title":@"胜率",
                                            @"kda_title":@"平均KDA",
                                            @"offered_rate_title":@"平均参团率",
-                                           @"strength_title":@"实力评级"
+                                           @"strength_title":@"实力评级",
+                                           @"no_value_title":@"判定中"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"region_title":@"地區",
@@ -119,7 +121,8 @@
                                            @"win_rate_title":@"勝率",
                                            @"kda_title":@"平均KDA",
                                            @"offered_rate_title":@"平均參團率",
-                                           @"strength_title":@"實力評級"
+                                           @"strength_title":@"實力評級",
+                                           @"no_value_title":@"判定中"
                                            }
                                    };
     
@@ -152,11 +155,18 @@
     [self.regionImageView sd_setImageWithURL:[NSURL URLWithString:self.playerDetail.playerRegionImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.globalRankingValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerGlobalRanking];
     if (self.playerDetail.playerGlobalRanking == 0) {
-         self.globalRankingValueLabel.text = @"T.B.D";
+        self.globalRankingValueLabel.text = LTZLocalizedString(@"no_value_title", nil);
+        self.globalRankingValueLabel.textColor = [UIColor redColor];
+    }else{
+        self.globalRankingValueLabel.textColor = HexColor(0xb6b9be);
     }
     self.rankingValueLabel.text = self.playerDetail.playeRoleRankinge;
     if (!self.playerDetail.playeRoleRankinge || [self.playerDetail.playeRoleRankinge isEqualToString:@"0"]) {
-         self.rankingValueLabel.text = @"T.B.D";
+         self.rankingValueLabel.text = LTZLocalizedString(@"no_value_title", nil);
+        self.rankingValueLabel.textColor = [UIColor redColor];
+    }else{
+        
+        self.rankingValueLabel.textColor = HexColor(0xb6b9be);
     }
     self.matrixPriceValueLabel.text = [self getStringFromStrength:self.playerDetail.playerPrice];
     
@@ -173,7 +183,14 @@
     self.offeredRateValueLabel.textColor = [self colorWithOfferedRate:self.playerDetail.playerAvgKillParticipation];
     self.offeredRateValueLabel.text = [NSString stringWithFormat:@"%.1lf%@",self.playerDetail.playerAvgKillParticipation*100,@"%"];
     
-    self.strengthValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerStrength];
+    if (self.playerDetail.playerStrength == 0) {
+        self.strengthValueLabel.text = LTZLocalizedString(@"no_value_title", nil);
+        self.strengthValueLabel.textColor = [UIColor redColor];
+    }else{
+        self.strengthValueLabel.textColor = HexColor(0xb6b9be);
+        self.strengthValueLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)self.playerDetail.playerStrength];
+    }
+    
 }
 
 - (void)drawRect:(CGRect)rect

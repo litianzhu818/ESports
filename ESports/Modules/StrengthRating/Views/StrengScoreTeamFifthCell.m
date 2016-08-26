@@ -196,8 +196,16 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
     
     if (!self.teamDetail) return;
     
+    NSInteger allCount = 0;
+    
+    if (self.teamDetail.teamStrengths.count < self.gamesCount) {
+        allCount = self.teamDetail.teamStrengths.count;
+    }else{
+        allCount = self.gamesCount;
+    }
+    
     NSInteger minPrice = [self.teamDetail.teamStrengths.firstObject integerValue];
-    NSInteger maxPrice = [self.teamDetail.teamStrengths[self.gamesCount-1] integerValue];
+    NSInteger maxPrice = [self.teamDetail.teamStrengths[allCount-1] integerValue];
     
     NSInteger priceChange = minPrice - maxPrice;
     
@@ -254,7 +262,7 @@ typedef NS_ENUM(NSUInteger, GamesCount) {
         [xDatas addObject:[NSString stringWithFormat:@"%ld",(unsigned long)index]];
     }
     
-    for (NSInteger index = self.gamesCount ; index > 0; index = index - interval) {
+    for (NSInteger index = allCount ; index > 0; index = index - interval) {
         [yDatas addObject:self.teamDetail.teamStrengths[index-1]];
     }
     

@@ -34,7 +34,8 @@
                                            @"troll_title":@"Avg. Kill Participation",
                                            @"kda_title":@"Avg. KDA",
                                            @"win_title":@"Win Lane",
-                                           @"dao_title":@"15 min CS"
+                                           @"dao_title":@"15 min CS",
+                                           @"no_data_title":@"T.B.D"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"win_rate_title":@"最近25局比赛数据",
@@ -42,7 +43,8 @@
                                            @"troll_title":@"平均参团率",
                                            @"kda_title":@"平均KDA",
                                            @"win_title":@"赢线率",
-                                           @"dao_title":@"15分钟补刀"
+                                           @"dao_title":@"15分钟补刀",
+                                           @"no_data_title":@"判定中"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"win_rate_title":@"最近25局比賽數據",
@@ -50,13 +52,15 @@
                                            @"troll_title":@"平均參團率",
                                            @"kda_title":@"平均KDA",
                                            @"win_title":@"贏線率",
-                                           @"dao_title":@"15分鐘補刀"
+                                           @"dao_title":@"15分鐘補刀",
+                                           @"no_data_title":@"判定中"
                                            }
                                    };
     
     self.titleLabel.textColor = HexColor(0x5ed2f7);
     self.titleLabel.backgroundColor = HexColor(0x131b28);
     self.titleLabel.text = LTZLocalizedString(@"win_rate_title", nil);
+    self.noDataTitleLabel.text = LTZLocalizedString(@"no_data_title", nil);
     self.noDataTitleLabel.hidden = YES;
     
     CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
@@ -175,6 +179,7 @@
 - (void)languageDidChanged
 {
     self.titleLabel.text = LTZLocalizedString(@"win_rate_title", nil);
+    self.noDataTitleLabel.text = LTZLocalizedString(@"no_data_title", nil);
 }
 
 
