@@ -183,6 +183,17 @@
     UIColor *blueColor = HexColor(0x245fa9);
     UIColor *redColor = HexColor(0xdd222b);
     
+    self.redTowerScoreLabel.text = _gameOrder.teamAGameState.teamTower20;
+    self.redDragonScoreLabel.text = _gameOrder.teamAGameState.teamDragon20;
+    self.redGoldDiffScoreLabel.text = _gameOrder.teamAGameState.teamGoldDiffAt25;
+    self.redKillScoreLabel.text = _gameOrder.teamAGameState.teamKill;
+    
+    self.blueTowerScoreLabel.text = _gameOrder.teamBGameState.teamTower20;
+    self.blueDragonScoreLabel.text = _gameOrder.teamBGameState.teamDragon20;
+    self.blueGoldDiffScoreLabel.text = _gameOrder.teamBGameState.teamGoldDiffAt25;
+    self.blueKillScoreLabel.text = _gameOrder.teamBGameState.teamKill;
+    
+
     if (gameOrder.isATeamRedSide) {
         
         self.redTeamNameLabel.textColor = redColor;
@@ -201,17 +212,7 @@
        
         self.blueKillImageView.backgroundColor = blueColor;
         self.redKillImageView.backgroundColor = redColor;
-        
-        self.blueTowerScoreLabel.text = _gameOrder.teamBGameState.teamTower20;
-        self.blueDragonScoreLabel.text = _gameOrder.teamBGameState.teamDragon20;
-        self.blueGoldDiffScoreLabel.text = _gameOrder.teamBGameState.teamGoldDiffAt25;
-        self.blueKillScoreLabel.text = _gameOrder.teamBGameState.teamKill;
-        
-        self.redTowerScoreLabel.text = _gameOrder.teamAGameState.teamTower20;
-        self.redDragonScoreLabel.text = _gameOrder.teamAGameState.teamDragon20;
-        self.redGoldDiffScoreLabel.text = _gameOrder.teamAGameState.teamGoldDiffAt25;
-        self.redKillScoreLabel.text = _gameOrder.teamAGameState.teamKill;
-        
+
         
         [self justWidthConstraintWithRedImageView:self.redTowerImageView
                                     blueImageView:self.blueTowerImageView
@@ -259,17 +260,6 @@
         
         self.blueKillImageView.backgroundColor = redColor;
         self.redKillImageView.backgroundColor = blueColor;
-        
-        self.blueTowerScoreLabel.text = _gameOrder.teamAGameState.teamTower20;
-        self.blueDragonScoreLabel.text = _gameOrder.teamAGameState.teamDragon20;
-        self.blueGoldDiffScoreLabel.text = _gameOrder.teamAGameState.teamGoldDiffAt25;
-        self.blueKillScoreLabel.text = _gameOrder.teamAGameState.teamKill;
-        
-        self.redTowerScoreLabel.text = _gameOrder.teamBGameState.teamTower20;
-        self.redDragonScoreLabel.text = _gameOrder.teamBGameState.teamDragon20;
-        self.redGoldDiffScoreLabel.text = _gameOrder.teamBGameState.teamGoldDiffAt25;
-        self.redKillScoreLabel.text = _gameOrder.teamBGameState.teamKill;
-        
         
         [self justWidthConstraintWithRedImageView:self.redTowerImageView
                                     blueImageView:self.blueTowerImageView
