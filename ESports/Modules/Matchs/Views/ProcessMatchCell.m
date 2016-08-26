@@ -65,7 +65,9 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"subscribe",
                                            @"subscribed_title":@"subscribed",
                                            @"watch_title":@"live",
-                                           @"time_title":@"%ld day %ld hr left",
+                                           @"time_title1":@"%ld day %ld hr left",
+                                           @"time_title2":@"%ld hr %ld min left",
+                                           @"time_title3":@"%ld min left",
                                            @"event_notice_title":@"At %@,There is a match for %@ and %@",
                                            @"create_event_success_title":@"creating event success",
                                            @"local_message_first_title":@"After 5 minutes you have a game live between %@ and %@, Don't lose it",
@@ -76,7 +78,9 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"订阅",
                                            @"subscribed_title":@"已订阅",
                                            @"watch_title":@"查看直播",
-                                           @"time_title":@"剩%ld天%ld小时",
+                                           @"time_title1":@"剩%ld天%ld小时",
+                                           @"time_title2":@"剩%ld小时%ld分",
+                                           @"time_title3":@"剩%ld分",
                                            @"event_notice_title":@"你在%@有%@和%@的比赛，请不要忘记观看",
                                            @"create_event_success_title":@"已订阅提醒通知",
                                            @"local_message_first_title":@"5分钟后你有%@和%@的比赛直播，请注意观看",
@@ -87,7 +91,9 @@ typedef struct CountDownTimeModel{
                                            @"subscribe_title":@"訂閱",
                                            @"subscribed_title":@"已訂閱",
                                            @"watch_title":@"查看直播",
-                                           @"time_title":@"剩%ld天%ld小時",
+                                           @"time_title1":@"剩%ld天%ld小時",
+                                           @"time_title2":@"剩%ld小時%ld分",
+                                           @"time_title3":@"剩%ld分",
                                            @"event_notice_title":@"你在%@有%@和%@的比賽，請不要忘記觀看",
                                            @"create_event_success_title":@"已訂閱提醒通知",
                                            @"local_message_first_title":@"5分鐘後你有%@和%@的比賽直播，請注意觀看",
@@ -284,19 +290,27 @@ typedef struct CountDownTimeModel{
     NSDate *currentDate = [NSDate date];
     
     //用来得到具体的时差
-    unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour;
+    unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     
     NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:currentDate toDate:self.processMatch.date options:0];
     
-    CDTM countDownTimeModel = {.day=0,.hour=0};
+    CDTM countDownTimeModel = {.day=0,.hour=0,.minute=0};
     
     if ([currentDate compare:self.processMatch.date] <= NSOrderedSame) {
         countDownTimeModel.day = [dateComponents day];
         countDownTimeModel.hour = [dateComponents hour];
+        countDownTimeModel.minute = [dateComponents minute];
     }
     
+    if (countDownTimeModel.day > 0) {
+        return [NSString stringWithFormat:LTZLocalizedString(@"time_title1", nil),countDownTimeModel.day,countDownTimeModel.hour];
+    }else if (countDownTimeModel.day == 0 && countDownTimeModel.hour > 0) {
+        return [NSString stringWithFormat:LTZLocalizedString(@"time_title2", nil),countDownTimeModel.hour,countDownTimeModel.minute];
+    }else if (countDownTimeModel.day == 0 && countDownTimeModel.hour > 0) {
+        return [NSString stringWithFormat:LTZLocalizedString(@"time_title3", nil),countDownTimeModel.minute];
+    }
     
-    return [NSString stringWithFormat:LTZLocalizedString(@"time_title", nil),countDownTimeModel.day,countDownTimeModel.hour];
+    return nil;
 }
 
 - (BOOL)isTodayTime:(NSDate *)date

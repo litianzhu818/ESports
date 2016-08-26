@@ -98,7 +98,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
 {
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"title":@"Standing",
+                                           @"view_controller_title":@"Standing",
                                            @"pointsType_wait_download":@"please wait...",
                                            @"pointsType_no_data":@"no data",
                                            @"local_item_global":@"Global",
@@ -119,7 +119,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                            @"picker_select_title":@"Done"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"title":@"积分排行榜",
+                                           @"view_controller_title":@"积分榜",
                                            @"pointsType_wait_download":@"正在获取...",
                                            @"pointsType_no_data":@"没有数据",
                                            @"local_item_global":@"全球",
@@ -140,7 +140,7 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
                                            @"picker_select_title":@"选择"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
-                                           @"title":@"積分排行榜",
+                                           @"view_controller_title":@"積分榜",
                                            @"pointsType_wait_download":@"正在獲取...",
                                            @"pointsType_no_data":@"沒有數據",
                                            @"local_item_global":@"全球",
@@ -419,7 +419,9 @@ static NSString *const CURRENT_MATCH_POINTS_TYPE = @"current_match_points_type_k
     [self.tableViewHeader setTitle:LTZLocalizedString(@"tableview_header_release_title", nil) forState:MJRefreshStatePulling];
     [self.tableViewHeader setTitle:LTZLocalizedString(@"tableview_header_loading_title", nil) forState:MJRefreshStateRefreshing];
 
-    [self.tableView.mj_header beginRefreshing];
+    
+    [self loadPointsTypeData];
+    //[self.tableView.mj_header beginRefreshing];
     
     if (self.pointsTypes.count == 0) {
         self.pointsTypeSelectView.teamName = LTZLocalizedString(@"pointsType_no_data", nil);

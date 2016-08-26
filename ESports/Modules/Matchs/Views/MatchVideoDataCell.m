@@ -30,7 +30,7 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"main_title":@"The %@ game",
+                                           @"main_title":@"Game %@",
                                            @"sub_has_video_title":@"Have video",
                                            @"sub_has_no_video_title":@"It's coming"
                                            },

@@ -100,7 +100,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-WY-PCA">
-                        <rect key="frame" x="49" y="32" width="175" height="33"/>
+                        <rect key="frame" x="49" y="32" width="170" height="33"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="33" id="tBM-TB-gRj"/>
                         </constraints>
@@ -116,17 +116,17 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIy-61-axD">
-                        <rect key="frame" x="49" y="73" width="175" height="32"/>
+                        <rect key="frame" x="49" y="73" width="170" height="32"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wht-mZ-QRO">
-                        <rect key="frame" x="232" y="54" width="80" height="30"/>
+                        <rect key="frame" x="227" y="54" width="85" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="2fn-1u-L6z"/>
+                            <constraint firstAttribute="width" constant="85" id="2fn-1u-L6z"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <state key="normal" title="查看直播">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -135,13 +135,13 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-sQ-CfD">
-                        <rect key="frame" x="8" y="68" width="143" height="2"/>
+                        <rect key="frame" x="8" y="68" width="138" height="2"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="I1j-tL-Ax3"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhv-tL-2ND">
-                        <rect key="frame" x="151" y="54" width="78" height="30"/>
+                        <rect key="frame" x="146" y="54" width="78" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="fnH-kz-VmM"/>
                         </constraints>

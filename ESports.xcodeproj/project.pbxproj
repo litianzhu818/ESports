@@ -48,6 +48,13 @@
 		E715037F1D6FEA7F00812668 /* FindEmailPwdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715037D1D6FEA7F00812668 /* FindEmailPwdController.xib */; };
 		E71503831D6FED8000812668 /* FindEmailPwdSuccesController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503811D6FED8000812668 /* FindEmailPwdSuccesController.m */; };
 		E71503841D6FED8000812668 /* FindEmailPwdSuccesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503821D6FED8000812668 /* FindEmailPwdSuccesController.xib */; };
+		E71503951D706D9600812668 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503881D706D9600812668 /* TAAbstractDotView.m */; };
+		E71503961D706D9600812668 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = E715038A1D706D9600812668 /* TAAnimatedDotView.m */; };
+		E71503971D706D9600812668 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = E715038C1D706D9600812668 /* TADotView.m */; };
+		E71503981D706D9600812668 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E715038E1D706D9600812668 /* TAPageControl.m */; };
+		E71503991D706D9600812668 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503901D706D9600812668 /* SDCollectionViewCell.m */; };
+		E715039A1D706D9600812668 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503921D706D9600812668 /* SDCycleScrollView.m */; };
+		E715039B1D706D9600812668 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503941D706D9600812668 /* UIView+SDExtension.m */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -307,6 +314,20 @@
 		E71503801D6FED8000812668 /* FindEmailPwdSuccesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindEmailPwdSuccesController.h; sourceTree = "<group>"; };
 		E71503811D6FED8000812668 /* FindEmailPwdSuccesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindEmailPwdSuccesController.m; sourceTree = "<group>"; };
 		E71503821D6FED8000812668 /* FindEmailPwdSuccesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindEmailPwdSuccesController.xib; sourceTree = "<group>"; };
+		E71503871D706D9600812668 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
+		E71503881D706D9600812668 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
+		E71503891D706D9600812668 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
+		E715038A1D706D9600812668 /* TAAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnimatedDotView.m; sourceTree = "<group>"; };
+		E715038B1D706D9600812668 /* TADotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADotView.h; sourceTree = "<group>"; };
+		E715038C1D706D9600812668 /* TADotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADotView.m; sourceTree = "<group>"; };
+		E715038D1D706D9600812668 /* TAPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAPageControl.h; sourceTree = "<group>"; };
+		E715038E1D706D9600812668 /* TAPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAPageControl.m; sourceTree = "<group>"; };
+		E715038F1D706D9600812668 /* SDCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewCell.h; sourceTree = "<group>"; };
+		E71503901D706D9600812668 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
+		E71503911D706D9600812668 /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
+		E71503921D706D9600812668 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
+		E71503931D706D9600812668 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		E71503941D706D9600812668 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -758,6 +779,35 @@
 				E715032D1D6C35E900812668 /* MatchZoneManager.m */,
 			);
 			path = MatchZone;
+			sourceTree = "<group>";
+		};
+		E71503851D706D9600812668 /* SDCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				E71503861D706D9600812668 /* PageControl */,
+				E715038F1D706D9600812668 /* SDCollectionViewCell.h */,
+				E71503901D706D9600812668 /* SDCollectionViewCell.m */,
+				E71503911D706D9600812668 /* SDCycleScrollView.h */,
+				E71503921D706D9600812668 /* SDCycleScrollView.m */,
+				E71503931D706D9600812668 /* UIView+SDExtension.h */,
+				E71503941D706D9600812668 /* UIView+SDExtension.m */,
+			);
+			path = SDCycleScrollView;
+			sourceTree = "<group>";
+		};
+		E71503861D706D9600812668 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				E71503871D706D9600812668 /* TAAbstractDotView.h */,
+				E71503881D706D9600812668 /* TAAbstractDotView.m */,
+				E71503891D706D9600812668 /* TAAnimatedDotView.h */,
+				E715038A1D706D9600812668 /* TAAnimatedDotView.m */,
+				E715038B1D706D9600812668 /* TADotView.h */,
+				E715038C1D706D9600812668 /* TADotView.m */,
+				E715038D1D706D9600812668 /* TAPageControl.h */,
+				E715038E1D706D9600812668 /* TAPageControl.m */,
+			);
+			path = PageControl;
 			sourceTree = "<group>";
 		};
 		E72FD8021D1A4B6A000A5CE6 /* Modules */ = {
@@ -1507,6 +1557,7 @@
 		E7BD57811CF58893008F2D69 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E71503851D706D9600812668 /* SDCycleScrollView */,
 				E75C9BDC1D421B8C00950981 /* DBManager */,
 				E73911B61D2A62F800F4A522 /* PopMenu */,
 				E72FD84F1D24F420000A5CE6 /* RxWebViewController */,
@@ -1836,11 +1887,13 @@
 				E760B3281D2D1C6D00F5DB54 /* DropdownMenu.m in Sources */,
 				E7BD57751CF4360D008F2D69 /* ESports.xcdatamodeld in Sources */,
 				E760B3B21D3F8E5500F5DB54 /* InsertIndexPathModel.m in Sources */,
+				E71503991D706D9600812668 /* SDCollectionViewCell.m in Sources */,
 				E760B3761D3CAD0600F5DB54 /* DetailNewsController.m in Sources */,
 				E71627541D4A0FBE00EF6740 /* MatchTeamDataCenterCell.m in Sources */,
 				E71503451D6DC53C00812668 /* PlayerRole.m in Sources */,
 				E71550B81D5B33CF0073F159 /* StrengScorePlayerDetail.m in Sources */,
 				E715032E1D6C35E900812668 /* MatchZoneManager.m in Sources */,
+				E71503981D706D9600812668 /* TAPageControl.m in Sources */,
 				E760B3991D3E1DB800F5DB54 /* DetailNewSubNewCell.m in Sources */,
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E71550A71D59E8640073F159 /* StrengScoreTeamCell.m in Sources */,
@@ -1848,6 +1901,7 @@
 				E71551141D648B1C0073F159 /* JYLegendView.m in Sources */,
 				E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */,
 				E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */,
+				E71503961D706D9600812668 /* TAAnimatedDotView.m in Sources */,
 				E760B3A51D3F621400F5DB54 /* ResultMatchesManager.m in Sources */,
 				E716273D1D48A27300EF6740 /* MatchTeamData.m in Sources */,
 				E71503831D6FED8000812668 /* FindEmailPwdSuccesController.m in Sources */,
@@ -1861,12 +1915,15 @@
 				E71503741D6F0A6100812668 /* EmailRegisterSuccessController.m in Sources */,
 				E7BD57981CF6F4D3008F2D69 /* NSObject+Custom.m in Sources */,
 				E717B3171D53381D00BE98A3 /* MatchStandingCell.m in Sources */,
+				E715039A1D706D9600812668 /* SDCycleScrollView.m in Sources */,
 				E7BD578A1CF5A0AC008F2D69 /* HttpSessionClient.m in Sources */,
+				E71503951D706D9600812668 /* TAAbstractDotView.m in Sources */,
 				E716275E1D4B33ED00EF6740 /* MatchPickCell.m in Sources */,
 				E715034E1D6EBC3200812668 /* RegosterController.m in Sources */,
 				E72FD8941D251735000A5CE6 /* StrengthRatingController.m in Sources */,
 				E7BD578B1CF5A0AC008F2D69 /* HttpSessionManager.m in Sources */,
 				E7BD57921CF6E77F008F2D69 /* SystemConfig.m in Sources */,
+				E715039B1D706D9600812668 /* UIView+SDExtension.m in Sources */,
 				E760B35C1D379ADA00F5DB54 /* HotFocusNewCell.m in Sources */,
 				E71627621D4B4DF300EF6740 /* MatchPlayerData.m in Sources */,
 				E760B3441D363EC900F5DB54 /* HotWordNew.m in Sources */,
@@ -1922,6 +1979,7 @@
 				E71550C81D5C890C0073F159 /* StrengScoreTeamSecondCell.m in Sources */,
 				E71627391D47674900EF6740 /* ReplayTypeCell.m in Sources */,
 				E72FD85C1D24F420000A5CE6 /* UINavigationController+RxWebViewNavigation.m in Sources */,
+				E71503971D706D9600812668 /* TADotView.m in Sources */,
 				E72FD85A1D24F420000A5CE6 /* NJKWebViewProgressView.m in Sources */,
 				E73911C41D2A640B00F4A522 /* PopMenuStyle.m in Sources */,
 				E72FD84E1D24D37C000A5CE6 /* BaseNavigationController.m in Sources */,

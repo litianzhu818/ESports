@@ -35,13 +35,13 @@
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"news":@"新闻",
                                            @"matchs":@"赛事",
-                                           @"ranking":@"排行",
+                                           @"ranking":@"积分榜",
                                            @"strengthrating":@"实力评级"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"news":@"新聞",
                                            @"matchs":@"賽事",
-                                           @"ranking":@"排行",
+                                           @"ranking":@"積分榜",
                                            @"strengthrating":@"實力評級"
                                            }
                                    };

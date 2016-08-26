@@ -106,11 +106,11 @@
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"standing_title":@"Rank",
-                                           @"team_title":@"team",
-                                           @"win_title":@"win",
-                                           @"equal_title":@"equal",
-                                           @"defeat_title":@"defeat",
-                                           @"score_title":@"score"
+                                           @"team_title":@"Team",
+                                           @"win_title":@"Win",
+                                           @"equal_title":@"Draw",
+                                           @"defeat_title":@"Loss",
+                                           @"score_title":@"Point"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"standing_title":@"排行",

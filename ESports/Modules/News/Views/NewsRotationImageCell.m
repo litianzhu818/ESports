@@ -41,6 +41,10 @@ static const CGFloat cellWidth = 1240.0f;
             self.clikedBlock(index);
         }
     }];
+    
+    [self.scrollView setItemDidScrollOperationBlock:^(NSInteger index) {
+        
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

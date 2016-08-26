@@ -51,8 +51,6 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SDCycleScrollView (1.65):
-    - SDWebImage (~> 3.7)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
@@ -76,7 +74,6 @@ DEPENDENCIES:
   - QBImagePickerController (= 2.6.0)
   - RDVTabBarController
   - ReactiveCocoa
-  - SDCycleScrollView
   - SDWebImage
   - TMCache
   - TPKeyboardAvoiding
@@ -97,12 +94,11 @@ SPEC CHECKSUMS:
   QBImagePickerController: 095c2b2973de4da267334d2cfcac989c2eb5cdc2
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: 4fe19aac468fddb6af5a02507c51fc9ddcae7bbe
+PODFILE CHECKSUM: 1eb89dc75d83d3a5750648a93cfccffcdad97e31
 
 COCOAPODS: 1.0.1

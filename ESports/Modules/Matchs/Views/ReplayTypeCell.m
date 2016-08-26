@@ -10,6 +10,9 @@
 #import "HMSegmentedControl.h"
 
 @interface ReplayTypeCell ()
+{
+    NSInteger selectedIndex;
+}
 
 @property (strong, nonatomic) HMSegmentedControl *segmentedControl;
 
@@ -24,6 +27,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = HexColor(0x0e161f);
     self.contentView.backgroundColor = [UIColor clearColor];
+    
+    selectedIndex = 0;
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
@@ -67,6 +72,7 @@
     WEAK_SELF;
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
         STRONG_SELF;
+        selectedIndex = index;
         if (strongSelf.selectedIndexBlock) {
             strongSelf.selectedIndexBlock(index);
         }
@@ -83,6 +89,7 @@
 - (void)languageDidChanged
 {
     self.segmentedControl.sectionTitles = @[LTZLocalizedString(@"team_title", nil),LTZLocalizedString(@"player_title", nil),LTZLocalizedString(@"video_title", nil)];
+    [self.segmentedControl setSelectedSegmentIndex:selectedIndex];
 }
 
 #pragma mark - class methods

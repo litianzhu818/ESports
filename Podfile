@@ -15,7 +15,7 @@ target :ESports do
     pod 'QBImagePickerController', '2.6.0'
     pod 'BlocksKit' # ,'~> 2.2.5'
     pod 'CMPopTipView'
-    pod 'SDCycleScrollView'#,'~> 1.64'
+    #pod 'SDCycleScrollView'#,'~> 1.64'
     pod 'HMSegmentedControl'
     pod 'FMDB'
     pod 'ActionSheetPicker-3.0', '~> 2.2.0'

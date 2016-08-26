@@ -200,8 +200,18 @@ typedef NS_ENUM(NSUInteger, MatchReplayDisplayType) {
 - (void)languageDidChanged
 {
     self.title = LTZLocalizedString(@"view_controller_title", nil);
+    [self.tableView reloadData];
     
-    [self loadData];
+    if (self.currentDisplayType == MatchReplayDisplayTypeTeam) {
+        [self loadData];
+    }else if (self.currentDisplayType == MatchReplayDisplayTypePlayer) {
+        
+        [self firstLoadMatchPlayerData];
+        
+    }else if (self.currentDisplayType == MatchReplayDisplayTypeVideo) {
+        [self firstLoadMatchVideoData];
+        
+    }
 }
 
 #pragma mark - UITableViewDelegate methods

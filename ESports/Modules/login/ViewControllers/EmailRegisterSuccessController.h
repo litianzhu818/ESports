@@ -10,4 +10,9 @@
 
 @interface EmailRegisterSuccessController : BaseViewController
 
+@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *pwd;
+
+- (instancetype)initWithEmail:(NSString *)email pwd:(NSString *)pwd;
+
 @end

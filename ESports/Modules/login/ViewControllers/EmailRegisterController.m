@@ -89,7 +89,7 @@
     // 以后可能是手机登录
     
     if (![self.pwd1 isEqualToString:self.pwd2]) {
-        [self showHudMessage:LTZLocalizedString(@"email_formart_error_title", nil)];
+        [self showHudMessage:LTZLocalizedString(@"pwd_no_equl_pwd2_title", nil)];
         return;
     }
     
@@ -104,7 +104,7 @@
                                                          
                                                          if (!error) {
                                                              
-                                                             EmailRegisterSuccessController *emailRegisterSuccessController = [[EmailRegisterSuccessController alloc] init];
+                                                             EmailRegisterSuccessController *emailRegisterSuccessController = [[EmailRegisterSuccessController alloc] initWithEmail:strongSelf.email pwd:strongSelf.pwd1];
                                                              [strongSelf.navigationController pushViewController:emailRegisterSuccessController animated:YES];
                                                          }else{
                                                              if (error.localizedDescription) {
