@@ -88,7 +88,7 @@
 {
     if (!self.newsId) return;
     
-    NSString *baseUrl = @"http://lol.esportsmatrix.com/%@/News/Detail?id=%@";
+    NSString *baseUrl = @"http://lol.esportsmatrix.com/%@/News/DetailForApp?id=%@";
     
     NSURL *requestUrl = [NSURL URLWithString:[NSString stringWithFormat:baseUrl,[self locationPath],self.newsId]];
     
