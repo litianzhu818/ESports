@@ -60,19 +60,19 @@
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
                                            @"login_title":@"Login",
-                                           @"find_back_pwd_title":@"Find Password",
+                                           @"find_back_pwd_title":@"Forgot pasword",
                                            @"register_title":@"Register",
                                            @"other_way_login_title":@"Using Social Account"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"login_title":@"登录",
-                                           @"find_back_pwd_title":@"找回密码",
+                                           @"find_back_pwd_title":@"忘记密码",
                                            @"register_title":@"注册",
                                            @"other_way_login_title":@"使用社交账号登录"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"login_title":@"登錄",
-                                           @"find_back_pwd_title":@"找回密碼",
+                                           @"find_back_pwd_title":@"忘記密碼",
                                            @"register_title":@"註冊",
                                            @"other_way_login_title":@"使用社交賬號登錄"
                                            }

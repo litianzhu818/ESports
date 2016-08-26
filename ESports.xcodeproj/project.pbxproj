@@ -42,6 +42,12 @@
 		E71503701D6F047200812668 /* InputPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715036E1D6F047200812668 /* InputPasswordCell.xib */; };
 		E71503741D6F0A6100812668 /* EmailRegisterSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503721D6F0A6100812668 /* EmailRegisterSuccessController.m */; };
 		E71503751D6F0A6100812668 /* EmailRegisterSuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503731D6F0A6100812668 /* EmailRegisterSuccessController.xib */; };
+		E71503791D6FE49A00812668 /* FindPwdSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503771D6FE49A00812668 /* FindPwdSelectController.m */; };
+		E715037A1D6FE49A00812668 /* FindPwdSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503781D6FE49A00812668 /* FindPwdSelectController.xib */; };
+		E715037E1D6FEA7F00812668 /* FindEmailPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = E715037C1D6FEA7F00812668 /* FindEmailPwdController.m */; };
+		E715037F1D6FEA7F00812668 /* FindEmailPwdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E715037D1D6FEA7F00812668 /* FindEmailPwdController.xib */; };
+		E71503831D6FED8000812668 /* FindEmailPwdSuccesController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503811D6FED8000812668 /* FindEmailPwdSuccesController.m */; };
+		E71503841D6FED8000812668 /* FindEmailPwdSuccesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503821D6FED8000812668 /* FindEmailPwdSuccesController.xib */; };
 		E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509C1D5882CE0073F159 /* PointsTeam.m */; };
 		E71550A01D59D8840073F159 /* StrengScoreTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = E715509F1D59D8840073F159 /* StrengScoreTeam.m */; };
 		E71550A31D59D89F0073F159 /* StrengScorePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71550A21D59D89F0073F159 /* StrengScorePlayer.m */; };
@@ -292,6 +298,15 @@
 		E71503711D6F0A6100812668 /* EmailRegisterSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterSuccessController.h; sourceTree = "<group>"; };
 		E71503721D6F0A6100812668 /* EmailRegisterSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterSuccessController.m; sourceTree = "<group>"; };
 		E71503731D6F0A6100812668 /* EmailRegisterSuccessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailRegisterSuccessController.xib; sourceTree = "<group>"; };
+		E71503761D6FE49A00812668 /* FindPwdSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPwdSelectController.h; sourceTree = "<group>"; };
+		E71503771D6FE49A00812668 /* FindPwdSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPwdSelectController.m; sourceTree = "<group>"; };
+		E71503781D6FE49A00812668 /* FindPwdSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindPwdSelectController.xib; sourceTree = "<group>"; };
+		E715037B1D6FEA7F00812668 /* FindEmailPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindEmailPwdController.h; sourceTree = "<group>"; };
+		E715037C1D6FEA7F00812668 /* FindEmailPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindEmailPwdController.m; sourceTree = "<group>"; };
+		E715037D1D6FEA7F00812668 /* FindEmailPwdController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindEmailPwdController.xib; sourceTree = "<group>"; };
+		E71503801D6FED8000812668 /* FindEmailPwdSuccesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindEmailPwdSuccesController.h; sourceTree = "<group>"; };
+		E71503811D6FED8000812668 /* FindEmailPwdSuccesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindEmailPwdSuccesController.m; sourceTree = "<group>"; };
+		E71503821D6FED8000812668 /* FindEmailPwdSuccesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindEmailPwdSuccesController.xib; sourceTree = "<group>"; };
 		E715509B1D5882CE0073F159 /* PointsTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsTeam.h; sourceTree = "<group>"; };
 		E715509C1D5882CE0073F159 /* PointsTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsTeam.m; sourceTree = "<group>"; };
 		E715509E1D59D8840073F159 /* StrengScoreTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengScoreTeam.h; sourceTree = "<group>"; };
@@ -707,6 +722,15 @@
 				E71503711D6F0A6100812668 /* EmailRegisterSuccessController.h */,
 				E71503721D6F0A6100812668 /* EmailRegisterSuccessController.m */,
 				E71503731D6F0A6100812668 /* EmailRegisterSuccessController.xib */,
+				E71503761D6FE49A00812668 /* FindPwdSelectController.h */,
+				E71503771D6FE49A00812668 /* FindPwdSelectController.m */,
+				E71503781D6FE49A00812668 /* FindPwdSelectController.xib */,
+				E715037B1D6FEA7F00812668 /* FindEmailPwdController.h */,
+				E715037C1D6FEA7F00812668 /* FindEmailPwdController.m */,
+				E715037D1D6FEA7F00812668 /* FindEmailPwdController.xib */,
+				E71503801D6FED8000812668 /* FindEmailPwdSuccesController.h */,
+				E71503811D6FED8000812668 /* FindEmailPwdSuccesController.m */,
+				E71503821D6FED8000812668 /* FindEmailPwdSuccesController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1663,6 +1687,7 @@
 				E71503391D6C500200812668 /* login_close_btn@2x.png in Resources */,
 				E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */,
 				E760B3901D3E19BF00F5DB54 /* DetailRelNewsBottomCell.xib in Resources */,
+				E715037A1D6FE49A00812668 /* FindPwdSelectController.xib in Resources */,
 				E715033D1D6C500200812668 /* login_pwd@2x.png in Resources */,
 				E715512C1D66BC890073F159 /* match_kill_red@2x.png in Resources */,
 				E71550AD1D59E87E0073F159 /* StrengScorePlayerCell.xib in Resources */,
@@ -1692,6 +1717,7 @@
 				E715033E1D6C500200812668 /* login_qq@2x.png in Resources */,
 				E71550BD1D5C22120073F159 /* StrengthRankingPlayerController.xib in Resources */,
 				E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */,
+				E715037F1D6FEA7F00812668 /* FindEmailPwdController.xib in Resources */,
 				E717B3181D53381D00BE98A3 /* MatchStandingCell.xib in Resources */,
 				E717B3061D519FD800BE98A3 /* match_player_data_carry@2x.png in Resources */,
 				E71503381D6C500200812668 /* login_back_bg@2x.png in Resources */,
@@ -1703,6 +1729,7 @@
 				E760B3351D2E39AD00F5DB54 /* location_drop_n@2x.png in Resources */,
 				E717B31D1D533DD200BE98A3 /* PointsTypeSelectView.xib in Resources */,
 				E7BD57721CF4360D008F2D69 /* Main.storyboard in Resources */,
+				E71503841D6FED8000812668 /* FindEmailPwdSuccesController.xib in Resources */,
 				E715512E1D66BC890073F159 /* match_team_red_bg@2x.png in Resources */,
 				E71627461D49AD8400EF6740 /* match_team_data_arrow@2x.png in Resources */,
 				E71503401D6C500200812668 /* login_wechat@2x.png in Resources */,
@@ -1795,6 +1822,7 @@
 				E716273F1D48C58C00EF6740 /* ExtendTableViewHeaderView.m in Sources */,
 				E71550C11D5C59580073F159 /* StrengScoreTeamTopCell.m in Sources */,
 				E760B3601D38D34200F5DB54 /* NewsTableViewHeader.m in Sources */,
+				E71503791D6FE49A00812668 /* FindPwdSelectController.m in Sources */,
 				E71550AC1D59E87E0073F159 /* StrengScorePlayerCell.m in Sources */,
 				E760B3941D3E1C4700F5DB54 /* DetailNewSubTitleCell.m in Sources */,
 				E72FD8471D23D8E2000A5CE6 /* NSObject+localization.m in Sources */,
@@ -1816,11 +1844,13 @@
 				E760B3991D3E1DB800F5DB54 /* DetailNewSubNewCell.m in Sources */,
 				E72FD8381D212A1B000A5CE6 /* BaseViewController.m in Sources */,
 				E71550A71D59E8640073F159 /* StrengScoreTeamCell.m in Sources */,
+				E715037E1D6FEA7F00812668 /* FindEmailPwdController.m in Sources */,
 				E71551141D648B1C0073F159 /* JYLegendView.m in Sources */,
 				E72FD8B11D267458000A5CE6 /* RDVTabBarController+reloadItems.m in Sources */,
 				E715510E1D6464D00073F159 /* StrengScorePlayerFourthCell.m in Sources */,
 				E760B3A51D3F621400F5DB54 /* ResultMatchesManager.m in Sources */,
 				E716273D1D48A27300EF6740 /* MatchTeamData.m in Sources */,
+				E71503831D6FED8000812668 /* FindEmailPwdSuccesController.m in Sources */,
 				E71503661D6EF56F00812668 /* EmailRegisterController.m in Sources */,
 				E71627341D47516900EF6740 /* ReplayTopCell.m in Sources */,
 				E715509D1D5882CE0073F159 /* PointsTeam.m in Sources */,

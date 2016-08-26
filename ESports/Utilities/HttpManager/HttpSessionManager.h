@@ -86,4 +86,6 @@
                  password:(NSString *)password
           confirmPassword:(NSString *)confirmPassword
                     block:(void (^)(id data, NSError *error))block;
+- (void)findPwdWithEmail:(NSString *)email
+                   block:(void (^)(id data, NSError *error))block;
 @end

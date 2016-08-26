@@ -28,7 +28,7 @@
                             <action selector="loginAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EsZ-XR-K55"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号登录电竞魔方" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UO-5t-1qL">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号登录电竞魔方" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UO-5t-1qL">
                         <rect key="frame" x="0.0" y="334" width="320" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Dpr-Bu-i8y"/>
@@ -38,7 +38,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n55-DR-JCS">
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n55-DR-JCS">
                         <rect key="frame" x="0.0" y="355" width="320" height="60"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Q4-29-ejc">
@@ -113,7 +113,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Q4-29-ejc" firstAttribute="centerX" secondItem="n55-DR-JCS" secondAttribute="centerX" id="80r-6Q-Nsn"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Q60-cs-kdb"/>
                             <constraint firstAttribute="height" constant="60" id="XT3-1T-2IS"/>
                             <constraint firstItem="7Q4-29-ejc" firstAttribute="centerY" secondItem="n55-DR-JCS" secondAttribute="centerY" id="mAp-Ua-8B2"/>
                         </constraints>

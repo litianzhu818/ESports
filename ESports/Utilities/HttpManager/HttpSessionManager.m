@@ -430,6 +430,26 @@
                                                      }];
 }
 
+- (void)findPwdWithEmail:(NSString *)email
+                    block:(void (^)(id data, NSError *error))block
+{
+    NSDictionary *params = @{
+                             @"Email":email
+                             };
+    
+    [[HttpSessionClient sharedClient] requestJsonDataWithPath:findEmailPasswordURL
+                                                   withParams:params
+                                               withMethodType:HttpSessionTypePOST
+                                                     andBlock:^(id data, NSError *error) {
+                                                         if (data) {
+                                                             block(data, nil);
+                                                         }else{
+                                                             block(nil, error);
+                                                         }
+                                                     }];
+}
+
+
 //- (void)loginWithIdentifier:(NSString *)identifier
 //                     params:(id)params
 //                      block:(void (^)(id data, NSError *error))block

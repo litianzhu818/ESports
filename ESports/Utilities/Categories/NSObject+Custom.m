@@ -159,6 +159,7 @@
     
     if (resultSuccess.intValue != 1) {
         
+        /*
         NSString *errorData = [responseJSON valueForKeyPath:@"Data"];
         
         if (![errorData isKindOfClass:[NSNull class]] && [errorData isKindOfClass:[NSString class]]) {
@@ -173,7 +174,7 @@
                 
                 return errorData;
             }
-        }
+        }*/
         
         NSData *messageData= [[responseJSON valueForKeyPath:@"Message"] dataUsingEncoding:NSUTF8StringEncoding];
         
@@ -186,8 +187,22 @@
         NSString *errorDcr = [messages[0] objectForKey:@"msg"];
         
         if (errorDcr.length > 0) {
+            if ([errorDcr isEqualToString:@"Email not confirmed."] || [errorDcr isEqualToString:@"邮箱未激活"] || [errorDcr isEqualToString:@"郵箱未激活"]) {
+                if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]) {
+                    [self showHudMessage:@"您的邮箱还没有验证，请及时验证"];
+                }else if ([[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]) {
+                    [self showHudMessage:@"您的郵箱還沒有驗證，請及時驗證"];
+                }else{
+                    [self showHudMessage:@"You do not verify your email address, please go to verify in time"];
+                }
+                
+                return errorDcr;
+            }
+            
             *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:@{NSLocalizedDescriptionKey:errorDcr}];
+            
         }else{
+            
             *error = [NSError errorWithDomain:[NSString stringWithFormat:@"%@",BaseURL] code:999 userInfo:nil];
         }
         

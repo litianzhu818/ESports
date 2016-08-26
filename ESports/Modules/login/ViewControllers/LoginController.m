@@ -16,6 +16,7 @@
 #import "RegosterController.h"
 #import "MBProgressHUD.h"
 #import "NSString+Common.h"
+#import "FindPwdSelectController.h"
 
 @interface LoginController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
@@ -206,7 +207,7 @@
     }];
     
     [cell setFindPwdActionBlock:^{
-        [weakSelf showHudMessage:@"It's coming soon..."];
+        [weakSelf.navigationController pushViewController:[FindPwdSelectController new] animated:YES];
     }];
     
     [cell setRegisterActionBlock:^{

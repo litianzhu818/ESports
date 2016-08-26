@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FindPwdSelectController">
+            <connections>
+                <outlet property="backImageView" destination="RWi-bB-DTk" id="f4f-aJ-W2X"/>
+                <outlet property="emailRegisterBtn" destination="XsT-9d-IfP" id="fsV-cZ-1n2"/>
+                <outlet property="phoneRegisterBtn" destination="TA5-7i-fQ8" id="9Yp-sT-E4u"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_back_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="RWi-bB-DTk">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TA5-7i-fQ8">
+                    <rect key="frame" x="24" y="312" width="552" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="tnE-Rz-snu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <state key="normal" title="手机注册找回">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="phoneRegisterAction:" destination="-1" eventType="touchUpInside" id="Jly-v6-c8k"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ii6-qc-puP">
+                    <rect key="frame" x="260" y="60" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="46I-wb-9Do"/>
+                        <constraint firstAttribute="width" constant="80" id="ACk-hX-1gP"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XsT-9d-IfP">
+                    <rect key="frame" x="24" y="253" width="552" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="HLQ-36-d5p"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <state key="normal" title="邮箱注册找回">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="emailRegisterAction:" destination="-1" eventType="touchUpInside" id="mK3-ZO-XVb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="RWi-bB-DTk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dmx-Oj-G1q"/>
+                <constraint firstItem="RWi-bB-DTk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JL0-Dn-m3B"/>
+                <constraint firstItem="TA5-7i-fQ8" firstAttribute="top" secondItem="XsT-9d-IfP" secondAttribute="bottom" constant="23" id="N0a-Hm-TBk"/>
+                <constraint firstItem="Ii6-qc-puP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="TbZ-8Y-GCX"/>
+                <constraint firstAttribute="bottom" secondItem="RWi-bB-DTk" secondAttribute="bottom" id="UHy-fC-pu5"/>
+                <constraint firstAttribute="trailing" secondItem="RWi-bB-DTk" secondAttribute="trailing" id="VEZ-xB-kk9"/>
+                <constraint firstItem="XsT-9d-IfP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="YwP-eg-JhO"/>
+                <constraint firstItem="Ii6-qc-puP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fJB-FR-a5K"/>
+                <constraint firstAttribute="trailing" secondItem="XsT-9d-IfP" secondAttribute="trailing" constant="24" id="hnP-Dl-um5"/>
+                <constraint firstItem="TA5-7i-fQ8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="l20-PD-Yjj"/>
+                <constraint firstAttribute="trailing" secondItem="TA5-7i-fQ8" secondAttribute="trailing" constant="24" id="uc0-l7-Td7"/>
+                <constraint firstItem="XsT-9d-IfP" firstAttribute="top" secondItem="Ii6-qc-puP" secondAttribute="bottom" constant="113" id="yVR-Ov-m7a"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="login_back_bg.png" width="540" height="960"/>
+        <image name="login_logo.png" width="92" height="106"/>
+    </resources>
+</document>

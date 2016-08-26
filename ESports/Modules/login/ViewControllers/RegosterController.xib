@@ -22,7 +22,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_back_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="4rU-r9-gcx">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcs-zP-hpq">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcs-zP-hpq">
                     <rect key="frame" x="171" y="192" width="258" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyA-m1-AK7">
@@ -85,7 +85,7 @@
                         <constraint firstAttribute="width" constant="80" id="6DP-r0-A7e"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8s-lK-Bql">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8s-lK-Bql">
                     <rect key="frame" x="8" y="163" width="584" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="edI-LT-L8Z"/>
@@ -94,7 +94,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="register_or_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="4GB-Z2-7xU">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="register_or_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="4GB-Z2-7xU">
                     <rect key="frame" x="24" y="244" width="552" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="Pza-nl-ykW"/>
@@ -113,7 +113,7 @@
                         <action selector="emailRegisterAction:" destination="-1" eventType="touchUpInside" id="qNA-Xu-ot9"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXJ-9V-yi1">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXJ-9V-yi1">
                     <rect key="frame" x="24" y="352" width="552" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="f0m-jX-RHX"/>
