@@ -62,19 +62,27 @@
                                            @"login_title":@"Login",
                                            @"find_back_pwd_title":@"Forgot pasword",
                                            @"register_title":@"Register",
-                                           @"other_way_login_title":@"Using Social Account"
+                                           @"other_way_login_title":@"Using Social Account",
+                                           @"name_placeholder_title":@"Email or phone member",
+                                           @"pwd_placeholder_title":@"Password"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"login_title":@"登录",
                                            @"find_back_pwd_title":@"忘记密码",
                                            @"register_title":@"注册",
-                                           @"other_way_login_title":@"使用社交账号登录"
+                                           @"other_way_login_title":@"使用社交账号登录",
+                                           @"name_placeholder_title":@"邮箱或手机号",
+                                           @"pwd_placeholder_title":@"密码"
+
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"login_title":@"登錄",
                                            @"find_back_pwd_title":@"忘記密碼",
                                            @"register_title":@"註冊",
-                                           @"other_way_login_title":@"使用社交賬號登錄"
+                                           @"other_way_login_title":@"使用社交賬號登錄",
+                                           @"name_placeholder_title":@"郵箱或手機號",
+                                           @"pwd_placeholder_title":@"密碼"
+
                                            }
                                    };
     
@@ -89,6 +97,10 @@
     
     self.otherLoginWayTitleLabel.text = LTZLocalizedString(@"other_way_login_title", nil);
     
+    /*
+    self.nameTextField.placeholder = LTZLocalizedString(@"name_placeholder_title", nil);
+    self.pwdTextField.placeholder = LTZLocalizedString(@"pwd_placeholder_title", nil);
+     */
     
     [self.nameTextField addTarget:self action:@selector(nameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.pwdTextField addTarget:self action:@selector(pwdTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -194,6 +206,11 @@
     
     [self.registerBtn setTitle:LTZLocalizedString(@"register_title", nil) forState:UIControlStateNormal];
     [self.registerBtn setTitle:LTZLocalizedString(@"register_title", nil) forState:UIControlStateHighlighted];
+    
+    /*
+     self.nameTextField.placeholder = LTZLocalizedString(@"name_placeholder_title", nil);
+     self.pwdTextField.placeholder = LTZLocalizedString(@"pwd_placeholder_title", nil);
+     */
     
     self.otherLoginWayTitleLabel.text = LTZLocalizedString(@"other_way_login_title", nil);
 }

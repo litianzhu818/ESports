@@ -32,10 +32,11 @@
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{
-                                           @"next_btn_title":@"Next"
+                                           @"next_btn_title":@"Next",
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
-                                           @"next_btn_title":@"下一步"
+                                           @"next_btn_title":@"下一步",
+                                           @"email_placeholder_title":@"youxiang"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"next_btn_title":@"下一步"
