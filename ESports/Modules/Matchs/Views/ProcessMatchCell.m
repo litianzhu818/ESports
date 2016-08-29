@@ -139,7 +139,7 @@ typedef struct CountDownTimeModel{
     
     NSTimeInterval timeInterval = [self.processMatch.date timeIntervalSinceNow];
     
-    NSTimeInterval oneDayTimeInterval = (NSTimeInterval)(3600*24);
+    NSTimeInterval oneDayTimeInterval = (NSTimeInterval)3600;
     
     if (self.processMatch.liveStreamPage.length > 0
         && [self isTodayTime:self.processMatch.date]
