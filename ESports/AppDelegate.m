@@ -37,6 +37,8 @@
     return YES;
 }
 
+//
+/*change language method sample
 - (void)changedLanguage
 {
     NSString *language = nil;
@@ -52,6 +54,7 @@
     
     [self performSelector:@selector(changedLanguage) withObject:nil afterDelay:2.0];
 }
+ */
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
