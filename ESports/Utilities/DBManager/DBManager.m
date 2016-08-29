@@ -168,7 +168,6 @@ Single_implementation(DBManager);
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm"]; //@"yyyy/MM/dd HH:mm:ss Z"
     
     NSString *timeStr = [formatter stringFromDate:time];
-//    NSString *insertSql2 = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@') VALUES ('%@', '%@', '%@')",TABLENAME, NAME, AGE, ADDRESS, @"李四", @"12", @"济南"];
     NSString *SQL = [NSString stringWithFormat:@"INSERT INTO '%@'('%@', '%@') VALUES('%@','%@')",subscribeMatchTableName,@"matchId",@"time",matchId,timeStr];
     
     [self createSubscribeMatchTable];

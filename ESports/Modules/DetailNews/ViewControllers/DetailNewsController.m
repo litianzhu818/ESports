@@ -127,16 +127,16 @@
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-
+    [self.activityIndicatorView stopAnimating];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [self.activityIndicatorView stopAnimating];
+    
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [self.activityIndicatorView stopAnimating];
+    //[self.activityIndicatorView stopAnimating];
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"error" ofType:@"html"];
     NSURL* url = [NSURL fileURLWithPath:path];
