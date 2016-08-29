@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *findPwdImageView;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *otherLoginWayTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *skipBtn;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomBackView;
 
@@ -55,6 +56,10 @@
     [self.registerBtn setTitleColor:HexColor(0xbabbbd) forState:UIControlStateNormal];
     [self.registerBtn setTitleColor:HexColor(0xbabbbd) forState:UIControlStateHighlighted];
     
+    
+    [self.skipBtn setTitleColor:HexColor(0x6ed4ff) forState:UIControlStateNormal];
+    [self.skipBtn setTitleColor:HexColor(0x6ed4ff) forState:UIControlStateHighlighted];
+    
     [self.loginButton setBackgroundColor:HexColor(0x286cb5)];
     
     self.localStringDictionary = @{
@@ -64,7 +69,8 @@
                                            @"register_title":@"Register",
                                            @"other_way_login_title":@"Using Social Account",
                                            @"name_placeholder_title":@"Email or phone member",
-                                           @"pwd_placeholder_title":@"Password"
+                                           @"pwd_placeholder_title":@"Password",
+                                           @"skip_btn_title":@"No register, start using now"
                                            },
                                    SYS_LANGUAGE_S_CHINESE:@{
                                            @"login_title":@"登录",
@@ -72,8 +78,8 @@
                                            @"register_title":@"注册",
                                            @"other_way_login_title":@"使用社交账号登录",
                                            @"name_placeholder_title":@"邮箱或手机号",
-                                           @"pwd_placeholder_title":@"密码"
-
+                                           @"pwd_placeholder_title":@"密码",
+                                           @"skip_btn_title":@"稍后注册，开始使用"
                                            },
                                    SYS_LANGUAGE_T_CHINESE:@{
                                            @"login_title":@"登錄",
@@ -81,8 +87,8 @@
                                            @"register_title":@"註冊",
                                            @"other_way_login_title":@"使用社交賬號登錄",
                                            @"name_placeholder_title":@"郵箱或手機號",
-                                           @"pwd_placeholder_title":@"密碼"
-
+                                           @"pwd_placeholder_title":@"密碼",
+                                           @"skip_btn_title":@"稍後註冊，開始使用"
                                            }
                                    };
     
@@ -95,6 +101,8 @@
     [self.registerBtn setTitle:LTZLocalizedString(@"register_title", nil) forState:UIControlStateNormal];
     [self.registerBtn setTitle:LTZLocalizedString(@"register_title", nil) forState:UIControlStateHighlighted];
     
+    [self.skipBtn setTitle:LTZLocalizedString(@"skip_btn_title", nil) forState:UIControlStateNormal];
+    [self.skipBtn setTitle:LTZLocalizedString(@"skip_btn_title", nil) forState:UIControlStateHighlighted];
     self.otherLoginWayTitleLabel.text = LTZLocalizedString(@"other_way_login_title", nil);
     
     /*
@@ -143,6 +151,13 @@
     [self.pwdTextField resignFirstResponder];
     if (self.loginActionBlock) {
         self.loginActionBlock();
+    }
+}
+
+- (IBAction)skipAction:(id)sender
+{
+    if (self.skipActionBlock) {
+        self.skipActionBlock();
     }
 }
 
@@ -206,6 +221,9 @@
     
     [self.registerBtn setTitle:LTZLocalizedString(@"register_title", nil) forState:UIControlStateNormal];
     [self.registerBtn setTitle:LTZLocalizedString(@"register_title", nil) forState:UIControlStateHighlighted];
+    
+    [self.skipBtn setTitle:LTZLocalizedString(@"skip_btn_title", nil) forState:UIControlStateNormal];
+    [self.skipBtn setTitle:LTZLocalizedString(@"skip_btn_title", nil) forState:UIControlStateHighlighted];
     
     /*
      self.nameTextField.placeholder = LTZLocalizedString(@"name_placeholder_title", nil);

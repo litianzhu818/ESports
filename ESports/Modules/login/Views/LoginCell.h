@@ -16,6 +16,7 @@
 @property (copy, nonatomic) void (^loginActionBlock)(void);
 @property (copy, nonatomic) void (^findPwdActionBlock)(void);
 @property (copy, nonatomic) void (^registerActionBlock)(void);
+@property (copy, nonatomic) void (^skipActionBlock)(void);
 @property (copy, nonatomic) void (^selectedOtherWayLoginBlock)(NSInteger index);
 
 + (UINib *)nib;

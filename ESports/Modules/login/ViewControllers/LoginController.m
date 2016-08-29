@@ -83,7 +83,7 @@
                                    };
     
     self.title = LTZLocalizedString(@"view_controller_title", nil);
-    
+    /*
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.closeButton setBounds:CGRectMake(0, 0, 60, 30)];
     [self.closeButton setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.7] forState:UIControlStateNormal];
@@ -94,7 +94,7 @@
     [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateHighlighted];
     
     [self.closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    */
     // 修改导航栏左边的item
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.closeButton];
     self.backImageView.clipsToBounds = YES;
@@ -115,8 +115,8 @@
 - (void)languageDidChanged
 {
     self.title = LTZLocalizedString(@"view_controller_title", nil);
-    [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateNormal];
-    [self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateHighlighted];
+    //[self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateNormal];
+    //[self.closeButton setTitle:LTZLocalizedString(@"not_login_btn_title", nil) forState:UIControlStateHighlighted];
 }
 
 - (void)loginAction
@@ -235,6 +235,10 @@
     
     [cell setRegisterActionBlock:^{
         [weakSelf.navigationController pushViewController:[RegosterController new] animated:YES];
+    }];
+    
+    [cell setSkipActionBlock:^{
+        [weakSelf closeAction:nil];
     }];
     
     [cell setSelectedOtherWayLoginBlock:^(NSInteger loginWay) {
