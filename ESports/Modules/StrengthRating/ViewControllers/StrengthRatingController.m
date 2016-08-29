@@ -597,7 +597,7 @@ typedef NS_ENUM(NSUInteger, StrengthScoreType) {
 #pragma mark - 切换语言响应方法
 - (void)languageDidChanged
 {
-    self.title = LTZLocalizedString(@"view_controller_title", nil);
+    self.title = LTZLocalizedString(@"title", nil);
     
     self.dropdownMenu.items = @[[[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_global", nil)],
                                 [[DropdownMenuItem alloc] initWithTitle:LTZLocalizedString(@"local_item_lck", nil)],
