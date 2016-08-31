@@ -40,9 +40,16 @@
     [super awakeFromNib];
     // Initialization code
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:self.bounds];
-    backgroundView.backgroundColor = HexColor(0x16212f);
-    self.backgroundView = backgroundView;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        
+        UIView *backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+        backgroundView.backgroundColor = HexColor(0x16212f);
+        self.backgroundView = backgroundView;
+        
+    }else {
+        self.backgroundColor = HexColor(0x16212f);
+    }
+    
     
     self.titleLabel.textColor = HexColor(0xa7a9ac);
     

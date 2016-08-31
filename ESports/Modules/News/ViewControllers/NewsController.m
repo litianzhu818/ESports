@@ -349,47 +349,57 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                   block:^(TMCache *cache, NSString *key, id object) {
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
                                       NSArray<NewsRotationImage *> *images = object;
-                                      [strongSelf.images addObjectsFromArray:images];
-                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                          if (strongSelf.images.count > 0) {
-                                              
+                                      
+                                      if (images.count > 0) {
+                                          [strongSelf.images addObjectsFromArray:images];
+                                          dispatch_async(dispatch_get_main_queue(), ^{
                                               [strongSelf.hotfocusTableView reloadData];
-                                          }
-                                        
-                                      });
+                                          });
+                                          
+                                      }
                                       
                                   }];
     
     [[TMCache sharedCache] objectForKey:hotFocusNewsListCacheKey
                                   block:^(TMCache *cache, NSString *key, NSArray<HotFocusNew *> *HotFocusNews) {
-                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-                                      [strongSelf.hotFocusNews addObjectsFromArray:HotFocusNews];
-                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                          [strongSelf.hotfocusTableView reloadData];
-                                      });
+                                      if (HotFocusNews.count > 0) {
+                                          __strong typeof(weakSelf) strongSelf = weakSelf;
+                                          [strongSelf.hotFocusNews addObjectsFromArray:HotFocusNews];
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              [strongSelf.hotfocusTableView reloadData];
+                                          });
+                                          
+                                      }
+                                      
                                   }];
     
     [[TMCache sharedCache] objectForKey:transferNewsListCacheKey
                                   block:^(TMCache *cache, NSString *key, NSArray<TransferNewContainer *> *TransferNewContainers) {
-                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-                                      [TransferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-                                          [strongSelf.transferNewManager addTransferNewContainer:transferNewContainer];
-                                      }];
-                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                          [strongSelf.transferTableView reloadData];
-                                      });
+                                      if (TransferNewContainers.count > 0) {
+                                          __strong typeof(weakSelf) strongSelf = weakSelf;
+                                          [TransferNewContainers enumerateObjectsUsingBlock:^(TransferNewContainer * _Nonnull transferNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
+                                              [strongSelf.transferNewManager addTransferNewContainer:transferNewContainer];
+                                          }];
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              [strongSelf.transferTableView reloadData];
+                                          });
+                                      }
                                   }];
     
     [[TMCache sharedCache] objectForKey:hotwordsNewsListCacheKey
                                   block:^(TMCache *cache, NSString *key, NSArray<HotWordNewContainer *> *HotWordNewContainers) {
-                                      __strong typeof(weakSelf) strongSelf = weakSelf;
-                                      [HotWordNewContainers enumerateObjectsUsingBlock:^(HotWordNewContainer * _Nonnull hotWordNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
-                                          [strongSelf.hotWordNewManager addHotWordNewContainer:hotWordNewContainer];
-                                      }];
                                       
-                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                          [strongSelf.hotwordsTableView reloadData];
-                                      });
+                                      if (HotWordNewContainers.count > 0) {
+                                          __strong typeof(weakSelf) strongSelf = weakSelf;
+                                          [HotWordNewContainers enumerateObjectsUsingBlock:^(HotWordNewContainer * _Nonnull hotWordNewContainer, NSUInteger idx, BOOL * _Nonnull stop) {
+                                              [strongSelf.hotWordNewManager addHotWordNewContainer:hotWordNewContainer];
+                                          }];
+                                          
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              [strongSelf.hotwordsTableView reloadData];
+                                          });
+                                          
+                                      }
                                   }];
     
     // 开始网络请求数据
@@ -459,23 +469,24 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                            
                                                                            if (!error) {
                                                                                
-                                                                               [strongSelf.images removeAllObjects];
-                                                                               
-                                                                               [images enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                                                   NewsRotationImage *image = [[NewsRotationImage alloc] initWithDictionary:dic
-                                                                                                                                                      error:nil];
-                                                                                   if (image) {
-                                                                                       [strongSelf.images addObject:image];
-                                                                                   }
-                                                                               }];
-                                                                               
-                                                                               
-                                                                               [strongSelf.hotfocusTableView reloadData];
-                                                                               
-                                                                               [[TMCache sharedCache] setObject:strongSelf.images
-                                                                                                         forKey:newsImagesCacheKey
-                                                                                                          block:NULL];
-                                                                               
+                                                                               if (images.count > 0) {
+                                                                                   [strongSelf.images removeAllObjects];
+                                                                                   
+                                                                                   [images enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                                                       NewsRotationImage *image = [[NewsRotationImage alloc] initWithDictionary:dic
+                                                                                                                                                          error:nil];
+                                                                                       if (image) {
+                                                                                           [strongSelf.images addObject:image];
+                                                                                       }
+                                                                                   }];
+                                                                                   
+                                                                                   
+                                                                                   [strongSelf.hotfocusTableView reloadData];
+                                                                                   
+                                                                                   [[TMCache sharedCache] setObject:strongSelf.images
+                                                                                                             forKey:newsImagesCacheKey
+                                                                                                              block:NULL];
+                                                                               }
                                                                            }
                                                                            
                                                                        }];
