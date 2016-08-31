@@ -347,6 +347,7 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
     
     [[TMCache sharedCache] objectForKey:newsImagesCacheKey
                                   block:^(TMCache *cache, NSString *key, id object) {
+                                      
                                       __strong typeof(weakSelf) strongSelf = weakSelf;
                                       NSArray<NewsRotationImage *> *images = object;
                                       
@@ -468,10 +469,8 @@ static NSString *const hotwordsNewsListCacheKey = @"news_controller_hot_words_ne
                                                                            __strong typeof(weakSelf) strongSelf = weakSelf;
                                                                            
                                                                            if (!error) {
-                                                                               
                                                                                if (images.count > 0) {
                                                                                    [strongSelf.images removeAllObjects];
-                                                                                   
                                                                                    [images enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
                                                                                        NewsRotationImage *image = [[NewsRotationImage alloc] initWithDictionary:dic
                                                                                                                                                           error:nil];

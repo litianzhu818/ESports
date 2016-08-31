@@ -11,6 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCU-uJ-Krd">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0J-B7-onV">
                     <rect key="frame" x="8" y="8" width="584" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -19,14 +23,19 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="G0J-B7-onV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="1bH-ex-a2G"/>
-                <constraint firstAttribute="trailing" secondItem="G0J-B7-onV" secondAttribute="trailing" constant="8" id="HDL-aW-ZTM"/>
-                <constraint firstAttribute="bottom" secondItem="G0J-B7-onV" secondAttribute="bottom" constant="8" id="NZb-nq-PJ5"/>
-                <constraint firstItem="G0J-B7-onV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="fuY-R8-dIv"/>
+                <constraint firstItem="BCU-uJ-Krd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1VP-cq-1pk"/>
+                <constraint firstItem="G0J-B7-onV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="AYj-ya-as3"/>
+                <constraint firstItem="G0J-B7-onV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="JqZ-ja-Kd0"/>
+                <constraint firstAttribute="trailing" secondItem="BCU-uJ-Krd" secondAttribute="trailing" id="Jth-kX-U5v"/>
+                <constraint firstAttribute="bottom" secondItem="BCU-uJ-Krd" secondAttribute="bottom" id="Ox7-9j-vOa"/>
+                <constraint firstAttribute="trailing" secondItem="G0J-B7-onV" secondAttribute="trailing" constant="8" id="Zri-o9-vxh"/>
+                <constraint firstAttribute="bottom" secondItem="G0J-B7-onV" secondAttribute="bottom" constant="8" id="bzO-EO-LWn"/>
+                <constraint firstItem="BCU-uJ-Krd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lcl-kV-bcv"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backView" destination="BCU-uJ-Krd" id="OvZ-Fg-7Bo"/>
                 <outlet property="titleLabel" destination="G0J-B7-onV" id="w5t-DC-wan"/>
             </connections>
         </view>

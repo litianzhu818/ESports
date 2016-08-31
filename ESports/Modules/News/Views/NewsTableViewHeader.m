@@ -12,6 +12,7 @@
 @interface NewsTableViewHeader ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
@@ -40,17 +41,7 @@
     [super awakeFromNib];
     // Initialization code
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        
-        UIView *backgroundView = [[UIView alloc] initWithFrame:self.bounds];
-        backgroundView.backgroundColor = HexColor(0x16212f);
-        self.backgroundView = backgroundView;
-        
-    }else {
-        self.backgroundColor = HexColor(0x16212f);
-    }
-    
-    
+    self.backView.backgroundColor = HexColor(0x16212f);
     self.titleLabel.textColor = HexColor(0xa7a9ac);
     
     self.localStringDictionary = @{
@@ -113,6 +104,8 @@
     }
     
     self.titleLabel.text = dateString;
+    
+    [self.titleLabel setNeedsUpdateConstraints];
     
     /*
     NSString *weekString = nil;
