@@ -33,6 +33,10 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
 };
 
 @interface MatchsController ()<UITableViewDelegate, UITableViewDataSource>
+{
+    // 无数据的提示
+    UILabel *noDataLabel;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *topBackgroundView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -74,7 +78,7 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+   
     [self loadViews];
     [self loadData];
 }
@@ -294,6 +298,18 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
     [self.resultTableView registerNib:[ResultMatchCell nib] forCellReuseIdentifier:[ResultMatchCell cellIdentifier]];
 }
 
+// 设置无数据时的提示
+- (void)setNoDataV {
+    noDataLabel = [[UILabel alloc] init];
+    noDataLabel.frame = CGRectMake((SCREEN_WIDTH-120)/2, 180, 120, 30);
+    noDataLabel.font = [UIFont systemFontOfSize:14];
+    noDataLabel.textColor = [UIColor whiteColor];
+    noDataLabel.textAlignment = NSTextAlignmentCenter;
+//    noDataLabel.center = self.view.center;
+    noDataLabel.text = @"暂无比赛数据";
+    [self.view addSubview:noDataLabel];
+}
+
 - (void)loadData
 {
     self.currentMatchesType = MatchesTypeProcess;
@@ -486,6 +502,9 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
             if (self.currentMatchesType != MatchesTypeProcess) {
                 self.currentMatchesType = MatchesTypeProcess;
             }
+            if (noDataLabel) {
+                noDataLabel.hidden = NO;
+            }
         }
             break;
         case 1:
@@ -498,6 +517,7 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                     [self.resultTableView.mj_header beginRefreshing];
                 }
             }
+            noDataLabel.hidden = YES;
         }
             break;
         
@@ -521,7 +541,9 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                      if (!error) {
                                                                          
                                                                          if (processMatches.count > 0) {
-                                                                             
+                                                                             if (noDataLabel) {
+                                                                                 noDataLabel.hidden = YES;
+                                                                             }
                                                                              [strongSelf.processMatchesManager removeAllObjects];
                                                                              
                                                                              NSMutableArray<ProcessMatch *> *cacheProcessMatches = [NSMutableArray array];
@@ -547,6 +569,12 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                                                        forKey:matchesProcessListCacheKey
                                                                                                         block:NULL];
                                                                              
+                                                                         } else {
+                                                                             if (noDataLabel) {
+                                                                                 noDataLabel.hidden = NO;
+                                                                             } else {
+                                                                                 [self setNoDataV];
+                                                                             }
                                                                          }
                                                                      }
                                                                      
@@ -570,6 +598,9 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                      if (!error) {
                                                                          
                                                                          if (processMatches.count > 0) {
+                                                                             if (noDataLabel) {
+                                                                                 noDataLabel.hidden = YES;
+                                                                             }
                                                                              NSMutableArray<ProcessMatch *> *cacheProcessMatches = [NSMutableArray array];
                                                                              InsertIndexPathModel *insertIndexPathModel = [[InsertIndexPathModel alloc] initWithLastSectionIndex:strongSelf.processMatchesManager.processMatchesContainers.count-1];
                                                                              
@@ -602,7 +633,15 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                              [[TMCache sharedCache] setObject:cacheProcessMatches
                                                                                                        forKey:matchesProcessListCacheKey
                                                                                                         block:NULL];
+                                                                         }else {
+                                                                             if (!noDataLabel) {
+                                                                                 [self setNoDataV];
+                                                                             } else {
+                                                                                 noDataLabel.hidden = NO;
+                                                                             }
+                                                                             
                                                                          }
+
                                                                          
                                                                      }
                                                                      
@@ -626,7 +665,9 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                     
                                                                     if (!error) {
                                                                         if (resultMatches.count > 0) {
-                                                                            
+                                                                            if (noDataLabel) {
+                                                                                noDataLabel.hidden = YES;
+                                                                            }
                                                                             [strongSelf.resultMatchesManager removeAllObjects];
                                                                             
                                                                             NSMutableArray<ResultMatch *> *cacheResultMatches = [NSMutableArray array];
@@ -673,6 +714,10 @@ typedef NS_ENUM(NSUInteger, MatchesType) {
                                                                     if (!error) {
                                                                         
                                                                         if (resultMatches.count > 0) {
+                                                                            if (noDataLabel) {
+                                                                                
+                                                                                noDataLabel.hidden = YES;
+                                                                            }
                                                                             NSMutableArray<ResultMatch *> *cacheResultMatches = [NSMutableArray array];
                                                                             InsertIndexPathModel *insertIndexPathModel = [[InsertIndexPathModel alloc] initWithLastSectionIndex:strongSelf.resultMatchesManager.resultMatchesContainers.count-1];
                                                                             

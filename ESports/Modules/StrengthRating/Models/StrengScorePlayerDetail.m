@@ -36,7 +36,8 @@
                                                        @"LaneWin15Min":@"playerLaneWin15Min",
                                                        @"MostPickChampions":@"pickChampions",
                                                        @"PlayRoleBestStatsModel":@"bestStatsModel",
-                                                       @"PriceList":@"playerPriceList"
+                                                       @"PriceList":@"playerPriceList",
+                                                       @"TeamInfo":@"playerOfTeamInfoModel"
                                                        }];
 }
 
@@ -54,6 +55,24 @@
                                                        @"Name":@"pickChampionName",
                                                        @"Logo":@"pickChampionImageUrl",
                                                        @"WinRate":@"pickChampionWinRate"
+                                                       }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+@end
+
+@implementation TeamInfo
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"Name":@"playerOfTeamName",
+                                                       @"Logo":@"playerOfTeamImageUrl",
+                                                       @"Id":@"playerOfTeamID"
                                                        }];
 }
 

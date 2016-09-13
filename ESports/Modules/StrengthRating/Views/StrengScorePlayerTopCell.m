@@ -101,6 +101,9 @@
     [super layoutSubviews];
     
     [self.teamLogoImageView sd_setImageWithURL:[NSURL URLWithString:self.playerDetail.playerImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    NSLog(@"%@---%@---%ld",self.playerDetail.playerOfTeamInfoModel.playerOfTeamImageUrl,self.playerDetail.playerOfTeamInfoModel.playerOfTeamName,self.playerDetail.playerOfTeamInfoModel.playerOfTeamID);
+    self.teamLabel.text = self.playerDetail.playerOfTeamInfoModel.playerOfTeamName;
+    [self.teamLogo sd_setImageWithURL:[NSURL URLWithString:self.playerDetail.playerOfTeamInfoModel.playerOfTeamImageUrl] placeholderImage:[UIImage imageNamed:@"占位图片"]];
     self.teamNameLabel.text = self.playerDetail.playerName;
 }
 
@@ -118,7 +121,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 120.0f;
+    return 165.0f;
 }
 
 #pragma mark - language change action

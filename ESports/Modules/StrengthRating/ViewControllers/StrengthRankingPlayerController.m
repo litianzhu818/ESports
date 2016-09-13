@@ -15,6 +15,7 @@
 #import "StrengScorePlayerThirdCell.h"
 #import "StrengScorePlayerFourthCell.h"
 #import "StrengScorePlayerFifthCell.h"
+#import "StrengthRankingTeamController.h"
 
 @interface StrengthRankingPlayerController ()
 
@@ -97,7 +98,7 @@
                                                                                     STRONG_SELF;
                                                                                     
                                                                                     if (!error) {
-                                                                                        
+                                                                                        NSLog(@"%@",dic);
                                                                                         strongSelf.playerDetail = [[StrengScorePlayerDetail alloc] initWithDictionary:dic error:nil];
                                                                                         
                                                                                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -172,6 +173,8 @@
         StrengScorePlayerTopCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScorePlayerTopCell cellIdentifier]
                                                                        forIndexPath:indexPath];
         cell.playerDetail = self.playerDetail;
+        [cell.gotoTeamBT addTarget:self action:@selector(gotoTeam:) forControlEvents:UIControlEventTouchUpInside];
+        cell.gotoTeamBT.userInteractionEnabled = YES;
         return cell;
     }else if (indexPath.row == 1) {
         StrengScorePlayerSecondCell *cell = [tableView dequeueReusableCellWithIdentifier:[StrengScorePlayerSecondCell cellIdentifier]
@@ -201,7 +204,12 @@
     return 1;
 }
 
+#pragma mark action
+- (void)gotoTeam:(UIButton *)bt {
+    StrengthRankingTeamController *teamController = [[StrengthRankingTeamController alloc] initWithTeamId:[NSString stringWithFormat:@"%ld",self.playerDetail.playerOfTeamInfoModel.playerOfTeamID]];
+    [self.navigationController pushViewController:teamController animated:YES];
 
+}
 /*
 #pragma mark - Navigation
 

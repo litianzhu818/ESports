@@ -42,7 +42,8 @@
     // Initialization code
     
     self.backView.backgroundColor = HexColor(0x16212f);
-    self.titleLabel.textColor = HexColor(0xa7a9ac);
+//    self.titleLabel.textColor = HexColor(0xa7a9ac);
+    self.titleLabel.textColor = [UIColor whiteColor];
     
     self.localStringDictionary = @{
                                    SYS_LANGUAGE_ENGLISH:@{

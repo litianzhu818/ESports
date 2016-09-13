@@ -66,6 +66,7 @@
 @end
 
 @class StrengScorePlayerBestStatsModel;
+@class TeamInfo;
 
 @interface StrengScorePlayerDetail : JSONModel
 
@@ -95,6 +96,7 @@
 @property (strong, nonatomic) NSArray<StrengScorePlayerPickChampion> *pickChampions;
 @property (strong, nonatomic) StrengScorePlayerBestStatsModel *bestStatsModel;
 @property (strong, nonatomic) NSArray *playerPriceList;
+@property (strong, nonatomic) TeamInfo *playerOfTeamInfoModel;
 
 
 @end
@@ -105,6 +107,14 @@
 @property (strong, nonatomic) NSString *pickChampionName;
 @property (strong, nonatomic) NSString *pickChampionImageUrl;
 @property (assign, nonatomic) CGFloat pickChampionWinRate;
+
+@end
+
+@interface TeamInfo : JSONModel
+
+@property (strong, nonatomic) NSString *playerOfTeamImageUrl;
+@property (strong, nonatomic) NSString *playerOfTeamName;
+@property (assign, nonatomic) NSInteger playerOfTeamID;
 
 @end
 

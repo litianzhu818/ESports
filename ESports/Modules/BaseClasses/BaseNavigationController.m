@@ -123,10 +123,41 @@
                                        selectBlock:^(NSUInteger index) {
                                            if (index == 0 && ![[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_ENGLISH]) {
                                                [LTZLocalizationManager setLanguage:SYS_LANGUAGE_ENGLISH];
+                                               //将NSString 对象存储到 NSUserDefaults 中
+                                               NSString *languageImgStrN = @"ic_language_en";
+                                               NSString *languageImgStrH = @"ic_language_en_press";
+                                               NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                                               [user setObject:languageImgStrN forKey:@"languageImgStrN"];
+                                               [user setObject:languageImgStrH forKey:@"languageImgStrH"];
+                                               UIButton *rightBT = (UIButton *)[self.view viewWithTag:111];
+                                               [rightBT setImage:[UIImage imageNamed:@"ic_language_en"] forState:UIControlStateNormal];
+                                               [rightBT setImage:[UIImage imageNamed:@"ic_language_en_press"] forState:UIControlStateHighlighted];
+
                                            }else if(index == 1 && ![[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_S_CHINESE]){
                                                [LTZLocalizationManager setLanguage:SYS_LANGUAGE_S_CHINESE];
+                                               //将NSString 对象存储到 NSUserDefaults 中
+                                               NSString *languageImgStrN = @"ic_language_zh_cn";
+                                               NSString *languageImgStrH = @"ic_language_zh_cn_press";
+                                               NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                                               [user setObject:languageImgStrN forKey:@"languageImgStrN"];
+                                               [user setObject:languageImgStrH forKey:@"languageImgStrH"];
+                                               UIButton *rightBT = (UIButton *)[self.view viewWithTag:111];
+                                               [rightBT setImage:[UIImage imageNamed:@"ic_language_zh_cn"] forState:UIControlStateNormal];
+                                               [rightBT setImage:[UIImage imageNamed:@"ic_language_zh_cn_press"] forState:UIControlStateHighlighted];
+                                               [rightBT setTitleColor:navigation_bar_normal_color forState:UIControlStateNormal];
+                                               [rightBT setTitleColor:navigation_bar_highlighted_color forState:UIControlStateHighlighted];
+
                                            }else if(index == 2 && ![[LTZLocalizationManager language] isEqualToString:SYS_LANGUAGE_T_CHINESE]){
                                                [LTZLocalizationManager setLanguage:SYS_LANGUAGE_T_CHINESE];
+                                               //将NSString 对象存储到 NSUserDefaults 中
+                                               NSString *languageImgStrN = @"ic_language_zh_tw";
+                                               NSString *languageImgStrH = @"ic_language_zh_tw_press";
+                                               NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                                               [user setObject:languageImgStrN forKey:@"languageImgStrN"];
+                                               [user setObject:languageImgStrH forKey:@"languageImgStrH"];
+                                               UIButton *rightBT = (UIButton *)[self.view viewWithTag:111];
+                                               [rightBT setImage:[UIImage imageNamed:@"ic_language_zh_tw"] forState:UIControlStateNormal];
+                                               [rightBT setImage:[UIImage imageNamed:@"ic_language_zh_tw_press"] forState:UIControlStateHighlighted];
                                            }
                                        }];
 }
@@ -209,15 +240,24 @@
     }//else if (self.childViewControllers.count == 0){
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.tag  = 111;
+        [button setFrame:CGRectMake(0, 0, 22, 22)];
+        // 从属性列表里取出存入的图片Str
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        NSString *itemImageStr = [user objectForKey:@"languageImgStrN"];
+        NSString *itemHImageStr = [user objectForKey:@"languageImgStrH"];
+        if (itemImageStr.length == 0 | itemHImageStr.length == 0) {
+            UIImage *itemImage = [[UIImage imageNamed:@"ic_language_en"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImage *itemHImage = [[UIImage imageNamed:@"ic_language_en_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [button setImage:itemImage forState:UIControlStateNormal];
+            [button setImage:itemHImage forState:UIControlStateHighlighted];
+        } else {
+            UIImage *itemImage = [[UIImage imageNamed:itemImageStr] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImage *itemHImage = [[UIImage imageNamed:itemHImageStr] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         
-        [button setFrame:CGRectMake(0, 0, 20, 40)];
-        
-        UIImage *itemImage = [[UIImage imageNamed:@"nav_change_language_n"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIImage *itemHImage = [[UIImage imageNamed:@"nav_change_language_h"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        
-        [button setImage:itemImage forState:UIControlStateNormal];
-        [button setImage:itemHImage forState:UIControlStateHighlighted];
-        
+            [button setImage:itemImage forState:UIControlStateNormal];
+            [button setImage:itemHImage forState:UIControlStateHighlighted];
+        }
         [button setTitleColor:navigation_bar_normal_color forState:UIControlStateNormal];
         [button setTitleColor:navigation_bar_highlighted_color forState:UIControlStateHighlighted];
         

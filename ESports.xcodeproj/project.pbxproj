@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C5B90910DD535927CA2E899C /* libPods-ESports.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB55A45EFCE0F154101452A5 /* libPods-ESports.a */; };
+		D0666B7B1D801BDB002C10F9 /* ic_language_en_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0666B751D801BDB002C10F9 /* ic_language_en_press@2x.png */; };
+		D0666B7C1D801BDB002C10F9 /* ic_language_en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0666B761D801BDB002C10F9 /* ic_language_en@2x.png */; };
+		D0666B7D1D801BDB002C10F9 /* ic_language_zh_cn_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0666B771D801BDB002C10F9 /* ic_language_zh_cn_press@2x.png */; };
+		D0666B7E1D801BDB002C10F9 /* ic_language_zh_cn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0666B781D801BDB002C10F9 /* ic_language_zh_cn@2x.png */; };
+		D0666B7F1D801BDB002C10F9 /* ic_language_zh_tw_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0666B791D801BDB002C10F9 /* ic_language_zh_tw_press@2x.png */; };
+		D0666B801D801BDB002C10F9 /* ic_language_zh_tw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0666B7A1D801BDB002C10F9 /* ic_language_zh_tw@2x.png */; };
+		D0CD55791D881CD900BD0EFC /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CD55781D881CD900BD0EFC /* UIViewExt.m */; };
+		D0CD557B1D88211200BD0EFC /* bg_main_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CD557A1D88211200BD0EFC /* bg_main_bottom@2x.png */; };
 		E71503291D6B0C9300812668 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71503271D6B0C9300812668 /* LoginController.m */; };
 		E715032A1D6B0C9300812668 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71503281D6B0C9300812668 /* LoginController.xib */; };
 		E715032E1D6C35E900812668 /* MatchZoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E715032D1D6C35E900812668 /* MatchZoneManager.m */; };
@@ -260,6 +268,15 @@
 		0546ABE69EB6F9413426DCA8 /* Pods-ESports.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.debug.xcconfig"; sourceTree = "<group>"; };
 		4BD28DF1E0C5C36A9CA254A2 /* Pods-ESports.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ESports.release.xcconfig"; path = "Pods/Target Support Files/Pods-ESports/Pods-ESports.release.xcconfig"; sourceTree = "<group>"; };
 		CB55A45EFCE0F154101452A5 /* libPods-ESports.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ESports.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0666B751D801BDB002C10F9 /* ic_language_en_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_language_en_press@2x.png"; sourceTree = "<group>"; };
+		D0666B761D801BDB002C10F9 /* ic_language_en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_language_en@2x.png"; sourceTree = "<group>"; };
+		D0666B771D801BDB002C10F9 /* ic_language_zh_cn_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_language_zh_cn_press@2x.png"; sourceTree = "<group>"; };
+		D0666B781D801BDB002C10F9 /* ic_language_zh_cn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_language_zh_cn@2x.png"; sourceTree = "<group>"; };
+		D0666B791D801BDB002C10F9 /* ic_language_zh_tw_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_language_zh_tw_press@2x.png"; sourceTree = "<group>"; };
+		D0666B7A1D801BDB002C10F9 /* ic_language_zh_tw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_language_zh_tw@2x.png"; sourceTree = "<group>"; };
+		D0CD55771D881CD900BD0EFC /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		D0CD55781D881CD900BD0EFC /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		D0CD557A1D88211200BD0EFC /* bg_main_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_main_bottom@2x.png"; sourceTree = "<group>"; };
 		E71503261D6B0C9300812668 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		E71503271D6B0C9300812668 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		E71503281D6B0C9300812668 /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
@@ -678,6 +695,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D0CD55761D881CC400BD0EFC /* UIView+Ext */ = {
+			isa = PBXGroup;
+			children = (
+				D0CD55771D881CD900BD0EFC /* UIViewExt.h */,
+				D0CD55781D881CD900BD0EFC /* UIViewExt.m */,
+			);
+			path = "UIView+Ext";
+			sourceTree = "<group>";
+		};
 		E71503201D6B0B7000812668 /* login */ = {
 			isa = PBXGroup;
 			children = (
@@ -887,6 +913,12 @@
 			isa = PBXGroup;
 			children = (
 				E73911AF1D2A592D00F4A522 /* LanguageIcons */,
+				D0666B751D801BDB002C10F9 /* ic_language_en_press@2x.png */,
+				D0666B761D801BDB002C10F9 /* ic_language_en@2x.png */,
+				D0666B771D801BDB002C10F9 /* ic_language_zh_cn_press@2x.png */,
+				D0666B781D801BDB002C10F9 /* ic_language_zh_cn@2x.png */,
+				D0666B791D801BDB002C10F9 /* ic_language_zh_tw_press@2x.png */,
+				D0666B7A1D801BDB002C10F9 /* ic_language_zh_tw@2x.png */,
 				E72FD85E1D2508EC000A5CE6 /* backItemImage@2x.png */,
 				E72FD85F1D2508EC000A5CE6 /* backItemImage_hl@2x.png */,
 				E72FD8601D2508EC000A5CE6 /* topbar.png */,
@@ -1549,6 +1581,7 @@
 		E7BD57671CF4360D008F2D69 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0CD557A1D88211200BD0EFC /* bg_main_bottom@2x.png */,
 				E7BD57681CF4360D008F2D69 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -1557,6 +1590,7 @@
 		E7BD57811CF58893008F2D69 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D0CD55761D881CC400BD0EFC /* UIView+Ext */,
 				E71503851D706D9600812668 /* SDCycleScrollView */,
 				E75C9BDC1D421B8C00950981 /* DBManager */,
 				E73911B61D2A62F800F4A522 /* PopMenu */,
@@ -1722,6 +1756,7 @@
 				E71550C21D5C59580073F159 /* StrengScoreTeamTopCell.xib in Resources */,
 				E715034A1D6E9BF400812668 /* LoginCell.xib in Resources */,
 				E760B3581D37756E00F5DB54 /* NewsRotationImageCell.xib in Resources */,
+				D0666B801D801BDB002C10F9 /* ic_language_zh_tw@2x.png in Resources */,
 				E760B3951D3E1C4700F5DB54 /* DetailNewSubTitleCell.xib in Resources */,
 				E717B3101D51DBCF00BE98A3 /* match_video_data_h@2x.png in Resources */,
 				E72FD8AA1D264943000A5CE6 /* tabbar_strengthrating_h@2x.png in Resources */,
@@ -1736,8 +1771,10 @@
 				E717B31F1D533F6B00BE98A3 /* match_points_type_bg@2x.png in Resources */,
 				E72FD8A41D264943000A5CE6 /* tabbar_matchs_h@2x.png in Resources */,
 				E71503751D6F0A6100812668 /* EmailRegisterSuccessController.xib in Resources */,
+				D0CD557B1D88211200BD0EFC /* bg_main_bottom@2x.png in Resources */,
 				E71503391D6C500200812668 /* login_close_btn@2x.png in Resources */,
 				E760B3771D3CAD0600F5DB54 /* DetailNewsController.xib in Resources */,
+				D0666B7C1D801BDB002C10F9 /* ic_language_en@2x.png in Resources */,
 				E760B3901D3E19BF00F5DB54 /* DetailRelNewsBottomCell.xib in Resources */,
 				E715037A1D6FE49A00812668 /* FindPwdSelectController.xib in Resources */,
 				E715033D1D6C500200812668 /* login_pwd@2x.png in Resources */,
@@ -1766,6 +1803,7 @@
 				E71550DD1D5DD62A0073F159 /* StrengScoreTeamFifthCell.xib in Resources */,
 				E71627551D4A0FBE00EF6740 /* MatchTeamDataCenterCell.xib in Resources */,
 				E715512D1D66BC890073F159 /* match_team_blue_bg@2x.png in Resources */,
+				D0666B7F1D801BDB002C10F9 /* ic_language_zh_tw_press@2x.png in Resources */,
 				E715033E1D6C500200812668 /* login_qq@2x.png in Resources */,
 				E71550BD1D5C22120073F159 /* StrengthRankingPlayerController.xib in Resources */,
 				E760B35D1D379ADA00F5DB54 /* HotFocusNewCell.xib in Resources */,
@@ -1786,6 +1824,7 @@
 				E71627461D49AD8400EF6740 /* match_team_data_arrow@2x.png in Resources */,
 				E71503401D6C500200812668 /* login_wechat@2x.png in Resources */,
 				E73911B41D2A592D00F4A522 /* sys_language_s_chinese@2x.png in Resources */,
+				D0666B7E1D801BDB002C10F9 /* ic_language_zh_cn@2x.png in Resources */,
 				E73911B51D2A592D00F4A522 /* sys_language_t_chinese@2x.png in Resources */,
 				E715033A1D6C500200812668 /* login_facebook@2x.png in Resources */,
 				E72FD8B51D267C9B000A5CE6 /* nav_change_language_n@2x.png in Resources */,
@@ -1793,6 +1832,7 @@
 				E760B33F1D2FA61000F5DB54 /* ionicons.ttf in Resources */,
 				E71550A81D59E8640073F159 /* StrengScoreTeamCell.xib in Resources */,
 				E71627501D49E73200EF6740 /* MatchTeamResultCell.xib in Resources */,
+				D0666B7B1D801BDB002C10F9 /* ic_language_en_press@2x.png in Resources */,
 				E716274B1D49DEAE00EF6740 /* MatchTeamDataTopCell.xib in Resources */,
 				E72FD8A71D264943000A5CE6 /* tabbar_news_n@2x.png in Resources */,
 				E715512B1D66BC890073F159 /* match_kill_blue@2x.png in Resources */,
@@ -1803,6 +1843,7 @@
 				E71550ED1D6342600073F159 /* StrengScorePlayerTopCell.xib in Resources */,
 				E715033F1D6C500200812668 /* login_webo@2x.png in Resources */,
 				E715035D1D6ED8CC00812668 /* register_email_register@2x.png in Resources */,
+				D0666B7D1D801BDB002C10F9 /* ic_language_zh_cn_press@2x.png in Resources */,
 				E760B3361D2E39AD00F5DB54 /* location_drop_h@2x.png in Resources */,
 				E715512A1D66BC890073F159 /* match_death_red@2x.png in Resources */,
 				E71550B21D5ADD950073F159 /* StrengthRankingTeamController.xib in Resources */,
@@ -1882,6 +1923,7 @@
 				E760B38F1D3E19BF00F5DB54 /* DetailRelNewsBottomCell.m in Sources */,
 				E75C9BDF1D421B8C00950981 /* DBManager.m in Sources */,
 				E715035A1D6ED34900812668 /* VerificationEmailController.m in Sources */,
+				D0CD55791D881CD900BD0EFC /* UIViewExt.m in Sources */,
 				E71503491D6E9BF400812668 /* LoginCell.m in Sources */,
 				E72FD8591D24F420000A5CE6 /* NJKWebViewProgress.m in Sources */,
 				E716273F1D48C58C00EF6740 /* ExtendTableViewHeaderView.m in Sources */,
@@ -2128,8 +2170,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esportsmatrix LoL (4RUN33BYWV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Esportsmatrix LoL (4RUN33BYWV)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
@@ -2138,7 +2180,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.esportsmatrix.esports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "398b97ad-f98c-4aee-93a8-030fc3280eeb";
+				PROVISIONING_PROFILE = "dfeab36d-8bf9-4ad0-9f3b-5fbad20bc8fc";
 			};
 			name = Debug;
 		};
@@ -2148,8 +2190,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esportsmatrix LoL (4RUN33BYWV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Esportsmatrix LoL (4RUN33BYWV)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ESports/ESports.pch";
@@ -2158,7 +2200,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.esportsmatrix.esports;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "398b97ad-f98c-4aee-93a8-030fc3280eeb";
+				PROVISIONING_PROFILE = "dfeab36d-8bf9-4ad0-9f3b-5fbad20bc8fc";
 			};
 			name = Release;
 		};
