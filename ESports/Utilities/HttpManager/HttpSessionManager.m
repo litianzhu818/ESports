@@ -392,7 +392,8 @@
                       block:(void (^)(id data, NSError *error))block
 {
     NSDictionary *params = @{
-                             @"Email":email
+                             @"Email":email,
+                             @"UserAgent":@"iOS"
                              };
     
     [[HttpSessionClient sharedClient] requestJsonDataWithPath:registerEmailVerifyURL
